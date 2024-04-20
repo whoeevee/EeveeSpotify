@@ -1,0 +1,1 @@
+{ Filter = { Bundles = ( "com.spotify.client" ); }; }

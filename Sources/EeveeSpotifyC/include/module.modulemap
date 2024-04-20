@@ -1,0 +1,4 @@
+module EeveeSpotifyC {
+    umbrella "."
+    export *
+}
