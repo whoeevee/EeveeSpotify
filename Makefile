@@ -1,12 +1,13 @@
-TARGET := iphone:clang:latest:14.0
+TARGET := iphone:clang:latest:15.0
 INSTALL_TARGET_PROCESSES = Spotify
+ARCHS = arm64
 
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = EeveeSpotify
 
-EeveeSpotify_FILES = $(shell find Sources/EeveeSpotify -name '*.swift') $(shell find Sources/EeveeSpotifyC -name '*.m' -o -name '*.c' -o -name '*.mm' -o -name '*.cpp')
-EeveeSpotify_SWIFTFLAGS = -ISources/EeveeSpotifyC/include
-EeveeSpotify_CFLAGS = -fobjc-arc -ISources/EeveeSpotifyC/include
+$(TWEAK_NAME)_FILES = $(shell find src -name '*.m' -o -name '*.x')
+$(TWEAK_NAME)_CFLAGS = -fobjc-arc -Wno-unused-variable
+$(TWEAK_NAME)_LOGOS_DEFAULT_GENERATOR = internal
 
 include $(THEOS_MAKE_PATH)/tweak.mk
