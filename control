@@ -6,4 +6,4 @@ Description: A tweak to get Spotify Premium for free, just like Spotilife
 Maintainer: Eevee
 Author: Eevee
 Section: Tweaks
-Depends: ${ORION}, firmware (>= 14.0)
+Depends: firmware (>= 15.0)
