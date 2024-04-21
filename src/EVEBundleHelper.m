@@ -1,5 +1,4 @@
 #import "EVEBundleHelper.h"
-#import <UIKit/UIKit.h>
 #import <libroot.h>
 
 @implementation EVEBundleHelper
