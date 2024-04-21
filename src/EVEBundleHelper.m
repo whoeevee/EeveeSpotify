@@ -1,4 +1,6 @@
 #import "EVEBundleHelper.h"
+#import <UIKit/UIKit.h>
+#import <libroot.h>
 
 @implementation EVEBundleHelper
 @synthesize bundle = _bundle;
@@ -29,5 +31,22 @@
 
 - (NSData *)premiumBlankData {
     return [NSData dataWithContentsOfURL:[self.bundle URLForResource:@"premiumblank" withExtension:@"bnk"]];
+}
+
+- (void)showPopupWithTitle:(NSString *)title message:(NSString *)msg buttonText:(NSString *)bText {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                message:msg
+                                preferredStyle:UIAlertControllerStyleAlert];
+
+            [alert addAction:[UIAlertAction actionWithTitle:bText
+                                style:UIAlertActionStyleDefault
+                                handler:nil]];
+
+            [UIApplication.sharedApplication.delegate.window.rootViewController
+                        presentViewController:alert animated:YES completion:nil];
+        });
+    });
 }
 @end
