@@ -6,4 +6,7 @@ This branch contains the same tweak but rewritten in Objective-C by [asdfzxcvbn]
 
 After looking into it, I discovered that Orion is not the problem. Instead [pyzule](https://github.com/asdfzxcvbn/pyzule) wasn't injecting CydiaSubstrate for unknown reasons, resulting in ipa crashes.
 
-However, the Objective-C version isn't stable. You might need to restart the app a lot to get Premium. Therefore, it's better to use the Swift version.
+
+~~However, the Objective-C version isn't stable. You might need to restart the app a lot to get Premium. Therefore, it's better to use the Swift version.~~
+
+After updating the Objective-C version, it should be just as stable as the Swift version. However, your results may vary, so you should try both if one isn't working for you.
