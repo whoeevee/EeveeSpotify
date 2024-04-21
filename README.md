@@ -21,3 +21,5 @@ Tweak also changes query parameters `trackRows` and `video` to true, so Spotify 
 There is no offline or very high quality (similar to Spotilife) because these features are server-sided (i.e., you can't get very high quality tracks from the server without a subscription). In theory, it might be possible to implement offline mode locally, but not in this tweak.
 
 To hide the Premium tab, use [SpotifyHidePremium](https://t.me/SpotilifeIPAs/36).
+
+To open Spotify links in sideloaded app, use [OpenSpotifySafariExtension](https://github.com/BillyCurtis/OpenSpotifySafariExtension).
