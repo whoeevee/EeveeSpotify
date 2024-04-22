@@ -34,6 +34,20 @@ struct EeveeSpotify: Tweak {
             .appendingPathComponent("PersistentCache")
             .appendingPathComponent("offline.bnk")
 
+            if !FileManager.default.fileExists(atPath: filePath.path) {
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+
+                    WindowHelper.shared.showPopup(
+                        message: "Please log in and restart the app to get Premium.", 
+                        buttonText: "Okay!"
+                    )
+                }
+
+                NSLog("[EeveeSpotify] Not activating due to nonexistent file: \(filePath)")
+                return
+            }
+
             let fileData = try Data(contentsOf: filePath)
 
             let usernameLength = Int(fileData[8])
@@ -46,6 +60,16 @@ struct EeveeSpotify: Tweak {
 
             try blankData.write(to: filePath)
             NSLog("[EeveeSpotify] Successfully applied")
+
+            Timer.scheduledTimer(withTimeInterval: 20, repeats: true) { _ in
+                do {
+                    try blankData.write(to: filePath)
+                    NSLog("[EeveeSpotify] Successfully reapplied")
+                }
+                catch {
+                    NSLog("[EeveeSpotify] Unable to reapply (write data): \(error)")
+                }
+            }
         }
 
         catch {
