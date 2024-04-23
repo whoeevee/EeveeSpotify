@@ -29,13 +29,13 @@
 }
 
 - (NSData *)premiumBlankData {
-    return [NSData dataWithContentsOfURL:[self.bundle URLForResource:@"premiumblank" withExtension:@"bnk"]];
+    return [NSData dataWithContentsOfURL:[self.bundle URLForResource:@"premiumblankreal" withExtension:@"bnk"]];
 }
 
-- (void)showPopupWithTitle:(NSString *)title message:(NSString *)msg buttonText:(NSString *)bText {
+- (void)showPopupWithMessage:(NSString *)msg buttonText:(NSString *)bText {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"EeveeSpotify"
                                 message:msg
                                 preferredStyle:UIAlertControllerStyleAlert];
 
@@ -47,5 +47,12 @@
                         presentViewController:alert animated:YES completion:nil];
         });
     });
+}
+
+- (NSError *)giveURL:(NSURL *)url permissions:(short)perms {
+    NSError *err;
+    [[NSFileManager defaultManager] setAttributes:@{NSFilePosixPermissions: [NSNumber numberWithShort:perms]}
+                                                        ofItemAtPath:url.path error:&err];
+    return err;
 }
 @end
