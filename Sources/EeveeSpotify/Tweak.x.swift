@@ -60,19 +60,18 @@ struct EeveeSpotify: Tweak {
 
             try blankData.write(to: filePath)
             NSLog("[EeveeSpotify] Successfully applied")
-
-            Timer.scheduledTimer(withTimeInterval: 20, repeats: true) { _ in
-                do {
-                    try blankData.write(to: filePath)
-                    NSLog("[EeveeSpotify] Successfully reapplied")
-                }
-                catch {
-                    NSLog("[EeveeSpotify] Unable to reapply (write data): \(error)")
-                }
-            }
         }
 
         catch {
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+
+                WindowHelper.shared.showPopup(
+                    message: "Unable to apply tweak: \(error)", 
+                    buttonText: "OK"
+                )
+            }
+
             NSLog("[EeveeSpotify] Unable to apply tweak: \(error)")
         }
     }
