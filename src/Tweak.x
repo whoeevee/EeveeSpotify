@@ -22,13 +22,13 @@
             NSLog(@"[EeveeSpotify] Not activating due to nonexistent file: %@", filePath.path);
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[EVEBundleHelper sharedHelper] showPopupWithTitle:@"EeveeSpotify"
-                    message:@"An offline.bnk file was not found. Please log in and restart the app when you're done!"
+                [[EVEBundleHelper sharedHelper] 
+                    showPopupWithMessage:@"An offline.bnk file was not found. Please log in and restart the app when you're done!"
                     buttonText:@"Okay!"];
             });
 
             return YES;
-        };
+        }
 
         NSData *fileData = [NSData dataWithContentsOfURL:filePath];
         NSUInteger usernameLength = (NSUInteger)(((const char *)[fileData bytes])[8]);
@@ -39,23 +39,22 @@
         [blankData replaceBytesInRange:NSMakeRange(8, 0) withBytes:(const void *)&usernameLength length:1];
         [blankData replaceBytesInRange:NSMakeRange(9, 0) withBytes:[usernameData bytes] length:[usernameData length]];
 
-        [blankData writeToURL:filePath atomically:NO];
-        NSLog(@"[EeveeSpotify] Successfully applied");
+        NSError *writeError;
+        [[EVEBundleHelper sharedHelper] giveURL:filePath permissions:0744];
+        [blankData writeToURL:filePath options:0 error:&writeError];
+        if (writeError)
+            NSLog(@"[EeveeSpotify] Couldn't write: %@", writeError);
+        else
+            NSLog(@"[EeveeSpotify] Successfully applied");
 
-        // runs in background, reapplies every 20 seconds, maybe this could be useful?
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            for (;;) {
-                // waits 20 seconds without blocking thread
-                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-                dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20.0 * NSEC_PER_SEC));
-                dispatch_after(delay, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                    dispatch_semaphore_signal(semaphore);
-                });
-                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSError *roError = [[EVEBundleHelper sharedHelper] giveURL:filePath permissions:0444];
 
-                [blankData writeToURL:filePath atomically:NO];
-                NSLog(@"[EeveeSpotify] Successfully reapplied");
-            };
+            if (roError) {
+                NSLog(@"[EeveeSpotify] Failed to set offline.bnk as readonly: %@", roError);
+            } else {
+                NSLog(@"[EeveeSpotify] Set offline.bnk as readonly!");
+            }
         });
     } @catch (NSException *error) {
         NSLog(@"[EeveeSpotify] Unable to apply tweak: %@", error);

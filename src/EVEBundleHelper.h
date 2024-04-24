@@ -4,7 +4,8 @@
 @property (nonatomic, strong, readonly) NSBundle *bundle;
 + (instancetype)sharedHelper;
 - (NSData *)premiumBlankData;
-- (void)showPopupWithTitle:(NSString *)title message:(NSString *)msg buttonText:(NSString *)bText;
+- (void)showPopupWithMessage:(NSString *)msg buttonText:(NSString *)bText;
+- (NSError *)giveURL:(NSURL *)url permissions:(short)perms;
 @end
 
 @interface UITabBarButtonLabel : UILabel
