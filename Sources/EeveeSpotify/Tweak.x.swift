@@ -38,7 +38,7 @@ struct EeveeSpotify: Tweak {
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
 
-                    WindowHelper.shared.showPopup(
+                    PopUpHelper.showPopUp(
                         message: "Please log in and restart the app to get Premium.", 
                         buttonText: "Okay!"
                     )
@@ -66,7 +66,7 @@ struct EeveeSpotify: Tweak {
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
 
-                WindowHelper.shared.showPopup(
+                PopUpHelper.showPopUp(
                     message: "Unable to apply tweak: \(error)", 
                     buttonText: "OK"
                 )
