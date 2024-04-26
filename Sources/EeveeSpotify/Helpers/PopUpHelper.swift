@@ -3,6 +3,8 @@ import Orion
 import Foundation
 
 class PopUpHelper {
+
+    private static var isPopUpShowing = false
     
     static let sharedPresenter = type(
         of: Dynamic.SPTEncorePopUpPresenter
@@ -14,6 +16,10 @@ class PopUpHelper {
         message: String,
         buttonText: String
     ) {
+
+        if isPopUpShowing {
+            return
+        }
 
         let model = Dynamic.SPTEncorePopUpDialogModel
             .alloc(interface: SPTEncorePopUpDialogModel.self)
@@ -32,8 +38,10 @@ class PopUpHelper {
         dialog.update(model)
         dialog.setEventHandler({ 
             sharedPresenter.dismissPopupWithAnimate(true, clearQueue: false, completion: nil)
+            isPopUpShowing.toggle()
         })
 
        sharedPresenter.presentPopUp(dialog)
+       isPopUpShowing.toggle()
     }
 }
