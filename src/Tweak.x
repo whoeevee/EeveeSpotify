@@ -1,4 +1,5 @@
-#import "EVEBundleHelper.h"
+#import "Headers/EVEPopUpHelper.h"
+#import "Headers/EVEBundleHelper.h"
 
 %hook NSURL
 - (instancetype)initWithString:(NSString *)string relativeToURL:(NSURL *)url {
@@ -15,16 +16,17 @@
 
     @try {
         NSArray<NSURL *> *fileURLs = [[NSFileManager defaultManager] 
-                                        URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask];
+                                        URLsForDirectory:NSApplicationSupportDirectory
+                                               inDomains:NSUserDomainMask];
         NSURL *filePath = [fileURLs.firstObject URLByAppendingPathComponent:@"PersistentCache/offline.bnk"];
 
         if (![[NSFileManager defaultManager] fileExistsAtPath:filePath.path]) {
             NSLog(@"[EeveeSpotify] Not activating due to nonexistent file: %@", filePath.path);
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [[EVEBundleHelper sharedHelper] 
-                    showPopupWithMessage:@"An offline.bnk file was not found. Please log in and restart the app when you're done!"
-                    buttonText:@"Okay!"];
+                [EVEPopUpHelper
+                    showPopUpWithMessage:@"An offline.bnk file was not found. Please log in and restart the app when you're done!"
+                              buttonText:@"Okay!"];
             });
 
             return YES;
@@ -39,23 +41,8 @@
         [blankData replaceBytesInRange:NSMakeRange(8, 0) withBytes:(const void *)&usernameLength length:1];
         [blankData replaceBytesInRange:NSMakeRange(9, 0) withBytes:[usernameData bytes] length:[usernameData length]];
 
-        NSError *writeError;
-        [[EVEBundleHelper sharedHelper] giveURL:filePath permissions:0744];
-        [blankData writeToURL:filePath options:0 error:&writeError];
-        if (writeError)
-            NSLog(@"[EeveeSpotify] Couldn't write: %@", writeError);
-        else
-            NSLog(@"[EeveeSpotify] Successfully applied");
-
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSError *roError = [[EVEBundleHelper sharedHelper] giveURL:filePath permissions:0444];
-
-            if (roError) {
-                NSLog(@"[EeveeSpotify] Failed to set offline.bnk as readonly: %@", roError);
-            } else {
-                NSLog(@"[EeveeSpotify] Set offline.bnk as readonly!");
-            }
-        });
+        [blankData writeToURL:filePath options:0 error:nil];
+        NSLog(@"[EeveeSpotify] Successfully applied");
     } @catch (NSException *error) {
         NSLog(@"[EeveeSpotify] Unable to apply tweak: %@", error);
     }
