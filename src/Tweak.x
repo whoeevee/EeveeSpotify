@@ -51,6 +51,19 @@
 }
 %end
 
+%hook AudioQualitySettingsManager
+- (void)setLocalNonMeteredState:(NSInteger)state {
+    if (state == 4) {
+        [EVEPopUpHelper
+            showPopUpWithMessage:@"This feature is server-sided and not available."
+                      buttonText:@"Okay"];
+        state = 3;
+    }
+
+    %orig(state);
+}
+%end
+
 %ctor {
     %init(AppDelegate = objc_getClass("MusicApp_ContainerWiring.SpotifyAppDelegate"));
 }
