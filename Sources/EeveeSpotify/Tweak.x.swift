@@ -27,52 +27,49 @@ struct EeveeSpotify: Tweak {
 
         do {
 
-            let filePath = FileManager.default.urls(
-                for: .applicationSupportDirectory, in: .userDomainMask
-            )
-            .first!
-            .appendingPathComponent("PersistentCache")
-            .appendingPathComponent("offline.bnk")
+            defer {
+                NSFileCoordinator.addFilePresenter(OfflineObserver())
+            }
 
-            if !FileManager.default.fileExists(atPath: filePath.path) {
+            do {
+                try OfflineHelper.restoreFromEeveeBnk()
+                NSLog("[EeveeSpotify] Restored from eevee.bnk")
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-
-                    PopUpHelper.showPopUp(
-                        message: "Please log in and restart the app to get Premium.", 
-                        buttonText: "Okay!"
-                    )
-                }
-
-                NSLog("[EeveeSpotify] Not activating due to nonexistent file: \(filePath)")
                 return
             }
 
-            let fileData = try Data(contentsOf: filePath)
+            catch CocoaError.fileReadNoSuchFile {
+                NSLog("[EeveeSpotify] Not restoring from eevee.bnk: doesn't exist")
+            }
 
-            let usernameLength = Int(fileData[8])
-            let username = Data(fileData[9..<9 + usernameLength])
+            //
 
-            var blankData = try BundleHelper.shared.premiumBlankData()
+            do {
+                try OfflineHelper.patchOfflineBnk()
+                try OfflineHelper.backupToEeveeBnk()
+            }
 
-            blankData.insert(UInt8(usernameLength), at: 8)
-            blankData.insert(contentsOf: username, at: 9)
+            catch CocoaError.fileReadNoSuchFile {
 
-            try blankData.write(to: filePath)
-            NSLog("[EeveeSpotify] Successfully applied")
+                NSLog("[EeveeSpotify] Not activating: offline.bnk doesn't exist")
+
+                PopUpHelper.showPopUp(
+                    delayed: true,
+                    message: "Please log in and restart the app to get Premium.", 
+                    buttonText: "Okay!"
+                )
+            }
         }
 
         catch {
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-
-                PopUpHelper.showPopUp(
-                    message: "Unable to apply tweak: \(error)", 
-                    buttonText: "OK"
-                )
-            }
-
+            
             NSLog("[EeveeSpotify] Unable to apply tweak: \(error)")
+
+            PopUpHelper.showPopUp(
+                delayed: true,
+                message: "Unable to apply tweak: \(error)", 
+                buttonText: "OK"
+            )
         }
     }
 }
