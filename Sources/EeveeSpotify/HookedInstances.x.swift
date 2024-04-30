@@ -8,7 +8,7 @@ class SPTCoreProductStateInstanceHook: ClassHook<NSObject> {
 
     static let targetName = "SPTCoreProductState"
 
-    func stringForKey(_ key: String) -> String {
+    func stringForKey(_ key: String) -> NSString {
 
         HookedInstances.productState = Dynamic.convert(
             target,
