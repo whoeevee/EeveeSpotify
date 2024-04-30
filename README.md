@@ -14,6 +14,7 @@ Please refrain from opening issues about the following features, as they are ser
 
 - Using "Very High" audio quality
 - Downloading songs/playlists (podcast downloads work, though)
+- Lyrics (**becoming** server-sided and will *eventually* stop working on all songs)
 
 In theory, implementing downloading/offline mode locally *should* be possible, but it will **not** be included in this tweak.
 
