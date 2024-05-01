@@ -12,9 +12,9 @@ Several months ago, Spotilife, the only tweak to get Spotify Premium, stopped wo
 
 Please refrain from opening issues about the following features, as they are server-sided and will **NEVER** work:
 
-- Using "Very High" audio quality
-- Downloading songs/playlists (podcast downloads work, though)
-- Lyrics (**becoming** server-sided and will *eventually* stop working on all songs)
+- Very High audio quality
+- Native playlist downloading (you can download podcast episodes though)
+- Lyrics (server-sided with monthly limit, see [#42](/../../issues/42) for more info)
 
 In theory, implementing downloading/offline mode locally *should* be possible, but it will **not** be included in this tweak.
 
