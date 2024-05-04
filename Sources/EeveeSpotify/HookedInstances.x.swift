@@ -2,6 +2,22 @@ import Orion
 
 class HookedInstances {
     static var productState: SPTCoreProductState?
+    static var currentTrack: SPTPlayerTrack?
+}
+
+class SPTNowPlayingContentLayerViewModelHook: ClassHook<NSObject> {
+
+    static let targetName = "SPTNowPlayingContentLayerViewModel"
+
+    func currentTrack() -> SPTPlayerTrack? {
+
+        if let track = orig.currentTrack() {
+            HookedInstances.currentTrack = track
+            return track
+        }
+
+        return nil
+    }
 }
 
 class SPTCoreProductStateInstanceHook: ClassHook<NSObject> {
