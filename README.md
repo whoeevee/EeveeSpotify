@@ -14,7 +14,7 @@ Please refrain from opening issues about the following features, as they are ser
 
 - Very High audio quality
 - Native playlist downloading (you can download podcast episodes though)
-- Jam (hosting a Spotify Jam requires Premium, joining by link currently works only with Jailbreak/TrollStore).
+- Jam (hosting a Spotify Jam requires Premium, joining by link currently works only with Jailbreak/TrollStore)
 
 EeveeSpotify replaces Spotify monthly limited lyrics with Genius. If the tweak is unable to find a song or process the lyrics, you'll see the original Spotify one.
 
