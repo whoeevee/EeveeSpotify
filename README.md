@@ -14,7 +14,9 @@ Please refrain from opening issues about the following features, as they are ser
 
 - Very High audio quality
 - Native playlist downloading (you can download podcast episodes though)
-- Lyrics (server-sided with monthly limit, see [#42](/../../issues/42) for more info)
+- Jam (hosting a Spotify Jam requires Premium, joining by link currently works only with Jailbreak/TrollStore)
+
+EeveeSpotify replaces Spotify monthly limited lyrics with Genius. If the tweak is unable to find a song or process the lyrics, you'll see the original Spotify one.
 
 In theory, implementing downloading/offline mode locally *should* be possible, but it will **not** be included in this tweak.
 
@@ -26,6 +28,6 @@ The tweak patches this file while initializing; Spotify loads it and assumes you
 
 ![Hex](Images/hex.png)
 
-Tweak also changes query parameters `trackRows` and `video` in HTTP requests to true, so Spotify loads videos and not just track names at the artist page. Sorry if the code seems cringe; the main focus is on the concept. It can stop working just like Spotilife, but so far, it works on the latest Spotify 8.9.## (Spotilife also patches `offline.bnk`, but it changes obscure bytes that do nothing on new versions). Spotify reloads user data from time to time (and on changing network, for example), so if Premium stops working, simply restart the app.
+Tweak also changes query parameters `trackRows` and `video` in HTTP requests to true, so Spotify loads videos and not just track names at the artist page. Sorry if the code seems cringe; the main focus is on the concept. It can stop working just like Spotilife, but so far, it works on the latest Spotify 8.9.## (Spotilife also patches `offline.bnk`, but it changes obscure bytes that do nothing on new versions). Spotify may reload user data, and you'll be switched to the Free plan. When this happens, you'll see a popup with quick restart app and reset data actions.
 
 To open Spotify links in sideloaded app, use [OpenSpotifySafariExtension](https://github.com/BillyCurtis/OpenSpotifySafariExtension).
