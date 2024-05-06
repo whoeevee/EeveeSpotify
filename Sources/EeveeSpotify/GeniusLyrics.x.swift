@@ -29,7 +29,9 @@ class EncoreButtonHook: ClassHook<UIButton> {
 
 func getCurrentTrackLyricsData() throws -> Data {
 
-    let track = HookedInstances.currentTrack!
+    guard let track = HookedInstances.currentTrack else {
+        throw GeniusLyricsError.NoCurrentTrack
+    }
 
     let title = track.trackTitle()
         .removeMatches("\\(.*\\)")

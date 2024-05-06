@@ -5,9 +5,9 @@ class HookedInstances {
     static var currentTrack: SPTPlayerTrack?
 }
 
-class SPTNowPlayingContentLayerViewModelHook: ClassHook<NSObject> {
+class SPTNowPlayingModelHook: ClassHook<NSObject> {
 
-    static let targetName = "SPTNowPlayingContentLayerViewModel"
+    static let targetName = "SPTNowPlayingModel"
 
     func currentTrack() -> SPTPlayerTrack? {
 
