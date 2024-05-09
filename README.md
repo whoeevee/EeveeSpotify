@@ -16,7 +16,7 @@ Please refrain from opening issues about the following features, as they are ser
 - Native playlist downloading (you can download podcast episodes though)
 - Jam (hosting a Spotify Jam requires Premium, joining by link currently works only with Jailbreak/TrollStore)
 
-EeveeSpotify replaces Spotify monthly limited lyrics with Genius. If the tweak is unable to find a song or process the lyrics, you'll see the original Spotify one.
+EeveeSpotify replaces Spotify monthly limited lyrics with Genius. If the tweak is unable to find a song or process the lyrics, you'll see the original Spotify one. **The lyrics might be wrong for some songs (e.g. random language translation, article, another song). This is due to how the tweak searches songs on Genius. While I've made it work in most cases, kindly refrain from opening issues about it. Genius lyrics are also not and will never be time-synced.**
 
 In theory, implementing downloading/offline mode locally *should* be possible, but it will **not** be included in this tweak.
 
