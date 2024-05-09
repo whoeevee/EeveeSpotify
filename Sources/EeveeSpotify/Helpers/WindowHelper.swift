@@ -13,6 +13,36 @@ class WindowHelper {
         self.rootViewController = window.rootViewController!
     }
 
+    func present(_ viewController: UIViewController) {
+        rootViewController.present(viewController, animated: true)
+    }
+
+    func findFirstViewController(_ regex: String) -> UIViewController? {
+    
+        let rootView = self.rootViewController.view!
+        var result: UIViewController?
+        
+        func searchViews(_ view: UIView) {
+            if let viewController = self.viewController(for: view) {
+                if String(describing: type(of: viewController)) ~= regex { 
+                    result = viewController
+                    return
+                }    
+            }
+
+            for subview in view.subviews {
+                searchViews(subview) 
+            }
+        }
+        
+        searchViews(rootView)
+        return result
+    }
+
+    func overrideUserInterfaceStyle(_ style: UIUserInterfaceStyle) {
+        window.overrideUserInterfaceStyle = style
+    }
+
     func viewController(for view: UIView) -> UIViewController? {
         var responder: UIResponder? = view
         while let nextResponder = responder?.next {

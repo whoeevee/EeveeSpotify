@@ -30,19 +30,33 @@ extension Color {
     }
 
     var components: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-
-        typealias NativeColor = UIColor
-
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
         var a: CGFloat = 0
 
-        guard NativeColor(self).getRed(&r, green: &g, blue: &b, alpha: &a) else {
+        guard UIColor(self).getRed(&r, green: &g, blue: &b, alpha: &a) else {
             return (0, 0, 0, 0)
         }
 
         return (r, g, b, a)
+    }
+
+    func lighter(by amount: CGFloat = 0.2) -> Self { Self(UIColor(self).lighter(by: amount)) }
+    func darker(by amount: CGFloat = 0.2) -> Self { Self(UIColor(self).darker(by: amount)) }
+
+    var brightness: CGFloat {
+        (
+            components.red * 299
+            + components.green * 587
+            + components.blue * 114
+        ) / 1000
+    }
+
+    var normalized: Color {
+        brightness < 0.5 
+            ? self.lighter(by: 0.5) 
+            : self.darker(by: brightness - 0.5)
     }
     
     var uInt32: UInt32 {

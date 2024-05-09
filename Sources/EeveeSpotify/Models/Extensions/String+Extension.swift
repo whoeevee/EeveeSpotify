@@ -3,22 +3,38 @@ import Foundation
 extension String {
 
     static func ~= (lhs: String, rhs: String) -> Bool {
-        guard let regex = try? NSRegularExpression(pattern: rhs) else { return false }
-        let range = NSRange(location: 0, length: lhs.utf16.count)
-        return regex.firstMatch(in: lhs, options: [], range: range) != nil
+        lhs.firstMatch(rhs) != nil
     }
 
     var range: NSRange { 
         NSRange(self.startIndex..., in: self) 
     }
 
+    var strippedTrackTitle: String {
+        String(
+            self
+            .removeMatches("\\(.*\\)")
+            //.removeMatches("- .*")
+            .prefix(30)
+            //.trimmingCharacters(in: .whitespaces)
+        )
+    }
+
+    var isHex: Bool {
+        self ~= "^[a-f0-9]+$"
+    }
+
+    var lyricsNoteIfEmpty: String {
+        self.isEmpty ? "♪" : self
+    }
+
     func containsInsensitive<S: StringProtocol>(_ s: S) -> Bool {
         self.range(of: s, options: .caseInsensitive) != nil
     }
 
-    func matches(_ pattern: String) -> Bool {
+    func firstMatch(_ pattern: String) -> NSTextCheckingResult? {
         try! NSRegularExpression(pattern: pattern)
-            .firstMatch(in: self, range: self.range) != nil
+            .firstMatch(in: self, range: self.range)
     }
 
     func removeMatches(_ pattern: String) -> String {

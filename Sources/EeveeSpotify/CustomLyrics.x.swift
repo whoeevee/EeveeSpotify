@@ -27,56 +27,83 @@ class EncoreButtonHook: ClassHook<UIButton> {
     }
 }
 
+
+class ProfileSettingsSectionHook: ClassHook<NSObject> {
+
+    static let targetName = "ProfileSettingsSection"
+
+    func numberOfRows() -> Int { 
+        return 2
+    }
+
+    func didSelectRow(_ row: Int) {
+
+        if row == 1 {
+
+            let rootSettingsController = WindowHelper.shared.findFirstViewController(
+                "RootSettingsViewController"
+            )!
+
+            let eeveeSettingsController = EeveeSettingsViewController()
+            eeveeSettingsController.title = "EeveeSpotify"
+            
+            rootSettingsController.navigationController!.pushViewController(
+                eeveeSettingsController, 
+                animated: true
+            )
+
+            return
+        }
+
+        orig.didSelectRow(row)
+    }
+
+    func cellForRow(_ row: Int) -> UITableViewCell {
+        
+        if row == 1 {
+
+            let settingsTableCell = Dynamic.SPTSettingsTableViewCell
+                .alloc(interface: SPTSettingsTableViewCell.self)
+                .initWithStyle(3, reuseIdentifier: "EeveeSpotify")
+            
+            let tableViewCell = Dynamic.convert(settingsTableCell, to: UITableViewCell.self)
+
+            tableViewCell.accessoryView = type(
+                of: Dynamic.SPTDisclosureAccessoryView
+                    .alloc(interface: SPTDisclosureAccessoryView.self)
+            )
+            .disclosureAccessoryView()
+            
+            tableViewCell.textLabel?.text = "EeveeSpotify"
+            return tableViewCell
+        }
+
+        return orig.cellForRow(row)
+    }
+}
+
 func getCurrentTrackLyricsData() throws -> Data {
 
     guard let track = HookedInstances.currentTrack else {
-        throw GeniusLyricsError.NoCurrentTrack
+        throw LyricsError.NoCurrentTrack
     }
 
-    let title = track.trackTitle()
-        .removeMatches("\\(.*\\)")
-        .prefix(30)
+    let source = UserDefaults.lyricsSource
 
-    let artist = track.artistTitle()
-
-    let geniusHits = try GeniusApi.search("\(title) \(artist)")
-
-    guard let geniusSong = (
-        geniusHits.first(
-            where: { $0.result.title.containsInsensitive(title) }
-        ) ?? geniusHits.first
-    )?.result else {
-        throw GeniusLyricsError.NoSuchSong
-    }
-    
-    let geniusSongInfo = try GeniusApi.getSongInfo(geniusSong.id)
-
-    var geniusLyrics = geniusSongInfo.lyrics.plain
-        .components(separatedBy: "\n")
-        .map { $0.trimmingCharacters(in: .whitespaces) }
-    
-    geniusLyrics.removeAll { $0.matches("\\[.*\\]") }
-
-    geniusLyrics = Array(
-        geniusLyrics
-            .drop(while: { $0.isEmpty })
-            .dropLast(while: { $0.isEmpty })
+    let plainLyrics = try LyricsRepository.getLyrics(
+        title: track.trackTitle(), 
+        artist: track.artistTitle(), 
+        spotifyTrackId: track.URI().spt_trackIdentifier(),
+        source: source
     )
 
     let lyrics = Lyrics.with {
         $0.colors = LyricsColors.with {
-            $0.backgroundColor = Color(hex: track.extractedColorHex()).uInt32
+            $0.backgroundColor = Color(hex: track.extractedColorHex()).normalized.uInt32
             $0.lineColor = Color.black.uInt32
             $0.activeLineColor = Color.white.uInt32
         }
-        $0.data = LyricsData.with {
-            $0.timeSynchronized = false
-            $0.restriction = .unrestricted
-            $0.providedBy = "Genius (EeveeSpotify)"
-            $0.lines = geniusLyrics.map { line in
-                LyricsLine.with { $0.content = line }
-            }
-        }
+        $0.data = try! LyricsHelper.composeLyricsData(plainLyrics, source: source)
     }
 
     return try lyrics.serializedData()

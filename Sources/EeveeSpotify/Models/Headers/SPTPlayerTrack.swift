@@ -5,4 +5,5 @@ import Foundation
     func extractedColorHex() -> String
     func trackTitle() -> String
     func artistTitle() -> String
+    func URI() -> SPTURL
 }

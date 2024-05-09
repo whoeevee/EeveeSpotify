@@ -1,10 +1,18 @@
 import Foundation
 
-struct GeniusApi {
+struct GeniusLyricsDataSource {
     
-    private static let apiUrl = "https://api.genius.com"
+    private let apiUrl = "https://api.genius.com"
+    private let session: URLSession
+
+    init() {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = ["X-Genius-iOS-Version": "6.19.1"]
+        
+        session = URLSession(configuration: configuration)
+    }
     
-    private static func perform(
+    private func perform(
         _ path: String, 
         query: [String:Any] = [:]
     ) throws -> GeniusDataResponse? {
@@ -12,7 +20,6 @@ struct GeniusApi {
         var stringUrl = "\(apiUrl)\(path)"
 
         if !query.isEmpty {
-
             let queryString = query.queryString.addingPercentEncoding(
                 withAllowedCharacters: .urlHostAllowed
             )!
@@ -20,13 +27,14 @@ struct GeniusApi {
             stringUrl += "?\(queryString)"
         }
         
-        var request = URLRequest(url: URL(string: stringUrl)!)
-        request.addValue("6.19.1", forHTTPHeaderField: "X-Genius-iOS-Version")
+        let request = URLRequest(url: URL(string: stringUrl)!)
 
         let semaphore = DispatchSemaphore(value: 0)
         var data: Data?
+        var error: Error?
 
-        let task = URLSession.shared.dataTask(with: request) { response, _, _ in 
+        let task = session.dataTask(with: request) { response, _, err in
+            error = err
             data = response
             semaphore.signal()
         }
@@ -34,30 +42,33 @@ struct GeniusApi {
         task.resume()
         semaphore.wait()
 
+        if let error = error {
+            throw error
+        }
+
         let rootResponse = try JSONDecoder().decode(GeniusRootResponse.self, from: data!)
         return rootResponse.response
     }
     
-    static func search(_ query: String) throws -> [GeniusHit] {
+    func search(_ query: String) throws -> [GeniusHit] {
         
         let data = try perform("/search", query: ["q": query])
         
         guard case .hits(let hitsResponse) = data else {
-            throw GeniusLyricsError.DecodingError
+            throw LyricsError.DecodingError
         }
         
         return hitsResponse.hits
     }
 
-    static func getSongInfo(_ songId: Int) throws -> GeniusSong {
+    func getSongInfo(_ songId: Int) throws -> GeniusSong {
         
         let data = try perform("/songs/\(songId)", query: ["text_format": "plain"])
         
         guard case .song(let songResponse) = data else {
-            throw GeniusLyricsError.DecodingError
+            throw LyricsError.DecodingError
         }
         
         return songResponse.song
     }
-
 }
