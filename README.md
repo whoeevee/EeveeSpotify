@@ -26,7 +26,7 @@ EeveeSpotify replaces Spotify monthly limited lyrics with one of the following t
 
 - LRCLIB: The most open service, offering time-synced lyrics. However, it lacks lyrics for many songs.
 
-- Musixmatch: The service Spotify uses. Provides time-synced lyrics for many songs, but you'll need a user token to use this source. To obtain the token, download Musixmatch from the App Store, sign up, and use a MITM tool to intercept requests.
+- Musixmatch: The service Spotify uses. Provides time-synced lyrics for many songs, but you'll need a user token to use this source. To obtain the token, download Musixmatch from the App Store, sign up, and use a MITM tool to intercept requests. **Update: You can easily get the token within the app. Go to Settings > Get help > Copy debug info.**
 
 If the tweak is unable to find a song or process the lyrics, you'll see the original Spotify one or a "Couldn't load the lyrics for this song" message. The lyrics might be wrong for some songs (e.g. another song, song article) when using Genius due to how the tweak searches songs. While I've made it work in most cases, kindly refrain from opening issues about it.
 
