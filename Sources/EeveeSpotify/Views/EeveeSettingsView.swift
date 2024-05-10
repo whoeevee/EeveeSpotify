@@ -10,7 +10,7 @@ struct EeveeSettingsView: View {
 
         let alert = UIAlertController(
             title: "Enter User Token",
-            message: "In order to use Musixmatch, you need to retrieve your user token from the Musixmatch app. Please enter it here.",
+            message: "In order to use Musixmatch, you need to retrieve your user token from the official app. Download Musixmatch from the App Store, sign up, and extract the token using MITM.",
             preferredStyle: .alert
         )
         

@@ -98,7 +98,9 @@ class LyricsHelper {
                 .dropLast()
 
             lyricLines = lines.map { line in 
-                LyricsLine.with { $0.content = line }
+                LyricsLine.with { 
+                    $0.content = line.lyricsNoteIfEmpty 
+                }
             }
         }
 

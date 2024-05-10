@@ -14,7 +14,7 @@ extension String {
         String(
             self
             .removeMatches("\\(.*\\)")
-            //.removeMatches("- .*")
+            .removeMatches("- .*")
             .prefix(30)
             //.trimmingCharacters(in: .whitespaces)
         )

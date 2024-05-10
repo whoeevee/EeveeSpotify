@@ -19,7 +19,8 @@ class EncoreButtonHook: ClassHook<UIButton> {
 
     func intrinsicContentSize() -> CGSize {
 
-        if target.accessibilityIdentifier == "Components.UI.LyricsHeader.ReportButton" {
+        if target.accessibilityIdentifier == "Components.UI.LyricsHeader.ReportButton", 
+            UserDefaults.lyricsSource != .musixmatch {
             target.isEnabled = false
         }
 
@@ -97,13 +98,13 @@ func getCurrentTrackLyricsData() throws -> Data {
         source: source
     )
 
-    let lyrics = Lyrics.with {
+    let lyrics = try Lyrics.with {
         $0.colors = LyricsColors.with {
             $0.backgroundColor = Color(hex: track.extractedColorHex()).normalized.uInt32
             $0.lineColor = Color.black.uInt32
             $0.activeLineColor = Color.white.uInt32
         }
-        $0.data = try! LyricsHelper.composeLyricsData(plainLyrics, source: source)
+        $0.data = try LyricsHelper.composeLyricsData(plainLyrics, source: source)
     }
 
     return try lyrics.serializedData()
