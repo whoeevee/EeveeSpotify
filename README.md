@@ -18,7 +18,7 @@ Please refrain from opening issues about the following features, as they are ser
 
 In theory, implementing downloading/offline mode locally *should* be possible, but it will **not** be included in this tweak.
 
-## Lyrics
+## Lyrics Support
 
 EeveeSpotify replaces Spotify monthly limited lyrics with one of the following three lyrics providers:
 
