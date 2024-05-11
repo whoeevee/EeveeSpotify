@@ -73,6 +73,20 @@ If the tweak is unable to find a song or process the lyrics, you'll see the orig
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
+
+            if lyricsSource != .genius {
+                Section(
+                    footer: Text("Load lyrics from Genius if there is a problem with \(lyricsSource).")
+                ) {
+                    Toggle(
+                        "Genius Fallback",
+                        isOn: Binding<Bool>(
+                            get: { UserDefaults.geniusFallback },
+                            set: { UserDefaults.geniusFallback = $0 }
+                        )
+                    )
+                }
+            }
         }
 
         .padding(.bottom, 50)

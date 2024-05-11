@@ -89,14 +89,37 @@ func getCurrentTrackLyricsData() throws -> Data {
         throw LyricsError.NoCurrentTrack
     }
 
-    let source = UserDefaults.lyricsSource
+    var source = UserDefaults.lyricsSource
 
-    let plainLyrics = try LyricsRepository.getLyrics(
-        title: track.trackTitle(), 
-        artist: track.artistTitle(), 
-        spotifyTrackId: track.URI().spt_trackIdentifier(),
-        source: source
-    )
+    let plainLyrics: PlainLyrics?
+
+    do {
+        plainLyrics = try LyricsRepository.getLyrics(
+            title: track.trackTitle(), 
+            artist: track.artistTitle(), 
+            spotifyTrackId: track.URI().spt_trackIdentifier(),
+            source: source
+        )
+    }
+
+    catch {
+
+        if source != .genius && UserDefaults.geniusFallback {
+            
+            NSLog("[EeveeSpotify] Unable to load lyrics from \(source), trying Genius as fallback")
+            source = .genius
+
+            plainLyrics = try LyricsRepository.getLyrics(
+                title: track.trackTitle(), 
+                artist: track.artistTitle(), 
+                spotifyTrackId: track.URI().spt_trackIdentifier(),
+                source: source
+            )
+        }
+        else {
+            throw error
+        }
+    }
 
     let lyrics = try Lyrics.with {
         $0.colors = LyricsColors.with {
@@ -104,7 +127,7 @@ func getCurrentTrackLyricsData() throws -> Data {
             $0.lineColor = Color.black.uInt32
             $0.activeLineColor = Color.white.uInt32
         }
-        $0.data = try LyricsHelper.composeLyricsData(plainLyrics, source: source)
+        $0.data = try LyricsHelper.composeLyricsData(plainLyrics!, source: source)
     }
 
     return try lyrics.serializedData()
