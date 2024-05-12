@@ -23,7 +23,7 @@ class OfflineObserver: NSObject, NSFilePresenter {
 
         let productState = HookedInstances.productState!
 
-        if productState.stringForKey("player-license") == "premium" {
+        if productState.stringForKey("type") == "premium" {
 
             do {
                 try OfflineHelper.backupToEeveeBnk()

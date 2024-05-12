@@ -55,7 +55,7 @@ extension Color {
 
     var normalized: Color {
         brightness < 0.5 
-            ? self.lighter(by: 0.35) 
+            ? self.lighter(by: 0.5 - brightness)
             : self.darker(by: brightness - 0.5)
     }
     

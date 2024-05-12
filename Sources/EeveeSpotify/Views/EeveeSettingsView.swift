@@ -10,12 +10,12 @@ struct EeveeSettingsView: View {
 
         let alert = UIAlertController(
             title: "Enter User Token",
-            message: "In order to use Musixmatch, you need to retrieve your user token from the official app. Download Musixmatch from the App Store, sign up, and extract the token using MITM.",
+            message: "In order to use Musixmatch, you need to retrieve your user token from the official app. Download Musixmatch from the App Store, sign up, then go to Settings > Get help > Copy debug info, and paste it here. You can also extract the token using MITM.",
             preferredStyle: .alert
         )
         
         alert.addTextField() { textField in
-            textField.placeholder = Data.musixmatchTokenPlaceholder
+            textField.placeholder = "---- Debug Info ---- [Device]: iPhone"
         }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
@@ -23,9 +23,17 @@ struct EeveeSettingsView: View {
         })
 
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-            let token = alert.textFields!.first!.text!
+            let text = alert.textFields!.first!.text!
+            let token: String
 
-            if !(token ~= "^[a-f0-9]+$") {
+            if let match = text.firstMatch("\\[UserToken\\]: ([a-f0-9]+)"), 
+                let tokenRange = Range(match.range(at: 1), in: text) {
+                token = String(text[tokenRange])
+            }
+            else if text ~= "^[a-f0-9]+$" {
+                token = text
+            }
+            else {
                 lyricsSource = oldSource
                 return
             }

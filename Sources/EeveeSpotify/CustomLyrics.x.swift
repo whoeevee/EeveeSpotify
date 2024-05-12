@@ -106,7 +106,7 @@ func getCurrentTrackLyricsData() throws -> Data {
 
         if source != .genius && UserDefaults.geniusFallback {
             
-            NSLog("[EeveeSpotify] Unable to load lyrics from \(source), trying Genius as fallback")
+            NSLog("[EeveeSpotify] Unable to load lyrics from \(source): \(error), trying Genius as fallback")
             source = .genius
 
             plainLyrics = try LyricsRepository.getLyrics(

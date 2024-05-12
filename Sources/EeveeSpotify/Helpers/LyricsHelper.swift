@@ -50,8 +50,7 @@ class LyricsHelper {
                         let matchRange = match.range(withName: name)
 
                         if let substringRange = Range(matchRange, in: line) {
-                            let capture = String(line[substringRange])
-                            captures[name] = capture
+                            captures[name] = String(line[substringRange])
                         }
                     }
 

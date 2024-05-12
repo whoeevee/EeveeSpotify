@@ -13,7 +13,8 @@ struct LyricsRepository {
         source: LyricsSource
     ) throws -> PlainLyrics {
 
-        let query = "\(title.strippedTrackTitle) \(artist)"
+        let strippedTitle = title.strippedTrackTitle
+        let query = "\(strippedTitle) \(artist)"
 
         switch source {
         
@@ -23,7 +24,7 @@ struct LyricsRepository {
 
             guard let song = (
                 hits.first(
-                    where: { $0.result.title.containsInsensitive(title) }
+                    where: { $0.result.title.containsInsensitive(strippedTitle) }
                 ) ?? hits.first
             )?.result else {
                 throw LyricsError.NoSuchSong
@@ -38,14 +39,14 @@ struct LyricsRepository {
 
             guard let song = (
                 hits.first(
-                    where: { $0.name.containsInsensitive(title) }
+                    where: { $0.name.containsInsensitive(strippedTitle) }
                 ) ?? hits.first
             ) else {
                 throw LyricsError.NoSuchSong
             }
 
             return PlainLyrics(
-                content: song.syncedLyrics ?? song.plainLyrics,
+                content: song.syncedLyrics ?? song.plainLyrics ?? "",
                 timeSynced: song.syncedLyrics != nil
             )
         
