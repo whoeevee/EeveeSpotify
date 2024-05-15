@@ -15,7 +15,6 @@ extension String {
             self
             .removeMatches("\\(.*\\)")
             .removeMatches("- .*")
-            .prefix(30)
             .trimmingCharacters(in: .whitespaces)
         )
     }

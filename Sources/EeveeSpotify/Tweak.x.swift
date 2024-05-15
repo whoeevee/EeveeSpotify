@@ -23,6 +23,8 @@ class URLHook: ClassHook<NSURL> {
 
 struct EeveeSpotify: Tweak {
     
+    static let version = "3.1"
+    
     init() {
 
         do {

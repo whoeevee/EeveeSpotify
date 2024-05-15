@@ -8,7 +8,7 @@ struct LrcLibLyricsDataSource {
     init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = [
-            "User-Agent": "EeveeSpotify v3.0 https://github.com/whoeevee/EeveeSpotify"
+            "User-Agent": "EeveeSpotify v\(EeveeSpotify.version) https://github.com/whoeevee/EeveeSpotify"
         ]
         
         session = URLSession(configuration: configuration)
