@@ -2,7 +2,7 @@ import Orion
 import UIKit
 import SwiftUI
 
-struct DarkPopUps: HookGroup {}
+struct DarkPopUps: HookGroup { }
 
 class EncoreLabelHook: ClassHook<UIView> {
 

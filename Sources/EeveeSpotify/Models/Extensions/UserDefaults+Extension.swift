@@ -44,8 +44,8 @@ extension UserDefaults {
         get {
             defaults.object(forKey: darkPopUpsKey) as? Bool ?? true
         }
-        set (fallback) {
-            defaults.set(fallback, forKey: darkPopUpsKey)
+        set (darkPopUps) {
+            defaults.set(darkPopUps, forKey: darkPopUpsKey)
         }
     }
 }
