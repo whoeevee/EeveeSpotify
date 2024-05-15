@@ -48,7 +48,6 @@ struct EeveeSettingsView: View {
     var body: some View {
 
         List {
-
             Section(footer: Text("""
 You can select the lyrics source you prefer.
 
@@ -95,9 +94,21 @@ If the tweak is unable to find a song or process the lyrics, you'll see the orig
                     )
                 }
             }
+
+            Section(
+                footer: Text("App restart is required to apply.")
+            ) {
+                Toggle(
+                    "Dark PopUps",
+                    isOn: Binding<Bool>(
+                        get: { UserDefaults.darkPopUps },
+                        set: { UserDefaults.darkPopUps = $0 }
+                    )
+                )
+            }
         }
 
-        .padding(.bottom, 50)
+        .padding(.bottom, 40)
 
         .animation(.default, value: lyricsSource)
 

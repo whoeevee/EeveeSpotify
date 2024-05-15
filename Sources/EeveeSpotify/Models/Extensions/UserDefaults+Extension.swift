@@ -7,6 +7,7 @@ extension UserDefaults {
     private static let lyricsSourceKey = "lyricsSource"
     private static let musixmatchTokenKey = "musixmatchToken"
     private static let geniusFallbackKey = "geniusFallback"
+    private static let darkPopUpsKey = "darkPopUps"
 
     static var lyricsSource: LyricsSource {
         get {
@@ -36,6 +37,15 @@ extension UserDefaults {
         }
         set (fallback) {
             defaults.set(fallback, forKey: geniusFallbackKey)
+        }
+    }
+
+    static var darkPopUps: Bool {
+        get {
+            defaults.object(forKey: darkPopUpsKey) as? Bool ?? true
+        }
+        set (fallback) {
+            defaults.set(fallback, forKey: darkPopUpsKey)
         }
     }
 }

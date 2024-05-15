@@ -27,6 +27,10 @@ struct EeveeSpotify: Tweak {
 
         do {
 
+            if UserDefaults.darkPopUps {
+                DarkPopUps().activate()
+            }
+
             defer {
                 NSFileCoordinator.addFilePresenter(OfflineObserver())
             }
