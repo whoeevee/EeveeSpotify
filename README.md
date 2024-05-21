@@ -14,7 +14,7 @@ Please refrain from opening issues about the following features, as they are ser
 
 - Very High audio quality
 - Native playlist downloading (you can download podcast episodes though)
-- Jam (hosting a Spotify Jam requires Premium, joining by link currently works only with Jailbreak/TrollStore)
+- Jam (hosting a Spotify Jam and joining it remotely requires Premium; only joining in-person works)
 
 In theory, implementing downloading/offline mode locally *should* be possible, but it will **not** be included in this tweak.
 
@@ -26,7 +26,7 @@ EeveeSpotify replaces Spotify monthly limited lyrics with one of the following t
 
 - LRCLIB: The most open service, offering time-synced lyrics. However, it lacks lyrics for many songs.
 
-- Musixmatch: The service Spotify uses. Provides time-synced lyrics for many songs, but you'll need a user token to use this source. To obtain the token, download Musixmatch from the App Store, sign up, and use a MITM tool to intercept requests. **Update: You can easily get the token within the app. Go to Settings > Get help > Copy debug info.**
+- Musixmatch: The service Spotify uses. Provides time-synced lyrics for many songs, but you'll need a user token to use this source. To obtain the token, download Musixmatch from the App Store, sign up, then go to Settings > Get help > Copy debug info, and paste it into EeveeSpotify alert. You can also extract the token using MITM.
 
 If the tweak is unable to find a song or process the lyrics, you'll see the original Spotify one or a "Couldn't load the lyrics for this song" message. The lyrics might be wrong for some songs (e.g. another song, song article) when using Genius due to how the tweak searches songs. While I've made it work in most cases, kindly refrain from opening issues about it.
 
@@ -40,4 +40,4 @@ The tweak patches this file while initializing; Spotify loads it and assumes you
 
 Tweak also changes query parameters `trackRows` and `video` in HTTP requests to true, so Spotify loads videos and not just track names at the artist page. Sorry if the code seems cringe; the main focus is on the concept. It can stop working just like Spotilife, but so far, it works on the latest Spotify 8.9.## (Spotilife also patches `offline.bnk`, but it changes obscure bytes that do nothing on new versions). Spotify may reload user data, and you'll be switched to the Free plan. When this happens, you'll see a popup with quick restart app and reset data actions.
 
-To open Spotify links in sideloaded app, use [OpenSpotifySafariExtension](https://github.com/BillyCurtis/OpenSpotifySafariExtension).
+To open Spotify links in sideloaded app, use [OpenSpotifySafariExtension](https://github.com/BillyCurtis/OpenSpotifySafariExtension). Remember to activate it and allow access in Settings > Safari > Extensions.
