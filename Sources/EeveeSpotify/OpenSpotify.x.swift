@@ -1,27 +1,17 @@
 import Orion
 import UIKit
 
-class SpotifySceneDelegateHook: ClassHook<NSObject> {
+class UIOpenURLContextHook: ClassHook<NSObject> {
 
-    static let targetName = "MusicApp_ContainerWiring.SpotifySceneDelegate"
+    static let targetName = "UIOpenURLContext"
 
-    func scene(_ scene: UIScene, continueUserActivity userActivity: NSUserActivity) {
-        orig.scene(scene, continueUserActivity: userActivity)
-    }
+    func URL() -> URL {
+        let url = orig.URL()
 
-    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-
-        let url = URLContexts.first!.url
-
-        if url.host == "eevee" {
-            
-            let userActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
-            userActivity.webpageURL = URL(string: "https:/\(url.path)")
-
-            orig.scene(scene, continueUserActivity: userActivity)
-            return
+        if url.isOpenSpotifySafariExtension {
+            return Foundation.URL(string: "https:/\(orig.URL().path)")!
         }
-    
-        orig.scene(scene, openURLContexts: URLContexts)
+
+        return url
     }
 }
