@@ -25,6 +25,10 @@ class OfflineObserver: NSObject, NSFilePresenter {
 
         if productState.stringForKey("type") == "premium" {
 
+            if productState.stringForKey("shuffle") == "0" {
+                return
+            }
+
             do {
                 try OfflineHelper.backupToEeveeBnk()
                 NSLog("[EeveeSpotify] Settings has changed, updated eevee.bnk")
