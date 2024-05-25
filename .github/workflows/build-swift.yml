@@ -1,0 +1,72 @@
+name: Build Swift
+
+on:
+  push:
+    branches: [ "swift" ]
+  pull_request:
+    branches: [ "swift" ]
+
+jobs:
+  build:
+    runs-on: macos-14
+    env:
+      THEOS: ${{ github.workspace }}/theos
+    steps:
+    - uses: actions/checkout@v4
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '15.3'
+    
+    - name: Install Theos
+      run: bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+      
+    - name: Copy SwiftProtobuf (rootful)
+      run: |
+        mkdir swiftprotobuf && cd "$_"
+        wget https://github.com/whoeevee/EeveeSpotify/releases/download/swift2.0/org.swift.protobuf.swiftprotobuf_1.26.0_iphoneos-arm.deb
+        ar -x org.swift.protobuf.swiftprotobuf_1.26.0_iphoneos-arm.deb
+        tar -xvf data.tar.lzma
+        cp -r Library/Frameworks/SwiftProtobuf.framework $THEOS/lib
+
+    - name: Copy SwiftProtobuf (rootless)
+      run: |
+        mkdir swiftprotobuf-rootless && cd "$_"
+        wget https://github.com/whoeevee/EeveeSpotify/releases/download/swift2.0/org.swift.protobuf.swiftprotobuf_1.26.0_iphoneos-arm64.deb
+        ar -x org.swift.protobuf.swiftprotobuf_1.26.0_iphoneos-arm64.deb
+        tar -xvf data.tar.lzma
+        cp -r var/jb/Library/Frameworks/SwiftProtobuf.framework $THEOS/lib/iphone/rootless
+
+    - name: Install make
+      run: |
+        brew install make
+        echo "$(brew --prefix make)/libexec/gnubin" >> $GITHUB_PATH 
+
+    - name: Build EeveeSpotify (debug)
+      run: |
+        make package
+        echo "filename=$(find . -name '*debug*' -path './packages/*' | cut -d/ -f3)" >> $GITHUB_ENV
+    - uses: actions/upload-artifact@v4
+      with:
+        name: ${{env.filename}}
+        path: packages/${{env.filename}}
+        if-no-files-found: error
+
+    - name: Build EeveeSpotify (rootful)
+      run: |
+        make package FINALPACKAGE=1
+        echo "filename=$(find . -not -name '*debug*' -path './packages/*' | cut -d/ -f3)" >> $GITHUB_ENV
+    - uses: actions/upload-artifact@v4
+      with:
+        name: ${{env.filename}}
+        path: packages/${{env.filename}}
+        if-no-files-found: error
+
+    - name: Build EeveeSpotify (rootless)
+      run: |
+        make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+        echo "filename=$(find . -name '*arm64*' -path './packages/*' | cut -d/ -f3)" >> $GITHUB_ENV
+    - uses: actions/upload-artifact@v4
+      with:
+        name: ${{env.filename}}
+        path: packages/${{env.filename}}
+        if-no-files-found: error
