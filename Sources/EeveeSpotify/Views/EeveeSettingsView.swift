@@ -4,6 +4,7 @@ import UIKit
 struct EeveeSettingsView: View {
 
     @State private var musixmatchToken = UserDefaults.musixmatchToken
+    @State private var patchType = UserDefaults.patchType
     @State private var lyricsSource = UserDefaults.lyricsSource
 
     private func showMusixmatchTokenAlert(_ oldSource: LyricsSource) {
@@ -48,6 +49,34 @@ struct EeveeSettingsView: View {
     var body: some View {
 
         List {
+            
+            Section(footer: patchType == .disabled ? nil : Text("""
+You can select the Premium patching method you prefer. App restart is required after changing.
+
+Static: The original method. On app start, the tweak composes cache data by inserting your username into a blank file with preset Premium parameters. When Spotify reloads user data, you'll be switched to the Free plan and see a popup with quick restart app and reset data actions.
+
+Dynamic: This method intercepts requests to load user data, deserializes it, and modifies the parameters in real-time. It's much more stable and is recommended.
+
+If you have an active Premium subscription, you can turn on Do Not Patch Premium. The tweak won't patch the data or restrict the use of Premium server-sided features.
+""")) {
+                Toggle(
+                    "Do Not Patch Premium",
+                    isOn: Binding<Bool>(
+                        get: { patchType == .disabled },
+                        set: { patchType = $0 ? .disabled : .offlineBnk }
+                    )
+                )
+                if patchType != .disabled {
+                    Picker(
+                        "Patching Method",
+                        selection: $patchType
+                    ) {
+                        Text("Static").tag(PatchType.offlineBnk)
+                        Text("Dynamic").tag(PatchType.requests)
+                    }
+                }
+            }
+            
             Section(footer: Text("""
 You can select the lyrics source you prefer.
 
@@ -57,7 +86,7 @@ LRCLIB: The most open service, offering time-synced lyrics. However, it lacks ly
 
 Musixmatch: The service Spotify uses. Provides time-synced lyrics for many songs, but you'll need a user token to use this source.
 
-If the tweak is unable to find a song or process the lyrics, you'll see the original Spotify one or a "Couldn't load the lyrics for this song" message. The lyrics might be wrong for some songs (e.g. another song, song article) when using Genius due to how the tweak searches songs. I've made it work in most cases.
+If the tweak is unable to find a song or process the lyrics, you'll see a "Couldn't load the lyrics for this song" message. The lyrics might be wrong for some songs (e.g. another song, song article) when using Genius due to how the tweak searches songs. I've made it work in most cases.
 """)) {
                 Picker(
                     "Lyrics Source", 
@@ -95,9 +124,7 @@ If the tweak is unable to find a song or process the lyrics, you'll see the orig
                 }
             }
 
-            Section(
-                footer: Text("App restart is required to apply.")
-            ) {
+            Section {
                 Toggle(
                     "Dark PopUps",
                     isOn: Binding<Bool>(
@@ -106,11 +133,21 @@ If the tweak is unable to find a song or process the lyrics, you'll see the orig
                     )
                 )
             }
+            
+            Section(footer: Text("Clear cached data and restart the app.")) {
+                Button {
+                    try! OfflineHelper.resetPersistentCache()
+                    exitApplication()
+                } label: {
+                    Text("Reset Data")
+                }
+            }
         }
 
         .padding(.bottom, 40)
-
+        
         .animation(.default, value: lyricsSource)
+        .animation(.default, value: patchType)
 
         .onChange(of: musixmatchToken) { token in
             UserDefaults.musixmatchToken = token
@@ -124,6 +161,18 @@ If the tweak is unable to find a song or process the lyrics, you'll see the orig
             }
 
             UserDefaults.lyricsSource = newSource
+        }
+        
+        .onChange(of: patchType) { newPatchType in
+            
+            UserDefaults.patchType = newPatchType
+            
+            do {
+                try OfflineHelper.resetOfflineBnk()
+            }
+            catch {
+                NSLog("Unable to reset offline.bnk: \(error)")
+            }
         }
 
         .listStyle(GroupedListStyle())

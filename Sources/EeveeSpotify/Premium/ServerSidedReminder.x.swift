@@ -1,8 +1,11 @@
 import Orion
 import UIKit
 
+struct ServerSidedReminder: HookGroup { }
+
 class StreamQualitySettingsSectionHook: ClassHook<NSObject> {
     
+    typealias Group = ServerSidedReminder
     static let targetName = "StreamQualitySettingsSection"
 
     func shouldResetSelection() -> Bool {
@@ -26,7 +29,8 @@ func showOfflineModePopUp() {
 }
 
 class FTPDownloadActionHook: ClassHook<NSObject> {
-    
+
+    typealias Group = ServerSidedReminder
     static let targetName = "ListUXPlatform_FreeTierPlaylistImpl.FTPDownloadAction"
 
     func execute(_ idk: Any) {
@@ -36,6 +40,8 @@ class FTPDownloadActionHook: ClassHook<NSObject> {
 
 class UIButtonHook: ClassHook<UIButton> {
 
+    typealias Group = ServerSidedReminder
+    
     func setHighlighted(_ highlighted: Bool) {
 
         if highlighted {

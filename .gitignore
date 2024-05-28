@@ -6,6 +6,7 @@ xcuserdata/
 
 ._*
 .theos
+.swiftpm
 /packages
 .theos/
 packages/

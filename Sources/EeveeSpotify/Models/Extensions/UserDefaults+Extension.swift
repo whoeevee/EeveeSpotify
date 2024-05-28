@@ -8,6 +8,7 @@ extension UserDefaults {
     private static let musixmatchTokenKey = "musixmatchToken"
     private static let geniusFallbackKey = "geniusFallback"
     private static let darkPopUpsKey = "darkPopUps"
+    private static let patchTypeKey = "patchType"
 
     static var lyricsSource: LyricsSource {
         get {
@@ -46,6 +47,19 @@ extension UserDefaults {
         }
         set (darkPopUps) {
             defaults.set(darkPopUps, forKey: darkPopUpsKey)
+        }
+    }
+
+    static var patchType: PatchType {
+        get {
+            if let rawValue = defaults.object(forKey: patchTypeKey) as? Int {
+                return PatchType(rawValue: rawValue)!
+            }
+
+            return .notSet
+        }
+        set (patchType) {
+            defaults.set(patchType.rawValue, forKey: patchTypeKey)
         }
     }
 }

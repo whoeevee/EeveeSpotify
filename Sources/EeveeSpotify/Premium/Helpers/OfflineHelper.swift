@@ -27,6 +27,21 @@ class OfflineHelper {
     }
 
     //
+    
+    static var dataBuffer = Data()
+    
+    static func appendDataAndReturnIfFull(_ data: Data, response: URLResponse) -> Data? {
+        
+        dataBuffer.append(data)
+        
+        if dataBuffer.count == response.expectedContentLength {
+            return dataBuffer
+        }
+        
+        return nil
+    }
+    
+    //
 
     private static func writeOfflineBnkData(_ data: Data) throws {
         try data.write(to: offlineBnkPath)
@@ -59,5 +74,15 @@ class OfflineHelper {
         blankData.insert(contentsOf: username, at: 9)
 
         try writeOfflineBnkData(blankData)
+    }
+    
+    //
+    
+    static func resetPersistentCache() throws {
+        try FileManager.default.removeItem(at: self.persistentCachePath)
+    }
+    
+    static func resetOfflineBnk() throws {
+        try FileManager.default.removeItem(at: self.offlineBnkPath)
     }
 }

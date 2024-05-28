@@ -1,14 +1,6 @@
 import Foundation
 import UIKit
 
-func exitApplication() {
-
-    UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
-    Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { _ in
-        exit(EXIT_SUCCESS)
-    }
-}
-
 class OfflineObserver: NSObject, NSFilePresenter {
     
     var presentedItemURL: URL?
@@ -25,9 +17,9 @@ class OfflineObserver: NSObject, NSFilePresenter {
 
         if productState.stringForKey("type") == "premium" {
 
-            if productState.stringForKey("shuffle") == "0" {
-                return
-            }
+//            if productState.stringForKey("shuffle") == "0" {
+//                return
+//            }
 
             do {
                 try OfflineHelper.backupToEeveeBnk()
@@ -41,14 +33,14 @@ class OfflineObserver: NSObject, NSFilePresenter {
         }
 
         PopUpHelper.showPopUp(
-            message: "Spotify has just reloaded user data, and you've been switched to the Free plan. It's fine; simply restart the app, and the tweak will patch the data again. If this doesn't work, there might be a problem with the saved data. You can reset it and restart the app. Note: after resetting, you need to restart the app twice.", 
+            message: "Spotify has just reloaded user data, and you've been switched to the Free plan. It's fine; simply restart the app, and the tweak will patch the data again. If this doesn't work, there might be a problem with the cached data. You can reset it and restart the app. Note: after resetting, you need to restart the app twice. You can also manage the Premium patching method in the EeveeSpotify settings.",
             buttonText: "Restart App",
             secondButtonText: "Reset Data and Restart App",
-            onPrimaryClick: { 
+            onPrimaryClick: {
                 exitApplication() 
             },
             onSecondaryClick: {
-                try! FileManager.default.removeItem(at: OfflineHelper.persistentCachePath)
+                try! OfflineHelper.resetPersistentCache()
                 exitApplication()
             }
         )
