@@ -1,0 +1,25 @@
+name: Update Repo
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4.1.6
+
+      - name: Run Update Script
+        run: ./updateRepo
+
+      - name: Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5.0.1
+        with:
+          commit_message: "update: repo"
