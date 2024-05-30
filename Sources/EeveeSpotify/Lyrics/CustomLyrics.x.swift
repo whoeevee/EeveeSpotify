@@ -28,7 +28,7 @@ class EncoreButtonHook: ClassHook<UIButton> {
     }
 }
 
-func getCurrentTrackLyricsData() throws -> Data {
+func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
 
     guard let track = HookedInstances.currentTrack else {
         throw LyricsError.NoCurrentTrack
@@ -67,7 +67,7 @@ func getCurrentTrackLyricsData() throws -> Data {
     }
 
     let lyrics = try Lyrics.with {
-        $0.colors = LyricsColors.with {
+        $0.colors = originalLyrics?.colors ?? LyricsColors.with {
             $0.backgroundColor = Color(hex: track.extractedColorHex()).normalized.uInt32
             $0.lineColor = Color.black.uInt32
             $0.activeLineColor = Color.white.uInt32

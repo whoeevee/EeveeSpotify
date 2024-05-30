@@ -85,7 +85,9 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject> {
                 orig.URLSession(
                     session,
                     dataTask: task,
-                    didReceiveData: try getCurrentTrackLyricsData()
+                    didReceiveData: try getCurrentTrackLyricsData(
+                        originalLyrics: try? Lyrics(serializedData: data)
+                    )
                 )
                 
                 orig.URLSession(session, task: task, didCompleteWithError: nil)
