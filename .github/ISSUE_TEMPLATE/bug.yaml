@@ -1,0 +1,37 @@
+# thanks to uYouEnhanced for the issue template:
+# https://github.com/arichornlover/uYouEnhanced/blob/main/.github/ISSUE_TEMPLATE/bug.yaml?plain=1
+
+name: Bug
+description: Report a bug in EeveeSpotify
+title: "[Bug] "
+labels: bug
+body:
+  - type: checkboxes
+    attributes:
+      label: Is this issue appropriate?
+      description: |
+        Please read the list of [common issues](https://github.com/whoeevee/EeveeSpotify/blob/swift/common_issues.md).
+      options:
+        - label: I have read the document in its entirety
+          required: true
+
+  - type: checkboxes
+    attributes:
+      label: Is this issue unique to EeveeSpotify?
+      options:
+        - label: I was unable to reproduce my issue using the stock Spotify app
+          required: true
+
+  - type: checkboxes
+    attributes:
+      label: Have you searched the existing issues?
+      options:
+        - label: This is a unique issue
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Describe the bug.
+      description: Attach videos or screenshots if possible
+    validations:
+      required: true
