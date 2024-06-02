@@ -6,13 +6,13 @@ If you're facing an issue, read this document before opening it on GitHub.
 
 Read the [Restrictions](https://github.com/whoeevee/EeveeSpotify?tab=readme-ov-file#restrictions) to learn about which Premium features are server-sided and cannot be implemented in the tweak.
 
-There might be an issue with your sideloading method. Widgets work only with TrollStore, and CarPlay only with TrollStore or a certificate with CarPlay entitlements. To navigate to a song from the lock screen, control center, or Dynamic Island, and to use Spatial Audio or Siri, change the app and bundle identifiers to match your provisioning profile (https://github.com/whoeevee/EeveeSpotify/issues/32).
+EeveeSpotify only supports iOS and iPadOS and is not planned to be supported on other platforms. You can easily search for different projects with lots of features.
 
 There might be an issue not caused by EeveeSpotify. For example, Smart Shuffle is not affected by the tweak at all. If you encounter an error, enable Smart Shuffle again and avoid scrolling through songs excessively. Also, always test and refrain from reporting original Spotify issues, such as being unable to share lyrics on Instagram/Facebook when colors are changed, songs count truncated in liked songs or horizontal rotation UI bugs.
 
-EeveeSpotify only supports iOS and iPadOS and is not planned to be supported on other platforms. You can easily search for different projects with lots of features.
+There might be an issue with your sideloading method. Widgets work only with TrollStore, and CarPlay only with TrollStore or a certificate with CarPlay entitlements. To navigate to a song from the lock screen, control center, or Dynamic Island, and to use Spatial Audio or Siri, change the app and bundle identifiers to match your provisioning profile (https://github.com/whoeevee/EeveeSpotify/issues/32).
 
-EeveeSpotify versions are often, but not always, released alongside Spotify versions on the App Store. You can get the latest IPAs on [Github Releases](https://github.com/whoeevee/EeveeSpotify/releases) or [EeveeSpotify IPAs](t.me/SpotilifeIPAs), and also add https://raw.githubusercontent.com/whoeevee/EeveeSpotify/swift/repo.json as a source to Scarlet, ESign, or other apps (excluding AltStore and probably SideStore). If you would like to make your own IPA, make sure you've injected SwiftProtobuf, Orion, and CydiaSubstrate frameworks.
+EeveeSpotify versions are often, but not always, released alongside Spotify versions on the App Store. You can get the latest IPAs on [Github Releases](https://github.com/whoeevee/EeveeSpotify/releases) or [EeveeSpotify IPAs](https://t.me/SpotilifeIPAs), and also add https://raw.githubusercontent.com/whoeevee/EeveeSpotify/swift/repo.json as a source to Scarlet, ESign, or other apps (excluding AltStore and probably SideStore). If you would like to make your own IPA, make sure you've injected SwiftProtobuf, Orion, and CydiaSubstrate frameworks.
 
 If you're experiencing a crash, install the debug IPA from Github Releases and open an issue with the crash log and console messages with "EeveeSpotify". Consider using [Cr4shed Rootless](https://github.com/crazymind90/Cr4shed-Rootless) to provide more detailed logs. If you have jailbreak and installed EeveeSpotify with TrollStore, disable tweak injection with Choicy.
 
