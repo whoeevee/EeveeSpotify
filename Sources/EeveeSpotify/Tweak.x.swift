@@ -46,7 +46,7 @@ class ProfileSettingsSectionHook: ClassHook<NSObject> {
                 "RootSettingsViewController"
             )!
 
-            let eeveeSettingsController = EeveeSettingsViewController()
+            let eeveeSettingsController = EeveeSettingsViewController(rootSettingsController.view.bounds)
             eeveeSettingsController.title = "EeveeSpotify"
             
             rootSettingsController.navigationController!.pushViewController(
