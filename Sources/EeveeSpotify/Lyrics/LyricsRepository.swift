@@ -5,17 +5,18 @@ struct LyricsRepository {
     private static let geniusDataSource = GeniusLyricsDataSource()
     private static let lrclibDataSource = LrcLibLyricsDataSource()
     private static let musixmatchDataSource = MusixmatchLyricsDataSource()
+    private static let neteaseDataSource = NeteaseDataSource()
 
     static func getLyrics(
         title: String, 
         artist: String, 
         spotifyTrackId: String, 
+        duration: Int,
         source: LyricsSource
     ) throws -> PlainLyrics {
 
         let strippedTitle = title.strippedTrackTitle
         let query = "\(strippedTitle) \(artist)"
-
         switch source {
         
         case .genius:
@@ -52,6 +53,18 @@ struct LyricsRepository {
         
         case .musixmatch:
             return try musixmatchDataSource.getLyrics(spotifyTrackId)
+        case .netease:
+            // 先用曲名+作者精确搜索,找不到再只用曲名搜索
+            let song = try neteaseDataSource.getSong(title: strippedTitle, artistsString: artist, duration: duration)
+            
+            let lyric = try neteaseDataSource.getLyric(song)
+            
+            return PlainLyrics(
+                content: lyric.lrc.lyric,
+                translation: lyric.tlyric?.lyric,
+                timeSynced: true
+            )
+            
         }
     }
 }

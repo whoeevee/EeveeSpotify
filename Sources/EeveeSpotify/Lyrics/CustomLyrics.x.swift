@@ -38,11 +38,15 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
 
     let plainLyrics: PlainLyrics?
 
+    let metadata = track.metadata()
+    let duration = Int(metadata["duration"]!)!
+
     do {
         plainLyrics = try LyricsRepository.getLyrics(
             title: track.trackTitle(), 
-            artist: track.artistTitle(), 
+            artist: track.artistsString(),
             spotifyTrackId: track.URI().spt_trackIdentifier(),
+            duration: duration,
             source: source
         )
     }
@@ -56,8 +60,9 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
 
             plainLyrics = try LyricsRepository.getLyrics(
                 title: track.trackTitle(), 
-                artist: track.artistTitle(), 
+                artist: track.artistsString(),
                 spotifyTrackId: track.URI().spt_trackIdentifier(),
+                duration: duration,
                 source: source
             )
         }

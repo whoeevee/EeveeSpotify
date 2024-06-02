@@ -5,6 +5,7 @@ struct EeveeSettingsView: View {
 
     @State private var musixmatchToken = UserDefaults.musixmatchToken
     @State private var patchType = UserDefaults.patchType
+    @State private var neteaseShowTranslation = UserDefaults.neteaseShowTranslation
     @State private var lyricsSource = UserDefaults.lyricsSource
 
     private func showMusixmatchTokenAlert(_ oldSource: LyricsSource) {
@@ -86,6 +87,8 @@ LRCLIB: The most open service, offering time-synced lyrics. However, it lacks ly
 
 Musixmatch: The service Spotify uses. Provides time-synced lyrics for many songs, but you'll need a user token to use this source.
 
+Netease: The Netease Cloud Music source.
+
 If the tweak is unable to find a song or process the lyrics, you'll see a "Couldn't load the lyrics for this song" message. The lyrics might be wrong for some songs (e.g. another song, song article) when using Genius due to how the tweak searches songs. I've made it work in most cases.
 """)) {
                 Picker(
@@ -95,6 +98,7 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
                     Text("Genius").tag(LyricsSource.genius)
                     Text("LRCLIB").tag(LyricsSource.lrclib)
                     Text("Musixmatch").tag(LyricsSource.musixmatch)
+                    Text("Netease").tag(LyricsSource.netease)
                 }
 
                 if lyricsSource == .musixmatch {
@@ -107,6 +111,16 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
                             .foregroundColor(.gray)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                
+                if lyricsSource == .netease {
+                    Toggle(
+                        "Simplified Chinese Translation",
+                        isOn: Binding<Bool>(
+                            get: { UserDefaults.neteaseShowTranslation },
+                            set: { UserDefaults.neteaseShowTranslation = $0 }
+                        )
+                    )
                 }
             }
 
