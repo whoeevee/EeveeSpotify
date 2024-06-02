@@ -114,7 +114,7 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject> {
                 OfflineHelper.dataBuffer = Data()
                 
                 var customizeMessage = try CustomizeMessage(serializedData: buffer)
-                modifyAttributes(&customizeMessage.response.attributes.accountAttributes)
+                modifyRemoteConfiguration(&customizeMessage.response)
                 
                 orig.URLSession(
                     session,

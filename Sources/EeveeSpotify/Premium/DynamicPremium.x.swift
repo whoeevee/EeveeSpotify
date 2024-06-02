@@ -20,70 +20,6 @@ func showOfflineBnkMethodSetPopUp() {
     )
 }
 
-func modifyAttributes(_ attributes: inout [String: AccountAttribute]) {
-    
-    attributes["type"] = AccountAttribute.with {
-        $0.stringValue = "premium"
-    }
-    attributes["player-license"] = AccountAttribute.with {
-        $0.stringValue = "premium"
-    }
-    attributes["financial-product"] = AccountAttribute.with {
-        $0.stringValue = "pr:premium,tc:0"
-    }
-    attributes["name"] = AccountAttribute.with {
-        $0.stringValue = "Spotify Premium"
-    }
-    
-    //
-    
-    attributes["unrestricted"] = AccountAttribute.with {
-        $0.boolValue = true
-    }
-    attributes["catalogue"] = AccountAttribute.with {
-        $0.stringValue = "premium"
-    }
-    attributes["streaming-rules"] = AccountAttribute.with {
-        $0.stringValue = ""
-    }
-    attributes["pause-after"] = AccountAttribute.with {
-        $0.longValue = 0
-    }
-    
-    //
-    
-    attributes["ads"] = AccountAttribute.with {
-        $0.boolValue = false
-    }
-    
-    attributes.removeValue(forKey: "ad-use-adlogic")
-    attributes.removeValue(forKey: "ad-catalogues")
-    
-    //
-    
-    attributes["shuffle-eligible"] = AccountAttribute.with {
-        $0.boolValue = true
-    }
-    attributes["high-bitrate"] = AccountAttribute.with {
-        $0.boolValue = true
-    }
-    attributes["offline"] = AccountAttribute.with {
-        $0.boolValue = true
-    }
-    attributes["nft-disabled"] = AccountAttribute.with {
-        $0.stringValue = "1"
-    }
-    attributes["can_use_superbird"] = AccountAttribute.with {
-        $0.boolValue = true
-    }
-    
-    //
-    
-    attributes["com.spotify.madprops.use.ucs.product.state"] = AccountAttribute.with {
-        $0.boolValue = true
-    }
-}
-
 class SPTCoreURLSessionDataDelegateHook: ClassHook<NSObject> {
     
     static let targetName = "SPTCoreURLSessionDataDelegate"
@@ -128,7 +64,7 @@ class SPTCoreURLSessionDataDelegateHook: ClassHook<NSObject> {
                 
                 if UserDefaults.patchType == .requests {
                     
-                    modifyAttributes(&bootstrapMessage.attributes)
+                    modifyRemoteConfiguration(&bootstrapMessage.ucsResponse)
                     
                     orig.URLSession(
                         session,

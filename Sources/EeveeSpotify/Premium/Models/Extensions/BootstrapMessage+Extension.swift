@@ -1,20 +1,22 @@
-//
-//  File.swift
-//  
-//
-//  Created by eevee on 28/05/2024.
-//
-
 import Foundation
 
 extension BootstrapMessage {
     
-    var attributes: [String: AccountAttribute] {
+    var ucsResponse: UcsResponse {
         get {
-            self.wrapper.oneMoreWrapper.message.response.attributes.accountAttributes
+            self.wrapper.oneMoreWrapper.message.response
+        }
+        set(ucsResponse) {
+            self.wrapper.oneMoreWrapper.message.response = ucsResponse
+        }
+    }
+    
+    var attributes: Dictionary<String, AccountAttribute> {
+        get {
+            self.ucsResponse.attributes.accountAttributes
         }
         set(attributes) {
-            self.wrapper.oneMoreWrapper.message.response.attributes.accountAttributes = attributes
+            self.ucsResponse.attributes.accountAttributes = attributes
         }
     }
 }

@@ -4,7 +4,7 @@ Before opening an issue, please note that **EeveeSpotify does not accept feature
 
 ## All tracks are skipped
 
-EeveeSpotify doesn't work in some regions, try connecting to a VPN server in the United States or other region, then change your country on [Spotify's website](https://accounts.spotify.com). After changing your country, you should sign out and sign back in to Spotify with your VPN on.
+Connect to a VPN server in any region, then change your country on [Spotify's website](https://accounts.spotify.com). After changing your country, you should sign out and sign back in to Spotify with your VPN on.
 
 References: https://github.com/whoeevee/EeveeSpotify/issues/67, https://github.com/whoeevee/EeveeSpotify/issues/152
 
