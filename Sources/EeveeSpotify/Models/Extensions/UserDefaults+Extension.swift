@@ -14,7 +14,12 @@ extension UserDefaults {
     static var lyricsSource: LyricsSource {
         get {
             if let rawValue = defaults.object(forKey: lyricsSourceKey) as? Int {
-                return LyricsSource(rawValue: rawValue)!
+                if let source = LyricsSource(rawValue: rawValue) {
+                    return source
+                } else {
+                    return .lrclib
+                }
+                
             }
 
             return .lrclib
