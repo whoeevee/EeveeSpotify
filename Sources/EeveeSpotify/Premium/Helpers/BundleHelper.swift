@@ -26,4 +26,15 @@ class BundleHelper {
             )!
         )
     }
+    
+    func resolveConfiguration() throws -> ResolveConfiguration {
+        return try ResolveConfiguration(
+            serializedData: try Data(
+                contentsOf: self.bundle.url(
+                    forResource: "resolveconfiguration",
+                    withExtension: "bnk"
+                )!
+            )
+        )
+    }
 }

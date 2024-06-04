@@ -30,7 +30,7 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
 
                     Text("Musixmatch User Token")
                     
-                    TextField("Enter User Token", text: $musixmatchToken)
+                    TextField("Enter User Token or Paste Debug Info", text: $musixmatchToken)
                         .foregroundColor(.gray)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

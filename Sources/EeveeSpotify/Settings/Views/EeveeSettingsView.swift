@@ -6,6 +6,20 @@ struct EeveeSettingsView: View {
     @State var musixmatchToken = UserDefaults.musixmatchToken
     @State var patchType = UserDefaults.patchType
     @State var lyricsSource = UserDefaults.lyricsSource
+    @State var overwriteConfiguration = UserDefaults.overwriteConfiguration
+    
+    private func getMusixmatchToken(_ input: String) -> String? {
+        
+        if let match = input.firstMatch("\\[UserToken\\]: ([a-f0-9]+)"),
+            let tokenRange = Range(match.range(at: 1), in: input) {
+            return String(input[tokenRange])
+        }
+        else if input ~= "^[a-f0-9]+$" {
+            return input
+        }
+        
+        return nil
+    }
 
     private func showMusixmatchTokenAlert(_ oldSource: LyricsSource) {
 
@@ -25,16 +39,8 @@ struct EeveeSettingsView: View {
 
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
             let text = alert.textFields!.first!.text!
-            let token: String
-
-            if let match = text.firstMatch("\\[UserToken\\]: ([a-f0-9]+)"), 
-                let tokenRange = Range(match.range(at: 1), in: text) {
-                token = String(text[tokenRange])
-            }
-            else if text ~= "^[a-f0-9]+$" {
-                token = text
-            }
-            else {
+            
+            guard let token = getMusixmatchToken(text) else {
                 lyricsSource = oldSource
                 return
             }
@@ -50,7 +56,7 @@ struct EeveeSettingsView: View {
 
         List {
             
-            PremiumSection()
+            PremiumSections()
             
             LyricsSections()
 
@@ -73,14 +79,26 @@ struct EeveeSettingsView: View {
                 }
             }
         }
-
-        .padding(.bottom, 45)
+        
+        .listStyle(GroupedListStyle())
+        
+        .padding(.bottom, 60)
+        .ignoresSafeArea(.keyboard)
         
         .animation(.default, value: lyricsSource)
         .animation(.default, value: patchType)
 
-        .onChange(of: musixmatchToken) { token in
-            UserDefaults.musixmatchToken = token
+        .onChange(of: musixmatchToken) { input in
+            
+            if input.isEmpty { return }
+            
+            if let token = getMusixmatchToken(input) {
+                UserDefaults.musixmatchToken = token
+                self.musixmatchToken = token
+            }
+            else {
+                self.musixmatchToken = ""
+            }
         }
 
         .onChange(of: lyricsSource) { [lyricsSource] newSource in
@@ -104,8 +122,18 @@ struct EeveeSettingsView: View {
                 NSLog("Unable to reset offline.bnk: \(error)")
             }
         }
-
-        .listStyle(GroupedListStyle())
+        
+        .onChange(of: overwriteConfiguration) { overwriteConfiguration in
+            
+            UserDefaults.overwriteConfiguration = overwriteConfiguration
+            
+            do {
+                try OfflineHelper.resetOfflineBnk()
+            }
+            catch {
+                NSLog("Unable to reset offline.bnk: \(error)")
+            }
+        }
 
         .onAppear {
             UIView.appearance(

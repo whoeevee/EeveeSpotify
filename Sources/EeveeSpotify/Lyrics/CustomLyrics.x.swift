@@ -47,23 +47,36 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         )
     }
 
-    catch {
-
-        if source != .genius && UserDefaults.geniusFallback {
+    catch let error as LyricsError {
+        
+        switch error {
             
-            NSLog("[EeveeSpotify] Unable to load lyrics from \(source): \(error), trying Genius as fallback")
-            source = .genius
-
-            plainLyrics = try LyricsRepository.getLyrics(
-                title: track.trackTitle(), 
-                artist: track.artistTitle(), 
-                spotifyTrackId: track.URI().spt_trackIdentifier(),
-                source: source
+        case .InvalidMusixmatchToken:
+            
+            PopUpHelper.showPopUp(
+                delayed: false,
+                message: "The tweak is unable to load lyrics from Musixmatch due to Unauthorized error. Please check or update your Musixmatch token.",
+                buttonText: "OK"
             )
+            break
+            
+        default:
+            break
         }
-        else {
+        
+        if source == .genius || !UserDefaults.geniusFallback {
             throw error
         }
+
+        NSLog("[EeveeSpotify] Unable to load lyrics from \(source): \(error), trying Genius as fallback")
+        source = .genius
+
+        plainLyrics = try LyricsRepository.getLyrics(
+            title: track.trackTitle(),
+            artist: track.artistTitle(),
+            spotifyTrackId: track.URI().spt_trackIdentifier(),
+            source: source
+        )
     }
 
     let lyrics = try Lyrics.with {

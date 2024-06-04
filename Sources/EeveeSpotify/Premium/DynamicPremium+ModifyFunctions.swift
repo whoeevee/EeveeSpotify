@@ -1,6 +1,11 @@
 import Foundation
 
 func modifyRemoteConfiguration(_ configuration: inout UcsResponse) {
+    
+    if UserDefaults.overwriteConfiguration {
+        configuration.resolve.configuration = try! BundleHelper.shared.resolveConfiguration()
+    }
+    
     modifyAttributes(&configuration.attributes.accountAttributes)
 }
 

@@ -2,7 +2,7 @@ import SwiftUI
 
 extension EeveeSettingsView {
     
-    @ViewBuilder func PremiumSection() -> some View {
+    @ViewBuilder func PremiumSections() -> some View {
         
         Section(footer: patchType == .disabled ? nil : Text("""
 You can select the Premium patching method you prefer. App restart is required after changing.
@@ -17,7 +17,7 @@ If you have an active Premium subscription, you can turn on Do Not Patch Premium
                 "Do Not Patch Premium",
                 isOn: Binding<Bool>(
                     get: { patchType == .disabled },
-                    set: { patchType = $0 ? .disabled : .offlineBnk }
+                    set: { patchType = $0 ? .disabled : .requests }
                 )
             )
             
@@ -29,6 +29,17 @@ If you have an active Premium subscription, you can turn on Do Not Patch Premium
                     Text("Static").tag(PatchType.offlineBnk)
                     Text("Dynamic").tag(PatchType.requests)
                 }
+            }
+        }
+        
+        if patchType == .requests {
+            Section(
+                footer: Text("Replace remote configuration with the dumped Premium one. It might fix some issues, such as appearing ads, but it's not guaranteed.")
+            ) {
+                Toggle(
+                    "Overwrite Configuration",
+                    isOn: $overwriteConfiguration
+                )
             }
         }
     }

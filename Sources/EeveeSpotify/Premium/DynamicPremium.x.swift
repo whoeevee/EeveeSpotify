@@ -62,6 +62,19 @@ class SPTCoreURLSessionDataDelegateHook: ClassHook<NSObject> {
                 
                 var bootstrapMessage = try BootstrapMessage(serializedData: buffer)
                 
+                if UserDefaults.patchType == .notSet {
+                    
+                    if bootstrapMessage.attributes["type"]?.stringValue == "premium" {
+                        UserDefaults.patchType = .disabled
+                        showHavePremiumPopUp()
+                    }
+                    else {
+                        UserDefaults.patchType = .requests
+                    }
+                    
+                    NSLog("[EeveeSpotify] Fetched bootstrap, \(UserDefaults.patchType) was set")
+                }
+                
                 if UserDefaults.patchType == .requests {
                     
                     modifyRemoteConfiguration(&bootstrapMessage.ucsResponse)
@@ -75,21 +88,6 @@ class SPTCoreURLSessionDataDelegateHook: ClassHook<NSObject> {
                     NSLog("[EeveeSpotify] Modified bootstrap data")
                 }
                 else {
-                    
-                    if UserDefaults.patchType == .notSet {
-                        
-                        if bootstrapMessage.attributes["type"]?.stringValue == "premium" {
-                            UserDefaults.patchType = .disabled
-                            showHavePremiumPopUp()
-                        }
-                        else {
-                            UserDefaults.patchType = .offlineBnk
-                            showOfflineBnkMethodSetPopUp()
-                        }
-                        
-                        NSLog("[EeveeSpotify] Fetched bootstrap, \(UserDefaults.patchType) was set")
-                    }
-                    
                     orig.URLSession(session, dataTask: task, didReceiveData: buffer)
                 }
                 
