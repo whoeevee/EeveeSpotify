@@ -1,1 +1,7 @@
-{ Filter = { Bundles = ( "com.spotify.client" ); }; }
+{
+	Filter = {
+		Bundles = (
+			"com.spotify.client",
+		);
+	};
+}

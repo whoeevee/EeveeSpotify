@@ -65,6 +65,11 @@ struct MusixmatchLyricsDataSource {
         else {
             throw LyricsError.DecodingError
         }
+        
+        if let header = message["header"] as? [String: Any],
+           header["status_code"] as? Int == 401 {
+            throw LyricsError.InvalidMusixmatchToken
+        }
 
         if let trackSubtitlesGet = macroCalls["track.subtitles.get"] as? [String: Any],
             let subtitlesMessage = trackSubtitlesGet["message"] as? [String: Any],

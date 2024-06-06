@@ -1,5 +1,4 @@
 import UIKit
-import Foundation
 
 class LyricsHelper {
     
@@ -40,7 +39,7 @@ class LyricsHelper {
                 lyricLines = lines.map { line in
                 
                     let match = line.firstMatch(
-                        "\\[(?<minute>\\d{2}):(?<seconds>\\d{2}\\.\\d{2})\\] ?(?<content>.*)"
+                        "\\[(?<minute>\\d{2}):(?<seconds>\\d{2}\\.?\\d*)\\] ?(?<content>.*)"
                     )!
 
                     var captures: [String: String] = [:]

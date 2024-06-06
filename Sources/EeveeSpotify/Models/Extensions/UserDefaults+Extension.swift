@@ -9,6 +9,7 @@ extension UserDefaults {
     private static let geniusFallbackKey = "geniusFallback"
     private static let darkPopUpsKey = "darkPopUps"
     private static let patchTypeKey = "patchType"
+    private static let overwriteConfigurationKey = "overwriteConfiguration"
 
     static var lyricsSource: LyricsSource {
         get {
@@ -60,6 +61,15 @@ extension UserDefaults {
         }
         set (patchType) {
             defaults.set(patchType.rawValue, forKey: patchTypeKey)
+        }
+    }
+    
+    static var overwriteConfiguration: Bool {
+        get {
+            defaults.bool(forKey: overwriteConfigurationKey)
+        }
+        set (overwriteConfiguration) {
+            defaults.set(overwriteConfiguration, forKey: overwriteConfigurationKey)
         }
     }
 }
