@@ -6,6 +6,7 @@ struct LyricsRepository {
     private static let lrclibDataSource = LrcLibLyricsDataSource()
     private static let musixmatchDataSource = MusixmatchLyricsDataSource()
     private static let neteaseDataSource = NeteaseDataSource()
+    private static let qqMusicDataSource = QQMusicDataSource()
 
     static func getLyrics(
         title: String, 
@@ -62,6 +63,16 @@ struct LyricsRepository {
             return PlainLyrics(
                 content: lyric.lrc.lyric,
                 translation: lyric.tlyric?.lyric,
+                timeSynced: true
+            )
+        case .qqmusic:
+            let song = try qqMusicDataSource.getSong(title: strippedTitle, artistsString: artist, duration: duration)
+            
+            let lyric = try qqMusicDataSource.getLyric(song)
+            
+            return PlainLyrics(
+                content: lyric.lyric,
+                translation: lyric.trans,
                 timeSynced: true
             )
             

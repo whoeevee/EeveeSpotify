@@ -22,6 +22,8 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
                 Text("Genius").tag(LyricsSource.genius)
                 Text("LRCLIB").tag(LyricsSource.lrclib)
                 Text("Musixmatch").tag(LyricsSource.musixmatch)
+                Text("Netease").tag(LyricsSource.netease)
+                Text("QQMusic").tag(LyricsSource.qqmusic)
             }
 
             if lyricsSource == .musixmatch {
@@ -34,6 +36,16 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
                         .foregroundColor(.gray)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+            }
+
+            if lyricsSource == .netease || lyricsSource == .qqmusic {
+                Toggle(
+                    "Simplified Chinese Translation",
+                    isOn: Binding<Bool>(
+                        get: { UserDefaults.neteaseShowTranslation },
+                        set: { UserDefaults.neteaseShowTranslation = $0 }
+                    )
+                )
             }
         }
 

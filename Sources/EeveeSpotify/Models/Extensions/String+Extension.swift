@@ -59,4 +59,24 @@ extension String {
         
         return data
     }
+    
+    func htmlDecoded() -> String {
+
+        guard (self != "") else { return self }
+
+        var newStr = self
+
+        let entities = [
+            "&quot;"    : "\"",
+            "&amp;"     : "&",
+            "&apos;"    : "'",
+            "&lt;"      : "<",
+            "&gt;"      : ">",
+        ]
+
+        for (name,value) in entities {
+            newStr = newStr.replacingOccurrences(of: name, with: value)
+        }
+        return newStr
+    }
 }
