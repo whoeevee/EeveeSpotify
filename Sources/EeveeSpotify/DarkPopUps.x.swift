@@ -17,7 +17,7 @@ class EncoreLabelHook: ClassHook<UIView> {
 
             let label = Dynamic.convert(target.subviews.first!, to: UILabel.self)
 
-            if !(String(describing: target.superview?.superview?.superview) ~= "Primary") {
+            if !(String(describing: target.superview?.superview?.superview?.superview) ~= "Primary") {
                 label.textColor = .white
             }
         }

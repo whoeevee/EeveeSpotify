@@ -11,7 +11,7 @@ func exitApplication() {
 
 struct EeveeSpotify: Tweak {
     
-    static let version = "4.0"
+    static let version = "4.1"
     
     init() {
 
