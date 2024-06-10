@@ -5,11 +5,11 @@ class SPTPlayerTrackHook: ClassHook<NSObject> {
 
     static let targetName = "SPTPlayerTrack"
 
-    func setMetadata(_ metadata: [String:String]) {
-        var meta = metadata
-
+    func metadata() -> [String:String] {
+        var meta = orig.metadata()
+        
         meta["has_lyrics"] = "true"
-        orig.setMetadata(meta)
+        return meta
     }
 }
 
@@ -29,24 +29,24 @@ class EncoreButtonHook: ClassHook<UIButton> {
 }
 
 func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
-
+    
     guard let track = HookedInstances.currentTrack else {
         throw LyricsError.NoCurrentTrack
     }
-
+    
     var source = UserDefaults.lyricsSource
-
+    
     let plainLyrics: PlainLyrics?
-
+    
     do {
         plainLyrics = try LyricsRepository.getLyrics(
-            title: track.trackTitle(), 
-            artist: track.artistTitle(), 
+            title: track.trackTitle(),
+            artist: track.artistTitle(),
             spotifyTrackId: track.URI().spt_trackIdentifier(),
             source: source
         )
     }
-
+    
     catch let error as LyricsError {
         
         switch error {
@@ -67,10 +67,10 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         if source == .genius || !UserDefaults.geniusFallback {
             throw error
         }
-
+        
         NSLog("[EeveeSpotify] Unable to load lyrics from \(source): \(error), trying Genius as fallback")
         source = .genius
-
+        
         plainLyrics = try LyricsRepository.getLyrics(
             title: track.trackTitle(),
             artist: track.artistTitle(),
@@ -80,13 +80,28 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
     }
 
     let lyrics = try Lyrics.with {
-        $0.colors = originalLyrics?.colors ?? LyricsColors.with {
-            $0.backgroundColor = Color(hex: track.extractedColorHex()).normalized.uInt32
-            $0.lineColor = Color.black.uInt32
-            $0.activeLineColor = Color.white.uInt32
-        }
+        $0.colors = getLyricsColors()
         $0.data = try LyricsHelper.composeLyricsData(plainLyrics!, source: source)
     }
 
     return try lyrics.serializedData()
+    
+    func getLyricsColors() -> LyricsColors {
+        
+        let lyricsColorsSettings = UserDefaults.lyricsColors
+        
+        if lyricsColorsSettings.displayOriginalColors, let originalLyrics = originalLyrics {
+            return originalLyrics.colors
+        }
+        
+        return LyricsColors.with {
+            $0.backgroundColor = lyricsColorsSettings.useStaticColor
+                ? Color(hex: lyricsColorsSettings.staticColor).uInt32
+                : Color(hex: track.extractedColorHex())
+                    .normalized(lyricsColorsSettings.normalizationFactor)
+                    .uInt32
+            $0.lineColor = Color.black.uInt32
+            $0.activeLineColor = Color.white.uInt32
+        }
+    }
 }

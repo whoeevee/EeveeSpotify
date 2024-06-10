@@ -54,10 +54,6 @@ class LyricsHelper {
                             captures[name] = String(line[substringRange])
                         }
                     }
-                    
-                    if captures.count != 3 {
-                        return nil
-                    }
 
                     let minute = Int(captures["minute"]!)!
                     let seconds = Float(captures["seconds"]!)!

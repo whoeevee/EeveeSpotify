@@ -32,6 +32,30 @@ If you have an active Premium subscription, you can turn on Do Not Patch Premium
             }
         }
         
+        .onChange(of: patchType) { newPatchType in
+            
+            UserDefaults.patchType = newPatchType
+            
+            do {
+                try OfflineHelper.resetOfflineBnk()
+            }
+            catch {
+                NSLog("Unable to reset offline.bnk: \(error)")
+            }
+        }
+
+        .onChange(of: overwriteConfiguration) { overwriteConfiguration in
+            
+            UserDefaults.overwriteConfiguration = overwriteConfiguration
+            
+            do {
+                try OfflineHelper.resetOfflineBnk()
+            }
+            catch {
+                NSLog("Unable to reset offline.bnk: \(error)")
+            }
+        }
+        
         if patchType == .requests {
             Section(
                 footer: Text("Replace remote configuration with the dumped Premium one. It might fix some issues, such as appearing ads, but it's not guaranteed.")

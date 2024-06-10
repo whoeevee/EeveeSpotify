@@ -1,22 +1,10 @@
 import Orion
 
-func showHavePremiumPopUp() {
+private func showHavePremiumPopUp() {
     PopUpHelper.showPopUp(
         delayed: true,
         message: "It looks like you have an active Premium subscription, so the tweak won't patch the data or restrict the use of Premium server-sided features. You can manage this in the EeveeSpotify settings.",
         buttonText: "OK"
-    )
-}
-
-func showOfflineBnkMethodSetPopUp() {
-    PopUpHelper.showPopUp(
-        delayed: true,
-        message: "App restart is needed to get Premium. You can manage the Premium patching method in the EeveeSpotify settings.",
-        buttonText: "Restart Now",
-        secondButtonText: "Restart Later",
-        onPrimaryClick: {
-            exitApplication()
-        }
     )
 }
 
@@ -29,37 +17,18 @@ class SPTCoreURLSessionDataDelegateHook: ClassHook<NSObject> {
         task: URLSessionDataTask,
         didCompleteWithError error: Error?
     ) {
-        if let url = task.currentRequest?.url, UserDefaults.patchType == .requests && url.isBootstrap {
-            return
-        }
-        orig.URLSession(session, task: task, didCompleteWithError: error)
-    }
-    
-    func URLSession(
-        _ session: URLSession,
-        dataTask task: URLSessionDataTask,
-        didReceiveData data: Data
-    ) {
-        guard 
+        guard
             let request = task.currentRequest,
-            let response = task.response,
             let url = request.url
         else {
             return
         }
-
-        if url.isBootstrap {
-
+            
+        if error == nil && url.isBootstrap {
+            
+            let buffer = URLSessionHelper.shared.obtainData(for: url)!
+            
             do {
-                guard let buffer = OfflineHelper.appendDataAndReturnIfFull(
-                    data,
-                    response: response
-                ) else {
-                    return
-                }
-                
-                OfflineHelper.dataBuffer = Data()
-                
                 var bootstrapMessage = try BootstrapMessage(serializedData: buffer)
                 
                 if UserDefaults.patchType == .notSet {
@@ -97,6 +66,28 @@ class SPTCoreURLSessionDataDelegateHook: ClassHook<NSObject> {
             catch {
                 NSLog("[EeveeSpotify] Unable to modify bootstrap data: \(error)")
             }
+        }
+        
+        orig.URLSession(session, task: task, didCompleteWithError: error)
+    }
+    
+    func URLSession(
+        _ session: URLSession,
+        dataTask task: URLSessionDataTask,
+        didReceiveData data: Data
+    ) {
+        guard 
+            let request = task.currentRequest,
+            let url = request.url
+        else {
+            return
+        }
+        
+        let isModifyingBootstrapResponse = UserDefaults.patchType == .requests
+
+        if url.isBootstrap && isModifyingBootstrapResponse {
+            URLSessionHelper.shared.setOrAppend(data, for: url)
+            return
         }
 
         orig.URLSession(session, dataTask: task, didReceiveData: data)

@@ -53,10 +53,19 @@ extension Color {
         ) / 1000
     }
 
-    var normalized: Color {
-        brightness < 0.5 
-            ? self.lighter(by: 0.5 - brightness)
-            : self.darker(by: brightness - 0.5)
+    func normalized(_ by: CGFloat) -> Color {
+        brightness < 0.5
+            ? self.lighter(by: max(by - brightness, 0))
+            : self.darker(by: max(brightness - by, 0))
+    }
+    
+    var hexString: String {
+         String(
+            format: "%02X%02X%02X",
+            Int(components.red * 255),
+            Int(components.green * 255),
+            Int(components.blue * 255)
+         )
     }
     
     var uInt32: UInt32 {

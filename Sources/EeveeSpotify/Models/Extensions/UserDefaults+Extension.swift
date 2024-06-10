@@ -10,6 +10,7 @@ extension UserDefaults {
     private static let darkPopUpsKey = "darkPopUps"
     private static let patchTypeKey = "patchType"
     private static let overwriteConfigurationKey = "overwriteConfiguration"
+    private static let lyricsColorsKey = "lyricsColors"
 
     static var lyricsSource: LyricsSource {
         get {
@@ -70,6 +71,24 @@ extension UserDefaults {
         }
         set (overwriteConfiguration) {
             defaults.set(overwriteConfiguration, forKey: overwriteConfigurationKey)
+        }
+    }
+    
+    static var lyricsColors: LyricsColorsSettings {
+        get {
+            if let data = defaults.object(forKey: lyricsColorsKey) as? Data {
+                return try! JSONDecoder().decode(LyricsColorsSettings.self, from: data)
+            }
+            
+            return LyricsColorsSettings(
+                displayOriginalColors: true,
+                useStaticColor: false,
+                staticColor: "",
+                normalizationFactor: 0.5
+            )
+        }
+        set (lyricsColors) {
+            defaults.set(try! JSONEncoder().encode(lyricsColors), forKey: lyricsColorsKey)
         }
     }
 }

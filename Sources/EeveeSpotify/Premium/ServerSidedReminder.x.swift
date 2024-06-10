@@ -21,7 +21,7 @@ class StreamQualitySettingsSectionHook: ClassHook<NSObject> {
 
 //
 
-func showOfflineModePopUp() {
+private func showOfflineModePopUp() {
     PopUpHelper.showPopUp(
         message: "Native playlist downloading is server-sided and is not available with this tweak. You can download podcast episodes though.", 
         buttonText: "OK"
