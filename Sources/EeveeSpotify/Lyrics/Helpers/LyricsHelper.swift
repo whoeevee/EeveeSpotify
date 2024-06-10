@@ -35,12 +35,14 @@ class LyricsHelper {
                 .dropLast()
 
             if plain.timeSynced {
-
-                lyricLines = lines.map { line in
                 
-                    let match = line.firstMatch(
-                        "\\[(?<minute>\\d{2}):(?<seconds>\\d{2}\\.?\\d*)\\] ?(?<content>.*)"
-                    )!
+                lyricLines = lines.compactMap { line in
+                
+                    guard let match = line.firstMatch(
+                        "\\[(?<minute>\\d*):(?<seconds>\\d*\\.?\\d*)\\] ?(?<content>.*)"
+                    ) else {
+                        return nil
+                    }
 
                     var captures: [String: String] = [:]
 
@@ -51,6 +53,10 @@ class LyricsHelper {
                         if let substringRange = Range(matchRange, in: line) {
                             captures[name] = String(line[substringRange])
                         }
+                    }
+                    
+                    if captures.count != 3 {
+                        return nil
                     }
 
                     let minute = Int(captures["minute"]!)!
