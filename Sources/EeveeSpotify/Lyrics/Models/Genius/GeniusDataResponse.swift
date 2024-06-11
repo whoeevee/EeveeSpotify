@@ -1,14 +1,14 @@
 import Foundation
 
 enum GeniusDataResponse: Decodable {
-    case hits(GeniusHitsResponse)
+    case sections(GeniusSectionsResponse)
     case song(GeniusSongResponse)
 
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
 
-        if let hits = try? container.decode(GeniusHitsResponse.self) {
-            self = .hits(hits)
+        if let sections = try? container.decode(GeniusSectionsResponse.self) {
+            self = .sections(sections)
         }
         else if let song = try? container.decode(GeniusSongResponse.self) {
             self = .song(song)

@@ -7,7 +7,11 @@ struct GeniusLyricsDataSource {
 
     init() {
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = ["X-Genius-iOS-Version": "6.19.1"]
+        configuration.httpAdditionalHeaders = [
+            "X-Genius-iOS-Version": "6.21.0",
+            "X-Genius-Logged-Out": "true",
+            "User-Agent": "Genius/1109 \(URLSessionHelper.CFNetworkVersion) \(URLSessionHelper.DarwinVersion)"
+        ]
         
         session = URLSession(configuration: configuration)
     }
@@ -50,15 +54,18 @@ struct GeniusLyricsDataSource {
         return rootResponse.response
     }
     
-    func search(_ query: String) throws -> [GeniusHit] {
+    func searchSong(_ query: String) throws -> [GeniusHit] {
         
-        let data = try perform("/search", query: ["q": query])
+        let data = try perform("/search/song", query: ["q": query])
         
-        guard case .hits(let hitsResponse) = data else {
+        guard 
+            case .sections(let sectionsResponse) = data,
+            let section = sectionsResponse.sections.first
+        else {
             throw LyricsError.DecodingError
         }
         
-        return hitsResponse.hits
+        return section.hits
     }
 
     func getSongInfo(_ songId: Int) throws -> GeniusSong {

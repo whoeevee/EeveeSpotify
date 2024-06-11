@@ -20,7 +20,7 @@ struct LyricsRepository {
         
         case .genius:
 
-            let hits = try geniusDataSource.search(query)
+            let hits = try geniusDataSource.searchSong(query)
 
             guard let song = (
                 hits.first(

@@ -1,5 +1,5 @@
 import Foundation
 
-struct GeniusHitsResponse: Decodable {
+struct GeniusSection: Decodable {
     var hits: [GeniusHit]
 }
