@@ -83,9 +83,7 @@ class SPTCoreURLSessionDataDelegateHook: ClassHook<NSObject> {
             return
         }
         
-        let isModifyingBootstrapResponse = UserDefaults.patchType == .requests
-
-        if url.isBootstrap && isModifyingBootstrapResponse {
+        if url.isBootstrap {
             URLSessionHelper.shared.setOrAppend(data, for: url)
             return
         }
