@@ -18,7 +18,7 @@ jobs:
         xcode-version: '15.3'
     
     - name: Setup Theos
-      uses: actions/checkout@latest
+      uses: actions/checkout@v4
       with:
          repository: theos/theos
          path: ${{ github.workspace }}/theos
