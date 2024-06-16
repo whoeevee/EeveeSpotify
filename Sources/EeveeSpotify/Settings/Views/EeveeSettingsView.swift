@@ -41,7 +41,6 @@ struct EeveeSettingsView: View {
         
         .listStyle(GroupedListStyle())
         
-        .padding(.bottom, 60)
         .ignoresSafeArea(.keyboard)
         
         .animation(.default, value: lyricsSource)

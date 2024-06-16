@@ -14,7 +14,8 @@ struct MusixmatchLyricsDataSource {
         var finalQuery = query
 
         finalQuery["usertoken"] = UserDefaults.musixmatchToken
-        finalQuery["app_id"] = "mac-ios-v2.0"
+        finalQuery["app_id"] = UIDevice.current.isIpad
+            ? "mac-ios-ipad-v1.0" : "mac-ios-v2.0"
 
         let queryString = finalQuery.queryString.addingPercentEncoding(
             withAllowedCharacters: .urlHostAllowed

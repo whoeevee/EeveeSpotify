@@ -5,6 +5,7 @@ on:
     branches: [ "swift" ]
   pull_request:
     branches: [ "swift" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,10 +17,15 @@ jobs:
     - uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: '15.3'
-    
-    - name: Install Theos
-      run: bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
-      
+
+    - name: Setup Theos
+      uses: actions/checkout@v4.1.6
+      with:
+        repository: theos/theos
+        ref: 16f19fb1da4322513a9ad0283c12f418121773d1
+        path: ${{ github.workspace }}/theos
+        submodules: recursive
+
     - name: Copy SwiftProtobuf (rootful)
       run: |
         mkdir swiftprotobuf && cd "$_"
@@ -36,9 +42,9 @@ jobs:
         tar -xvf data.tar.lzma
         cp -r var/jb/Library/Frameworks/SwiftProtobuf.framework $THEOS/lib/iphone/rootless
 
-    - name: Install make
+    - name: Install Dependencies
       run: |
-        brew install make
+        brew install make dpkg ldid
         echo "$(brew --prefix make)/libexec/gnubin" >> $GITHUB_PATH 
 
     - name: Build EeveeSpotify (debug)
