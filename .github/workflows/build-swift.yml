@@ -23,6 +23,11 @@ jobs:
          repository: theos/theos
          path: ${{ github.workspace }}/theos
          submodules: recursive
+
+    - name: Install Dependencies
+      run: |
+        brew install make dpkg ldid
+        echo "$(brew --prefix make)/libexec/gnubin" >> $GITHUB_PATH 
       
     - name: Copy SwiftProtobuf (rootful)
       run: |
@@ -39,11 +44,6 @@ jobs:
         ar -x org.swift.protobuf.swiftprotobuf_1.26.0_iphoneos-arm64.deb
         tar -xvf data.tar.lzma
         cp -r var/jb/Library/Frameworks/SwiftProtobuf.framework $THEOS/lib/iphone/rootless
-
-    - name: Install make
-      run: |
-        brew install make
-        echo "$(brew --prefix make)/libexec/gnubin" >> $GITHUB_PATH 
 
     - name: Build EeveeSpotify (debug)
       run: |
