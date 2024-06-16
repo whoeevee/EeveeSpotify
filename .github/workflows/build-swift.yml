@@ -17,8 +17,12 @@ jobs:
       with:
         xcode-version: '15.3'
     
-    - name: Install Theos
-      run: bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+    - name: Setup Theos
+    - uses: actions/checkout@latest
+      with:
+         repository: theos/theos
+         path: ${{ github.workspace }}/theos
+         submodules: recursive
       
     - name: Copy SwiftProtobuf (rootful)
       run: |
