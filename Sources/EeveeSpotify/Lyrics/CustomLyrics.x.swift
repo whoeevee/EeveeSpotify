@@ -55,7 +55,7 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
             
             PopUpHelper.showPopUp(
                 delayed: false,
-                message: "The tweak is unable to load lyrics from Musixmatch due to Unauthorized error. Please check or update your Musixmatch token.",
+                message: "The tweak is unable to load lyrics from Musixmatch due to Unauthorized error. Please check or update your Musixmatch token. If you use an iPad, you should get the token from the Musixmatch app for iPad.",
                 buttonText: "OK"
             )
             break

@@ -28,7 +28,6 @@ You can set a static color or a normalization factor based on the extracted trac
                         get: { Color(hex: lyricsColors.staticColor) },
                         set: { lyricsColors.staticColor = $0.hexString }
                     ),
-                    
                     supportsOpacity: false
                 )
             }

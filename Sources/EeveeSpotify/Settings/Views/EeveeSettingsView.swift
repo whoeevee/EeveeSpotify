@@ -5,13 +5,17 @@ struct EeveeSettingsView: View {
 
     @State var musixmatchToken = UserDefaults.musixmatchToken
     @State var patchType = UserDefaults.patchType
-    @State var lyricsSource = UserDefaults.lyricsSource
     @State var overwriteConfiguration = UserDefaults.overwriteConfiguration
+    
+    @State var lyricsSource = UserDefaults.lyricsSource
     @State var lyricsColors = UserDefaults.lyricsColors
+    
+    @State var latestVersion = ""
 
     var body: some View {
 
         List {
+            VersionSection()
             
             PremiumSections()
             
@@ -37,16 +41,22 @@ struct EeveeSettingsView: View {
                     Text("Reset Data")
                 }
             }
+            
+            if !UIDevice.current.isIpad {
+                Spacer()
+                    .frame(height: 40)
+                    .listRowBackground(Color.clear)
+                    .modifier(ListRowSeparatorHidden())
+            }
         }
         
         .listStyle(GroupedListStyle())
-        
-        .padding(.bottom, 60)
         .ignoresSafeArea(.keyboard)
         
         .animation(.default, value: lyricsSource)
         .animation(.default, value: patchType)
         .animation(.default, value: lyricsColors)
+        .animation(.default, value: latestVersion)
         
         .onAppear {
             UIView.appearance(
@@ -54,6 +64,10 @@ struct EeveeSettingsView: View {
             ).tintColor = UIColor(Color(hex: "#1ed760"))
 
             WindowHelper.shared.overrideUserInterfaceStyle(.dark)
+            
+            Task {
+                try await loadVersion()
+            }
         }
     }
 }
