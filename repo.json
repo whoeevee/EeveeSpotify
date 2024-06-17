@@ -7,12 +7,12 @@
       "name": "EeveeSpotify",
       "type": 1,
       "bundleIdentifier": "com.spotify.client",
-      "version": "8.9.44",
-      "versionDate": "2024-06-07",
-      "size": 75650658,
-      "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.1/EeveeSpotify-4.1-8.9.44.ipa",
+      "version": "8.9.48",
+      "versionDate": "2024-06-17",
+      "size": 75337996,
+      "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.2/EeveeSpotify-4.2-8.9.48.ipa",
       "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0c/1f/61/0c1f6144-af80-f395-3204-1d14fd8b2be7/AppIcon-0-0-1x_U007emarketing-0-6-0-0-85-220.png/512x512bb.jpg",
-      "localizedDescription": "Spotify v8.9.44 injected with EeveeSpotify",
+      "localizedDescription": "Spotify v8.9.48 injected with EeveeSpotify",
       "developerName": "Eevee"
     }
   ]
