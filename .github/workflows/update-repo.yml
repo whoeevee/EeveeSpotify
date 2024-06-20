@@ -1,8 +1,6 @@
 name: Update Repo
 
 on:
-  release:
-    types: [published]
   workflow_dispatch:
 
 jobs:
