@@ -1,7 +1,8 @@
 import Foundation
 
-enum LyricsError: Swift.Error {
+enum LyricsError: Error {
     case NoCurrentTrack
+    case MusixmatchRestricted
     case InvalidMusixmatchToken
     case DecodingError
     case NoSuchSong

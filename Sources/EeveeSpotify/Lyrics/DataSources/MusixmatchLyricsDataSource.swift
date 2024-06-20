@@ -79,9 +79,15 @@ struct MusixmatchLyricsDataSource {
             let subtitlesBody = subtitlesMessage["body"] as? [String: Any],
             let subtitlesList = subtitlesBody["subtitle_list"] as? [Any],
             let firstSubtitle = subtitlesList.first as? [String: Any],
-            let subtitle = firstSubtitle["subtitle"] as? [String: Any],
-            let subtitleBody = subtitle["subtitle_body"] as? String {
+            let subtitle = firstSubtitle["subtitle"] as? [String: Any] {
+                
+            if let restricted = subtitle["restricted"] as? Bool, restricted {
+                throw LyricsError.MusixmatchRestricted
+            }
+            
+            if let subtitleBody = subtitle["subtitle_body"] as? String {
                 return PlainLyrics(content: subtitleBody, timeSynced: true)
+            }
         }
 
         guard 
@@ -92,6 +98,10 @@ struct MusixmatchLyricsDataSource {
             let plainLyrics = lyrics["lyrics_body"] as? String
         else {
             throw LyricsError.DecodingError
+        }
+        
+        if let restricted = lyrics["restricted"] as? Bool, restricted {
+            throw LyricsError.MusixmatchRestricted
         }
 
         return PlainLyrics(content: plainLyrics, timeSynced: false)

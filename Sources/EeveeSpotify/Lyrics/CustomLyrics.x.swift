@@ -28,6 +28,8 @@ class EncoreButtonHook: ClassHook<UIButton> {
     }
 }
 
+private var hasShownRestrictedPopUp = false
+
 func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
     
     guard let track = HookedInstances.currentTrack else {
@@ -58,6 +60,21 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
                 message: "The tweak is unable to load lyrics from Musixmatch due to Unauthorized error. Please check or update your Musixmatch token. If you use an iPad, you should get the token from the Musixmatch app for iPad.",
                 buttonText: "OK"
             )
+            break
+        
+        case .MusixmatchRestricted:
+            
+            if !hasShownRestrictedPopUp {
+                
+                PopUpHelper.showPopUp(
+                    delayed: false,
+                    message: "The tweak is unable to load lyrics from Musixmatch because they are restricted. It's likely a copyright issue due to the US IP address, so you should change it if you're in the US or use a VPN.",
+                    buttonText: "OK"
+                )
+                
+                hasShownRestrictedPopUp.toggle()
+            }
+            
             break
             
         default:
