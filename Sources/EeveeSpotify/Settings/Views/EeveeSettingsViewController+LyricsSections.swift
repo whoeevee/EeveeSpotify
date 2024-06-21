@@ -116,6 +116,14 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
                         set: { UserDefaults.geniusFallback = $0 }
                     )
                 )
+                
+                Toggle(
+                    "Show Fallback Reasons",
+                    isOn: Binding<Bool>(
+                        get: { UserDefaults.fallbackReasons },
+                        set: { UserDefaults.fallbackReasons = $0 }
+                    )
+                )
             }
         }
     }

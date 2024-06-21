@@ -28,7 +28,64 @@ class EncoreButtonHook: ClassHook<UIButton> {
     }
 }
 
+//
+
+private var lastLyricsError: LyricsError? = nil
+
 private var hasShownRestrictedPopUp = false
+private var hasShownUnauthorizedPopUp = false
+
+//
+
+class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
+
+    static let targetName = "Lyrics_NPVCommunicatorImpl.LyricsOnlyViewController"
+
+    func viewDidLoad() {
+        
+        orig.viewDidLoad()
+        
+        if !UserDefaults.fallbackReasons {
+            return
+        }
+        
+        guard
+            let lyricsHeaderViewController = target.parent?.children.first,
+            let lyricsLabel = lyricsHeaderViewController.view.subviews.first
+        else {
+            return
+        }
+        
+        let encoreLabel = Dynamic.convert(lyricsLabel, to: SPTEncoreLabel.self)
+        
+        let attributedString = Dynamic.convert(
+            encoreLabel.text().firstObject as AnyObject,
+            to: SPTEncoreAttributedString.self
+        )
+        
+        var text = [attributedString]
+        
+        if let description = lastLyricsError?.description {
+            
+            let attributes = Dynamic.SPTEncoreAttributes
+                .alloc(interface: SPTEncoreAttributes.self)
+                .`init`({ attributes in
+                    attributes.setForegroundColor(.white.withAlphaComponent(0.5))
+                })
+            
+            text.append(
+                Dynamic.SPTEncoreAttributedString.alloc(interface: SPTEncoreAttributedString.self)
+                    .initWithString(
+                        "\nFallback: \(description)",
+                        typeStyle: attributedString.typeStyle(),
+                        attributes: attributes
+                    )
+            )
+        }
+
+        encoreLabel.setText(text as NSArray)
+    }
+}
 
 func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
     
@@ -47,20 +104,28 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
             spotifyTrackId: track.URI().spt_trackIdentifier(),
             source: source
         )
+        
+        lastLyricsError = nil
     }
     
     catch let error as LyricsError {
+        
+        lastLyricsError = error
         
         switch error {
             
         case .InvalidMusixmatchToken:
             
-            PopUpHelper.showPopUp(
-                delayed: false,
-                message: "The tweak is unable to load lyrics from Musixmatch due to Unauthorized error. Please check or update your Musixmatch token. If you use an iPad, you should get the token from the Musixmatch app for iPad.",
-                buttonText: "OK"
-            )
-            break
+            if !hasShownUnauthorizedPopUp {
+                
+                PopUpHelper.showPopUp(
+                    delayed: false,
+                    message: "The tweak is unable to load lyrics from Musixmatch due to Unauthorized error. Please check or update your Musixmatch token. If you use an iPad, you should get the token from the Musixmatch app for iPad.",
+                    buttonText: "OK"
+                )
+                
+                hasShownUnauthorizedPopUp.toggle()
+            }
         
         case .MusixmatchRestricted:
             
@@ -74,8 +139,6 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
                 
                 hasShownRestrictedPopUp.toggle()
             }
-            
-            break
             
         default:
             break
