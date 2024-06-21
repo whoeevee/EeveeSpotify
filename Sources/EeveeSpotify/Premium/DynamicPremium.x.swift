@@ -39,6 +39,7 @@ class SPTCoreURLSessionDataDelegateHook: ClassHook<NSObject> {
                     }
                     else {
                         UserDefaults.patchType = .requests
+                        ServerSidedReminder().activate()
                     }
                     
                     NSLog("[EeveeSpotify] Fetched bootstrap, \(UserDefaults.patchType) was set")
