@@ -16,8 +16,16 @@ class EncoreLabelHook: ClassHook<UIView> {
         ) ~= "SPTEncorePopUpContainer" {
 
             let label = Dynamic.convert(target.subviews.first!, to: UILabel.self)
+            
+            let superview: UIView?
+            
+            if #available(iOS 15.0, *) {
+                superview = target.superview?.superview?.superview?.superview
+            } else {
+                superview = target.superview?.superview?.superview
+            }
 
-            if !(String(describing: target.superview?.superview?.superview?.superview) ~= "Primary") {
+            if !(String(describing: superview) ~= "Primary") {
                 label.textColor = .white
             }
         }

@@ -38,8 +38,14 @@ private var hasShownUnauthorizedPopUp = false
 //
 
 class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
-
-    static let targetName = "Lyrics_NPVCommunicatorImpl.LyricsOnlyViewController"
+    
+    static var targetName: String {
+        if #available(iOS 15.0, *) {
+            "Lyrics_NPVCommunicatorImpl.LyricsOnlyViewController"
+        } else {
+            "Lyrics_CoreImpl.LyricsOnlyViewController"
+        }
+    }
 
     func viewDidLoad() {
         
@@ -50,20 +56,32 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
         }
         
         guard
-            let lyricsHeaderViewController = target.parent?.children.first,
-            let lyricsLabel = lyricsHeaderViewController.view.subviews.first
+            let lyricsHeaderViewController = target.parent?.children.first
         else {
             return
         }
         
+        //
+        
+        let lyricsLabel: UIView?
+        
+        if #available(iOS 15.0, *) {
+            lyricsLabel = lyricsHeaderViewController.view.subviews.first
+        } else {
+            lyricsLabel = lyricsHeaderViewController.view.subviews.first?.subviews.first
+        }
+        
+        guard let lyricsLabel = lyricsLabel else {
+            return
+        }
+        
+        //
+
         let encoreLabel = Dynamic.convert(lyricsLabel, to: SPTEncoreLabel.self)
         
-        let attributedString = Dynamic.convert(
-            encoreLabel.text().firstObject as AnyObject,
-            to: SPTEncoreAttributedString.self
-        )
-        
-        var text = [attributedString]
+        var text = [
+            encoreLabel.text().firstObject
+        ]
         
         if let description = lastLyricsError?.description {
             
@@ -73,14 +91,22 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
                     attributes.setForegroundColor(.white.withAlphaComponent(0.5))
                 })
             
+            let typeStyle = type(
+                of: Dynamic.SPTEncoreTypeStyle.alloc(interface: SPTEncoreTypeStyle.self)
+            ).bodyMediumBold()
+            
             text.append(
                 Dynamic.SPTEncoreAttributedString.alloc(interface: SPTEncoreAttributedString.self)
                     .initWithString(
                         "\nFallback: \(description)",
-                        typeStyle: attributedString.typeStyle(),
+                        typeStyle: typeStyle,
                         attributes: attributes
                     )
             )
+            
+            if #unavailable(iOS 15.0) {
+                encoreLabel.setNumberOfLines(2)
+            }
         }
 
         encoreLabel.setText(text as NSArray)
