@@ -1,8 +1,7 @@
 import Foundation
 import UIKit
 
-struct MusixmatchLyricsDataSource {
-    
+struct MusixmatchLyricsRepository: LyricsRepository {
     private let apiUrl = "https://apic.musixmatch.com"
 
     private func perform(
@@ -47,12 +46,12 @@ struct MusixmatchLyricsDataSource {
         return data!
     }
     
-    func getLyrics(_ spotifyTrackId: String) throws -> PlainLyrics {
+    func getLyrics(_ query: LyricsSearchQuery) throws -> LyricsDto {
         
         let data = try perform(
             "/ws/1.1/macro.subtitles.get", 
             query: [
-                "track_spotify_id": spotifyTrackId,
+                "track_spotify_id": query.spotifyTrackId,
                 "subtitle_format": "mxm",
                 "q_track": " "
             ]
@@ -93,7 +92,23 @@ struct MusixmatchLyricsDataSource {
                 }
                 
                 if let subtitleBody = subtitle["subtitle_body"] as? String {
-                    return PlainLyrics(content: subtitleBody, timeSynced: true)
+                    
+                    guard let subtitles = try? JSONDecoder().decode(
+                        [MusixmatchSubtitle].self,
+                        from: subtitleBody.data(using: .utf8)!
+                    ).dropLast() else {
+                        throw LyricsError.DecodingError
+                    }
+                    
+                    return LyricsDto(
+                        lines: subtitles.map { subtitle in
+                            LyricsLineDto(
+                                content: subtitle.text.lyricsNoteIfEmpty,
+                                offsetMs: Int(subtitle.time.total * 1000)
+                            )
+                        }, 
+                        timeSynced: true
+                    )
                 }
             }
         }
@@ -115,7 +130,13 @@ struct MusixmatchLyricsDataSource {
                     throw LyricsError.MusixmatchRestricted
                 }
                 
-                return PlainLyrics(content: plainLyrics, timeSynced: false)
+                return LyricsDto(
+                    lines: plainLyrics
+                        .components(separatedBy: "\n")
+                        .dropLast()
+                        .map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
+                    timeSynced: false
+                )
             }
         }
 

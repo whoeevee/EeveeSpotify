@@ -1,7 +1,6 @@
 import Foundation
 
-struct GeniusLyricsDataSource {
-    
+struct GeniusLyricsRepository: LyricsRepository {
     private let apiUrl = "https://api.genius.com"
     private let session: URLSession
 
@@ -20,7 +19,6 @@ struct GeniusLyricsDataSource {
         _ path: String, 
         query: [String:Any] = [:]
     ) throws -> GeniusDataResponse? {
-
         var stringUrl = "\(apiUrl)\(path)"
 
         if !query.isEmpty {
@@ -54,11 +52,12 @@ struct GeniusLyricsDataSource {
         return rootResponse.response
     }
     
-    func searchSong(_ query: String) throws -> [GeniusHit] {
-        
+    //
+    
+    private func searchSong(_ query: String) throws -> [GeniusHit] {
         let data = try perform("/search/song", query: ["q": query])
         
-        guard 
+        guard
             case .sections(let sectionsResponse) = data,
             let section = sectionsResponse.sections.first
         else {
@@ -68,8 +67,7 @@ struct GeniusLyricsDataSource {
         return section.hits
     }
 
-    func getSongInfo(_ songId: Int) throws -> GeniusSong {
-        
+    private func getSongInfo(_ songId: Int) throws -> GeniusSong {
         let data = try perform("/songs/\(songId)", query: ["text_format": "plain"])
         
         guard case .song(let songResponse) = data else {
@@ -77,5 +75,49 @@ struct GeniusLyricsDataSource {
         }
         
         return songResponse.song
+    }
+    
+    //
+    
+    private func mostRelevantHitResult(hits: [GeniusHit], strippedTitle: String) -> GeniusHitResult? {
+        return (
+            hits.first(
+                where: { $0.result.title.containsInsensitive(strippedTitle) }
+            ) ?? hits.first
+        )?.result
+    }
+    
+    private func mapLyricsLines(_ rawLines: [String]) -> [String] {
+        var lines = rawLines
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+        
+        lines.removeAll { $0 ~= "\\[.*\\]" }
+
+        lines = Array(
+            lines
+                .drop(while: { $0.isEmpty })
+                .dropLast(while: { $0.isEmpty })
+        )
+        
+        return lines
+    }
+    
+    func getLyrics(_ query: LyricsSearchQuery) throws -> LyricsDto {
+        let strippedTitle = query.title.strippedTrackTitle
+        let hits = try searchSong("\(strippedTitle) \(query.primaryArtist)")
+        
+        guard let song = mostRelevantHitResult(hits: hits, strippedTitle: strippedTitle) else {
+            throw LyricsError.NoSuchSong
+        }
+
+        let songInfo = try getSongInfo(song.id)
+        let plainLines = songInfo.lyrics.plain.components(separatedBy: "\n")
+        
+        return LyricsDto(
+            lines: mapLyricsLines(plainLines).map {
+                line in LyricsLineDto(content: line)
+            },
+            timeSynced: false
+        )
     }
 }

@@ -119,18 +119,28 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         throw LyricsError.NoCurrentTrack
     }
     
+    //
+    
+    let searchQuery = LyricsSearchQuery(
+        title: track.trackTitle(),
+        primaryArtist: track.artistTitle(),
+        spotifyTrackId: track.URI().spt_trackIdentifier()
+    )
+    
     var source = UserDefaults.lyricsSource
     
-    let plainLyrics: PlainLyrics?
+    var repository: LyricsRepository = switch source {
+        case .genius: GeniusLyricsRepository()
+        case .lrclib: LrcLibLyricsRepository()
+        case .musixmatch: MusixmatchLyricsRepository()
+    }
+    
+    let lyricsDto: LyricsDto
+    
+    //
     
     do {
-        plainLyrics = try LyricsRepository.getLyrics(
-            title: track.trackTitle(),
-            artist: track.artistTitle(),
-            spotifyTrackId: track.URI().spt_trackIdentifier(),
-            source: source
-        )
-        
+        lyricsDto = try repository.getLyrics(searchQuery)
         lastLyricsError = nil
     }
     
@@ -175,25 +185,21 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         }
         
         NSLog("[EeveeSpotify] Unable to load lyrics from \(source): \(error), trying Genius as fallback")
-        source = .genius
         
-        plainLyrics = try LyricsRepository.getLyrics(
-            title: track.trackTitle(),
-            artist: track.artistTitle(),
-            spotifyTrackId: track.URI().spt_trackIdentifier(),
-            source: source
-        )
+        source = .genius
+        repository = GeniusLyricsRepository()
+        
+        lyricsDto = try repository.getLyrics(searchQuery)
     }
 
-    let lyrics = try Lyrics.with {
+    let lyrics = Lyrics.with {
         $0.colors = getLyricsColors()
-        $0.data = try LyricsHelper.composeLyricsData(plainLyrics!, source: source)
+        $0.data = lyricsDto.toLyricsData(source: source.description)
     }
 
     return try lyrics.serializedData()
     
     func getLyricsColors() -> LyricsColors {
-        
         let lyricsColorsSettings = UserDefaults.lyricsColors
         
         if lyricsColorsSettings.displayOriginalColors, let originalLyrics = originalLyrics {
