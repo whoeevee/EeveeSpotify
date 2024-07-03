@@ -46,11 +46,10 @@ class UIButtonHook: ClassHook<UIButton> {
 
         if highlighted {
 
-            if let identifier = target.accessibilityIdentifier, identifier.contains("DownloadButton") {
+            if let identifier = target.accessibilityIdentifier, identifier.contains("DownloadButton"),
+            let viewController = WindowHelper.shared.viewController(for: target) {
 
-                let vcDescription = String(describing: WindowHelper.shared.viewController(for: target))
-
-                if !(vcDescription ~= "Podcast|CreativeWorkPlatform") {
+                if !(NSStringFromClass(type(of: viewController)) ~= "Podcast|CreativeWorkPlatform") {
 
                     target.removeTarget(nil, action: nil, for: .allEvents)
                     showOfflineModePopUp()

@@ -23,7 +23,7 @@ class WindowHelper {
         
         func searchViews(_ view: UIView) {
             if let viewController = self.viewController(for: view) {
-                if String(describing: type(of: viewController)) ~= regex { 
+                if NSStringFromClass(type(of: viewController)) ~= regex {
                     result = viewController
                     return
                 }    

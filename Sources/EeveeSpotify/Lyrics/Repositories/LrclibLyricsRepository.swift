@@ -114,9 +114,10 @@ struct LrcLibLyricsRepository: LyricsRepository {
         }
         
         return LyricsDto(
-            lines: plainLyrics.components(separatedBy: "\n").dropLast().map { content in
-                LyricsLineDto(content: content)
-            },
+            lines: plainLyrics
+                .components(separatedBy: "\n")
+                .dropLast()
+                .map { content in LyricsLineDto(content: content) },
             timeSynced: false
         )
     }

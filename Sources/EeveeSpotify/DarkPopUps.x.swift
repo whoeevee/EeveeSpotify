@@ -11,22 +11,15 @@ class EncoreLabelHook: ClassHook<UIView> {
 
     func intrinsicContentSize() -> CGSize {
 
-        if String(
-            describing: WindowHelper.shared.viewController(for: target)
-        ) ~= "SPTEncorePopUpContainer" {
-
-            let label = Dynamic.convert(target.subviews.first!, to: UILabel.self)
+        if let viewController = WindowHelper.shared.viewController(for: target) {
             
-            let superview: UIView?
-            
-            if #available(iOS 15.0, *) {
-                superview = target.superview?.superview?.superview?.superview
-            } else {
-                superview = target.superview?.superview?.superview
-            }
+            if NSStringFromClass(type(of: viewController)) == "SPTEncorePopUpContainer" {
 
-            if !(String(describing: superview) ~= "Primary") {
-                label.textColor = .white
+                let label = Dynamic.convert(target.subviews.first!, to: UILabel.self)
+
+                if !label.hasParent("Primary") {
+                    label.textColor = .white
+                }
             }
         }
 
