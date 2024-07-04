@@ -104,19 +104,30 @@ struct GeniusLyricsRepository: LyricsRepository {
     
     func getLyrics(_ query: LyricsSearchQuery) throws -> LyricsDto {
         let strippedTitle = query.title.strippedTrackTitle
-        let hits = try searchSong("\(strippedTitle) \(query.primaryArtist)")
-        
+        let romanizedQuery = "\(strippedTitle) \(query.primaryArtist) (Romanized)"
+        let defaultQuery = "\(strippedTitle) \(query.primaryArtist)"
+    
+        var hits: [GeniusHit] = []
+    
+        do {
+            hits = try searchSong(romanizedQuery)
+        } catch {
+            do {
+                hits = try searchSong(defaultQuery)
+            } catch {
+                hits = try searchSong("\(strippedTitle) \(query.primaryArtist)")
+            }
+        }
+    
         guard let song = mostRelevantHitResult(hits: hits, strippedTitle: strippedTitle) else {
             throw LyricsError.NoSuchSong
         }
-
+    
         let songInfo = try getSongInfo(song.id)
         let plainLines = songInfo.lyrics.plain.components(separatedBy: "\n")
-        
+    
         return LyricsDto(
-            lines: mapLyricsLines(plainLines).map {
-                line in LyricsLineDto(content: line)
-            },
+            lines: mapLyricsLines(plainLines).map { line in LyricsLineDto(content: line) },
             timeSynced: false
         )
     }
