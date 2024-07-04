@@ -124,6 +124,13 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
                         set: { UserDefaults.fallbackReasons = $0 }
                     )
                 )
+                Toggle(
+                    "Use Romanized (Romaji) Lyrics when Available",
+                    isOn: Binding<Bool>(
+                        get: { UserDefaults.romanizedLyrics },
+                        set: { UserDefaults.romanizedLyrics = $0 }
+                    )
+                )
             }
         }
     }
