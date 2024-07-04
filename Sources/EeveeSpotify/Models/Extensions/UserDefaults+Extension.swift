@@ -47,7 +47,7 @@ extension UserDefaults {
 
     static var romanizedLyrics: Bool {
         get {
-            defaults.object(forKey: romanizedLyricsKey) as? Bool ?? true
+            defaults.object(forKey: romanizedLyricsKey) as? Bool ?? false
         }
         set (romanized) {
             defaults.set(romanized, forKey: romanizedLyricsKey)
