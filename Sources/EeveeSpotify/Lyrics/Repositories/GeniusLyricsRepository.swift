@@ -104,18 +104,16 @@ struct GeniusLyricsRepository: LyricsRepository {
     
     func getLyrics(_ query: LyricsSearchQuery) throws -> LyricsDto {
         let strippedTitle = query.title.strippedTrackTitle
-        let queries = []
+        var queries = [
+            "\(strippedTitle) \(query.primaryArtist)"
+        ]
+        
         if UserDefaults.romanizedLyrics {
-            let queries = [
+            queries = [
                 "\(strippedTitle) \(query.primaryArtist) (Romanized)",
                 "\(strippedTitle) \(query.primaryArtist)"
             ]
-        } else {
-            let queries = [
-                "\(strippedTitle) \(query.primaryArtist)"
-            ]
         }
-    
         var hits: [GeniusHit] = []
     
         for searchQuery in queries {
