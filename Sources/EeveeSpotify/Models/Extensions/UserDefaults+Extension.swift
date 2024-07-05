@@ -7,6 +7,7 @@ extension UserDefaults {
     private static let lyricsSourceKey = "lyricsSource"
     private static let musixmatchTokenKey = "musixmatchToken"
     private static let geniusFallbackKey = "geniusFallback"
+    private static let romanizedLyricsKey = "romanizedLyrics"
     private static let fallbackReasonsKey = "fallbackReasons"
     private static let darkPopUpsKey = "darkPopUps"
     private static let patchTypeKey = "patchType"
@@ -41,6 +42,15 @@ extension UserDefaults {
         }
         set (fallback) {
             defaults.set(fallback, forKey: geniusFallbackKey)
+        }
+    }
+
+    static var romanizedLyrics: Bool {
+        get {
+            defaults.object(forKey: romanizedLyricsKey) as? Bool ?? false
+        }
+        set (romanized) {
+            defaults.set(romanized, forKey: romanizedLyricsKey)
         }
     }
     
