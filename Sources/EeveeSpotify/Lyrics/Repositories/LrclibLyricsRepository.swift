@@ -92,7 +92,7 @@ struct LrcLibLyricsRepository: LyricsRepository {
         }
     }
 
-    func getLyrics(_ query: LyricsSearchQuery) throws -> LyricsDto {
+    func getLyrics(_ query: LyricsSearchQuery, options: LyricsOptions) throws -> LyricsDto {
         let strippedTitle = query.title.strippedTrackTitle
         let songs = try searchSong("\(strippedTitle) \(query.primaryArtist)")
         

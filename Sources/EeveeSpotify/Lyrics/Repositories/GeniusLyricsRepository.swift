@@ -1,6 +1,8 @@
 import Foundation
 
 struct GeniusLyricsRepository: LyricsRepository {
+    
+    private let jsonDecoder: JSONDecoder
     private let apiUrl = "https://api.genius.com"
     private let session: URLSession
 
@@ -13,6 +15,9 @@ struct GeniusLyricsRepository: LyricsRepository {
         ]
         
         session = URLSession(configuration: configuration)
+        
+        jsonDecoder = JSONDecoder()
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
     private func perform(
@@ -48,7 +53,7 @@ struct GeniusLyricsRepository: LyricsRepository {
             throw error
         }
 
-        let rootResponse = try JSONDecoder().decode(GeniusRootResponse.self, from: data!)
+        let rootResponse = try jsonDecoder.decode(GeniusRootResponse.self, from: data!)
         return rootResponse.response
     }
     
@@ -79,12 +84,28 @@ struct GeniusLyricsRepository: LyricsRepository {
     
     //
     
-    private func mostRelevantHitResult(hits: [GeniusHit], strippedTitle: String) -> GeniusHitResult? {
-        return (
-            hits.first(
-                where: { $0.result.title.containsInsensitive(strippedTitle) }
-            ) ?? hits.first
-        )?.result
+    private func mostRelevantHitResult(
+        hits: [GeniusHit],
+        strippedTitle: String,
+        romanized: Bool
+    ) -> GeniusHitResult {
+        let results = hits.map { $0.result }
+        
+        let matchingByTitle = results.filter(
+            { $0.title.containsInsensitive(strippedTitle) }
+        )
+        
+        if matchingByTitle.isEmpty {
+            return results.first!
+        }
+        
+        if romanized, let romanizedSong = matchingByTitle.first(
+            where: { $0.artistNames == "Genius Romanizations" }
+        ) {
+            return romanizedSong
+        }
+        
+        return matchingByTitle.first!
     }
     
     private func mapLyricsLines(_ rawLines: [String]) -> [String] {
@@ -102,36 +123,20 @@ struct GeniusLyricsRepository: LyricsRepository {
         return lines
     }
     
-    func getLyrics(_ query: LyricsSearchQuery) throws -> LyricsDto {
+    func getLyrics(_ query: LyricsSearchQuery, options: LyricsOptions) throws -> LyricsDto {
         let strippedTitle = query.title.strippedTrackTitle
-        var queries = [
-            "\(strippedTitle) \(query.primaryArtist)"
-        ]
-        
-        if UserDefaults.romanizedLyrics {
-            queries = [
-                "\(strippedTitle) \(query.primaryArtist) (Romanized)",
-                "\(strippedTitle) \(query.primaryArtist)"
-            ]
-        }
-        var hits: [GeniusHit] = []
+        let hits = try searchSong("\(strippedTitle) \(query.primaryArtist)")
     
-        for searchQuery in queries {
-            do {
-                hits = try searchSong(searchQuery)
-                if !hits.isEmpty {
-                    break
-                }
-            } catch {
-                // Continue to the next query if the current one fails
-            }
-        }
-    
-        guard !hits.isEmpty,
-              let song = mostRelevantHitResult(hits: hits, strippedTitle: strippedTitle) else {
+        guard !hits.isEmpty else {
             throw LyricsError.NoSuchSong
         }
-    
+        
+        let song = mostRelevantHitResult(
+            hits: hits,
+            strippedTitle: strippedTitle,
+            romanized: options.geniusRomanizations
+        )
+        
         let songInfo = try getSongInfo(song.id)
         let plainLines = songInfo.lyrics.plain.components(separatedBy: "\n")
     

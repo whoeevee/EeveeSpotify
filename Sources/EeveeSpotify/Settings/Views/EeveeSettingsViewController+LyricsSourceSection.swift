@@ -47,7 +47,7 @@ extension EeveeSettingsView {
     }
     
     
-    @ViewBuilder func LyricsSections() -> some View {
+    @ViewBuilder func LyricsSourceSection() -> some View {
         
         Section(footer: Text("""
 You can select the lyrics source you prefer.
@@ -105,16 +105,8 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
             UserDefaults.lyricsSource = newSource
         }
         
-        if lyricsSource == .genius {
-            Section {
-                Toggle(
-                    "Use Romanized (Romaji) Lyrics when Available",
-                    isOn: Binding<Bool>(
-                        get: { UserDefaults.romanizedLyrics },
-                        set: { UserDefaults.romanizedLyrics = $0 }
-                    )
-                )
-            }
+        .onChange(of: geniusFallback) { geniusFallback in
+            UserDefaults.geniusFallback = geniusFallback
         }
 
         if lyricsSource != .genius {
@@ -123,10 +115,7 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
             ) {
                 Toggle(
                     "Genius Fallback",
-                    isOn: Binding<Bool>(
-                        get: { UserDefaults.geniusFallback },
-                        set: { UserDefaults.geniusFallback = $0 }
-                    )
+                    isOn: $geniusFallback
                 )
                 
                 Toggle(

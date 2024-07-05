@@ -8,7 +8,9 @@ struct EeveeSettingsView: View {
     @State var overwriteConfiguration = UserDefaults.overwriteConfiguration
     
     @State var lyricsSource = UserDefaults.lyricsSource
+    @State var geniusFallback = UserDefaults.geniusFallback
     @State var lyricsColors = UserDefaults.lyricsColors
+    @State var lyricsOptions = UserDefaults.lyricsOptions
     
     @State var latestVersion = ""
 
@@ -19,7 +21,8 @@ struct EeveeSettingsView: View {
             
             PremiumSections()
             
-            LyricsSections()
+            LyricsSourceSection()
+            LyricsOptionsSection()
             
             LyricsColorsSection()
 
@@ -51,9 +54,9 @@ struct EeveeSettingsView: View {
         }
         
         .listStyle(GroupedListStyle())
-        .ignoresSafeArea(.keyboard)
-        
+
         .animation(.default, value: lyricsSource)
+        .animation(.default, value: geniusFallback)
         .animation(.default, value: patchType)
         .animation(.default, value: lyricsColors)
         .animation(.default, value: latestVersion)

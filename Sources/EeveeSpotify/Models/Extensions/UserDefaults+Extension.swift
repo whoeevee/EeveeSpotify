@@ -7,12 +7,12 @@ extension UserDefaults {
     private static let lyricsSourceKey = "lyricsSource"
     private static let musixmatchTokenKey = "musixmatchToken"
     private static let geniusFallbackKey = "geniusFallback"
-    private static let romanizedLyricsKey = "romanizedLyrics"
     private static let fallbackReasonsKey = "fallbackReasons"
     private static let darkPopUpsKey = "darkPopUps"
     private static let patchTypeKey = "patchType"
     private static let overwriteConfigurationKey = "overwriteConfiguration"
     private static let lyricsColorsKey = "lyricsColors"
+    private static let lyricsOptionsKey = "lyricsOptions"
 
     static var lyricsSource: LyricsSource {
         get {
@@ -45,12 +45,16 @@ extension UserDefaults {
         }
     }
 
-    static var romanizedLyrics: Bool {
+    static var lyricsOptions: LyricsOptions {
         get {
-            defaults.object(forKey: romanizedLyricsKey) as? Bool ?? false
+            if let data = defaults.object(forKey: lyricsOptionsKey) as? Data {
+                return try! JSONDecoder().decode(LyricsOptions.self, from: data)
+            }
+            
+            return LyricsOptions(geniusRomanizations: false)
         }
-        set (romanized) {
-            defaults.set(romanized, forKey: romanizedLyricsKey)
+        set (lyricsOptions) {
+            defaults.set(try! JSONEncoder().encode(lyricsOptions), forKey: lyricsOptionsKey)
         }
     }
     

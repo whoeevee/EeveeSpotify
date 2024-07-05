@@ -46,7 +46,7 @@ struct MusixmatchLyricsRepository: LyricsRepository {
         return data!
     }
     
-    func getLyrics(_ query: LyricsSearchQuery) throws -> LyricsDto {
+    func getLyrics(_ query: LyricsSearchQuery, options: LyricsOptions) throws -> LyricsDto {
         
         let data = try perform(
             "/ws/1.1/macro.subtitles.get", 

@@ -127,6 +127,7 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         spotifyTrackId: track.URI().spt_trackIdentifier()
     )
     
+    let options = UserDefaults.lyricsOptions
     var source = UserDefaults.lyricsSource
     
     var repository: LyricsRepository = switch source {
@@ -140,7 +141,7 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
     //
     
     do {
-        lyricsDto = try repository.getLyrics(searchQuery)
+        lyricsDto = try repository.getLyrics(searchQuery, options: options)
         lastLyricsError = nil
     }
     
@@ -189,7 +190,7 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         source = .genius
         repository = GeniusLyricsRepository()
         
-        lyricsDto = try repository.getLyrics(searchQuery)
+        lyricsDto = try repository.getLyrics(searchQuery, options: options)
     }
 
     let lyrics = Lyrics.with {

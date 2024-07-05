@@ -45,8 +45,8 @@ You can set a static color or a normalization factor based on the extracted trac
             }
         }
         
-        .onChange(of: lyricsColors) { newLyricsColors in
-            UserDefaults.lyricsColors = newLyricsColors
+        .onChange(of: lyricsColors) { lyricsColors in
+            UserDefaults.lyricsColors = lyricsColors
         }
     }
 }
