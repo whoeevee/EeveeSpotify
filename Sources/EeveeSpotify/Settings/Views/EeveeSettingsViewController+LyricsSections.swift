@@ -105,10 +105,8 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
             UserDefaults.lyricsSource = newSource
         }
         
-        if lyricsSource = .genius {
-            Section(
-                footer: Text("Load lyrics from Genius if there is a problem with \(lyricsSource).")
-            ) {
+        if lyricsSource == .genius {
+            Section {
                 Toggle(
                     "Use Romanized (Romaji) Lyrics when Available",
                     isOn: Binding<Bool>(
@@ -117,6 +115,7 @@ If the tweak is unable to find a song or process the lyrics, you'll see a "Could
                     )
                 )
             }
+        }
 
         if lyricsSource != .genius {
             Section(
