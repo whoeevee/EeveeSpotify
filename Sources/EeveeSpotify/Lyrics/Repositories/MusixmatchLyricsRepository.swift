@@ -5,7 +5,7 @@ struct MusixmatchLyricsRepository: LyricsRepository {
     private let apiUrl = "https://apic.musixmatch.com"
 
     private func perform(
-        _ path: String, 
+        _ path: String,
         query: [String:Any] = [:]
     ) throws -> Data {
 
@@ -49,7 +49,7 @@ struct MusixmatchLyricsRepository: LyricsRepository {
     func getLyrics(_ query: LyricsSearchQuery, options: LyricsOptions) throws -> LyricsDto {
         
         let data = try perform(
-            "/ws/1.1/macro.subtitles.get", 
+            "/ws/1.1/macro.subtitles.get",
             query: [
                 "track_spotify_id": query.spotifyTrackId,
                 "subtitle_format": "mxm",
@@ -59,7 +59,7 @@ struct MusixmatchLyricsRepository: LyricsRepository {
 
         // 😭😭😭
 
-        guard 
+        guard
             let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
             let message = json["message"] as? [String: Any],
             let body = message["body"] as? [String: Any],
@@ -68,7 +68,7 @@ struct MusixmatchLyricsRepository: LyricsRepository {
             throw LyricsError.DecodingError
         }
 
-        if let header = message["header"] as? [String: Any], 
+        if let header = message["header"] as? [String: Any],
             header["status_code"] as? Int == 401 {
             throw LyricsError.InvalidMusixmatchToken
         }
@@ -100,15 +100,83 @@ struct MusixmatchLyricsRepository: LyricsRepository {
                         throw LyricsError.DecodingError
                     }
                     
-                    return LyricsDto(
-                        lines: subtitles.map { subtitle in
-                            LyricsLineDto(
-                                content: subtitle.text.lyricsNoteIfEmpty,
-                                offsetMs: Int(subtitle.time.total * 1000)
+                    if !UserDefaults.lyricsOptions.musixmatchRomanizations {
+                        return LyricsDto(
+                            lines: subtitles.map { subtitle in
+                                LyricsLineDto(
+                                    content: subtitle.text.lyricsNoteIfEmpty,
+                                    offsetMs: Int(subtitle.time.total * 1000)
+                                )
+                            },
+                            timeSynced: true
+                        )
+                    } else {
+                        do {
+                            let subtitleLang = subtitle["subtitle_language"] as? String ?? ""
+                            let romajiLang = "r\(subtitleLang.prefix(1))"
+                            
+                            let romajiData = try perform(
+                                "/ws/1.1/crowd.track.translations.get",
+                                query: [
+                                    "track_spotify_id": query.spotifyTrackId,
+                                    "selected_language": romajiLang
+                                ]
                             )
-                        }, 
-                        timeSynced: true
-                    )
+                            
+                            guard
+                                let romajiJson = try? JSONSerialization.jsonObject(with: romajiData, options: []) as? [String: Any],
+                                let romajiMessage = romajiJson["message"] as? [String: Any],
+                                let romajiBody = romajiMessage["body"] as? [String: Any],
+                                let translationsList = romajiBody["translations_list"] as? [[String: Any]]
+                            else {
+                                throw LyricsError.DecodingError
+                            }
+                            
+                            var translationDict: [String: String] = [:]
+                            
+                            for translation in translationsList {
+                                if let translationInfo = translation["translation"] as? [String: Any],
+                                   let translationMatch = translationInfo["subtitle_matched_line"] as? String,
+                                   let translationString = translationInfo["description"] as? String {
+                                    if translationMatch != translationString {
+                                        translationDict[translationMatch] = translationString
+                                    }
+
+                                }
+                            }
+                            
+                            let modifiedSubtitles = subtitles.map { subtitle in
+                                var modifiedText = subtitle.text
+                                for (translationMatch, translationString) in translationDict {
+                                    modifiedText = modifiedText.replacingOccurrences(of: translationMatch, with: translationString)
+                                }
+                                return MusixmatchSubtitle(
+                                    text: modifiedText,
+                                    time: subtitle.time
+                                )
+                            }
+                            
+                            return LyricsDto(
+                                lines: modifiedSubtitles.map { subtitle in
+                                    LyricsLineDto(
+                                        content: subtitle.text.lyricsNoteIfEmpty,
+                                        offsetMs: Int(subtitle.time.total * 1000)
+                                    )
+                                },
+                                timeSynced: true
+                            )
+                        } catch {
+                            return LyricsDto(
+                                lines: subtitles.map { subtitle in
+                                    LyricsLineDto(
+                                        content: subtitle.text.lyricsNoteIfEmpty,
+                                        offsetMs: Int(subtitle.time.total * 1000)
+                                    )
+                                },
+                                timeSynced: true
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -130,13 +198,74 @@ struct MusixmatchLyricsRepository: LyricsRepository {
                     throw LyricsError.MusixmatchRestricted
                 }
                 
-                return LyricsDto(
-                    lines: plainLyrics
-                        .components(separatedBy: "\n")
-                        .dropLast()
-                        .map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
-                    timeSynced: false
-                )
+                if (!UserDefaults.lyricsOptions.musixmatchRomanizations) {
+                    return LyricsDto(
+                        lines: plainLyrics
+                            .components(separatedBy: "\n")
+                            .dropLast()
+                            .map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
+                        timeSynced: false
+                    )
+                } else {
+                    do {
+                        let subtitleLang = lyrics["lyrics_language"] as? String ?? ""
+                        let romajiLang = "r\(subtitleLang.prefix(1))"
+                        
+                        let romajiData = try perform(
+                            "/ws/1.1/crowd.track.translations.get",
+                            query: [
+                                "track_spotify_id": query.spotifyTrackId,
+                                "selected_language": romajiLang
+                            ]
+                        )
+                        
+                        guard
+                            let romajiJson = try? JSONSerialization.jsonObject(with: romajiData, options: []) as? [String: Any],
+                            let romajiMessage = romajiJson["message"] as? [String: Any],
+                            let romajiBody = romajiMessage["body"] as? [String: Any],
+                            let translationsList = romajiBody["translations_list"] as? [[String: Any]]
+                        else {
+                            throw LyricsError.DecodingError
+                        }
+                        
+                        var translationDict: [String: String] = [:]
+                        
+                        for translation in translationsList {
+                            if let translationInfo = translation["translation"] as? [String: Any],
+                               let translationMatch = translationInfo["matched_line"] as? String,
+                               let translationString = translationInfo["description"] as? String {
+                                if translationMatch != translationString {
+                                    translationDict[translationMatch] = translationString
+                                }
+
+                            }
+                        }
+                        
+                        let modifiedLyrics = plainLyrics
+                            .components(separatedBy: "\n")
+                            .dropLast()
+                            .map { line in
+                                var modifiedLine = line
+                                for (translationMatch, translationString) in translationDict {
+                                    modifiedLine = modifiedLine.replacingOccurrences(of: translationMatch, with: translationString)
+                                }
+                                return modifiedLine
+                            }
+                        
+                        return LyricsDto(
+                            lines: modifiedLyrics.map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
+                            timeSynced: false
+                        )
+                    } catch {
+                        return LyricsDto(
+                            lines: plainLyrics
+                                .components(separatedBy: "\n")
+                                .dropLast()
+                                .map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
+                            timeSynced: false
+                        )
+                    }
+                }
             }
         }
 

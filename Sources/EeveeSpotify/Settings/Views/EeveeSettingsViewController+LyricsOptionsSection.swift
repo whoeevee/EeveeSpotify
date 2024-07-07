@@ -13,5 +13,16 @@ extension EeveeSettingsView {
                 UserDefaults.lyricsOptions = lyricsOptions
             }
         }
+        if lyricsSource == .musixmatch {
+            Section {
+                Toggle(
+                    "Romanized MusixMatch Lyrics",
+                    isOn: $lyricsOptions.musixmatchRomanizations
+                )
+            }
+            .onChange(of: lyricsOptions) { lyricsOptions in
+                UserDefaults.lyricsOptions = lyricsOptions
+            }
+        }
     }
 }
