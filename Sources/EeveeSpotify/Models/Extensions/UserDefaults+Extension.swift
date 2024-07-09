@@ -51,7 +51,7 @@ extension UserDefaults {
                 return try! JSONDecoder().decode(LyricsOptions.self, from: data)
             }
             
-            return LyricsOptions(geniusRomanizations: false)
+            return LyricsOptions(geniusRomanizations: false, musixmatchRomanizations: false)
         }
         set (lyricsOptions) {
             defaults.set(try! JSONEncoder().encode(lyricsOptions), forKey: lyricsOptionsKey)
