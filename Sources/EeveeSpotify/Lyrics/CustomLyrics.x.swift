@@ -16,17 +16,17 @@ class SPTPlayerTrackHook: ClassHook<NSObject> {
 class LyricsFullscreenViewControllerHook: ClassHook<UIViewController> {
 
     static var targetName: String {
-        if #available(iOS 15.0, *) {
-            "Lyrics_FullscreenPageImpl.FullscreenViewController"
-        } else {
-            "Lyrics_CoreImpl.FullscreenViewController"
-        }
+        return EeveeSpotify.isOldSpotifyVersion
+            ? "Lyrics_CoreImpl.FullscreenViewController"
+            : "Lyrics_FullscreenPageImpl.FullscreenViewController"
     }
 
     func viewDidLoad() {
         orig.viewDidLoad()
         
-        if UserDefaults.lyricsSource == .musixmatch {
+        if UserDefaults.lyricsSource == .musixmatch 
+            && lastLyricsError == nil
+            && lastLyricsLanguageLabel == nil {
             return
         }
         
@@ -51,11 +51,9 @@ private var hasShownUnauthorizedPopUp = false
 class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
     
     static var targetName: String {
-        if #available(iOS 15.0, *) {
-            "Lyrics_NPVCommunicatorImpl.LyricsOnlyViewController"
-        } else {
-            "Lyrics_CoreImpl.LyricsOnlyViewController"
-        }
+        return EeveeSpotify.isOldSpotifyVersion
+            ? "Lyrics_CoreImpl.LyricsOnlyViewController"
+            : "Lyrics_NPVCommunicatorImpl.LyricsOnlyViewController"
     }
 
     func viewDidLoad() {
@@ -70,14 +68,10 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
         
         //
         
-        let lyricsLabel: UIView?
-        
-        if #available(iOS 15.0, *) {
-            lyricsLabel = lyricsHeaderViewController.view.subviews.first
-        } else {
-            lyricsLabel = lyricsHeaderViewController.view.subviews.first?.subviews.first
-        }
-        
+        let lyricsLabel = EeveeSpotify.isOldSpotifyVersion 
+            ? lyricsHeaderViewController.view.subviews.first?.subviews.first
+            : lyricsHeaderViewController.view.subviews.first
+
         guard let lyricsLabel = lyricsLabel else {
             return
         }
@@ -124,7 +118,7 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
             )
         }
         
-        if #unavailable(iOS 15.0) {
+        if EeveeSpotify.isOldSpotifyVersion {
             encoreLabel.setNumberOfLines(text.count)
         }
 
