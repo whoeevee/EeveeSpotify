@@ -17,7 +17,7 @@ class EncoreLabelHook: ClassHook<UIView> {
 
                 let label = Dynamic.convert(target.subviews.first!, to: UILabel.self)
 
-                if !label.hasParent("Primary") {
+                if !label.hasParent(matching: "Primary") {
                     label.textColor = .white
                 }
             }
@@ -27,17 +27,15 @@ class EncoreLabelHook: ClassHook<UIView> {
     }
 }
 
-class SPTEncorePopUpDialogHook: ClassHook<UIView> {
+class SPTEncorePopUpDialogHook: ClassHook<NSObject> {
 
     typealias Group = DarkPopUps
-    static let targetName = "_TtCO12EncoreMobile5ViewsP33_5A611B064D744992F9E8B522D8DE459B10ScrollView"
+    static let targetName = "SPTEncorePopUpDialog"
 
-    func intrinsicContentSize() -> CGSize {
-
-        if target.accessibilityIdentifier == "PopUp.Dialog" {
-            target.backgroundColor = UIColor(Color(hex: "#242424"))
-        }
-
-        return orig.intrinsicContentSize()
+    func uiView() -> UIView {
+        let view = orig.uiView()
+        view.backgroundColor = UIColor(Color(hex: "#242424"))
+        
+        return view
     }
 }

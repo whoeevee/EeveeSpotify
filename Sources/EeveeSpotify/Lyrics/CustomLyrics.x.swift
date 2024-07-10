@@ -13,18 +13,28 @@ class SPTPlayerTrackHook: ClassHook<NSObject> {
     }
 }
 
-class EncoreButtonHook: ClassHook<UIButton> {
+class LyricsFullscreenViewControllerHook: ClassHook<UIViewController> {
 
-    static let targetName = "_TtC12EncoreMobileP33_6EF3A3C098E69FB1E331877B69ACBF8512EncoreButton"
-
-    func intrinsicContentSize() -> CGSize {
-
-        if target.accessibilityIdentifier == "Components.UI.LyricsHeader.ReportButton", 
-            UserDefaults.lyricsSource != .musixmatch {
-            target.isEnabled = false
+    static var targetName: String {
+        if #available(iOS 15.0, *) {
+            "Lyrics_FullscreenPageImpl.FullscreenViewController"
+        } else {
+            "Lyrics_CoreImpl.FullscreenViewController"
         }
+    }
 
-        return orig.intrinsicContentSize()
+    func viewDidLoad() {
+        orig.viewDidLoad()
+        
+        if UserDefaults.lyricsSource == .musixmatch {
+            return
+        }
+        
+        let headerView = Ivars<UIView>(target.view).headerView
+        
+        if let reportButton = headerView.subviews(matching: "EncoreButton")[1] as? UIButton {
+            reportButton.isEnabled = false
+        }
     }
 }
 
