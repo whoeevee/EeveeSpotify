@@ -30,6 +30,7 @@ class EncoreButtonHook: ClassHook<UIButton> {
 
 //
 
+private var lastLyricsLanguageLabel: String? = nil
 private var lastLyricsError: LyricsError? = nil
 
 private var hasShownRestrictedPopUp = false
@@ -50,10 +51,6 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
     func viewDidLoad() {
         
         orig.viewDidLoad()
-        
-        if !UserDefaults.fallbackReasons {
-            return
-        }
         
         guard
             let lyricsHeaderViewController = target.parent?.children.first
@@ -83,18 +80,19 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
             encoreLabel.text().firstObject
         ]
         
-        if let description = lastLyricsError?.description {
-            
-            let attributes = Dynamic.SPTEncoreAttributes
-                .alloc(interface: SPTEncoreAttributes.self)
-                .`init`({ attributes in
-                    attributes.setForegroundColor(.white.withAlphaComponent(0.5))
-                })
-            
-            let typeStyle = type(
-                of: Dynamic.SPTEncoreTypeStyle.alloc(interface: SPTEncoreTypeStyle.self)
-            ).bodyMediumBold()
-            
+        let attributes = Dynamic.SPTEncoreAttributes
+            .alloc(interface: SPTEncoreAttributes.self)
+            .`init`({ attributes in
+                attributes.setForegroundColor(.white.withAlphaComponent(0.5))
+            })
+        
+        let typeStyle = type(
+            of: Dynamic.SPTEncoreTypeStyle.alloc(interface: SPTEncoreTypeStyle.self)
+        ).bodyMediumBold()
+        
+        //
+        
+        if UserDefaults.fallbackReasons, let description = lastLyricsError?.description {
             text.append(
                 Dynamic.SPTEncoreAttributedString.alloc(interface: SPTEncoreAttributedString.self)
                     .initWithString(
@@ -103,10 +101,21 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
                         attributes: attributes
                     )
             )
-            
-            if #unavailable(iOS 15.0) {
-                encoreLabel.setNumberOfLines(2)
-            }
+        }
+        
+        if let languageLabel = lastLyricsLanguageLabel {
+            text.append(
+                Dynamic.SPTEncoreAttributedString.alloc(interface: SPTEncoreAttributedString.self)
+                    .initWithString(
+                        "\n\(languageLabel)",
+                        typeStyle: typeStyle,
+                        attributes: attributes
+                    )
+            )
+        }
+        
+        if #unavailable(iOS 15.0) {
+            encoreLabel.setNumberOfLines(text.count)
         }
 
         encoreLabel.setText(text as NSArray)
@@ -133,7 +142,7 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
     var repository: LyricsRepository = switch source {
         case .genius: GeniusLyricsRepository()
         case .lrclib: LrcLibLyricsRepository()
-        case .musixmatch: MusixmatchLyricsRepository()
+        case .musixmatch: MusixmatchLyricsRepository.shared
     }
     
     let lyricsDto: LyricsDto
@@ -192,6 +201,10 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         
         lyricsDto = try repository.getLyrics(searchQuery, options: options)
     }
+    
+    lastLyricsLanguageLabel = lyricsDto.romanized
+        ? "Romanized"
+        : Locale.current.localizedString(forLanguageCode: lyricsDto.translatedTo ?? "")
 
     let lyrics = Lyrics.with {
         $0.colors = getLyricsColors()

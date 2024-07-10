@@ -1,12 +1,23 @@
 import Foundation
 import UIKit
 
-struct MusixmatchLyricsRepository: LyricsRepository {
+class MusixmatchLyricsRepository: LyricsRepository {
+    
     private let apiUrl = "https://apic.musixmatch.com"
+    
+    var selectedLanguage: String
+    
+    static let shared = MusixmatchLyricsRepository(
+        language: UserDefaults.lyricsOptions.musixmatchLanguage
+    )
+    
+    private init(language: String) {
+        selectedLanguage = language
+    }
 
     private func perform(
         _ path: String,
-        query: [String:Any] = [:]
+        query: [String: Any] = [:]
     ) throws -> Data {
 
         var stringUrl = "\(apiUrl)\(path)"
@@ -46,19 +57,9 @@ struct MusixmatchLyricsRepository: LyricsRepository {
         return data!
     }
     
-    func getLyrics(_ query: LyricsSearchQuery, options: LyricsOptions) throws -> LyricsDto {
-        
-        let data = try perform(
-            "/ws/1.1/macro.subtitles.get",
-            query: [
-                "track_spotify_id": query.spotifyTrackId,
-                "subtitle_format": "mxm",
-                "q_track": " "
-            ]
-        )
-
-        // 😭😭😭
-
+    //
+    
+    private func getMacroCalls(_ data: Data) throws -> [String: Any] {
         guard
             let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
             let message = json["message"] as? [String: Any],
@@ -72,115 +73,166 @@ struct MusixmatchLyricsRepository: LyricsRepository {
             header["status_code"] as? Int == 401 {
             throw LyricsError.InvalidMusixmatchToken
         }
-
-        if let trackSubtitlesGet = macroCalls["track.subtitles.get"] as? [String: Any],
-           let subtitlesMessage = trackSubtitlesGet["message"] as? [String: Any],
-           let subtitlesHeader = subtitlesMessage["header"] as? [String: Any],
-           let subtitlesStatusCode = subtitlesHeader["status_code"] as? Int {
+        
+        return macroCalls
+    }
+    
+    private func getFirstSubtitle(_ subtitlesMessage: [String: Any]) throws -> [String: Any] {
+        guard
+            let subtitlesHeader = subtitlesMessage["header"] as? [String: Any],
+            let subtitlesStatusCode = subtitlesHeader["status_code"] as? Int
+        else {
+            throw LyricsError.DecodingError
+        }
+        
+        guard 
+            let subtitlesBody = subtitlesMessage["body"] as? [String: Any],
+            let subtitleList = subtitlesBody["subtitle_list"] as? [[String: Any]],
+            let firstSubtitle = subtitleList.first,
+            let subtitle = firstSubtitle["subtitle"] as? [String: Any]
+        else {
+            throw LyricsError.DecodingError
+        }
             
-            if subtitlesStatusCode == 404 {
-                throw LyricsError.NoSuchSong
-            }
-            
-            if let subtitlesBody = subtitlesMessage["body"] as? [String: Any],
-               let subtitleList = subtitlesBody["subtitle_list"] as? [[String: Any]],
-               let firstSubtitle = subtitleList.first,
-               let subtitle = firstSubtitle["subtitle"] as? [String: Any] {
-                
-                if let restricted = subtitle["restricted"] as? Bool, restricted {
-                    throw LyricsError.MusixmatchRestricted
-                }
-                
-                if let subtitleBody = subtitle["subtitle_body"] as? String {
-                    
-                    guard let subtitles = try? JSONDecoder().decode(
-                        [MusixmatchSubtitle].self,
-                        from: subtitleBody.data(using: .utf8)!
-                    ).dropLast() else {
-                        throw LyricsError.DecodingError
-                    }
-                    
-                    if !UserDefaults.lyricsOptions.musixmatchRomanizations {
-                        return LyricsDto(
-                            lines: subtitles.map { subtitle in
-                                LyricsLineDto(
-                                    content: subtitle.text.lyricsNoteIfEmpty,
-                                    offsetMs: Int(subtitle.time.total * 1000)
-                                )
-                            },
-                            timeSynced: true
-                        )
-                    } else {
-                        do {
-                            let subtitleLang = subtitle["subtitle_language"] as? String ?? ""
-                            let romajiLang = "r\(subtitleLang.prefix(1))"
-                            
-                            let romajiData = try perform(
-                                "/ws/1.1/crowd.track.translations.get",
-                                query: [
-                                    "track_spotify_id": query.spotifyTrackId,
-                                    "selected_language": romajiLang
-                                ]
-                            )
-                            
-                            guard
-                                let romajiJson = try? JSONSerialization.jsonObject(with: romajiData, options: []) as? [String: Any],
-                                let romajiMessage = romajiJson["message"] as? [String: Any],
-                                let romajiBody = romajiMessage["body"] as? [String: Any],
-                                let translationsList = romajiBody["translations_list"] as? [[String: Any]]
-                            else {
-                                throw LyricsError.DecodingError
-                            }
-                            
-                            var translationDict: [String: String] = [:]
-                            
-                            for translation in translationsList {
-                                if let translationInfo = translation["translation"] as? [String: Any],
-                                   let translationMatch = translationInfo["subtitle_matched_line"] as? String,
-                                   let translationString = translationInfo["description"] as? String {
-                                    if translationMatch != translationString {
-                                        translationDict[translationMatch] = translationString
-                                    }
-
-                                }
-                            }
-                            
-                            let modifiedSubtitles = subtitles.map { subtitle in
-                                var modifiedText = subtitle.text
-                                for (translationMatch, translationString) in translationDict {
-                                    modifiedText = modifiedText.replacingOccurrences(of: translationMatch, with: translationString)
-                                }
-                                return MusixmatchSubtitle(
-                                    text: modifiedText,
-                                    time: subtitle.time
-                                )
-                            }
-                            
-                            return LyricsDto(
-                                lines: modifiedSubtitles.map { subtitle in
-                                    LyricsLineDto(
-                                        content: subtitle.text.lyricsNoteIfEmpty,
-                                        offsetMs: Int(subtitle.time.total * 1000)
-                                    )
-                                },
-                                timeSynced: true
-                            )
-                        } catch {
-                            return LyricsDto(
-                                lines: subtitles.map { subtitle in
-                                    LyricsLineDto(
-                                        content: subtitle.text.lyricsNoteIfEmpty,
-                                        offsetMs: Int(subtitle.time.total * 1000)
-                                    )
-                                },
-                                timeSynced: true
-                            )
-                        }
-                    }
-                }
-            }
+        if let restricted = subtitle["restricted"] as? Bool, restricted {
+            throw LyricsError.MusixmatchRestricted
+        }
+        
+        return subtitle
+    }
+    
+    //
+    
+    private func getTranslations(_ spotifyTrackId: String, selectedLanguage: String) throws -> [String: String] {
+        let data = try perform(
+            "/ws/1.1/crowd.track.translations.get",
+            query: [
+                "track_spotify_id": spotifyTrackId,
+                "selected_language": selectedLanguage
+            ]
+        )
+        
+        guard
+            let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+            let message = json["message"] as? [String: Any],
+            let body = message["body"] as? [String: Any],
+            let translationsList = body["translations_list"] as? [[String: Any]]
+        else {
+            throw LyricsError.DecodingError
         }
 
+        let translations = translationsList.map {
+            $0["translation"] as! [String: Any]
+        }
+        
+        return Dictionary(uniqueKeysWithValues: translations.map {
+            ($0["subtitle_matched_line"] as! String, $0["description"] as! String)
+        })
+    }
+    
+    //
+    
+    func getLyrics(_ query: LyricsSearchQuery, options: LyricsOptions) throws -> LyricsDto {
+        
+        var musixmatchQuery = [
+            "track_spotify_id": query.spotifyTrackId,
+            "subtitle_format": "mxm",
+            "q_track": " "
+        ]
+        
+        if !selectedLanguage.isEmpty {
+            musixmatchQuery["selected_language"] = selectedLanguage
+            musixmatchQuery["part"] = "subtitle_translated"
+        }
+        
+        let data = try perform(
+            "/ws/1.1/macro.subtitles.get",
+            query: musixmatchQuery
+        )
+
+        // 😭😭😭
+
+        var romanized = false
+        var translatedTo: String? = nil
+        
+        let macroCalls = try getMacroCalls(data)
+
+        if let trackSubtitlesGet = macroCalls["track.subtitles.get"] as? [String: Any],
+            let subtitlesMessage = trackSubtitlesGet["message"] as? [String: Any],
+            let subtitle = try? getFirstSubtitle(subtitlesMessage),
+            let subtitleLanguage = subtitle["subtitle_language"] as? String,
+            let subtitleBody = subtitle["subtitle_body"] as? String,
+            let subtitles = try? JSONDecoder().decode(
+                [MusixmatchSubtitle].self, from: subtitleBody.data(using: .utf8)!
+            ).dropLast() {
+            
+            var lyricsLines: [LyricsLineDto]
+            let romanizationLanguage = "r\(subtitleLanguage.prefix(1))"
+            
+            if let subtitleTranslated = subtitle["subtitle_translated"] as? [String: Any],
+               let subtitleTranslatedBody = subtitleTranslated["subtitle_body"] as? String,
+               let subtitlesTranslated = try? JSONDecoder().decode(
+                    [MusixmatchSubtitle].self, from: subtitleTranslatedBody.data(using: .utf8)!
+               ).dropLast() {
+                
+                lyricsLines = subtitlesTranslated.enumerated().map { (index, subtitleTranslated) in
+                    let content = subtitleTranslated.text.isEmpty
+                        ? subtitles[index].text
+                        : subtitleTranslated.text
+                    
+                    return LyricsLineDto(
+                        content: content.lyricsNoteIfEmpty,
+                        offsetMs: Int(subtitleTranslated.time.total * 1000)
+                    )
+                }
+                
+                if selectedLanguage == romanizationLanguage {
+                    romanized = true
+                }
+                else {
+                    translatedTo = selectedLanguage
+                }
+            }
+            else {
+                lyricsLines = subtitles.map { subtitle in
+                    LyricsLineDto(
+                        content: subtitle.text.lyricsNoteIfEmpty,
+                        offsetMs: Int(subtitle.time.total * 1000)
+                    )
+                }
+            }
+            
+            if options.musixmatchLanguage.isEmpty
+                && options.romanization
+                && selectedLanguage != romanizationLanguage {
+                
+                selectedLanguage = romanizationLanguage
+                
+                if let translations = try? getTranslations(
+                    query.spotifyTrackId,
+                    selectedLanguage: romanizationLanguage
+                ) {
+                    for (original, translation) in translations {
+                        
+                        for i in 0..<lyricsLines.count {
+                            if lyricsLines[i].content == original {
+                                lyricsLines[i].content = translation
+                            }
+                        }
+                    }
+                    
+                    romanized = true
+                }
+            }
+           
+            return LyricsDto(
+                lines: lyricsLines,
+                timeSynced: true,
+                romanized: romanized,
+                translatedTo: translatedTo
+            )
+        }
+            
         if let trackLyricsGet = macroCalls["track.lyrics.get"] as? [String: Any],
            let lyricsMessage = trackLyricsGet["message"] as? [String: Any],
            let lyricsHeader = lyricsMessage["header"] as? [String: Any],
@@ -198,74 +250,13 @@ struct MusixmatchLyricsRepository: LyricsRepository {
                     throw LyricsError.MusixmatchRestricted
                 }
                 
-                if (!UserDefaults.lyricsOptions.musixmatchRomanizations) {
-                    return LyricsDto(
-                        lines: plainLyrics
-                            .components(separatedBy: "\n")
-                            .dropLast()
-                            .map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
-                        timeSynced: false
-                    )
-                } else {
-                    do {
-                        let subtitleLang = lyrics["lyrics_language"] as? String ?? ""
-                        let romajiLang = "r\(subtitleLang.prefix(1))"
-                        
-                        let romajiData = try perform(
-                            "/ws/1.1/crowd.track.translations.get",
-                            query: [
-                                "track_spotify_id": query.spotifyTrackId,
-                                "selected_language": romajiLang
-                            ]
-                        )
-                        
-                        guard
-                            let romajiJson = try? JSONSerialization.jsonObject(with: romajiData, options: []) as? [String: Any],
-                            let romajiMessage = romajiJson["message"] as? [String: Any],
-                            let romajiBody = romajiMessage["body"] as? [String: Any],
-                            let translationsList = romajiBody["translations_list"] as? [[String: Any]]
-                        else {
-                            throw LyricsError.DecodingError
-                        }
-                        
-                        var translationDict: [String: String] = [:]
-                        
-                        for translation in translationsList {
-                            if let translationInfo = translation["translation"] as? [String: Any],
-                               let translationMatch = translationInfo["matched_line"] as? String,
-                               let translationString = translationInfo["description"] as? String {
-                                if translationMatch != translationString {
-                                    translationDict[translationMatch] = translationString
-                                }
-
-                            }
-                        }
-                        
-                        let modifiedLyrics = plainLyrics
-                            .components(separatedBy: "\n")
-                            .dropLast()
-                            .map { line in
-                                var modifiedLine = line
-                                for (translationMatch, translationString) in translationDict {
-                                    modifiedLine = modifiedLine.replacingOccurrences(of: translationMatch, with: translationString)
-                                }
-                                return modifiedLine
-                            }
-                        
-                        return LyricsDto(
-                            lines: modifiedLyrics.map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
-                            timeSynced: false
-                        )
-                    } catch {
-                        return LyricsDto(
-                            lines: plainLyrics
-                                .components(separatedBy: "\n")
-                                .dropLast()
-                                .map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
-                            timeSynced: false
-                        )
-                    }
-                }
+                return LyricsDto(
+                    lines: plainLyrics
+                        .components(separatedBy: "\n")
+                        .dropLast()
+                        .map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
+                    timeSynced: false
+                )
             }
         }
 

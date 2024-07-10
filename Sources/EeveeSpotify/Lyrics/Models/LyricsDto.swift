@@ -3,6 +3,8 @@ import Foundation
 struct LyricsDto {
     var lines: [LyricsLineDto]
     var timeSynced: Bool
+    var romanized: Bool = false
+    var translatedTo: String? = nil
     
     func toLyricsData(source: String) -> LyricsData {
         return LyricsData.with {

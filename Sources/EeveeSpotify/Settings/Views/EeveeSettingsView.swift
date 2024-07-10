@@ -2,39 +2,68 @@ import SwiftUI
 import UIKit
 
 struct EeveeSettingsView: View {
-
-    @State var musixmatchToken = UserDefaults.musixmatchToken
-    @State var patchType = UserDefaults.patchType
-    @State var overwriteConfiguration = UserDefaults.overwriteConfiguration
     
-    @State var lyricsSource = UserDefaults.lyricsSource
-    @State var geniusFallback = UserDefaults.geniusFallback
-    @State var lyricsColors = UserDefaults.lyricsColors
-    @State var lyricsOptions = UserDefaults.lyricsOptions
+    let navigationController: UINavigationController
     
     @State var latestVersion = ""
+    @State var hasShownCommonIssuesTip = UserDefaults.hasShownCommonIssuesTip
+    
+    private func pushSettingsController(with view: any View, title: String) {
+        let viewController = EeveeSettingsViewController(
+            navigationController.view.frame,
+            settingsView: AnyView(view),
+            navigationTitle: title
+        )
+        navigationController.pushViewController(viewController, animated: true)
+    }
 
     var body: some View {
-
         List {
+            
             VersionSection()
             
-            PremiumSections()
-            
-            LyricsSourceSection()
-            LyricsOptionsSection()
-            
-            LyricsColorsSection()
-
-            Section {
-                Toggle(
-                    "Dark PopUps",
-                    isOn: Binding<Bool>(
-                        get: { UserDefaults.darkPopUps },
-                        set: { UserDefaults.darkPopUps = $0 }
-                    )
+            if !hasShownCommonIssuesTip {
+                CommonIssuesTipView(
+                    onDismiss: {
+                        hasShownCommonIssuesTip = true
+                        UserDefaults.hasShownCommonIssuesTip = true
+                    }
                 )
             }
+            
+            //
+            
+            Button {
+                pushSettingsController(with: EeveePatchingSettingsView(), title: "Patching")
+            } label: {
+                NavigationSectionView(
+                    color: .orange,
+                    title: "Patching",
+                    imageSystemName: "hammer.fill"
+                )
+            }
+            
+            Button {
+                pushSettingsController(with: EeveeLyricsSettingsView(), title: "Lyrics")
+            } label: {
+                NavigationSectionView(
+                    color: .blue,
+                    title: "Lyrics",
+                    imageSystemName: "quote.bubble.fill"
+                )
+            }
+            
+            Button {
+                pushSettingsController(with: EeveeUISettingsView(), title: "Customization")
+            } label: {
+                NavigationSectionView(
+                    color: Color(hex: "#64D2FF"),
+                    title: "Customization",
+                    imageSystemName: "paintpalette.fill"
+                )
+            }
+            
+            //
             
             Section(footer: Text("Clear cached data and restart the app.")) {
                 Button {
@@ -44,28 +73,14 @@ struct EeveeSettingsView: View {
                     Text("Reset Data")
                 }
             }
-            
-            if !UIDevice.current.isIpad {
-                Spacer()
-                    .frame(height: 40)
-                    .listRowBackground(Color.clear)
-                    .modifier(ListRowSeparatorHidden())
-            }
         }
         
         .listStyle(GroupedListStyle())
-
-        .animation(.default, value: lyricsSource)
-        .animation(.default, value: geniusFallback)
-        .animation(.default, value: patchType)
-        .animation(.default, value: lyricsColors)
+        
         .animation(.default, value: latestVersion)
+        .animation(.default, value: hasShownCommonIssuesTip)
         
         .onAppear {
-            UIView.appearance(
-                whenContainedInInstancesOf: [UIAlertController.self]
-            ).tintColor = UIColor(Color(hex: "#1ed760"))
-
             WindowHelper.shared.overrideUserInterfaceStyle(.dark)
             
             Task {

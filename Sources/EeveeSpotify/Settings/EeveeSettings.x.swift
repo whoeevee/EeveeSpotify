@@ -1,4 +1,5 @@
 import Orion
+import SwiftUI
 import UIKit
 
 class ProfileSettingsSectionHook: ClassHook<NSObject> {
@@ -16,10 +17,40 @@ class ProfileSettingsSectionHook: ClassHook<NSObject> {
             let rootSettingsController = WindowHelper.shared.findFirstViewController(
                 "RootSettingsViewController"
             )!
-
-            let eeveeSettingsController = EeveeSettingsViewController(rootSettingsController.view.bounds)
             
-            rootSettingsController.navigationController!.pushViewController(
+            let navigationController = rootSettingsController.navigationController!
+
+            let eeveeSettingsController = EeveeSettingsViewController(
+                rootSettingsController.view.bounds,
+                settingsView: AnyView(EeveeSettingsView(navigationController: navigationController)),
+                navigationTitle: "EeveeSpotify"
+            )
+            
+            //
+            
+            let button = UIButton()
+
+            button.setImage(
+                BundleHelper.shared.uiImage("github").withRenderingMode(.alwaysOriginal),
+                for: .normal
+            )
+            
+            button.addTarget(
+                eeveeSettingsController,
+                action: #selector(eeveeSettingsController.openRepositoryUrl(_:)),
+                for: .touchUpInside
+            )
+            
+            //
+            
+            let menuBarItem = UIBarButtonItem(customView: button)
+            
+            menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 22).isActive = true
+            menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 22).isActive = true
+
+            eeveeSettingsController.navigationItem.rightBarButtonItem = menuBarItem
+            
+            navigationController.pushViewController(
                 eeveeSettingsController,
                 animated: true
             )

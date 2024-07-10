@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import libroot
 
 class BundleHelper {
@@ -17,6 +18,15 @@ class BundleHelper {
             ?? jbRootPath("/Library/Application Support/\(bundleName).bundle")
         )!
     }
+    
+     func uiImage(_ name: String) -> UIImage {
+         return UIImage(
+             contentsOfFile: self.bundle.path(
+                 forResource: name,
+                 ofType: "png"
+             )!
+         )!
+     }
 
     func premiumBlankData() throws -> Data {
         return try Data(

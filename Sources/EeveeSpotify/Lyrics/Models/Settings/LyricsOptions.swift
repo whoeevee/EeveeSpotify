@@ -1,6 +1,6 @@
 import Foundation
 
 struct LyricsOptions: Codable, Equatable {
-    var geniusRomanizations: Bool
-    var musixmatchRomanizations: Bool
+    var romanization: Bool
+    var musixmatchLanguage: String
 }

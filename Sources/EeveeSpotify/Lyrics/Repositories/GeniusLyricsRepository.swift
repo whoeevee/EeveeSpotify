@@ -87,7 +87,8 @@ struct GeniusLyricsRepository: LyricsRepository {
     private func mostRelevantHitResult(
         hits: [GeniusHit],
         strippedTitle: String,
-        romanized: Bool
+        romanized: Bool,
+        hasFoundRomanizedLyrics: inout Bool
     ) -> GeniusHitResult {
         let results = hits.map { $0.result }
         
@@ -102,6 +103,7 @@ struct GeniusLyricsRepository: LyricsRepository {
         if romanized, let romanizedSong = matchingByTitle.first(
             where: { $0.artistNames == "Genius Romanizations" }
         ) {
+            hasFoundRomanizedLyrics = true
             return romanizedSong
         }
         
@@ -131,10 +133,13 @@ struct GeniusLyricsRepository: LyricsRepository {
             throw LyricsError.NoSuchSong
         }
         
+        var hasFoundRomanizedLyrics = false
+        
         let song = mostRelevantHitResult(
             hits: hits,
             strippedTitle: strippedTitle,
-            romanized: options.geniusRomanizations
+            romanized: options.romanization,
+            hasFoundRomanizedLyrics: &hasFoundRomanizedLyrics
         )
         
         let songInfo = try getSongInfo(song.id)
@@ -142,7 +147,8 @@ struct GeniusLyricsRepository: LyricsRepository {
     
         return LyricsDto(
             lines: mapLyricsLines(plainLines).map { line in LyricsLineDto(content: line) },
-            timeSynced: false
+            timeSynced: false,
+            romanized: hasFoundRomanizedLyrics
         )
     }
 }

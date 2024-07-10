@@ -4,10 +4,14 @@ import UIKit
 class EeveeSettingsViewController: SPTPageViewController {
     
     let frame: CGRect
+    let settingsView: AnyView
     
-    init(_ frame: CGRect) {
+    init(_ frame: CGRect, settingsView: AnyView, navigationTitle: String) {
         self.frame = frame
+        self.settingsView = settingsView
         super.init(nibName: nil, bundle: nil)
+        
+        title = navigationTitle
     }
 
     required init?(coder: NSCoder) {
@@ -17,13 +21,15 @@ class EeveeSettingsViewController: SPTPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "EeveeSpotify"
-        
-        let hostingController = UIHostingController(rootView: EeveeSettingsView())
+        let hostingController = UIHostingController(rootView: settingsView)
         hostingController.view.frame = frame
         
         view.addSubview(hostingController.view)
         addChild(hostingController)
         hostingController.didMove(toParent: self)
+    }
+    
+    @objc func openRepositoryUrl(_ sender: UIButton) {
+        UIApplication.shared.open(URL(string: "https://github.com/whoeevee/EeveeSpotify")!)
     }
 }
