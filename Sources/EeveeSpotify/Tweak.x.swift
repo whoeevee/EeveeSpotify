@@ -11,7 +11,7 @@ func exitApplication() {
 
 struct EeveeSpotify: Tweak {
     
-    static let version = "4.3"
+    static let version = "4.4"
     static let isOldSpotifyVersion = NSClassFromString("Lyrics_NPVCommunicatorImpl.LyricsOnlyViewController") == nil
     
     init() {
