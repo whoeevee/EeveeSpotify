@@ -64,7 +64,7 @@ struct EeveeLyricsSettingsView: View {
                             .foregroundColor(.gray)
                     }
                 } footer: {
-                    Text("You can enter a 2-letter ISO language code and see translated lyrics on Musixmatch if they are available. It overrides Romanized Lyrics.")
+                    Text("You can enter a 2-letter Musixmatch language code and see translated lyrics on Musixmatch if they are available. It overrides Romanized Lyrics.")
                 }
             }
             
@@ -90,7 +90,7 @@ struct EeveeLyricsSettingsView: View {
             
             let selectedLanguage = lyricsOptions.musixmatchLanguage
             
-            if selectedLanguage.isEmpty || Locale.isoLanguageCodes.contains(selectedLanguage) {
+            if selectedLanguage.isEmpty || selectedLanguage ~= "^[\\w\\d]{2}$" {
                 showLanguageWarning = false
                 
                 MusixmatchLyricsRepository.shared.selectedLanguage = selectedLanguage

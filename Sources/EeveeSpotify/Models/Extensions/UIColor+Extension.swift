@@ -14,7 +14,7 @@ extension UIColor {
             red: r1 * (1.0 - amount) + r2 * amount,
             green: g1 * (1.0 - amount) + g2 * amount,
             blue: b1 * (1.0 - amount) + b2 * amount,
-            alpha: a1
+            alpha: a1 * (1.0 - amount) + a2 * amount
         )
     }
 
