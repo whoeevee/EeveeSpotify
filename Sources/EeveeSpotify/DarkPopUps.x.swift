@@ -27,15 +27,17 @@ class EncoreLabelHook: ClassHook<UIView> {
     }
 }
 
-class SPTEncorePopUpDialogHook: ClassHook<NSObject> {
+class SPTEncorePopUpContainerHook: ClassHook<UIViewController> {
 
     typealias Group = DarkPopUps
-    static let targetName = "SPTEncorePopUpDialog"
-
-    func uiView() -> UIView {
-        let view = orig.uiView()
-        view.backgroundColor = UIColor(Color(hex: "#242424"))
-        
-        return view
+    static let targetName = "SPTEncorePopUpContainer"
+    
+    func containedView() -> SPTEncorePopUpDialog {
+        return orig.containedView()
+    }
+    
+    func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        containedView().uiView().backgroundColor = UIColor(Color(hex: "#242424"))
+        return orig.supportedInterfaceOrientations()
     }
 }

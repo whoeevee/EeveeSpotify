@@ -53,7 +53,10 @@ extension UserDefaults {
                 return lyricsOptions
             }
             
-            return LyricsOptions(romanization: false, musixmatchLanguage: "")
+            return LyricsOptions(
+                romanization: false,
+                musixmatchLanguage: Locale.current.languageCode ?? ""
+            )
         }
         set (lyricsOptions) {
             defaults.set(try! JSONEncoder().encode(lyricsOptions), forKey: lyricsOptionsKey)
