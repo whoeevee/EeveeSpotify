@@ -98,6 +98,20 @@ struct LyricsColors {
   init() {}
 }
 
+struct LyricsTranslation {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var languageCode: String = String()
+
+  var lines: [String] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct LyricsData {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -111,9 +125,20 @@ struct LyricsData {
 
   var restriction: LyricsRestriction = .unrestricted
 
+  var translation: LyricsTranslation {
+    get {return _translation ?? LyricsTranslation()}
+    set {_translation = newValue}
+  }
+  /// Returns true if `translation` has been explicitly set.
+  var hasTranslation: Bool {return self._translation != nil}
+  /// Clears the value of `translation`. Subsequent reads from it will return its default value.
+  mutating func clearTranslation() {self._translation = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _translation: LyricsTranslation? = nil
 }
 
 struct Lyrics {
@@ -151,6 +176,7 @@ struct Lyrics {
 extension LyricsRestriction: @unchecked Sendable {}
 extension LyricsLine: @unchecked Sendable {}
 extension LyricsColors: @unchecked Sendable {}
+extension LyricsTranslation: @unchecked Sendable {}
 extension LyricsData: @unchecked Sendable {}
 extension Lyrics: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
@@ -248,6 +274,44 @@ extension LyricsColors: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementat
   }
 }
 
+extension LyricsTranslation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "LyricsTranslation"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "languageCode"),
+    2: .same(proto: "lines"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularStringField(value: &self.languageCode) }()
+      case 2: try { try decoder.decodeRepeatedStringField(value: &self.lines) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.languageCode.isEmpty {
+      try visitor.visitSingularStringField(value: self.languageCode, fieldNumber: 1)
+    }
+    if !self.lines.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.lines, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: LyricsTranslation, rhs: LyricsTranslation) -> Bool {
+    if lhs.languageCode != rhs.languageCode {return false}
+    if lhs.lines != rhs.lines {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension LyricsData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = "LyricsData"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -255,6 +319,7 @@ extension LyricsData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     2: .same(proto: "lines"),
     5: .same(proto: "providedBy"),
     14: .same(proto: "restriction"),
+    9: .same(proto: "translation"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -266,6 +331,7 @@ extension LyricsData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
       case 1: try { try decoder.decodeSingularBoolField(value: &self.timeSynchronized) }()
       case 2: try { try decoder.decodeRepeatedMessageField(value: &self.lines) }()
       case 5: try { try decoder.decodeSingularStringField(value: &self.providedBy) }()
+      case 9: try { try decoder.decodeSingularMessageField(value: &self._translation) }()
       case 14: try { try decoder.decodeSingularEnumField(value: &self.restriction) }()
       default: break
       }
@@ -273,6 +339,10 @@ extension LyricsData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
     if self.timeSynchronized != false {
       try visitor.visitSingularBoolField(value: self.timeSynchronized, fieldNumber: 1)
     }
@@ -282,6 +352,9 @@ extension LyricsData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     if !self.providedBy.isEmpty {
       try visitor.visitSingularStringField(value: self.providedBy, fieldNumber: 5)
     }
+    try { if let v = self._translation {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    } }()
     if self.restriction != .unrestricted {
       try visitor.visitSingularEnumField(value: self.restriction, fieldNumber: 14)
     }
@@ -293,6 +366,7 @@ extension LyricsData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementatio
     if lhs.lines != rhs.lines {return false}
     if lhs.providedBy != rhs.providedBy {return false}
     if lhs.restriction != rhs.restriction {return false}
+    if lhs._translation != rhs._translation {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

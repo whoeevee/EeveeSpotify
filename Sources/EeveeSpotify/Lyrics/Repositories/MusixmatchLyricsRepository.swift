@@ -153,7 +153,7 @@ class MusixmatchLyricsRepository: LyricsRepository {
         // 😭😭😭
 
         var romanized = false
-        var translatedTo: String? = nil
+        var translation: LyricsTranslationDto? = nil
         
         let macroCalls = try getMacroCalls(data)
 
@@ -164,40 +164,43 @@ class MusixmatchLyricsRepository: LyricsRepository {
             let subtitleBody = subtitle["subtitle_body"] as? String,
             let subtitles = try? JSONDecoder().decode(
                 [MusixmatchSubtitle].self, from: subtitleBody.data(using: .utf8)!
-            ).dropLast() {
+            ) {
             
-            var lyricsLines: [LyricsLineDto]
             let romanizationLanguage = "r\(subtitleLanguage.prefix(1))"
+            
+            var lyricsLines = subtitles.dropLast().map { subtitle in
+                LyricsLineDto(
+                    content: subtitle.text.lyricsNoteIfEmpty,
+                    offsetMs: Int(subtitle.time.total * 1000)
+                )
+            }
+            
+            lyricsLines.append(
+                LyricsLineDto(
+                    content: "",
+                    offsetMs: Int(subtitles.last!.time.total * 1000)
+                )
+            )
             
             if let subtitleTranslated = subtitle["subtitle_translated"] as? [String: Any],
                let subtitleTranslatedBody = subtitleTranslated["subtitle_body"] as? String,
                let subtitlesTranslated = try? JSONDecoder().decode(
                     [MusixmatchSubtitle].self, from: subtitleTranslatedBody.data(using: .utf8)!
-               ).dropLast() {
-                
-                lyricsLines = subtitlesTranslated.enumerated().map { (index, subtitleTranslated) in
-                    let content = subtitleTranslated.text.isEmpty
-                        ? subtitles[index].text
-                        : subtitleTranslated.text
-                    
-                    return LyricsLineDto(
-                        content: content.lyricsNoteIfEmpty,
-                        offsetMs: Int(subtitleTranslated.time.total * 1000)
-                    )
-                }
+               ) {
                 
                 if selectedLanguage == romanizationLanguage {
                     romanized = true
+                    
+                    for (index, subtitleTranslated) in subtitlesTranslated.enumerated() {
+                        if !subtitleTranslated.text.isEmpty {
+                            lyricsLines[index].content = subtitleTranslated.text
+                        }
+                    }
                 }
                 else {
-                    translatedTo = selectedLanguage
-                }
-            }
-            else {
-                lyricsLines = subtitles.map { subtitle in
-                    LyricsLineDto(
-                        content: subtitle.text.lyricsNoteIfEmpty,
-                        offsetMs: Int(subtitle.time.total * 1000)
+                    translation = LyricsTranslationDto(
+                        languageCode: selectedLanguage,
+                        lines: subtitlesTranslated.map { $0.text }
                     )
                 }
             }
@@ -212,24 +215,23 @@ class MusixmatchLyricsRepository: LyricsRepository {
                     query.spotifyTrackId,
                     selectedLanguage: romanizationLanguage
                 ) {
+                    romanized = true
+                    
                     for (original, translation) in translations {
-                        
                         for i in 0..<lyricsLines.count {
                             if lyricsLines[i].content == original {
                                 lyricsLines[i].content = translation
                             }
                         }
                     }
-                    
-                    romanized = true
                 }
             }
-           
+            
             return LyricsDto(
                 lines: lyricsLines,
                 timeSynced: true,
                 romanized: romanized,
-                translatedTo: translatedTo
+                translation: translation
             )
         }
             

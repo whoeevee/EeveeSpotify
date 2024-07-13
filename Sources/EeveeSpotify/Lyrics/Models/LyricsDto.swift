@@ -4,10 +4,10 @@ struct LyricsDto {
     var lines: [LyricsLineDto]
     var timeSynced: Bool
     var romanized: Bool = false
-    var translatedTo: String? = nil
+    var translation: LyricsTranslationDto?
     
     func toLyricsData(source: String) -> LyricsData {
-        return LyricsData.with {
+        var lyricsData = LyricsData.with {
             $0.timeSynchronized = timeSynced
             $0.restriction = .unrestricted
             $0.providedBy = "\(source) (EeveeSpotify)"
@@ -18,5 +18,14 @@ struct LyricsDto {
                 }
             }
         }
+        
+        if let translation = translation {
+            lyricsData.translation = LyricsTranslation.with {
+                $0.languageCode = translation.languageCode
+                $0.lines = translation.lines
+            }
+        }
+        
+        return lyricsData
     }
 }

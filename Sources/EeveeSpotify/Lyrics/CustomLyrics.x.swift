@@ -26,7 +26,7 @@ class LyricsFullscreenViewControllerHook: ClassHook<UIViewController> {
         
         if UserDefaults.lyricsSource == .musixmatch 
             && lastLyricsError == nil
-            && lastLyricsLanguageLabel == nil {
+            && !lastLyricsWasRomanized {
             return
         }
         
@@ -40,7 +40,7 @@ class LyricsFullscreenViewControllerHook: ClassHook<UIViewController> {
 
 //
 
-private var lastLyricsLanguageLabel: String? = nil
+private var lastLyricsWasRomanized = false
 private var lastLyricsError: LyricsError? = nil
 
 private var hasShownRestrictedPopUp = false
@@ -107,11 +107,11 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
             )
         }
         
-        if let languageLabel = lastLyricsLanguageLabel {
+        if lastLyricsWasRomanized {
             text.append(
                 Dynamic.SPTEncoreAttributedString.alloc(interface: SPTEncoreAttributedString.self)
                     .initWithString(
-                        "\n\(languageLabel)",
+                        "\nRomanized",
                         typeStyle: typeStyle,
                         attributes: attributes
                     )
@@ -206,9 +206,7 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         lyricsDto = try repository.getLyrics(searchQuery, options: options)
     }
     
-    lastLyricsLanguageLabel = lyricsDto.romanized
-        ? "Romanized"
-        : Locale.current.localizedString(forLanguageCode: lyricsDto.translatedTo ?? "")
+    lastLyricsWasRomanized = lyricsDto.romanized
 
     let lyrics = Lyrics.with {
         $0.colors = getLyricsColors()
