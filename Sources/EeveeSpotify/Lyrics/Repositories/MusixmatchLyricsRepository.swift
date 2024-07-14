@@ -182,7 +182,8 @@ class MusixmatchLyricsRepository: LyricsRepository {
                 )
             )
             
-            if let subtitleTranslated = subtitle["subtitle_translated"] as? [String: Any],
+            if selectedLanguage != subtitleLanguage,
+               let subtitleTranslated = subtitle["subtitle_translated"] as? [String: Any],
                let subtitleTranslatedBody = subtitleTranslated["subtitle_body"] as? String,
                let subtitlesTranslated = try? JSONDecoder().decode(
                     [MusixmatchSubtitle].self, from: subtitleTranslatedBody.data(using: .utf8)!
