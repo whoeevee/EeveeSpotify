@@ -147,6 +147,7 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         case .genius: GeniusLyricsRepository()
         case .lrclib: LrcLibLyricsRepository()
         case .musixmatch: MusixmatchLyricsRepository.shared
+        case .petitLyrics: PetitLyricsRepository()
     }
     
     let lyricsDto: LyricsDto
