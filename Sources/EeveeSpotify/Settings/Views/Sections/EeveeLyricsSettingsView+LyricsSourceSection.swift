@@ -12,7 +12,7 @@ LRCLIB: The most open service, offering time-synced lyrics. However, it lacks ly
 
 Musixmatch: The service Spotify uses. Provides time-synced lyrics for many songs, but you'll need a user token to use this source.
 
-Petit Lyrics: Provides lyrics from Petit Lyrics. Mostly has Japanese song lyrics. Does not provide time-synced lyrics.
+Petit Lyrics: Has a large database of Japanese and international songs. Lacks several Western songs. Does not currently support time synced.
 
 If the tweak is unable to find a song or process the lyrics, you'll see a "Couldn't load the lyrics for this song" message. The lyrics might be wrong for some songs when using Genius due to how the tweak searches songs. I've made it work in most cases.
 """)) {
