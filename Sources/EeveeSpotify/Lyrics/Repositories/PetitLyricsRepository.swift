@@ -42,8 +42,12 @@ struct PetitLyricsRepository: LyricsRepository {
         if let error = error {
             throw error
         }
+        
+        guard let response = try? XMLDecoder().decode(PetitResponse.self, from: data!) else {
+            throw LyricsError.DecodingError
+        }
 
-        return try XMLDecoder().decode(PetitResponse.self, from: data!)
+        return response
     }
     
     //
@@ -77,7 +81,7 @@ struct PetitLyricsRepository: LyricsRepository {
         )
         
         guard let song = response.songs.first else {
-            throw LyricsError.DecodingError
+            throw LyricsError.NoSuchSong
         }
         
         return song
@@ -99,7 +103,10 @@ struct PetitLyricsRepository: LyricsRepository {
         switch song.lyricsType {
             
         case .wordsSynced:
-            let lyrics = try XMLDecoder().decode(PetitLyricsData.self, from: lyricsData)
+            guard let lyrics = try? XMLDecoder().decode(PetitLyricsData.self, from: lyricsData) 
+            else {
+                throw LyricsError.DecodingError
+            }
             
             return LyricsDto(
                 lines: lyrics.lines.map {

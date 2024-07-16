@@ -53,7 +53,9 @@ struct GeniusLyricsRepository: LyricsRepository {
             throw error
         }
 
-        let rootResponse = try jsonDecoder.decode(GeniusRootResponse.self, from: data!)
+        guard let rootResponse = try? jsonDecoder.decode(GeniusRootResponse.self, from: data!) else {
+            throw LyricsError.DecodingError
+        }
         return rootResponse.response
     }
     
