@@ -147,6 +147,7 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         case .genius: GeniusLyricsRepository()
         case .lrclib: LrcLibLyricsRepository()
         case .musixmatch: MusixmatchLyricsRepository.shared
+        case .petit: PetitLyricsRepository()
     }
     
     let lyricsDto: LyricsDto
@@ -158,40 +159,44 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         lastLyricsError = nil
     }
     
-    catch let error as LyricsError {
-        
-        lastLyricsError = error
-        
-        switch error {
+    catch let error {
+        if let error = error as? LyricsError {
+            lastLyricsError = error
             
-        case .InvalidMusixmatchToken:
+            switch error {
+                
+            case .InvalidMusixmatchToken:
+                
+                if !hasShownUnauthorizedPopUp {
+                    
+                    PopUpHelper.showPopUp(
+                        delayed: false,
+                        message: "The tweak is unable to load lyrics from Musixmatch due to Unauthorized error. Please check or update your Musixmatch token. If you use an iPad, you should get the token from the Musixmatch app for iPad.",
+                        buttonText: "OK"
+                    )
+                    
+                    hasShownUnauthorizedPopUp.toggle()
+                }
             
-            if !hasShownUnauthorizedPopUp {
+            case .MusixmatchRestricted:
                 
-                PopUpHelper.showPopUp(
-                    delayed: false,
-                    message: "The tweak is unable to load lyrics from Musixmatch due to Unauthorized error. Please check or update your Musixmatch token. If you use an iPad, you should get the token from the Musixmatch app for iPad.",
-                    buttonText: "OK"
-                )
+                if !hasShownRestrictedPopUp {
+                    
+                    PopUpHelper.showPopUp(
+                        delayed: false,
+                        message: "The tweak is unable to load lyrics from Musixmatch because they are restricted. It's likely a copyright issue due to the US IP address, so you should change it if you're in the US or use a VPN.",
+                        buttonText: "OK"
+                    )
+                    
+                    hasShownRestrictedPopUp.toggle()
+                }
                 
-                hasShownUnauthorizedPopUp.toggle()
+            default:
+                break
             }
-        
-        case .MusixmatchRestricted:
-            
-            if !hasShownRestrictedPopUp {
-                
-                PopUpHelper.showPopUp(
-                    delayed: false,
-                    message: "The tweak is unable to load lyrics from Musixmatch because they are restricted. It's likely a copyright issue due to the US IP address, so you should change it if you're in the US or use a VPN.",
-                    buttonText: "OK"
-                )
-                
-                hasShownRestrictedPopUp.toggle()
-            }
-            
-        default:
-            break
+        }
+        else {
+            lastLyricsError = .UnknownError
         }
         
         if source == .genius || !UserDefaults.geniusFallback {

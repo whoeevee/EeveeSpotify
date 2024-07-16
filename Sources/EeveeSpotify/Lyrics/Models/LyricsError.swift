@@ -6,6 +6,7 @@ enum LyricsError: Error, CustomStringConvertible {
     case InvalidMusixmatchToken
     case DecodingError
     case NoSuchSong
+    case UnknownError
     
     var description: String {
         switch self {
@@ -14,6 +15,7 @@ enum LyricsError: Error, CustomStringConvertible {
         case .InvalidMusixmatchToken: "Unauthorized"
         case .DecodingError: "Decoding Error"
         case .NoCurrentTrack: "No Track Instance"
+        case .UnknownError: "Unknown Error"
         }
     }
 }
