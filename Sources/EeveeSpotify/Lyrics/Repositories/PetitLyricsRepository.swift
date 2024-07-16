@@ -61,7 +61,6 @@ class XMLDictionaryParser: NSObject, XMLParserDelegate {
             dictionaryStack.append(dict)
         }
         textInProgress = ""
-        NSLog("[EeveeSpotify] End Element: \(elementName), dictionary: \(dict)")
     }
 }
 
@@ -82,7 +81,6 @@ struct PetitLyricsRepository: LyricsRepository {
     private func perform(
         _ query: [String: Any]
     ) throws -> Data {
-        NSLog("[EeveeSpotify] Perform Func")
         var request = URLRequest(url: URL(string: apiUrl)!)
         request.httpMethod = "POST"
         
@@ -110,7 +108,6 @@ struct PetitLyricsRepository: LyricsRepository {
     }
     
     private func decodeBase64(_ base64String: String) throws -> Data {
-        NSLog("[EeveeSpotify] Decoding Base64")
         guard let data = Data(base64Encoded: base64String) else {
             throw LyricsError.DecodingError
         }
@@ -118,14 +115,12 @@ struct PetitLyricsRepository: LyricsRepository {
     }
     
     private func mapTimeSyncedLyrics(_ xmlData: Data) throws -> [LyricsLineDto] {
-        NSLog("[EeveeSpotify] Mapping Time synced (wsy)")
         guard let parsedDictionary = XMLDictionaryParser().parse(data: xmlData),
               let lines = parsedDictionary["line"] as? [[String: Any]] else {
             throw LyricsError.DecodingError
         }
         
         var lyricsLines: [LyricsLineDto] = []
-        NSLog("[EeveeSpotify] Mapping Time synced (Lines)")
         for line in lines {
             guard let lineString = line["linestring"] as? String,
                   let words = line["word"] as? [[String: Any]],
@@ -142,7 +137,6 @@ struct PetitLyricsRepository: LyricsRepository {
     }
     
     func getLyrics(_ query: LyricsSearchQuery, options: LyricsOptions) throws -> LyricsDto {
-        NSLog("[EeveeSpotify] getLyrics")
         var petitLyricsQuery = [
             "maxCount": "1",
             "key_title": query.title,
