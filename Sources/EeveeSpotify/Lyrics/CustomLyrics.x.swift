@@ -26,7 +26,8 @@ class LyricsFullscreenViewControllerHook: ClassHook<UIViewController> {
         
         if UserDefaults.lyricsSource == .musixmatch 
             && lastLyricsError == nil
-            && !lastLyricsWasRomanized {
+            && !lastLyricsWasRomanized 
+            && !lastLyricsAreEmpty {
             return
         }
         
@@ -41,6 +42,7 @@ class LyricsFullscreenViewControllerHook: ClassHook<UIViewController> {
 //
 
 private var lastLyricsWasRomanized = false
+private var lastLyricsAreEmpty = false
 private var lastLyricsError: LyricsError? = nil
 
 private var hasShownRestrictedPopUp = false
@@ -212,6 +214,7 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
     }
     
     lastLyricsWasRomanized = lyricsDto.romanized
+    lastLyricsAreEmpty = lyricsDto.lines.isEmpty
 
     let lyrics = Lyrics.with {
         $0.colors = getLyricsColors()

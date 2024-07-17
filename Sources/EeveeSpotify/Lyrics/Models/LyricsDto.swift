@@ -11,13 +11,26 @@ struct LyricsDto {
             $0.timeSynchronized = timeSynced
             $0.restriction = .unrestricted
             $0.providedBy = "\(source) (EeveeSpotify)"
-            $0.lines = lines.map { line in
+        }
+        
+        lyricsData.lines = lines.isEmpty 
+            ? [
+                LyricsLine.with {
+                    $0.content = "This song is instrumental."
+                },
+                LyricsLine.with {
+                    $0.content = "Let the music play..."
+                },
+                LyricsLine.with {
+                    $0.content = ""
+                }
+            ]
+            : lines.map { line in
                 LyricsLine.with {
                     $0.content = line.content
                     $0.offsetMs = Int32(line.offsetMs ?? 0)
                 }
             }
-        }
         
         if let translation = translation {
             lyricsData.translation = LyricsTranslation.with {
