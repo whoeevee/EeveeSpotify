@@ -145,12 +145,22 @@ struct GeniusLyricsRepository: LyricsRepository {
         )
         
         let songInfo = try getSongInfo(song.id)
-        let plainLines = songInfo.lyrics.plain.components(separatedBy: "\n")
+        let plainLyrics = songInfo.lyrics.plain
+        let plainLines = plainLyrics.components(separatedBy: "\n")
+        
+        var romanization = LyricsRomanizationStatus.original
+        
+        if hasFoundRomanizedLyrics {
+            romanization = .romanized
+        }
+        else if plainLyrics.canBeRomanized {
+            romanization = .canBeRomanized
+        }
     
         return LyricsDto(
             lines: mapLyricsLines(plainLines).map { line in LyricsLineDto(content: line) },
             timeSynced: false,
-            romanized: hasFoundRomanizedLyrics
+            romanization: romanization
         )
     }
 }

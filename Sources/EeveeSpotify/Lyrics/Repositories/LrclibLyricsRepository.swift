@@ -105,7 +105,8 @@ struct LrcLibLyricsRepository: LyricsRepository {
                 lines: mapSyncedLyricsLines(
                     syncedLyrics.components(separatedBy: "\n").dropLast()
                 ),
-                timeSynced: true
+                timeSynced: true,
+                romanization: syncedLyrics.canBeRomanized ? .canBeRomanized : .original
             )
         }
         
@@ -118,7 +119,8 @@ struct LrcLibLyricsRepository: LyricsRepository {
                 .components(separatedBy: "\n")
                 .dropLast()
                 .map { content in LyricsLineDto(content: content) },
-            timeSynced: false
+            timeSynced: false,
+            romanization: plainLyrics.canBeRomanized ? .canBeRomanized : .original
         )
     }
 }

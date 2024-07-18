@@ -3,7 +3,7 @@ import Foundation
 struct LyricsDto {
     var lines: [LyricsLineDto]
     var timeSynced: Bool
-    var romanized: Bool = false
+    var romanization: LyricsRomanizationStatus
     var translation: LyricsTranslationDto?
     
     func toLyricsData(source: String) -> LyricsData {
@@ -13,8 +13,10 @@ struct LyricsDto {
             $0.providedBy = "\(source) (EeveeSpotify)"
         }
         
-        lyricsData.lines = lines.isEmpty 
-            ? [
+        let shouldRomanize = UserDefaults.lyricsOptions.romanization
+        
+        if lines.isEmpty {
+            lyricsData.lines = [
                 LyricsLine.with {
                     $0.content = "This song is instrumental."
                 },
@@ -25,12 +27,17 @@ struct LyricsDto {
                     $0.content = ""
                 }
             ]
-            : lines.map { line in
+        }
+        else {
+            lyricsData.lines = lines.map { line in
                 LyricsLine.with {
-                    $0.content = line.content
+                    $0.content = (shouldRomanize && romanization == .canBeRomanized)
+                        ? line.content.applyingTransform(.toLatin, reverse: false)!
+                        : line.content
                     $0.offsetMs = Int32(line.offsetMs ?? 0)
                 }
             }
+        }
         
         if let translation = translation {
             lyricsData.translation = LyricsTranslation.with {

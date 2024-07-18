@@ -115,7 +115,10 @@ struct PetitLyricsRepository: LyricsRepository {
                         offsetMs: $0.words.first!.starttime
                     )
                 },
-                timeSynced: true
+                timeSynced: true,
+                romanization: lyrics.lines.map { $0.linestring }.joined().canBeRomanized 
+                    ? .canBeRomanized
+                    : .original
             )
             
         case .plain:
@@ -125,7 +128,8 @@ struct PetitLyricsRepository: LyricsRepository {
                 lines: stringLyrics
                     .components(separatedBy: "\n")
                     .map { LyricsLineDto(content: $0) },
-                timeSynced: false
+                timeSynced: false,
+                romanization: stringLyrics.canBeRomanized ? .canBeRomanized : .original
             )
             
         default:

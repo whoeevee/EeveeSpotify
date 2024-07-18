@@ -1,4 +1,5 @@
 import Foundation 
+import NaturalLanguage
 
 extension String {
 
@@ -43,6 +44,17 @@ extension String {
                 range: self.range,
                 withTemplate: ""
             )
+    }
+    
+    var canBeRomanized: Bool {
+        let languageRecognizer = NLLanguageRecognizer()
+        languageRecognizer.processString(self)
+        
+        if let code = languageRecognizer.dominantLanguage?.rawValue {
+            return ["ja", "ko"].contains(code) || code.contains("zh")
+        }
+        
+        return false
     }
     
     var hexadecimal: Data? {

@@ -37,13 +37,11 @@ struct EeveeLyricsSettingsView: View {
             
             //
             
-            if [.genius, .musixmatch].contains(lyricsSource) || geniusFallback {
-                Section(footer: Text("Load romanized lyrics from Musixmatch or Genius.")) {
-                    Toggle(
-                        "Romanized Lyrics",
-                        isOn: $lyricsOptions.romanization
-                    )
-                }
+            Section(footer: Text("Display romanized lyrics for Japanese, Korean, and Chinese.")) {
+                Toggle(
+                    "Romanized Lyrics",
+                    isOn: $lyricsOptions.romanization
+                )
             }
             
             if lyricsSource == .musixmatch {
@@ -64,7 +62,7 @@ struct EeveeLyricsSettingsView: View {
                             .foregroundColor(.gray)
                     }
                 } footer: {
-                    Text("You can enter a 2-letter Musixmatch language code and see translated lyrics on Musixmatch if they are available. It overrides Romanized Lyrics.")
+                    Text("You can enter a 2-letter Musixmatch language code and see translated lyrics on Musixmatch if they are available.")
                 }
             }
             

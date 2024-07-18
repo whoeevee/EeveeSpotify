@@ -228,10 +228,19 @@ class MusixmatchLyricsRepository: LyricsRepository {
                 }
             }
             
+            var romanization = LyricsRomanizationStatus.original
+            
+            if romanized {
+                romanization = .romanized
+            }
+            else if lyricsLines.map({ $0.content }).joined().canBeRomanized {
+                romanization = .canBeRomanized
+            }
+            
             return LyricsDto(
                 lines: lyricsLines,
                 timeSynced: true,
-                romanized: romanized,
+                romanization: romanization,
                 translation: translation
             )
         }
@@ -258,7 +267,8 @@ class MusixmatchLyricsRepository: LyricsRepository {
                         .components(separatedBy: "\n")
                         .dropLast()
                         .map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
-                    timeSynced: false
+                    timeSynced: false,
+                    romanization: plainLyrics.canBeRomanized ? .canBeRomanized : .original
                 )
             }
         }

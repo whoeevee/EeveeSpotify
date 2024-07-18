@@ -213,7 +213,8 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         lyricsDto = try repository.getLyrics(searchQuery, options: options)
     }
     
-    lastLyricsWasRomanized = lyricsDto.romanized
+    lastLyricsWasRomanized = lyricsDto.romanization == .romanized 
+        || (lyricsDto.romanization == .canBeRomanized && UserDefaults.lyricsOptions.romanization)
     lastLyricsAreEmpty = lyricsDto.lines.isEmpty
 
     let lyrics = Lyrics.with {
