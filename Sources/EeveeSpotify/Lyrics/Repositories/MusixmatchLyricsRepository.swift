@@ -233,7 +233,7 @@ class MusixmatchLyricsRepository: LyricsRepository {
             if romanized {
                 romanization = .romanized
             }
-            else if lyricsLines.map({ $0.content }).joined().canBeRomanized {
+            else if subtitleLanguage.isCanBeRomanizedLanguage {
                 romanization = .canBeRomanized
             }
             
@@ -256,6 +256,7 @@ class MusixmatchLyricsRepository: LyricsRepository {
             
             if let lyricsBody = lyricsMessage["body"] as? [String: Any],
                let lyrics = lyricsBody["lyrics"] as? [String: Any],
+               let lyricsLanguage = lyrics["lyrics_language"] as? String,
                let plainLyrics = lyrics["lyrics_body"] as? String {
                 
                 if let restricted = lyrics["restricted"] as? Bool, restricted {
@@ -268,7 +269,7 @@ class MusixmatchLyricsRepository: LyricsRepository {
                         .dropLast()
                         .map { LyricsLineDto(content: $0.lyricsNoteIfEmpty) },
                     timeSynced: false,
-                    romanization: plainLyrics.canBeRomanized ? .canBeRomanized : .original
+                    romanization: lyricsLanguage.isCanBeRomanizedLanguage ? .canBeRomanized : .original
                 )
             }
         }

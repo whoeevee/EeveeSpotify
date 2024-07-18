@@ -21,6 +21,10 @@ extension UserDefaults {
                 return LyricsSource(rawValue: rawValue)!
             }
 
+            if Locale.isInRegion("JP", orHasLanguage: "ja") {
+                return .petit
+            }
+            
             return .lrclib
         }
         set (newSource) {

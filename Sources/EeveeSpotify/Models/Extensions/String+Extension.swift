@@ -46,12 +46,16 @@ extension String {
             )
     }
     
+    var isCanBeRomanizedLanguage: Bool {
+        ["ja", "ko", "z1"].contains(self) || self.contains("zh")
+    }
+    
     var canBeRomanized: Bool {
         let languageRecognizer = NLLanguageRecognizer()
         languageRecognizer.processString(self)
         
         if let code = languageRecognizer.dominantLanguage?.rawValue {
-            return ["ja", "ko"].contains(code) || code.contains("zh")
+            return code.isCanBeRomanizedLanguage
         }
         
         return false
