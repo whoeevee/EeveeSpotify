@@ -101,12 +101,11 @@ struct LrcLibLyricsRepository: LyricsRepository {
         }
         
         if let syncedLyrics = song.syncedLyrics {
+            let lines = Array(syncedLyrics.components(separatedBy: "\n").dropLast())
             return LyricsDto(
-                lines: mapSyncedLyricsLines(
-                    syncedLyrics.components(separatedBy: "\n").dropLast()
-                ),
+                lines: mapSyncedLyricsLines(lines),
                 timeSynced: true,
-                romanization: syncedLyrics.canBeRomanized ? .canBeRomanized : .original
+                romanization: lines.canBeRomanized ? .canBeRomanized : .original
             )
         }
         
@@ -114,13 +113,12 @@ struct LrcLibLyricsRepository: LyricsRepository {
             throw LyricsError.DecodingError
         }
         
+        let lines = Array(plainLyrics.components(separatedBy: "\n").dropLast())
+        
         return LyricsDto(
-            lines: plainLyrics
-                .components(separatedBy: "\n")
-                .dropLast()
-                .map { content in LyricsLineDto(content: content) },
+            lines: lines.map { content in LyricsLineDto(content: content) },
             timeSynced: false,
-            romanization: plainLyrics.canBeRomanized ? .canBeRomanized : .original
+            romanization: lines.canBeRomanized ? .canBeRomanized : .original
         )
     }
 }

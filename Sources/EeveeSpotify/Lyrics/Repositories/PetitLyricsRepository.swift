@@ -116,20 +116,19 @@ struct PetitLyricsRepository: LyricsRepository {
                     )
                 },
                 timeSynced: true,
-                romanization: lyrics.lines.map { $0.linestring }.joined().canBeRomanized 
+                romanization: lyrics.lines.map { $0.linestring }.canBeRomanized
                     ? .canBeRomanized
                     : .original
             )
             
         case .plain:
             let stringLyrics = String(data: lyricsData, encoding: .utf8)!
+            let lines = stringLyrics.components(separatedBy: "\n")
             
             return LyricsDto(
-                lines: stringLyrics
-                    .components(separatedBy: "\n")
-                    .map { LyricsLineDto(content: $0) },
+                lines: lines.map { LyricsLineDto(content: $0) },
                 timeSynced: false,
-                romanization: stringLyrics.canBeRomanized ? .canBeRomanized : .original
+                romanization: lines.canBeRomanized ? .canBeRomanized : .original
             )
             
         default:

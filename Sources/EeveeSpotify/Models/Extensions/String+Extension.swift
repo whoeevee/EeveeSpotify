@@ -50,17 +50,6 @@ extension String {
         ["ja", "ko", "z1"].contains(self) || self.contains("zh")
     }
     
-    var canBeRomanized: Bool {
-        let languageRecognizer = NLLanguageRecognizer()
-        languageRecognizer.processString(self)
-        
-        if let code = languageRecognizer.dominantLanguage?.rawValue {
-            return code.isCanBeRomanizedLanguage
-        }
-        
-        return false
-    }
-    
     var hexadecimal: Data? {
         var data = Data(capacity: count / 2)
         
