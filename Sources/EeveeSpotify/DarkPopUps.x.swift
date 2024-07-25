@@ -36,8 +36,8 @@ class SPTEncorePopUpContainerHook: ClassHook<UIViewController> {
         return orig.containedView()
     }
     
-    func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    func viewDidAppear(_ animated: Bool) {
+        orig.viewDidAppear(animated)
         containedView().uiView().backgroundColor = UIColor(Color(hex: "#242424"))
-        return orig.supportedInterfaceOrientations()
     }
 }
