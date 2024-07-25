@@ -11,3 +11,10 @@ EeveeSpotify_EXTRA_FRAMEWORKS = SwiftProtobuf
 EeveeSpotify_CFLAGS = -fobjc-arc -ISources/EeveeSpotifyC/include
 
 include $(THEOS_MAKE_PATH)/tweak.mk
+
+copy-swiftprotobuf:
+	mkdir -p swiftprotobuf && cd swiftprotobuf ;\
+	curl -OL https://github.com/whoeevee/EeveeSpotify/releases/download/swift2.0/org.swift.protobuf.swiftprotobuf_1.26.0_iphoneos-arm.deb ;\
+	ar -x org.swift.protobuf.swiftprotobuf_1.26.0_iphoneos-arm.deb ;\
+	tar -xvf data.tar.lzma ;\
+	cp -r Library/Frameworks/SwiftProtobuf.framework "${THEOS}/lib" ;\
