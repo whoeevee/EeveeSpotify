@@ -35,6 +35,6 @@ Read the [Restrictions](https://github.com/whoeevee/EeveeSpotify?tab=readme-ov-f
 
 ## Releases
 
-EeveeSpotify versions are typically released alongside Spotify versions on the App Store. You can get the latest IPAs on [Github Releases](https://github.com/whoeevee/EeveeSpotify/releases) or [EeveeSpotify IPAs](https://t.me/SpotilifeIPAs). You can also add https://raw.githubusercontent.com/whoeevee/EeveeSpotify/swift/repo.json as a source to Scarlet, ESign, or other apps, and https://raw.githubusercontent.com/whoeevee/EeveeSpotify/swift/repo.altsource.json for AltStore, SideStore, and derivatives. If you would like to make your own IPA, make sure you've injected SwiftProtobuf, Orion, and CydiaSubstrate frameworks.
+EeveeSpotify versions are typically released alongside Spotify versions on the App Store. You can get the latest IPAs on [Github Releases](https://github.com/whoeevee/EeveeSpotify/releases) or [EeveeSpotify IPAs](https://t.me/SpotilifeIPAs). You can also add https://raw.githubusercontent.com/whoeevee/EeveeSpotify/swift/repo.json as a source to Scarlet, ESign, or other apps, and https://raw.githubusercontent.com/whoeevee/EeveeSpotify/swift/repo.altsource.json for TrollApps, AltStore, SideStore, and derivatives. If you would like to make your own IPA, make sure you've injected SwiftProtobuf, Orion, and CydiaSubstrate frameworks.
 
 EeveeSpotify only supports iOS and iPadOS and is not planned to be supported on other platforms. You can easily search for different projects with lots of features.
