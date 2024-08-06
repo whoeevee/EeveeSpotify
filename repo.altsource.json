@@ -11,6 +11,20 @@
       "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0c/1f/61/0c1f6144-af80-f395-3204-1d14fd8b2be7/AppIcon-0-0-1x_U007emarketing-0-6-0-0-85-220.png/512x512bb.jpg",
       "versions": [
         {
+          "version": "8.9.62",
+          "date": "2024-08-06",
+          "localizedDescription": "Spotify v8.9.62 injected with EeveeSpotify",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.6/EeveeSpotify-4.6-8.9.62.ipa",
+          "size": 77373895
+        },
+        {
+          "version": "8.9.60",
+          "date": "2024-07-29",
+          "localizedDescription": "Spotify v8.9.60 injected with EeveeSpotify",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.6/EeveeSpotify-4.6-8.9.60.ipa",
+          "size": 76880363
+        },
+        {
           "version": "8.9.60",
           "date": "2024-07-29",
           "localizedDescription": "Spotify v8.9.60 injected with EeveeSpotify",
