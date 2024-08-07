@@ -1,15 +1,16 @@
 import Orion
 import SwiftUI
 
-class SPTPlayerTrackHook: ClassHook<NSObject> {
-
-    static let targetName = "SPTPlayerTrack"
-
-    func metadata() -> [String:String] {
-        var meta = orig.metadata()
-        
-        meta["has_lyrics"] = "true"
-        return meta
+class LyricsScrollProviderHook: ClassHook<NSObject> {
+    
+    static var targetName: String {
+        return EeveeSpotify.isOldSpotifyVersion
+            ? "Lyrics_CoreImpl.ScrollProvider"
+            : "Lyrics_NPVCommunicatorImpl.ScrollProvider"
+    }
+    
+    func isEnabledForTrack(_ track: SPTPlayerTrack) -> Bool {
+        return true
     }
 }
 
@@ -25,9 +26,9 @@ class LyricsFullscreenViewControllerHook: ClassHook<UIViewController> {
         orig.viewDidLoad()
         
         if UserDefaults.lyricsSource == .musixmatch 
-            && lastLyricsError == nil
-            && !lastLyricsWasRomanized 
-            && !lastLyricsAreEmpty {
+            && lastLyricsState.fallbackError == nil
+            && !lastLyricsState.wasRomanized
+            && !lastLyricsState.areEmpty {
             return
         }
         
@@ -41,9 +42,7 @@ class LyricsFullscreenViewControllerHook: ClassHook<UIViewController> {
 
 //
 
-private var lastLyricsWasRomanized = false
-private var lastLyricsAreEmpty = false
-private var lastLyricsError: LyricsError? = nil
+private var lastLyricsState = LyricsLoadingState()
 
 private var hasShownRestrictedPopUp = false
 private var hasShownUnauthorizedPopUp = false
@@ -98,7 +97,7 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
         
         //
         
-        if UserDefaults.fallbackReasons, let description = lastLyricsError?.description {
+        if UserDefaults.fallbackReasons, let description = lastLyricsState.fallbackError?.description {
             text.append(
                 Dynamic.SPTEncoreAttributedString.alloc(interface: SPTEncoreAttributedString.self)
                     .initWithString(
@@ -109,7 +108,7 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
             )
         }
         
-        if lastLyricsWasRomanized {
+        if lastLyricsState.wasRomanized {
             text.append(
                 Dynamic.SPTEncoreAttributedString.alloc(interface: SPTEncoreAttributedString.self)
                     .initWithString(
@@ -156,14 +155,14 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
     
     //
     
+    lastLyricsState = LyricsLoadingState()
+    
     do {
         lyricsDto = try repository.getLyrics(searchQuery, options: options)
-        lastLyricsError = nil
     }
-    
     catch let error {
         if let error = error as? LyricsError {
-            lastLyricsError = error
+            lastLyricsState.fallbackError = error
             
             switch error {
                 
@@ -198,7 +197,7 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
             }
         }
         else {
-            lastLyricsError = .UnknownError
+            lastLyricsState.fallbackError = .UnknownError
         }
         
         if source == .genius || !UserDefaults.geniusFallback {
@@ -213,10 +212,11 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
         lyricsDto = try repository.getLyrics(searchQuery, options: options)
     }
     
-    lastLyricsWasRomanized = lyricsDto.romanization == .romanized 
-        || (lyricsDto.romanization == .canBeRomanized && UserDefaults.lyricsOptions.romanization)
-    lastLyricsAreEmpty = lyricsDto.lines.isEmpty
-
+    lastLyricsState.areEmpty = lyricsDto.lines.isEmpty
+    
+    lastLyricsState.wasRomanized = lyricsDto.romanization == .romanized
+    || (lyricsDto.romanization == .canBeRomanized && UserDefaults.lyricsOptions.romanization)
+    
     let lyrics = Lyrics.with {
         $0.colors = getLyricsColors()
         $0.data = lyricsDto.toLyricsData(source: source.description)
