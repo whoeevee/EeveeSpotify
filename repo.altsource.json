@@ -1,0 +1,69 @@
+{
+  "name": "EeveeSpotify",
+  "identifier": "com.eevee.source",
+  "subtitle": "EeveeSpotify official source",
+  "apps": [
+    {
+      "name": "EeveeSpotify",
+      "bundleIdentifier": "com.spotify.client",
+      "developerName": "",
+      "localizedDescription": "",
+      "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0c/1f/61/0c1f6144-af80-f395-3204-1d14fd8b2be7/AppIcon-0-0-1x_U007emarketing-0-6-0-0-85-220.png/512x512bb.jpg",
+      "versions": [
+        {
+          "version": "8.9.62",
+          "date": "2024-08-06",
+          "localizedDescription": "Spotify v8.9.62 injected with EeveeSpotify",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.6/EeveeSpotify-4.6-8.9.62.ipa",
+          "size": 77373895
+        },
+        {
+          "version": "8.9.60",
+          "date": "2024-07-29",
+          "localizedDescription": "Spotify v8.9.60 injected with EeveeSpotify",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.6/EeveeSpotify-4.6-8.9.60.ipa",
+          "size": 76880363
+        },
+        {
+          "version": "8.9.60",
+          "date": "2024-07-29",
+          "localizedDescription": "Spotify v8.9.60 injected with EeveeSpotify",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.6/EeveeSpotify-4.6-8.9.60.ipa",
+          "size": 76880363
+        },
+        {
+          "version": "8.9.58",
+          "date": "2024-07-20",
+          "localizedDescription": "Spotify v8.9.58 injected with EeveeSpotify",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.5/EeveeSpotify-4.5-8.9.58.ipa",
+          "size": 76177478
+        },
+        {
+          "version": "8.9.54",
+          "date": "2024-07-10",
+          "localizedDescription": "Spotify v8.9.54 injected with EeveeSpotify",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.4/EeveeSpotify-4.4-8.9.54.ipa",
+          "size": 75064559
+        },
+        {
+          "version": "8.9.50",
+          "date": "2024-06-25",
+          "localizedDescription": "Spotify v8.9.50 injected with EeveeSpotify",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.3/EeveeSpotify-4.3-8.9.50.ipa",
+          "size": 75026367
+        },
+        {
+          "version": "8.9.48",
+          "date": "2024-06-17",
+          "localizedDescription": "Spotify v8.9.48 injected with EeveeSpotify",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.2/EeveeSpotify-4.2-8.9.48.ipa",
+          "size": 75337996
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": []
+      }
+    }
+  ]
+}
