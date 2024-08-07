@@ -1,6 +1,17 @@
 import Orion
 import SwiftUI
 
+class SPTPlayerTrackHook: ClassHook<NSObject> {
+    static let targetName = "SPTPlayerTrack"
+
+    func metadata() -> [String:String] {
+        var meta = orig.metadata()
+
+        meta["has_lyrics"] = "true"
+        return meta
+    }
+}
+
 class LyricsScrollProviderHook: ClassHook<NSObject> {
     
     static var targetName: String {
@@ -42,6 +53,7 @@ class LyricsFullscreenViewControllerHook: ClassHook<UIViewController> {
 
 //
 
+private var preloadedLyrics: Lyrics? = nil
 private var lastLyricsState = LyricsLoadingState()
 
 private var hasShownRestrictedPopUp = false
@@ -127,8 +139,9 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
     }
 }
 
-func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
-    
+//
+
+private func loadLyricsForCurrentTrack() throws {
     guard let track = HookedInstances.currentTrack else {
         throw LyricsError.NoCurrentTrack
     }
@@ -217,28 +230,47 @@ func getCurrentTrackLyricsData(originalLyrics: Lyrics? = nil) throws -> Data {
     lastLyricsState.wasRomanized = lyricsDto.romanization == .romanized
     || (lyricsDto.romanization == .canBeRomanized && UserDefaults.lyricsOptions.romanization)
     
+    lastLyricsState.loadedSuccessfully = true
+    NSLog("eevee doooo")
     let lyrics = Lyrics.with {
-        $0.colors = getLyricsColors()
         $0.data = lyricsDto.toLyricsData(source: source.description)
     }
-
-    return try lyrics.serializedData()
     
-    func getLyricsColors() -> LyricsColors {
-        let lyricsColorsSettings = UserDefaults.lyricsColors
-        
-        if lyricsColorsSettings.displayOriginalColors, let originalLyrics = originalLyrics {
-            return originalLyrics.colors
-        }
-        
-        return LyricsColors.with {
-            $0.backgroundColor = lyricsColorsSettings.useStaticColor
-                ? Color(hex: lyricsColorsSettings.staticColor).uInt32
-                : Color(hex: track.extractedColorHex())
-                    .normalized(lyricsColorsSettings.normalizationFactor)
-                    .uInt32
-            $0.lineColor = Color.black.uInt32
-            $0.activeLineColor = Color.white.uInt32
-        }
+    preloadedLyrics = lyrics
+}
+
+func getLyricsForCurrentTrack(originalLyrics: Lyrics? = nil) throws -> Data {
+    guard let track = HookedInstances.currentTrack else {
+        throw LyricsError.NoCurrentTrack
     }
+    
+    var lyrics = preloadedLyrics
+    
+    if lyrics == nil {
+        try loadLyricsForCurrentTrack()
+        lyrics = preloadedLyrics
+    }
+    
+    guard var lyrics = lyrics else {
+        throw LyricsError.UnknownError
+    }
+    
+    let lyricsColorsSettings = UserDefaults.lyricsColors
+    
+    if lyricsColorsSettings.displayOriginalColors, let originalLyrics = originalLyrics {
+        lyrics.colors = originalLyrics.colors
+    }
+    
+    lyrics.colors = LyricsColors.with {
+        $0.backgroundColor = lyricsColorsSettings.useStaticColor
+            ? Color(hex: lyricsColorsSettings.staticColor).uInt32
+            : Color(hex: track.extractedColorHex())
+                .normalized(lyricsColorsSettings.normalizationFactor)
+                .uInt32
+        $0.lineColor = Color.black.uInt32
+        $0.activeLineColor = Color.white.uInt32
+    }
+    
+    preloadedLyrics = nil
+    return try lyrics.serializedData()
 }
