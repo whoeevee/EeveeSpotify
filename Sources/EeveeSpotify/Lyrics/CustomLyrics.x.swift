@@ -231,7 +231,7 @@ private func loadLyricsForCurrentTrack() throws {
     || (lyricsDto.romanization == .canBeRomanized && UserDefaults.lyricsOptions.romanization)
     
     lastLyricsState.loadedSuccessfully = true
-    NSLog("eevee doooo")
+
     let lyrics = Lyrics.with {
         $0.data = lyricsDto.toLyricsData(source: source.description)
     }
