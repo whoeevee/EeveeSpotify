@@ -76,8 +76,8 @@ dark_popups = "Ventanas Emergentes Oscuras";
 
 have_premium_popup = "Parece que tienes una suscripción Premium activa, así que el tweak no parcheará los datos ni restringirá el uso de las funciones Premium del servidor. Puedes gestionar esto en los ajustes de EeveeSpotify.";
 
-high_audio_quality_popup = "La calidad de audio muy alta depende del servidor y no está disponible con este ajuste.";
-playlist_downloading_popup = "La descarga nativa de listas de reproducción se realiza desde el servidor y no está disponible con este ajuste. Sin embargo, puedes descargar episodios de podcasts.";
+high_audio_quality_popup = "La calidad de audio muy alta depende del servidor y no está disponible con este tweak.";
+playlist_downloading_popup = "La descarga nativa de listas de reproducción se realiza desde el servidor y no está disponible con este tweak. Sin embargo, puedes descargar episodios de podcasts.";
 
 /* MARK: Lyrics */
 
