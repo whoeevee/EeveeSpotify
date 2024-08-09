@@ -258,15 +258,16 @@ func getLyricsForCurrentTrack(originalLyrics: Lyrics? = nil) throws -> Data {
     if lyricsColorsSettings.displayOriginalColors, let originalLyrics = originalLyrics {
         lyrics.colors = originalLyrics.colors
     }
-    
-    lyrics.colors = LyricsColors.with {
-        $0.backgroundColor = lyricsColorsSettings.useStaticColor
-            ? Color(hex: lyricsColorsSettings.staticColor).uInt32
-            : Color(hex: track.extractedColorHex())
-                .normalized(lyricsColorsSettings.normalizationFactor)
-                .uInt32
-        $0.lineColor = Color.black.uInt32
-        $0.activeLineColor = Color.white.uInt32
+    else {
+        lyrics.colors = LyricsColors.with {
+            $0.backgroundColor = lyricsColorsSettings.useStaticColor
+                ? Color(hex: lyricsColorsSettings.staticColor).uInt32
+                : Color(hex: track.extractedColorHex())
+                    .normalized(lyricsColorsSettings.normalizationFactor)
+                    .uInt32
+            $0.lineColor = Color.black.uInt32
+            $0.activeLineColor = Color.white.uInt32
+        }
     }
     
     preloadedLyrics = nil
