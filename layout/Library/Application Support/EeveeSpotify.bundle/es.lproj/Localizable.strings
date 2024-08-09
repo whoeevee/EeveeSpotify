@@ -85,7 +85,7 @@ fallback_attribute = "Alternativa";
 romanized_attribute = "Romanizada";
 
 musixmatch_unauthorized_popup = "El tweak no puede cargar letras de Musixmatch debido a un error no autorizado. Por favor, comprueba o actualiza tu token de Musixmatch. Si utilizas un iPad, debes obtener el token de la aplicación Musixmatch para iPad.";
-musixmatch_restricted_popup = El tweak no puede cargar letras de Musixmatch porque están restringidas. Es probable que sea un problema de copyright debido a la dirección IP de EE.UU., por lo que deberías cambiarla si estás en EE.UU. o usar una VPN.";
+musixmatch_restricted_popup = "El tweak no puede cargar letras de Musixmatch porque están restringidas. Es probable que sea un problema de copyright debido a la dirección IP de EE.UU., por lo que deberías cambiarla si estás en EE.UU. o usar una VPN.";
 
 // Errors Titles
 
