@@ -24,7 +24,7 @@ do_not_patch_premium = "不启用 Premium 补丁";
 patching_description = "该插件会拦截加载用户数据的请求，对其进行反序列化，并实时修改参数。\n\n如果您拥有真实有效的 Premium 订阅，则可以启用“不启用 Premium 补丁”。该插件不会修补数据或限制Premium服务器端功能的使用。更改后需要重新启动应用。";
 
 overwrite_configuration = "覆盖配置";
-overwrite_configuration_description = "用转存的 Premium 配置替换远程配置。不能保证有效，它可能会有一些问题，例如出现广告。";
+overwrite_configuration_description = "用转存的 Premium 配置替换远程配置。虽然不能保证一定有效，但可以解决一些问题，如出现广告。";
 
 // Lyrics
 
