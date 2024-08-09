@@ -5,18 +5,15 @@ struct CommonIssuesTipView: View {
     var onDismiss: () -> Void
     
     var body: some View {
-        
         Section {
             HStack(spacing: 15) {
-                
                 Image(systemName: "exclamationmark.bubble")
                     .font(.title)
                     .foregroundColor(.gray)
                 
                 VStack(alignment: .leading, spacing: 3) {
-                    
                     VStack(alignment: .leading) {
-                        Text("Having Trouble?")
+                        Text("common_issues_tip_title".localized)
                             .font(.headline)
                     }
                     
@@ -24,10 +21,10 @@ struct CommonIssuesTipView: View {
                         destination: URL(string: "https://github.com/whoeevee/EeveeSpotify/blob/swift/common_issues.md")!,
                         label: {
                             VStack {
-                                Text("If you are facing an issue, such as being unable to play any songs, check out ")
+                                Text("\("common_issues_tip_message".localized) ")
                                     .foregroundColor(.white)
                                 
-                                + Text("Common Issues")
+                                + Text("common_issues_tip_button".localized)
                                     .foregroundColor(.blue)
                                 
                                 + Text(".")

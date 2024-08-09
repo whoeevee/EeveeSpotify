@@ -4,6 +4,11 @@ patching = "Patching";
 lyrics = "Lyrics";
 customization = "Customization";
 
+common_issues_tip_title = "Having Trouble?";
+
+common_issues_tip_message = "If you are facing an issue, such as being unable to play any songs, check out";
+common_issues_tip_button = "Common Issues";
+
 reset_data = "Reset Data";
 reset_data_description = "Clear cached data and restart the app.";
 
