@@ -88,7 +88,7 @@ extension UserDefaults {
     static var patchType: PatchType {
         get {
             if let rawValue = defaults.object(forKey: patchTypeKey) as? Int {
-                return PatchType(rawValue: rawValue)!
+                return PatchType(rawValue: rawValue) ?? .requests
             }
 
             return .notSet

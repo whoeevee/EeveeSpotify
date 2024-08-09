@@ -11,21 +11,20 @@ struct EeveeLyricsSettingsView: View {
     
     var body: some View {
         List {
-            
             LyricsSourceSection()
 
             if lyricsSource != .genius {
                 Section(
-                    footer: Text("Load lyrics from Genius if there is a problem with \(lyricsSource).")
+                    footer: Text("genius_fallback_description".localizeWithFormat(lyricsSource.description))
                 ) {
                     Toggle(
-                        "Genius Fallback",
+                        "genius_fallback".localized,
                         isOn: $geniusFallback
                     )
                     
                     if geniusFallback {
                         Toggle(
-                            "Show Fallback Reasons",
+                            "show_fallback_reasons".localized,
                             isOn: Binding<Bool>(
                                 get: { UserDefaults.fallbackReasons },
                                 set: { UserDefaults.fallbackReasons = $0 }
@@ -37,9 +36,9 @@ struct EeveeLyricsSettingsView: View {
             
             //
             
-            Section(footer: Text("Display romanized lyrics for Japanese, Korean, and Chinese.")) {
+            Section(footer: Text("romanized_lyrics_description".localized)) {
                 Toggle(
-                    "Romanized Lyrics",
+                    "romanized_lyrics".localized,
                     isOn: $lyricsOptions.romanization
                 )
             }
@@ -53,7 +52,7 @@ struct EeveeLyricsSettingsView: View {
                                 .foregroundColor(.yellow)
                         }
                         
-                        Text("Musixmatch Lyrics Language")
+                        Text("musixmatch_language".localized)
 
                         Spacer()
                         
@@ -62,7 +61,7 @@ struct EeveeLyricsSettingsView: View {
                             .foregroundColor(.gray)
                     }
                 } footer: {
-                    Text("You can enter a 2-letter Musixmatch language code and see translated lyrics on Musixmatch if they are available.")
+                    Text("musixmatch_language_description".localized)
                 }
             }
             
@@ -85,7 +84,6 @@ struct EeveeLyricsSettingsView: View {
         }
         
         .onChange(of: lyricsOptions) { lyricsOptions in
-            
             let selectedLanguage = lyricsOptions.musixmatchLanguage
             
             if selectedLanguage.isEmpty || selectedLanguage ~= "^[\\w\\d]{2}$" {

@@ -113,7 +113,7 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
             text.append(
                 Dynamic.SPTEncoreAttributedString.alloc(interface: SPTEncoreAttributedString.self)
                     .initWithString(
-                        "\nFallback: \(description)",
+                        "\n\("fallback_attribute".localized): \(description)",
                         typeStyle: typeStyle,
                         attributes: attributes
                     )
@@ -124,7 +124,7 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
             text.append(
                 Dynamic.SPTEncoreAttributedString.alloc(interface: SPTEncoreAttributedString.self)
                     .initWithString(
-                        "\nRomanized",
+                        "\n\("romanized_attribute".localized)",
                         typeStyle: typeStyle,
                         attributes: attributes
                     )
@@ -182,10 +182,9 @@ private func loadLyricsForCurrentTrack() throws {
             case .InvalidMusixmatchToken:
                 
                 if !hasShownUnauthorizedPopUp {
-                    
                     PopUpHelper.showPopUp(
                         delayed: false,
-                        message: "The tweak is unable to load lyrics from Musixmatch due to Unauthorized error. Please check or update your Musixmatch token. If you use an iPad, you should get the token from the Musixmatch app for iPad.",
+                        message: "musixmatch_unauthorized_popup".localized,
                         buttonText: "OK"
                     )
                     
@@ -195,10 +194,9 @@ private func loadLyricsForCurrentTrack() throws {
             case .MusixmatchRestricted:
                 
                 if !hasShownRestrictedPopUp {
-                    
                     PopUpHelper.showPopUp(
                         delayed: false,
-                        message: "The tweak is unable to load lyrics from Musixmatch because they are restricted. It's likely a copyright issue due to the US IP address, so you should change it if you're in the US or use a VPN.",
+                        message: "musixmatch_restricted_popup".localized,
                         buttonText: "OK"
                     )
                     

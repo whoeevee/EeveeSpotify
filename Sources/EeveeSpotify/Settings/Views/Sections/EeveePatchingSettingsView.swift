@@ -7,64 +7,32 @@ struct EeveePatchingSettingsView: View {
 
     var body: some View {
         List {
-            Section(footer: patchType == .disabled ? nil : Text("""
-            You can select the Premium patching method you prefer. App restart is required after changing.
-
-            Static: The original method. On app start, the tweak composes cache data by inserting your username into a blank file with preset Premium parameters. When Spotify reloads user data, you'll be switched to the Free plan and see a popup with quick restart app and reset data actions.
-
-            Dynamic: This method intercepts requests to load user data, deserializes it, and modifies the parameters in real-time. It's much more stable and is recommended.
-
-            If you have an active Premium subscription, you can turn on Do Not Patch Premium. The tweak won't patch the data or restrict the use of Premium server-sided features.
-            """)) {
+            Section(footer: patchType == .disabled ? nil : Text("patching_description".localized)) {
                 Toggle(
-                    "Do Not Patch Premium",
+                    "do_not_patch_premium".localized,
                     isOn: Binding<Bool>(
                         get: { patchType == .disabled },
                         set: { patchType = $0 ? .disabled : .requests }
                     )
                 )
-                
-                if patchType != .disabled {
-                    Picker(
-                        "Patching Method",
-                        selection: $patchType
-                    ) {
-                        Text("Static").tag(PatchType.offlineBnk)
-                        Text("Dynamic").tag(PatchType.requests)
-                    }
-                }
             }
             
             .onChange(of: patchType) { newPatchType in
-                
                 UserDefaults.patchType = newPatchType
-                
-                do {
-                    try OfflineHelper.resetOfflineBnk()
-                }
-                catch {
-                    NSLog("Unable to reset offline.bnk: \(error)")
-                }
+                OfflineHelper.resetData()
             }
             
             .onChange(of: overwriteConfiguration) { overwriteConfiguration in
-                
                 UserDefaults.overwriteConfiguration = overwriteConfiguration
-                
-                do {
-                    try OfflineHelper.resetOfflineBnk()
-                }
-                catch {
-                    NSLog("Unable to reset offline.bnk: \(error)")
-                }
+                OfflineHelper.resetData()
             }
             
             if patchType == .requests {
                 Section(
-                    footer: Text("Replace remote configuration with the dumped Premium one. It might fix some issues, such as appearing ads, but it's not guaranteed.")
+                    footer: Text("overwrite_configuration_description".localized)
                 ) {
                     Toggle(
-                        "Overwrite Configuration",
+                        "overwrite_configuration".localized,
                         isOn: $overwriteConfiguration
                     )
                 }

@@ -2,9 +2,16 @@ import Foundation
 import NaturalLanguage
 
 extension String {
-
     static func ~= (lhs: String, rhs: String) -> Bool {
         lhs.firstMatch(rhs) != nil
+    }
+    
+    var localized: String {
+        BundleHelper.shared.localizedString(self)
+    }
+    
+    func localizeWithFormat(_ arguments: CVarArg...) -> String{
+        String(format: self.localized, arguments: arguments)
     }
 
     var range: NSRange { 

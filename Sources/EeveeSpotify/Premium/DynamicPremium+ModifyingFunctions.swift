@@ -1,7 +1,6 @@
 import Foundation
 
 func modifyRemoteConfiguration(_ configuration: inout UcsResponse) {
-    
     if UserDefaults.overwriteConfiguration {
         configuration.resolve.configuration = try! BundleHelper.shared.resolveConfiguration()
     }
@@ -10,7 +9,6 @@ func modifyRemoteConfiguration(_ configuration: inout UcsResponse) {
 }
 
 func modifyAttributes(_ attributes: inout [String: AccountAttribute]) {
-    
     attributes["type"] = AccountAttribute.with {
         $0.stringValue = "premium"
     }

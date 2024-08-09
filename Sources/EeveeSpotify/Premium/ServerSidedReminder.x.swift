@@ -4,15 +4,13 @@ import UIKit
 struct ServerSidedReminder: HookGroup { }
 
 class StreamQualitySettingsSectionHook: ClassHook<NSObject> {
-    
     typealias Group = ServerSidedReminder
     static let targetName = "StreamQualitySettingsSection"
 
     func shouldResetSelection() -> Bool {
-
         PopUpHelper.showPopUp(
-            message: "Very high audio quality is server-sided and is not available with this tweak.", 
-            buttonText: "OK"
+            message: "high_audio_quality_popup".localized,
+            buttonText: "ok".localized
         )
 
         return true
@@ -23,13 +21,12 @@ class StreamQualitySettingsSectionHook: ClassHook<NSObject> {
 
 private func showOfflineModePopUp() {
     PopUpHelper.showPopUp(
-        message: "Native playlist downloading is server-sided and is not available with this tweak. You can download podcast episodes though.", 
-        buttonText: "OK"
+        message: "playlist_downloading_popup".localized,
+        buttonText: "ok".localized
     )
 }
 
 class FTPDownloadActionHook: ClassHook<NSObject> {
-
     typealias Group = ServerSidedReminder
     static let targetName = "ListUXPlatform_FreeTierPlaylistImpl.FTPDownloadAction"
 
@@ -39,7 +36,6 @@ class FTPDownloadActionHook: ClassHook<NSObject> {
 }
 
 class UIButtonHook: ClassHook<UIButton> {
-
     typealias Group = ServerSidedReminder
     
     func setHighlighted(_ highlighted: Bool) {

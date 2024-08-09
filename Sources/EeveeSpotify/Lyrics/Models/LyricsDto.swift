@@ -18,10 +18,10 @@ struct LyricsDto {
         if lines.isEmpty {
             lyricsData.lines = [
                 LyricsLine.with {
-                    $0.content = "This song is instrumental."
+                    $0.content = "song_is_instrumental".localized
                 },
                 LyricsLine.with {
-                    $0.content = "Let the music play..."
+                    $0.content = "let_the_music_play".localized
                 },
                 LyricsLine.with {
                     $0.content = ""

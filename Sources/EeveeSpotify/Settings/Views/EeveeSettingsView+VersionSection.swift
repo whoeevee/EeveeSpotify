@@ -1,9 +1,7 @@
 import SwiftUI
 
 extension EeveeSettingsView {
-    
     func loadVersion() async throws {
-        
         let (data, _) = try await URLSession.shared.data(
             from: URL(string: "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest")!
         )
@@ -24,11 +22,10 @@ extension EeveeSettingsView {
     }
     
     @ViewBuilder func VersionSection() -> some View {
-        
         Section {
             if isUpdateAvailable {
                 Link(
-                    "Update Available",
+                    "update_available".localized,
                     destination: URL(string: "https://github.com/whoeevee/EeveeSpotify/releases")!
                 )
             }
@@ -39,7 +36,7 @@ extension EeveeSettingsView {
                 if latestVersion.isEmpty {
                     HStack(spacing: 10) {
                         ProgressView()
-                        Text("Checking for Update...")
+                        Text("checking_for_update".localized)
                     }
                 }
             }

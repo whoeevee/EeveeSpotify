@@ -1,0 +1,98 @@
+/* MARK: Settings */
+
+patching = "Patching";
+lyrics = "Lyrics";
+customization = "Customization";
+
+reset_data = "Reset Data";
+reset_data_description = "Clear cached data and restart the app.";
+
+checking_for_update = "Checking for Update...";
+update_available = "Update Available";
+
+cancel = "Cancel";
+ok = "OK";
+
+// Patching
+
+do_not_patch_premium = "Do Not Patch Premium";
+patching_description = "The tweak intercepts requests to load user data, deserializes it, and modifies the parameters in real-time.
+
+If you have an active Premium subscription, you can turn on Do Not Patch Premium. The tweak won't patch the data or restrict the use of Premium server-sided features. App restart is required after changing.";
+
+overwrite_configuration = "Overwrite Configuration";
+overwrite_configuration_description = "Replace remote configuration with the dumped Premium one. It might fix some issues, such as appearing ads, but it's not guaranteed.";
+
+// Lyrics
+
+lyrics_source = "Lyrics Source";
+lyrics_source_description = "You can select the lyrics source you prefer.
+
+Genius: Offers the best quality lyrics, provides the most songs, and updates lyrics the fastest. Does not and will never be time-synced.
+
+LRCLIB: The most open service, offering time-synced lyrics. However, it lacks lyrics for many songs.
+
+Musixmatch: The service Spotify uses. Provides time-synced lyrics for many songs, but you'll need a user token to use this source.";
+lyrics_additional_info = "If the tweak is unable to find a song or process the lyrics, you'll see a \"Couldn't load the lyrics for this song\" message. The lyrics might be wrong for some songs when using Genius due to how the tweak searches songs. I've made it work in most cases.";
+petitlyrics_description = "PetitLyrics: Offers plenty of time-synced Japanese and some international lyrics.";
+
+musixmatch_user_token = "Musixmatch User Token";
+user_token_placeholder = "Enter User Token or Paste Debug Info";
+
+enter_user_token = "Enter User Token";
+enter_user_token_message = "In order to use Musixmatch, you need to retrieve your user token from the official app. Download Musixmatch from the App Store, sign up, then go to Settings > Get help > Copy debug info, and paste it here. You can also extract the token using MITM.";
+
+genius_fallback = "Genius Fallback";
+genius_fallback_description = "Load lyrics from Genius if there is a problem with %@.";
+
+show_fallback_reasons = "Show Fallback Reasons";
+
+romanized_lyrics = "Romanized Lyrics";
+romanized_lyrics_description = "Display romanized lyrics for Japanese, Korean, and Chinese.";
+
+musixmatch_language = "Musixmatch Lyrics Language";
+musixmatch_language_description = "You can enter a 2-letter Musixmatch language code and see translated lyrics on Musixmatch if they are available.";
+
+// UI
+
+lyrics_background_color_section = "Lyrics Background Color";
+lyrics_background_color_section_description = "If you turn on Display Original Colors, the lyrics will appear in the original Spotify colors for tracks that have them.
+
+You can set a static color or a normalization factor based on the extracted track cover's color. This factor determines how much dark colors are lightened and light colors are darkened. Generally, you will see lighter colors with a higher normalization factor.";
+
+display_original_colors = "Display Original Colors";
+
+use_static_color = "Use Static Color";
+static_color = "Static Color";
+
+color_normalization_factor = "Color Normalization Factor";
+dark_popups = "Dark PopUps";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "It looks like you have an active Premium subscription, so the tweak won't patch the data or restrict the use of Premium server-sided features. You can manage this in the EeveeSpotify settings.";
+
+high_audio_quality_popup = "Very high audio quality is server-sided and is not available with this tweak.";
+playlist_downloading_popup = "Native playlist downloading is server-sided and is not available with this tweak. You can download podcast episodes though.";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Fallback";
+romanized_attribute = "Romanized";
+
+musixmatch_unauthorized_popup = "The tweak is unable to load lyrics from Musixmatch due to Unauthorized error. Please check or update your Musixmatch token. If you use an iPad, you should get the token from the Musixmatch app for iPad.";
+musixmatch_restricted_popup = "The tweak is unable to load lyrics from Musixmatch because they are restricted. It's likely a copyright issue due to the US IP address, so you should change it if you're in the US or use a VPN.";
+
+// Errors Titles
+
+no_such_song = "No Song Found";
+musixmatch_restricted = "Restricted";
+invalid_musixmatch_token = "Unauthorized";
+decoding_error = "Decoding Error";
+no_current_track = "No Track Instance";
+unknown_error = "Unknown Error";
+
+// Instrumental Titles
+
+song_is_instrumental = "This song is instrumental.";
+let_the_music_play = "Let the music play...";

@@ -1,8 +1,7 @@
 import Foundation
 import Orion
 
-class SPTDataLoaderServiceHook: ClassHook<NSObject> {
-    
+class SPTDataLoaderServiceHook: ClassHook<NSObject>, SpotifySessionDelegate {
     static let targetName = "SPTDataLoaderService"
     
     // orion:new
@@ -23,48 +22,46 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject> {
             return
         }
         
-        if error == nil && shouldModify(url) {
-            
-            if let buffer = URLSessionHelper.shared.obtainData(for: url) {
-                
-                if url.isLyrics {
-                    
-                    do {
-                        orig.URLSession(
-                            session,
-                            dataTask: task,
-                            didReceiveData: try getLyricsForCurrentTrack(
-                                originalLyrics: try? Lyrics(serializedData: buffer)
-                            )
-                        )
-                        
-                        orig.URLSession(session, task: task, didCompleteWithError: nil)
-                    }
-                    catch {
-                        orig.URLSession(session, task: task, didCompleteWithError: error)
-                    }
-                    
-                    return
-                }
-                
+        if error == nil, 
+            shouldModify(url),
+            let buffer = URLSessionHelper.shared.obtainData(for: url) 
+        {
+            if url.isLyrics {
                 do {
-                    var customizeMessage = try CustomizeMessage(serializedData: buffer)
-                    modifyRemoteConfiguration(&customizeMessage.response)
-                    
                     orig.URLSession(
                         session,
                         dataTask: task,
-                        didReceiveData: try customizeMessage.serializedData()
+                        didReceiveData: try getLyricsForCurrentTrack(
+                            originalLyrics: try? Lyrics(serializedData: buffer)
+                        )
                     )
                     
                     orig.URLSession(session, task: task, didCompleteWithError: nil)
-
-                    NSLog("[EeveeSpotify] Modified customize data")
-                    return
                 }
                 catch {
-                    NSLog("[EeveeSpotify] Unable to modify customize data: \(error)")
+                    orig.URLSession(session, task: task, didCompleteWithError: error)
                 }
+                
+                return
+            }
+            
+            do {
+                var customizeMessage = try CustomizeMessage(serializedData: buffer)
+                modifyRemoteConfiguration(&customizeMessage.response)
+                
+                orig.URLSession(
+                    session,
+                    dataTask: task,
+                    didReceiveData: try customizeMessage.serializedData()
+                )
+                
+                orig.URLSession(session, task: task, didCompleteWithError: nil)
+
+                NSLog("[EeveeSpotify] Modified customize data")
+                return
+            }
+            catch {
+                NSLog("[EeveeSpotify] Unable to modify customize data: \(error)")
             }
         }
         
@@ -76,12 +73,16 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject> {
         _ session: URLSession,
         dataTask task: URLSessionDataTask,
         didReceiveResponse response: HTTPURLResponse,
-        completionHandler handler: Any
+        completionHandler handler: @escaping (URLSession.ResponseDisposition) -> Void
     ) {
-        let url = response.url!
+        guard
+            let request = task.currentRequest,
+            let url = request.url
+        else {
+            return
+        }
         
         if url.isLyrics, response.statusCode != 200 {
-
             let okResponse = HTTPURLResponse(
                 url: url,
                 statusCode: 200,

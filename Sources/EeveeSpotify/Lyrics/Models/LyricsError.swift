@@ -10,12 +10,12 @@ enum LyricsError: Error, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .NoSuchSong: "No Song Found"
-        case .MusixmatchRestricted: "Restricted"
-        case .InvalidMusixmatchToken: "Unauthorized"
-        case .DecodingError: "Decoding Error"
-        case .NoCurrentTrack: "No Track Instance"
-        case .UnknownError: "Unknown Error"
+        case .NoSuchSong: "no_such_song".localized
+        case .MusixmatchRestricted: "musixmatch_restricted".localized
+        case .InvalidMusixmatchToken: "invalid_musixmatch_token".localized
+        case .DecodingError: "decoding_error".localized
+        case .NoCurrentTrack: "no_current_track".localized
+        case .UnknownError: "unknown_error".localized
         }
     }
 }

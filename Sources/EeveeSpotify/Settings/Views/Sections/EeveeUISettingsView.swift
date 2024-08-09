@@ -2,31 +2,26 @@ import SwiftUI
 import UIKit
 
 struct EeveeUISettingsView: View {
-    
     @State var lyricsColors = UserDefaults.lyricsColors
 
     var body: some View {
         List {
             Section(
-                header: Text("Lyrics Background Color"),
-                footer: Text("""
-    If you turn on Display Original Colors, the lyrics will appear in the original Spotify colors for tracks that have them.
-
-    You can set a static color or a normalization factor based on the extracted track cover's color. This factor determines how much dark colors are lightened and light colors are darkened. Generally, you will see lighter colors with a higher normalization factor.
-    """)) {
+                header: Text("lyrics_background_color_section".localized),
+                footer: Text("lyrics_background_color_section_description".localized)) {
                 Toggle(
-                    "Display Original Colors",
+                    "display_original_colors".localized,
                     isOn: $lyricsColors.displayOriginalColors
                 )
                 
                 Toggle(
-                    "Use Static Color",
+                    "use_static_color".localized,
                     isOn: $lyricsColors.useStaticColor
                 )
                 
                 if lyricsColors.useStaticColor {
                     ColorPicker(
-                        "Static Color",
+                        "static_color".localized,
                         selection: Binding<Color>(
                             get: { Color(hex: lyricsColors.staticColor) },
                             set: { lyricsColors.staticColor = $0.hexString }
@@ -36,8 +31,7 @@ struct EeveeUISettingsView: View {
                 }
                 else {
                     VStack(alignment: .leading, spacing: 5) {
-
-                        Text("Color Normalization Factor")
+                        Text("color_normalization_factor".localized)
                         
                         Slider(
                             value: $lyricsColors.normalizationFactor,
@@ -54,7 +48,7 @@ struct EeveeUISettingsView: View {
             
             Section {
                 Toggle(
-                    "Dark PopUps",
+                    "dark_popups".localized,
                     isOn: Binding<Bool>(
                         get: { UserDefaults.darkPopUps },
                         set: { UserDefaults.darkPopUps = $0 }

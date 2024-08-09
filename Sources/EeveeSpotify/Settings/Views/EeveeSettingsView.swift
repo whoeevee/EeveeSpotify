@@ -2,7 +2,6 @@ import SwiftUI
 import UIKit
 
 struct EeveeSettingsView: View {
-    
     let navigationController: UINavigationController
     
     @State var latestVersion = ""
@@ -19,7 +18,6 @@ struct EeveeSettingsView: View {
 
     var body: some View {
         List {
-            
             VersionSection()
             
             if !hasShownCommonIssuesTip {
@@ -34,43 +32,52 @@ struct EeveeSettingsView: View {
             //
             
             Button {
-                pushSettingsController(with: EeveePatchingSettingsView(), title: "Patching")
+                pushSettingsController(
+                    with: EeveePatchingSettingsView(),
+                    title: "patching".localized
+                )
             } label: {
                 NavigationSectionView(
                     color: .orange,
-                    title: "Patching",
+                    title: "patching".localized,
                     imageSystemName: "hammer.fill"
                 )
             }
             
             Button {
-                pushSettingsController(with: EeveeLyricsSettingsView(), title: "Lyrics")
+                pushSettingsController(
+                    with: EeveeLyricsSettingsView(),
+                    title: "lyrics".localized
+                )
             } label: {
                 NavigationSectionView(
                     color: .blue,
-                    title: "Lyrics",
+                    title: "lyrics".localized,
                     imageSystemName: "quote.bubble.fill"
                 )
             }
             
             Button {
-                pushSettingsController(with: EeveeUISettingsView(), title: "Customization")
+                pushSettingsController(
+                    with: EeveeUISettingsView(),
+                    title: "customization".localized
+                )
             } label: {
                 NavigationSectionView(
                     color: Color(hex: "#64D2FF"),
-                    title: "Customization",
+                    title: "customization".localized,
                     imageSystemName: "paintpalette.fill"
                 )
             }
             
             //
             
-            Section(footer: Text("Clear cached data and restart the app.")) {
+            Section(footer: Text("reset_data_description".localized)) {
                 Button {
-                    try! OfflineHelper.resetPersistentCache()
+                    OfflineHelper.resetData()
                     exitApplication()
                 } label: {
-                    Text("Reset Data")
+                    Text("reset_data".localized)
                 }
             }
         }
