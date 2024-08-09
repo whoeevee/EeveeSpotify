@@ -1,0 +1,103 @@
+/* MARK: Settings */
+
+patching = "Patch";
+lyrics = "Testi";
+customization = "Personalizzazione";
+
+common_issues_tip_title = "Riscontri problemi?";
+
+common_issues_tip_message = "Se riscontri un problema, tra cui non poter riprodurre le canzoni, visita la pagina dei";
+common_issues_tip_button = "problemi noti";
+
+reset_data = "Reimposta dati";
+reset_data_description = "Svuota la cache e riavvia l'app.";
+
+checking_for_update = "Controllo aggiornamenti...";
+update_available = "Aggiornamento disponibile";
+
+cancel = "Annulla";
+ok = "OK";
+
+// Patching
+
+do_not_patch_premium = "Non patchare Premium";
+patching_description = "Questo tweak intercetta le richeste inerenti ai dati dell'utente, li deserializza, e modifica i parametri in tempo reale.
+
+Se possiedi già un piano Premium, puoi abilitare l'opzione Non patchare premium. Così facendo, il tweak non modificherà i dati e non influirà sulle funzioni Premium lato server. Il riavvio dell'app è richiesto dopo la modifica.";
+
+overwrite_configuration = "Sovrascrivi configurazione";
+overwrite_configuration_description = "Sovrascrivi configurazione con quella Premium. Potrebbe risolvere alcuni problemi, come la comparsa di pubblicità, ma il suo funzionamento non è garantito.";
+
+// Lyrics
+
+lyrics_source = "Fonte dei testi";
+lyrics_source_description = "Seleziona la fonte dei testi da te preferita.
+
+Genius: Offre la miglior qualità di testi per quasi tutte le canzoni, ed è anche la fonte più veloce negli aggiornamenti. I testi non sono e non saranno mai sincronizzati.
+
+LRCLIB: Il servizio più libero, offre testi sincronizzati. D'altro canto, molte canzoni non sono presenti.
+
+Musixmatch: Il servizio usato di default da Spotify. Offre testi sincronizzati per molte canzoni, ma avrai bisogno di un token per usare questa fonte.";
+lyrics_additional_info = "Se il tweak non riesce a trovare una canzone o a processare il testo, vedrai il messaggio \"Impossobile caricare il testo di questa canzone.\". Il testo di alcune canzoni potrebbe essere errato se ottenuto da Genius, a causa del metodo di ricerca usato. D'altronde, funzionerà nella maggior parte dei casi.";
+petitlyrics_description = "PetitLyrics: Offre moltissimi testi sincronizzati in Giapponese e alcuni testi internazionali.";
+
+musixmatch_user_token = "Token di Musixmatch";
+user_token_placeholder = "Digita il token o incolla le info di Debug";
+
+enter_user_token = "Digita il token";
+enter_user_token_message = "In order to use Musixmatch, you need to retrieve your user token from the official app. Download Musixmatch from the App Store, sign up, then go to Settings > Get help > Copy debug info, and paste it here. You can also extract the token using MITM.";
+
+genius_fallback = "Fallback per Genius";
+genius_fallback_description = "Carica testi da Genius se non è possibile tramite %@.";
+
+show_fallback_reasons = "Mostra motivi del fallback";
+
+romanized_lyrics = "Trascrizione testi";
+romanized_lyrics_description = "Mostra la trascrizione dei testi in Giapponese, Coreano, e Cinese.";
+
+musixmatch_language = "Lingua testi da Musixmatch";
+musixmatch_language_description = "Puoi impostare un codice lingua Musixmatch da 2 lettere per ottenere i testi tradotti, qualora siano presenti.";
+
+// UI
+
+lyrics_background_color_section = "Colori sfondo per i testi";
+lyrics_background_color_section_description = "Se abiliti l'opzione Mostra colori originali, i testi appariranno con i colori predefiniti di Spotify, se presenti.
+
+Puoi impostare un colore statico o un fattore di normalizzazione basato sui colori della copertina estratta. Questo fattore determina quanto luminosi debbano essere i colori scuri e quanto scuri quelli chiari. Generalmente, i colori chiari avranno un maggiore contrasto.";
+
+display_original_colors = "Mostra colori originali";
+
+use_static_color = "Utilizza colori statici";
+static_color = "Colore statico";
+
+color_normalization_factor = "Fattore di normalizzazione dei colori";
+dark_popups = "PopUps scuri";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "Sembra che tu possegga già un piano Premium, dunque il tweak non modificherà le impostazioni e non influirà sulle funzioni Premium lato server. Puoi modificare ciò tramite le impostazioni di EeveeSpotify.";
+
+high_audio_quality_popup = "La qualità audio molto alta è una funzione lato server, dunque non disponibile con questo tweak.";
+playlist_downloading_popup = "Il download locale delle playlist è una funzione lato server, dunque non disponibile con questo tweak. Potrai comunque scaricare gli episodi dei Podcast.";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Fallback";
+romanized_attribute = "Trascrizione";
+
+musixmatch_unauthorized_popup = "Il tweak non riesce a caricare i testi da Musixmatch a causa di un errore di autorizzazione. Verifica o aggionra il tuo token Musixmatch. Se utilizzi un iPad, dovrai ottenere il token dall'app Musixmatch per iPad.";
+musixmatch_restricted_popup = "Il tweak non riesce a caricare i testi da Musixmatch poichè questi sono ristretti. Si tratta probabilmente di un probema di Copyright dovuto all'IP Americano, dunque è consigliato cambiare IP o usare un VPN.";
+
+// Errors Titles
+
+no_such_song = "Nessuna canzone trovata";
+musixmatch_restricted = "Ristretto";
+invalid_musixmatch_token = "Non autorizzato";
+decoding_error = "Errore di Decoding";
+no_current_track = "Nessuna traccia";
+unknown_error = "Errore sconosciuto";
+
+// Instrumental Titles
+
+song_is_instrumental = "Questa canzone è una strumentale.";
+let_the_music_play = "Metti un po' di musica...";
