@@ -1,0 +1,94 @@
+/* MARK: Settings */
+
+patching = "补丁";
+lyrics = "歌词";
+customization = "定制";
+
+common_issues_tip_title = "发现问题？";
+
+common_issues_tip_message = "如果遇到问题，例如无法播放任何歌曲，请查看";
+common_issues_tip_button = "常见问题";
+
+reset_data = "重置数据";
+reset_data_description = "清除缓存数据并重新启动应用程序。";
+
+checking_for_update = "正在检查更新...";
+update_available = "发现可用更新";
+
+cancel = "取消";
+ok = "好的";
+
+// Patching
+
+do_not_patch_premium = "不启用 Premium 补丁";
+patching_description = "该插件会拦截加载用户数据的请求，对其进行反序列化，并实时修改参数。\n\n如果您拥有真实有效的 Premium 订阅，则可以启用“不启用 Premium 补丁”。该插件不会修补数据或限制Premium服务器端功能的使用。更改后需要重新启动应用。";
+
+overwrite_configuration = "覆盖配置";
+overwrite_configuration_description = "用转存的 Premium 配置替换远程配置。虽然不能保证一定有效，但可以解决一些问题，如出现广告。";
+
+// Lyrics
+
+lyrics_source = "歌词来源";
+lyrics_source_description = "可以自由选择自己喜欢的歌词来源。\n\nGenius：拥有最优质的歌词，提供最多的歌曲，歌词更新速度最快。但是，不会进行实时同步。\nLRCLIB：最开放的服务，提供实时同步的歌词。但是，它缺少很多歌曲的歌词。\nMusixmatch：Spotify 本身所使用的服务，为很多歌曲提供实时同步的歌词，但需要用户令牌才能使用此来源。";
+lyrics_additional_info = "如果插件无法找到歌曲或处理歌词，将看到“无法加载这首歌的歌词”的提示。使用 Genius 时，由于插件搜索歌曲的方式，某些歌词可能会有误。在大多数情况下，它都正常工作。";
+petitlyrics_description = "PetitLyrics：提供大量实时同步的日语歌词和一些国际歌词。";
+
+musixmatch_user_token = "Musixmatch 用户令牌";
+user_token_placeholder = "输入用户令牌或粘贴调试信息";
+
+enter_user_token = "输入用户令牌";
+enter_user_token_message = "为了使用 Musixmatch，需要从官方应用程序中检索你的用户令牌。从 AppStore 下载 Musixmatch，注册后转到“设置”>“获取帮助”>“复制调试信息”，并将其粘贴在此处。你也可以使用 MITM 提取令牌。";
+
+genius_fallback = "回退Genius";
+genius_fallback_description = "如果 %@ 有问题，将使用 Genius 加载歌词。";
+
+show_fallback_reasons = "显示回退原因";
+
+romanized_lyrics = "罗马化歌词";
+romanized_lyrics_description = "显示中文、韩语和日语的罗马化歌词。";
+
+musixmatch_language = "Musixmatch 歌词语言";
+musixmatch_language_description = "可以输入两个字母的 Musixmatch 语言代码，并在 Musixmatch 上查看翻译的歌词（如果有）。";
+
+// UI
+
+lyrics_background_color_section = "歌词背景颜色";
+lyrics_background_color_section_description = "如果打开“原始颜色”，歌词将以 Spotify 的默认颜色显示。\n\n也可以根据提取的曲目封面的颜色设置“静态颜色”或“标准颜色”。颜色标准参数决定深色变浅的程度以及浅色变暗的程度。通常，标准参数越高，看到的颜色越浅。";
+
+display_original_colors = "显示原始颜色";
+
+use_static_color = "使用静态颜色";
+static_color = "静态颜色";
+
+color_normalization_factor = "颜色标准参数";
+dark_popups = "深色弹窗";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "看来您有一个真实有效的 Premium 订阅，因此此插件不会修补数据或限制 Premium 服务器端功能的使用。可以在 EeveeSpotify 设置中管理此操作。";
+
+high_audio_quality_popup = "非常高的音频质量是服务器端的，并且无法通过此插件获得。";
+playlist_downloading_popup = "原生播放列表下载是服务器端的，无法通过此插件下载。不过可以下载播客节目。";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "回退";
+romanized_attribute = "罗马化";
+
+musixmatch_unauthorized_popup = "由于未授权错误，该插件无法从 Musixmatch 加载歌词。请检查或更新 Musixmatch 令牌。如果使用 iPad，则应从 iPad 版 Musixmatch 应用中获取令牌。";
+musixmatch_restricted_popup = "由于受到限制，该插件无法加载 Musixmatch 的歌词。这可能是由于美国 IP 地址导致的版权问题，因此如果在美国，则应更改它或使用 VPN。";
+
+// Errors Titles
+
+no_such_song = "未找到歌曲";
+musixmatch_restricted = "受限制";
+invalid_musixmatch_token = "未授权";
+decoding_error = "解码错误";
+no_current_track = "无跟踪实例";
+unknown_error = "未知错误";
+
+// Instrumental Titles
+
+song_is_instrumental = "这首歌是器乐曲。";
+let_the_music_play = "让音乐播放...";
+
