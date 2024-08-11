@@ -73,7 +73,7 @@ static_color = "Sabit Renk";
 color_normalization_factor = "Renk Normalleştirme Faktörü";
 dark_popups = "Koyu Açılır Pencereler";
 
-/* Premium PopUps */
+/* MARK: Premium PopUps */
 
 have_premium_popup = "Aktif bir Premium aboneliğiniz var gibi görünüyor, bu yüzden yama, verileri yama yapmayacak veya Premium sunucu tarafı özelliklerinin kullanımını kısıtlamayacaktır. Bunu EeveeSpotify ayarlarında yönetebilirsiniz.";
 
