@@ -1,0 +1,103 @@
+/* MARK: Settings */
+
+patching = "Yamalama";
+lyrics = "Şarkı Sözleri";
+customization = "Özelleştirme";
+
+common_issues_tip_title = "Sorun mu Yaşıyorsunuz?";
+
+common_issues_tip_message = "Bir sorunla karşılaşıyorsanız, örneğin şarkılar oynamıyorsa, buraya göz atın";
+common_issues_tip_button = "Ortak Sorunlar";
+
+reset_data = "Verileri Sıfırla";
+reset_data_description = "Önbelleğe alınan verileri temizleyin ve uygulamayı yeniden başlatın.";
+
+checking_for_update = "Güncelleme Kontrol Ediliyor...";
+update_available = "Güncelleme Mevcut";
+
+cancel = "İptal";
+ok = "Tamam";
+
+// Patching
+
+do_not_patch_premium = "Premium için olan Yamayı Yapma";
+patching_description = "Yama, kullanıcı verilerini yüklemek için yapılan istekleri keser, serileştirilen verileri açar ve parametreleri gerçek zamanlı olarak değiştirir.
+
+Aktif bir Premium aboneliğiniz varsa, Premium'u Yama Yapma seçeneğini açabilirsiniz. Yama, verileri yamalamaz veya Premium sunucu tarafı özelliklerinin kullanımını kısıtlamaz. Değişiklikten sonra uygulamanın yeniden başlatılması gerekir.";
+
+overwrite_configuration = "Yapılandırmayı Üzerine Yaz";
+overwrite_configuration_description = "Uzaktan yapılandırmayı Premium ile değiştirilmiş yapılandırma ile değiştirin. Bu, reklam gibi bazı sorunları düzeltebilir, ancak garanti edilmez.";
+
+// Lyrics
+
+lyrics_source = "Şarkı Sözü Kaynağı";
+lyrics_source_description = "Tercih ettiğiniz şarkı sözü kaynağını seçebilirsiniz.
+
+Genius: En iyi kaliteli şarkı sözlerini sunar, en fazla şarkıyı sağlar ve şarkı sözlerini en hızlı şekilde günceller. Zamanla senkronize edilmez ve asla edilmeyecek.
+
+LRCLIB: Zamanla senkronize edilmiş şarkı sözleri sunan en açık kaynak hizmettir. Ancak, birçok şarkının sözleri eksiktir.
+
+Musixmatch: Spotify'ın kullandığı hizmettir. Birçok şarkı için zamanla senkronize edilmiş şarkı sözleri sağlar, ancak bu kaynağı kullanmak için bir kullanıcı tokenine(kullanıcıya özel etiket) ihtiyacınız var.";
+lyrics_additional_info = "Eğer yama bir şarkıyı bulamazsa veya şarkı sözlerini işleyemezse, \"Bu şarkı için şarkı sözleri yüklenemedi\" mesajı görürsünüz. Genius kullanırken, şarkı arama şekli nedeniyle bazı şarkılar için şarkı sözleri yanlış olabilir. Çoğu durumda çalışmasını sağladım.";
+petitlyrics_description = "PetitLyrics: Birçok zamanla senkronize Japonca ve bazı uluslararası şarkı sözleri sunar.";
+
+musixmatch_user_token = "Musixmatch Kullanıcı Tokeni";
+user_token_placeholder = "Kullanıcı Tokeni Girin veya Hata Ayıklama Bilgilerini Yapıştırın";
+
+enter_user_token = "Kullanıcı Tokeni Girin";
+enter_user_token_message = "Musixmatch'i kullanmak için, kullanıcı tokeninizi resmi uygulamadan almanız gerekir. App Store'dan Musixmatch'i indirin, kaydolun, ardından Ayarlar > Yardım Al > Hata Ayıklama Bilgilerini Kopyala seçeneğine gidin ve buraya yapıştırın. Tokeni ayrıca MITM kullanarak da çıkarabilirsiniz.";
+
+genius_fallback = "Genius'a Geri çekilme";
+genius_fallback_description = "Bir sorun olduğunda %@ üzerinden şarkı sözlerini Genius'tan yükleyin.";
+
+show_fallback_reasons = "Geri çekilme Nedenlerini Göster";
+
+romanized_lyrics = "Romanize(Latin Alfabesine çevirme) Edilmiş Şarkı Sözleri";
+romanized_lyrics_description = "Japonca, Korece ve Çince şarkılar için romanize edilmiş şarkı sözlerini göster.";
+
+musixmatch_language = "Musixmatch Şarkı Sözü Dili";
+musixmatch_language_description = "Musixmatch dil kodunu girerek, mevcutsa Musixmatch'te çevrilmiş şarkı sözlerini görebilirsiniz.";
+
+// UI
+
+lyrics_background_color_section = "Şarkı Sözleri Arka Plan Rengi";
+lyrics_background_color_section_description = "Orijinal Renkleri Göster'i açarsanız, şarkı sözleri, onları içeren parçalar için orijinal Spotify renklerinde görünecektir.
+
+Sabit bir renk ayarlayabilir veya parçanın kapak renginden çıkarılan bir normalizasyon faktörü belirleyebilirsiniz. Bu faktör, koyu renklerin ne kadar açılacağını ve açık renklerin ne kadar karartılacağını belirler. Genel olarak, daha yüksek bir normalizasyon faktörüyle daha açık renkler görürsünüz.";
+
+display_original_colors = "Orijinal Renkleri Göster";
+
+use_static_color = "Sabit Renk Kullan";
+static_color = "Sabit Renk";
+
+color_normalization_factor = "Renk Normalleştirme Faktörü";
+dark_popups = "Koyu Açılır Pencereler";
+
+/* Premium PopUps */
+
+have_premium_popup = "Aktif bir Premium aboneliğiniz var gibi görünüyor, bu yüzden yama, verileri yama yapmayacak veya Premium sunucu tarafı özelliklerinin kullanımını kısıtlamayacaktır. Bunu EeveeSpotify ayarlarında yönetebilirsiniz.";
+
+high_audio_quality_popup = "Çok yüksek ses kalitesi sunucu taraflıdır ve bu yamayla mevcut değildir.";
+playlist_downloading_popup = "Uygulama içi çalma listesi indirme sunucu taraflıdır ve bu yamayla mevcut değildir. Ancak podcast bölümlerini indirebilirsiniz.";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Geri çekilme";
+romanized_attribute = "Romanize Edilmiş";
+
+musixmatch_unauthorized_popup = "Yama, Musixmatch'ten şarkı sözlerini Yetkisiz hata nedeniyle yükleyemiyor. Lütfen Musixmatch tokeninizi kontrol edin veya güncelleyin. Bir iPad kullanıyorsanız, tokeni iPad için Musixmatch uygulamasından almalısınız.";
+musixmatch_restricted_popup = "Yama, Musixmatch'ten şarkı sözlerini yükleyemiyor çünkü bu sözler kısıtlı. Muhtemelen ABD IP adresi nedeniyle bir telif hakkı sorunu, bu yüzden ABD'deyseniz IP adresinizi değiştirmeniz veya bir VPN kullanmanız gerekir.";
+
+// Errors Titles
+
+no_such_song = "Şarkı Bulunamadı";
+musixmatch_restricted = "Kısıtlı";
+invalid_musixmatch_token = "Yetkisiz";
+decoding_error = "Kod Çözme Hatası";
+no_current_track = "Mevcut Parça Yok";
+unknown_error = "Bilinmeyen Hata";
+
+// Instrumental Titles
+
+song_is_instrumental = "Bu şarkı enstrümantaldir.";
+let_the_music_play = "Müzik çalmaya devam etsin...";
