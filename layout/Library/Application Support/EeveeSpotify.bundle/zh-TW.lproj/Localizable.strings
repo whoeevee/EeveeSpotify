@@ -1,6 +1,6 @@
 /* 標記: 設定 */
 
-patching = "破解方案";
+patching = "修補方案";
 lyrics = "歌詞";
 customization = "客製化";
 
@@ -20,10 +20,10 @@ ok = "確定";
 
 // 破解方案
 
-do_not_patch_premium = "不啟用破解";
-patching_description = "Eeveespotify會實時攔截使用者數據請求, 反序列化並修改數據.
+do_not_patch_premium = "不啟用Premium修補";
+patching_description = "EeveeSpotify會實時攔截使用者數據請求, 反序列化並修改數據.
 
-若您擁有有效的Premium方案, 你可以啟用「不啟用破解」. 啟用後Eeveespotify將不會對任何Premium功能做出限制. 修改後需要重新啟動.";
+若您擁有有效的Premium方案, 你可以啟用「不啟用Premium修補」. 啟用後EeveeSpotify將不會對任何Premium功能做出限制. 修改後需要重新啟動.";
 
 overwrite_configuration = "覆寫配置";
 overwrite_configuration_description = "*不保證有效 使用轉存的Premium配置替換遠端配置, 這可能可以解決一些問題例如廣告.";
@@ -38,7 +38,7 @@ Genius: 為絕大多數歌曲提供最高品質的歌詞且更新最快. 但永�
 LRCLIB: 最開放且提供同步歌詞的提供者. 然而其缺少大量歌曲的歌詞.
 
 Musixmatch: Spotify使用的提供者. 為許多歌曲提供同步歌詞以及翻譯, 但是你需要一個使用者令牌才可以使用該歌詞提供者.";
-lyrics_additional_info = "若Eeveespotify無法找到或無法處理歌詞, 您將會看到「無法加載歌詞」. 由於Eeveespotify搜索歌詞的方式所以使用Genius時可能會出現錯誤的歌詞. 我會盡量讓其在大多數情況下正常工作.";
+lyrics_additional_info = "若EeveeSpotify無法找到或無法處理歌詞, 您將會看到「無法加載歌詞」. 由於EeveeSpotify搜索歌詞的方式所以使用Genius時可能會出現錯誤的歌詞. 我會盡量讓其在大多數情況下正常工作.";
 petitlyrics_description = "PetitLyrics: 提供大量已同步的日語歌詞以及一些非日語歌詞.";
 
 musixmatch_user_token = "Musixmatch使用者令牌";
@@ -75,18 +75,18 @@ dark_popups = "深色彈出式提示";
 
 /* 標記: Premium 用戶提示 */
 
-have_premium_popup = "您似乎有可用的Premium方案, 所以Eeveespotify不會對使用者數據做出修改或限制Premium功能. 您可以在EeveeSpotify設定中管理.";
+have_premium_popup = "您似乎有可用的Premium方案, 所以EeveeSpotify不會對使用者數據做出修改或限制Premium功能. 您可以在EeveeSpotify設定中管理.";
 
-high_audio_quality_popup = "極高音質由伺服器處理因此Eeveespotify無法啟用該功能.";
-playlist_downloading_popup = "原生的下載功能由伺服器處理因此Eeveespotify無法啟用該功能. 不過您仍可下載播客.";
+high_audio_quality_popup = "由於極高音質由伺服器處理因此EeveeSpotify無法啟用該功能.";
+playlist_downloading_popup = "由於原生的下載功能由伺服器處理因此EeveeSpotify無法啟用該功能. 不過您仍可下載播客.";
 
 /* 標記: 歌詞 */
 
 fallback_attribute = "回退";
 romanized_attribute = "羅馬化";
 
-musixmatch_unauthorized_popup = "由於未授權因此Eeveespotify無法從Musixmatch加載. 請檢查或更新你的使用者令牌. 若您正在使用iPad, 則您需要從iPad版本的Musixmatch取得使用者令牌.";
-musixmatch_restricted_popup = "由於受到限制因此Eeveespotify無法從Musixmatch加載. 這似乎是由於地區版權限制導致的, 請嘗試使用VPN.";
+musixmatch_unauthorized_popup = "由於歌詞未授權因此EeveeSpotify無法從Musixmatch加載. 請檢查或更新你的使用者令牌. 若您正在使用iPad, 則您需要從iPad版本的Musixmatch取得使用者令牌.";
+musixmatch_restricted_popup = "由於歌詞受到限制因此EeveeSpotify無法從Musixmatch加載. 這似乎是由於地區版權限制導致的, 請嘗試使用VPN.";
 
 // 錯誤標題
 
