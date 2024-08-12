@@ -4,9 +4,9 @@ patching = "修補方案";
 lyrics = "歌詞";
 customization = "客製化";
 
-common_issues_tip_title = "遇到問題?";
+common_issues_tip_title = "遇到問題？";
 
-common_issues_tip_message = "如果你遇到了像是無法播放音樂的問題, 請看";
+common_issues_tip_message = "如果遇到了一些問題，例如無法播放音樂，請看";
 common_issues_tip_button = "常見問題";
 
 reset_data = "重設";
@@ -18,52 +18,52 @@ update_available = "有可用的更新";
 cancel = "取消";
 ok = "確定";
 
-// 破解方案
+// 修補方案
 
 do_not_patch_premium = "不啟用Premium修補";
-patching_description = "EeveeSpotify會實時攔截使用者數據請求, 反序列化並修改數據.
+patching_description = "EeveeSpotify會實時攔截使用者數據請求，反序列化並修改數據。
 
-若您擁有有效的Premium方案, 你可以啟用「不啟用Premium修補」. 啟用後EeveeSpotify將不會對任何Premium功能做出限制. 修改後需要重新啟動.";
+若您擁有有效的Premium方案, 則可以啟用「不啟用Premium修補」。啟用後EeveeSpotify將不會對任何Premium功能做出限制。修改後需要重新啟動。";
 
 overwrite_configuration = "覆寫配置";
-overwrite_configuration_description = "*不保證有效 使用轉存的Premium配置替換遠端配置, 這可能可以解決一些問題例如廣告.";
+overwrite_configuration_description = "*不保證有效 使用轉存的Premium配置替換遠端配置，這可能可以解決一些問題，例如廣告。";
 
 // 歌詞
 
 lyrics_source = "歌詞提供者";
-lyrics_source_description = "在此你可以選擇喜歡的歌詞提供者.
+lyrics_source_description = "你可以在此選擇喜歡的歌詞提供者。
 
-Genius: 為絕大多數歌曲提供最高品質的歌詞且更新最快. 但永遠不會提供同步的歌詞.
+Genius：為絕大多數歌曲提供最高品質的歌詞且為更新最快的提供者，但永遠不會提供同步的歌詞。
 
-LRCLIB: 最開放的服務，提供實時同步的歌詞. 然而其缺少大量歌曲的歌詞.
+LRCLIB：最為開放的歌詞提供者，提供實時同步的歌詞。然而其缺少大量歌曲的歌詞。
 
-Musixmatch: Spotify使用的提供者. 為許多歌曲提供同步歌詞以及翻譯, 但是你需要一個使用者令牌才可以使用該歌詞提供者.";
-lyrics_additional_info = "若EeveeSpotify無法找到或無法處理歌詞, 您將會看到「無法加載歌詞」. 由於EeveeSpotify搜索歌詞的方式所以使用Genius時可能會出現錯誤的歌詞. 在大多數情況下，它都正常工作.";
-petitlyrics_description = "PetitLyrics: 提供大量已同步的日語歌詞以和一些國際歌詞.";
+Musixmatch：Spotify使用的提供者。為許多歌曲提供同步歌詞以及翻譯，但是你需要一個使用者令牌才可以使用該歌詞提供者。";
+lyrics_additional_info = "若EeveeSpotify無法找到或無法處理歌詞, 您將會看到「無法加載歌詞」。由於EeveeSpotify搜索歌詞的方式所以使用Genius時可能會出現錯誤的歌詞。在大多數情況下，它都正常工作。";
+petitlyrics_description = "PetitLyrics：提供大量已同步的日語歌詞和一些國際（非日語）歌詞。";
 
 musixmatch_user_token = "Musixmatch使用者令牌";
-user_token_placeholder = "請輸入使用者令牌或者Musixmatch輸入用戶令牌或粘貼調試信息";
+user_token_placeholder = "請在此輸入 Musixmatch 使用者令牌或粘貼除錯訊息";
 
 enter_user_token = "輸入使用者令牌";
-enter_user_token_message = "如需使用 Musixmatch，需要從官方應用程序中檢索你的用戶令牌. 從App Store下載Musixmatch, 註冊或登錄, 接著來到 設定（右上角的齒輪圖標） > Get help > 複製除錯訊息, 接著在此處貼上. 你也可以用MITM提取使用者令牌.";
+enter_user_token_message = "若要使用 Musixmatch作為歌詞提供者，則需要從官方應用程式中找到你的使用者令牌. 從App Store下載Musixmatch，註冊或登錄, 接著來到 設定（右上角的齒輪圖標） > Get help > 複製除錯訊息, 並在此處貼上. 亦可使用MITM提取使用者令牌.";
 
 genius_fallback = "Genius回退";
-genius_fallback_description = "如果 %@ 有問題，將使用 Genius 加載歌詞。";
+genius_fallback_description = "如果無法從 %@ 加載歌詞，將使用 Genius 加載歌詞。";
 
 show_fallback_reasons = "顯示回退原因";
 
 romanized_lyrics = "羅馬化歌詞";
-romanized_lyrics_description = "為中文, 日文以及韓文顯示羅馬化歌詞";
+romanized_lyrics_description = "為中文，日文以及韓文顯示羅馬化歌詞";
 
-musixmatch_language = "Musixmatch 歌詞語言";
-musixmatch_language_description = "可以輸入兩個字母的 Musixmatch 語言代碼，並在 Musixmatch 上查看翻譯的歌詞（如果有）. *繁體中文代碼為z1";
+musixmatch_language = "Musixmatch 歌詞翻譯語言";
+musixmatch_language_description = "可以輸入兩個字母的 Musixmatch 語言代碼，並在翻譯可用時查看翻譯。*繁體中文代碼為z1";
 
 // 介面
 
 lyrics_background_color_section = "歌詞背景色";
-lyrics_background_color_section_description = "若您啟用「顯示原彩」則會顯示Spotify原本的歌詞背景顏色（根據歌曲專輯封面動態調整）.
+lyrics_background_color_section_description = "若您啟用「顯示原彩」則會顯示Spotify原本的歌詞背景顏色（根據歌曲專輯封面動態調整）。
 
-您可以設定一個固定背景顏色或者設定顏色標準化程度. 該選項決定了多少淺色被調深以及多少深色被調淺. 通常來講, 標準化程度越高則背景顏色越淺.";
+您亦可設定一個固定背景顏色或者設定顏色標準化程度。該選項決定了多少淺色被調深以及多少深色被調淺。通常來講，標準化程度越高則背景顏色越淺。";
 
 display_original_colors = "顯示原彩";
 
@@ -71,22 +71,22 @@ use_static_color = "使用固定背景顏色";
 static_color = "固定背景顏色";
 
 color_normalization_factor = "顏色標準化程度";
-dark_popups = "深色彈出式提示";
+dark_popups = "深色提示";
 
 /* 標記: Premium 用戶提示 */
 
-have_premium_popup = "您似乎有可用的Premium方案, 所以EeveeSpotify不會對使用者數據做出修改或限制Premium功能. 您可以在EeveeSpotify設定中管理.";
+have_premium_popup = "您似乎有可用的Premium方案，所以EeveeSpotify不會對使用者數據做出修改或限制Premium功能。您可以在EeveeSpotify設定中管理。";
 
-high_audio_quality_popup = "由於極高音質由伺服器處理因此EeveeSpotify無法啟用該功能.";
-playlist_downloading_popup = "由於原生的下載功能由伺服器處理因此EeveeSpotify無法啟用該功能. 不過您仍可下載播客.";
+high_audio_quality_popup = "由於極高音質由伺服器處理因此EeveeSpotify無法啟用該功能。";
+playlist_downloading_popup = "由於原生的下載功能由伺服器處理因此EeveeSpotify無法啟用該功能。不過您仍可下載播客。";
 
 /* 標記: 歌詞 */
 
 fallback_attribute = "回退";
 romanized_attribute = "羅馬化";
 
-musixmatch_unauthorized_popup = "由於歌詞未授權因此EeveeSpotify無法從Musixmatch加載. 請檢查或更新你的使用者令牌. 若您正在使用iPad, 則您需要從iPad版本的Musixmatch取得使用者令牌.";
-musixmatch_restricted_popup = "由於歌詞受到限制因此EeveeSpotify無法從Musixmatch加載. 這可能是由於美國 IP 地址導致的版權問題，因此如果在美國，則應更改它或使用 VPN。";
+musixmatch_unauthorized_popup = "由於歌詞未授權因此EeveeSpotify無法從Musixmatch加載。請檢查或更新你的使用者令牌。若您正在使用iPad。則您需要從iPad版本的Musixmatch取得使用者令牌。";
+musixmatch_restricted_popup = "由於歌詞受到限制因此EeveeSpotify無法從Musixmatch加載。這可能是由於美國 IP 地址而導致的版權問題，因此如果在美國，則應更改 IP 地址或使用 VPN。";
 
 // 錯誤標題
 
