@@ -20,7 +20,7 @@ ok = "確定";
 
 // 修補方案
 
-do_not_patch_premium = "不啟用Premium修補";
+do_not_patch_premium = "不修補Premium";
 patching_description = "EeveeSpotify會即時攔截使用者資料請求，反序列化並修改資料。
 
 若您擁有有效的Premium方案, 則可以啟用「不修補Premium」。啟用後EeveeSpotify將不會對任何Premium功能做出限制。修改後需要重新啟動。";
