@@ -42,4 +42,20 @@ The tweak patches this file while initializing; Spotify loads it and assumes you
 
 Tweak also sets `trackRowsEnabled` in `SPTFreeTierArtistHubRemoteURLResolver` to `true`, so Spotify loads not just track names on the artist page. It can stop working just like Spotilife, but so far, it works on the latest Spotify 8.9.## (Spotilife also patches `offline.bnk`, however, it changes obscure bytes that do nothing on new versions). 
 
+## Support
+
+EeveeSpotify has always been free and open-source project. However, I started accepting crypto donations if you'd like to support me. This will help me pay for a good monthly VPS and continue creating cool things. I really appreciate it:
+
+USDT (TRC-20): `TJppx7dvTa2ndoVcQ1jxWkvGN1vEuFHssJ`
+
+USDC/ETH/USDT: `0x98bbd1541cb9a8ebb1229741218886efba963677`
+
+BTC: `bc1q230f0jaryxhrr03v8knxew30p7l4kwefd6d4nl`
+
+LTC: `ltc1qhj3ts8ek0lklqfydxu90ku5d5efq5cw5ww7u9g`
+
+XMR: `86QVbA9XLJ9WznTDRgA7dbf8UV9rsR5KB1UxJCPtdwQqd9rv9YZNRkTJvesGzM13khL9Do1BRb5biUTuDZ5YqnuQF8JrJYk`
+
+***
+
 To open Spotify links in sideloaded app, use [OpenSpotifySafariExtension](https://github.com/BillyCurtis/OpenSpotifySafariExtension). Remember to activate it and allow access in Settings > Safari > Extensions.
