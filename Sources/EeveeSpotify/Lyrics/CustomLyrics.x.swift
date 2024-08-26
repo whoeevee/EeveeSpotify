@@ -259,12 +259,21 @@ func getLyricsForCurrentTrack(originalLyrics: Lyrics? = nil) throws -> Data {
         lyrics.colors = originalLyrics.colors
     }
     else {
+        var color: Color?
+        
+        if let extractedColorHex = track.extractedColorHex() {
+            color = Color(hex: extractedColorHex)
+        }
+        else if let uiColor = HookedInstances.nowPlayingMetaBackgroundModel?.color() {
+            color = Color(uiColor)
+        }
+        
+        color = color?.normalized(lyricsColorsSettings.normalizationFactor)
+        
         lyrics.colors = LyricsColors.with {
             $0.backgroundColor = lyricsColorsSettings.useStaticColor
                 ? Color(hex: lyricsColorsSettings.staticColor).uInt32
-                : Color(hex: track.extractedColorHex())
-                    .normalized(lyricsColorsSettings.normalizationFactor)
-                    .uInt32
+            : color?.uInt32 ?? Color.gray.uInt32
             $0.lineColor = Color.black.uInt32
             $0.activeLineColor = Color.white.uInt32
         }
