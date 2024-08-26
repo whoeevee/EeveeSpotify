@@ -133,11 +133,11 @@ class MusixmatchLyricsRepository: LyricsRepository {
     //
     
     func getLyrics(_ query: LyricsSearchQuery, options: LyricsOptions) throws -> LyricsDto {
-        
         var musixmatchQuery = [
             "track_spotify_id": query.spotifyTrackId,
             "subtitle_format": "mxm",
-            "q_track": " "
+            "q_track": query.title,
+            "q_artist": query.primaryArtist
         ]
         
         if !selectedLanguage.isEmpty {
