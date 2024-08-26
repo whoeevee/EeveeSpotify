@@ -11,14 +11,6 @@ You can only use Spotify abroad for 14 days. Connect to a VPN server in any coun
 
 ***
 
-## Patching Is Not Working
-_References: https://github.com/whoeevee/EeveeSpotify/issues/264, Telegram Discussion Group_
-### If you can't get Premium with either Static or Dynamic patching methods, and resetting data doesn’t help,
-Switch the app language to something else, then switch it back.
-> surprisingly it worked
-
-***
-
 There might be an issue not caused by EeveeSpotify. For example, Smart Shuffle is not affected by the tweak at all. If you encounter an error, enable Smart Shuffle again and avoid scrolling through songs excessively. Also, always test and refrain from reporting original Spotify issues, such as being unable to share lyrics on Instagram/Facebook when colors are changed, songs count truncated in liked songs or horizontal rotation UI bugs.
 
 If you're experiencing a crash, install the debug tweak from Github Actions and open an issue with the crash log and console messages with "EeveeSpotify". Consider using [Cr4shed Rootless](https://github.com/crazymind90/Cr4shed-Rootless) to provide more detailed logs. If you have jailbreak and installed EeveeSpotify with TrollStore, disable tweak injection with Choicy.
