@@ -1,0 +1,105 @@
+/* MARK: Settings */
+
+patching = "am pätche";
+lyrics = "Songtext";
+customization = "Personalisierig";
+
+common_issues_tip_title = "Häsch Problem?";
+
+common_issues_tip_message = "Wänn du Problem hesch, wie z.B. kei Lieder chasch abspiele, lueg dir das a:";
+common_issues_tip_button = "Hüfigi Problem";
+
+reset_data = "Date Zruggsetze";
+reset_data_description = "Lösch zwischegspeicherti Date und starte d'App neu.";
+
+checking_for_update = "lueg nachemene Update...";
+update_available = "Es het es Update verfüegbar!";
+
+cancel = "Abbräche";
+ok = "OK";
+
+// Patching
+
+do_not_patch_premium = "Duen Premium nid pätche";
+patching_description = "De tweak fangt Afraage ab, entserialisiert sie und verändert d'Parameter in Echtziit.
+
+Wänn du es aktivi Premium-Abonnement hesch, chasch du s \'Duen Premium nid pätche\' aktiviere. De tweak wird d'Date nid pätche oder d'Benutzig vo Premium-Serverfunktione nid iischränke. Es isch nötig, d'App neu z'starte, nachdem du das gändert hesch.";
+
+overwrite_configuration = "Überschriib d'Konfiguration";
+overwrite_configuration_description = "Ersetz d'fernkonfiguration mit em dumpete Premium. Es chönnt es paar Problem löse, wie z.B. Werbig, aber es isch nid garantiert.";
+
+// Lyrics
+
+lyrics_source = "Songtext Quelle";
+lyrics_source_description = "Du chasch d'Quelle uswähle, vo wo d'Lyrics cho söttend.
+
+Genius: Biätet de bescht Qualität, het de meiste Lieder und aktualisiert d'Lyrics am schnellste. Bütet aber kei Ziit synchronisierti Lyrics a.
+
+LRCLIB: Isch diä meischt offeni Quelle, wo Ziit synchronisierti Lyrics abütet. Het aber nid für alli Lieder Lyrics.
+
+Musixmatch: Isch d'Quelle, wo Spotify benutzt. Bütet Ziit synchronisierti Lyrics für meh Lieder a, aber du bruchsch en Token, um die Quelle z'nutze.";
+
+lyrics_additional_info = "Wänn de tweak keis lied oder the lyrics nid finde chan, wird en \"Chan kei Lyrics für das Lied lade\" Nachricht usgäh. Die Lyrics chönd falsch sii für einigi Lieder wäg de art wiä de tweak lieder suecht. Ich ha's aber i de meischte Fäll zum laufe bracht.";
+
+petitlyrics_description = "PetitLyrics: Bütet viel Ziit synchronisierti japanischi und internationali Lyrics a.";
+
+musixmatch_user_token = "Musixmatch Token";
+user_token_placeholder = "Duen din Musixmatch token oder d debugg info da ine";
+
+enter_user_token = "Duen de User Token da iigäh";
+enter_user_token_message = "Damit du Musixmatch nutze chasch, muesch du din User Token vo de offizielle App hole. Lade Musixmatch vom App Store abe, mäld di a, gang zu Einstellige > Get Help > Debug Info kopiers und füegs da i. Du chasch de Token au mit MITM uslese.";
+
+genius_fallback = "Genius Fallback";
+genius_fallback_description = "Lade Lyrics vo Genius, wänn es Problem mit %@ git.";
+
+show_fallback_reasons = "Zeig Fallback Reasons";
+
+romanized_lyrics = "Romanisierti Lyrics";
+romanized_lyrics_description = "Zeig romanisierti Lyrics für Japanisch, Koreanisch und Chinesisch a.";
+
+musixmatch_language = "Musixmatch Lyrics Language";
+musixmatch_language_description = "Du chasch en 2-Buchstabe Musixmatch Sprachcode iigäh und übersetzti Lyrics uf Musixmatch luege, wänn sie verfüegbar sind.";
+
+// UI
+
+lyrics_background_color_section = "Lyrics Hintergrund Farb";
+lyrics_background_color_section_description = "Wen du \'Duen Original Farbe Azeige\' aktiviersch, wird de Lyrics im original Spotify Farbschema für die Lieder azeigt, wo es het.
+
+Du chasch en statische Farb oder en Normalisierigsfaktor iigäh, wo basierend uf de extrahierti Track Cover Farb bestimmt, wieviel dunkli Farbe heller und helli Farbe dunkler gmacht wird. Im Allgemeine wirsch du helleri Farbe mit emene höchere Normalisierigsfaktor gseh.";
+
+display_original_colors = "Duen Original Farbe Azeige";
+
+use_static_color = "Bruch statischi Farbe";
+static_color = "Statischi Farbe";
+
+color_normalization_factor = "Farb Normalisierigsfaktor";
+dark_popups = "Schwarzi Popups";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "Es gseht so us alsob du scho e aktivi Premium-Abonnement hesch, darum wird de tweak kei Premium-funktione pätche. Du chasch das i de EeveeSpotify Iistellige verwalte.";
+
+high_audio_quality_popup = "Sehr hohe Audioqualität isch serverseitig und isch mit dem tweak nid verfügbar.";
+playlist_downloading_popup = "Native Playlist-Download isch serverseitig und isch mit dem tweak nid verfügbar. Du chasch aber Podcast Episodene download.";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Fallback";
+romanized_attribute = "Romanisiert";
+
+musixmatch_unauthorized_popup = "De tweak cha kei Lyrics vo Musixmatch lade wäg em \"Unauthorized\" Fehler. Bitte überprüf oder aktualisiere din Musixmatch Token. Wänn du en iPad bruchsch, söllsch de Token vo de Musixmatch App für iPad hole.";
+musixmatch_restricted_popup = "De tweak cha kei Lyrics vo Musixmatch lade wäg em \"Restricted\" Fehler. Es isch wahrschinlich es Copyright-Problem wäg de US IP-Adresse, drum söllsch du die ändere, wänn du i de USA bisch oder en VPN bruchsch.";
+
+// Errors Titles
+
+no_such_song = "Keis Lied gfunde";
+musixmatch_restricted = "Restricted";
+invalid_musixmatch_token = "nöd Authorisiert";
+decoding_error = "Decoding Error";
+no_current_track = "Kei track instanz";
+unknown_error = "Unbekannte Error";
+
+// Instrumental Titles
+
+song_is_instrumental = "Das Lied isch instrumental";
+let_the_music_play = "Lass d'Musig spiele...";
