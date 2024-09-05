@@ -77,7 +77,7 @@ dark_popups = "Mørke pop op-beskeder";
 
 have_premium_popup = "Det ser ud til at du har et aktivt Premium-abonnement, derfor patcher eller begrænser dette tweak ikke brugen af Premium-funktioner der er server-side. Dette kan ændres i EeveeSpotifys indstillinger.";
 
-high_audio_quality_popup = "Lydkvaliteten \"Meget høj"\ er server-side og er derfor ikke tilgænglig med dette tweak.";
+high_audio_quality_popup = "Lydkvaliteten \"Meget høj\" er server-side og er derfor ikke tilgænglig med dette tweak.";
 playlist_downloading_popup = "Den indbyggede download af playlister er server-side og er ikke derfor tilgænglig med dette tweak. Download af podcastepisoder er dog muligt.";
 
 /* MARK: Lyrics */
