@@ -18,7 +18,7 @@ update_available = "Mise à jour disponible";
 cancel = "Annuler";
 ok = "OK";
 
-// Patchage
+// Patching
 
 do_not_patch_premium = "Ne pas patcher Premium";
 patching_description = "Le tweak intercepte les requêtes pour charger les données de l'utilisateur, les désérialise, et modifie les paramètres en temps réel.
@@ -28,7 +28,7 @@ Si vous avez un abonnement Premium actif, vous pouvez activer Ne pas patcher Pre
 overwrite_configuration = "Remplacer la configuration";
 overwrite_configuration_description = "Remplacez la configuration à distance par celle Premium enregistrée. Cela pourrait résoudre certains problèmes, comme l'apparition de publicités, mais ce n'est pas garanti.";
 
-// Paroles
+// Lyrics
 
 lyrics_source = "Source des paroles";
 lyrics_source_description = "Vous pouvez choisir la source des paroles que vous préférez.
@@ -73,14 +73,14 @@ static_color = "Couleur statique";
 color_normalization_factor = "Facteur de normalisation des couleurs";
 dark_popups = "Popups sombres";
 
-// MARK: Popups Premium
+/* MARK: Premium PopUps */
 
 have_premium_popup = "Il semble que vous avez un abonnement Premium actif, donc le tweak ne modifiera pas les données ni ne restreindra l'utilisation des fonctionnalités Premium côté serveur. Vous pouvez gérer cela dans les paramètres de EeveeSpotify.";
 
 high_audio_quality_popup = "La qualité audio très élevée est gérée côté serveur et n'est pas disponible avec ce tweak.";
 playlist_downloading_popup = "Le téléchargement natif de playlists est géré côté serveur et n'est pas disponible avec ce tweak. Vous pouvez cependant télécharger des épisodes de podcast.";
 
-// MARK: Paroles
+/* MARK: Lyrics */
 
 fallback_attribute = "Secours";
 romanized_attribute = "Romanisé";
@@ -88,7 +88,7 @@ romanized_attribute = "Romanisé";
 musixmatch_unauthorized_popup = "Le tweak ne peut pas charger les paroles depuis Musixmatch en raison d'une erreur de non-autorisation. Veuillez vérifier ou mettre à jour votre jeton Musixmatch. Si vous utilisez un iPad, vous devez obtenir le jeton depuis l'application Musixmatch pour iPad.";
 musixmatch_restricted_popup = "Le tweak ne peut pas charger les paroles depuis Musixmatch car elles sont restreintes. Il s'agit probablement d'un problème de droits d'auteur dû à une adresse IP américaine, donc vous devriez la changer si vous êtes aux États-Unis ou utiliser un VPN.";
 
-// Titres des erreurs
+// Errors Titles
 
 no_such_song = "Aucune chanson trouvée";
 musixmatch_restricted = "Restreint";
@@ -97,7 +97,7 @@ decoding_error = "Erreur de décodage";
 no_current_track = "Aucune instance de piste";
 unknown_error = "Erreur inconnue";
 
-// Titres instrumentaux
+// Instrumental Titles
 
 song_is_instrumental = "Cette chanson est instrumentale.";
 let_the_music_play = "Laissez la musique jouer...";
