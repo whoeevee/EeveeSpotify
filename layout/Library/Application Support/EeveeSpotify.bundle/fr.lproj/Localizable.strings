@@ -45,7 +45,7 @@ musixmatch_user_token = "Jeton utilisateur Musixmatch";
 user_token_placeholder = "Entrez le jeton utilisateur ou collez l'info de débogage";
 
 enter_user_token = "Entrez le jeton utilisateur";
-enter_user_token_message = "Pour utiliser Musixmatch, vous devez récupérer votre jeton utilisateur depuis l'application officielle. Téléchargez Musixmatch depuis l'App Store, inscrivez-vous, puis allez dans Paramètres > Obtenir de l'aide > Copier l'info de débogage, et collez-les ici. Vous pouvez également extraire le jeton en utilisant MITM.";
+enter_user_token_message = "Pour utiliser Musixmatch, vous devez récupérer votre jeton utilisateur depuis l'application officielle. Téléchargez Musixmatch depuis l'App Store, inscrivez-vous, puis allez dans Paramètres > Obtenir de l'aide > Copier l'info de débogage, et collez-la ici. Vous pouvez également extraire le jeton en utilisant MITM.";
 
 genius_fallback = "Se rabattre sur Genius";
 genius_fallback_description = "Charger les paroles depuis Genius en cas de problème avec %@.";
