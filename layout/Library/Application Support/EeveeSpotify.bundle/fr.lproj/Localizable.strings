@@ -50,7 +50,7 @@ enter_user_token_message = "Pour utiliser Musixmatch, vous devez récupérer vot
 genius_fallback = "Se rabattre sur Genius";
 genius_fallback_description = "Charger les paroles depuis Genius en cas de problème avec %@.";
 
-show_fallback_reasons = "Afficher les raisons de secours";
+show_fallback_reasons = "Afficher les raisons du basculement";
 
 romanized_lyrics = "Paroles romanisées";
 romanized_lyrics_description = "Afficher les paroles romanisées pour le japonais, le coréen et le chinois.";
