@@ -1,0 +1,103 @@
+/* MARK: Settings */
+
+patching = "Patchage";
+lyrics = "Paroles";
+customization = "Personnalisation";
+
+common_issues_tip_title = "Des problèmes ?";
+
+common_issues_tip_message = "Si vous rencontrez un problème, comme l'impossibilité de lire des chansons, consultez";
+common_issues_tip_button = "Problèmes courants";
+
+reset_data = "Réinitialiser les données";
+reset_data_description = "Effacez les données en cache et redémarrez l'application.";
+
+checking_for_update = "Vérification des mises à jour...";
+update_available = "Mise à jour disponible";
+
+cancel = "Annuler";
+ok = "OK";
+
+// Patching
+
+do_not_patch_premium = "Ne pas patcher Premium";
+patching_description = "Le tweak intercepte les requêtes pour charger les données de l'utilisateur, les désérialise, et modifie les paramètres en temps réel.
+
+Si vous avez un abonnement Premium actif, vous pouvez activer Ne pas patcher Premium. Le tweak ne modifiera pas les données ou n'empêchera pas l'utilisation des fonctionnalités Premium côté serveur. Un redémarrage de l'application est nécessaire après modification.";
+
+overwrite_configuration = "Remplacer la configuration";
+overwrite_configuration_description = "Remplacez la configuration à distance par celle Premium enregistrée. Cela pourrait résoudre certains problèmes, comme l'apparition de publicités, mais ce n'est pas garanti.";
+
+// Lyrics
+
+lyrics_source = "Source des paroles";
+lyrics_source_description = "Vous pouvez choisir la source des paroles que vous préférez.
+
+Genius : Offre les meilleures paroles en termes de qualité, propose le plus de chansons et met à jour les paroles le plus rapidement. Ne sera jamais synchronisé avec le temps.
+
+LRCLIB : Le service le plus ouvert, offrant des paroles synchronisées. Cependant, il manque des paroles pour de nombreuses chansons.
+
+Musixmatch : Le service utilisé par Spotify. Propose des paroles synchronisées pour de nombreuses chansons, mais vous aurez besoin d'un jeton utilisateur pour utiliser cette source.";
+lyrics_additional_info = "Si le tweak ne parvient pas à trouver une chanson ou à traiter les paroles, vous verrez le message « Impossible de charger les paroles pour cette chanson ». Les paroles peuvent être incorrectes pour certaines chansons avec Genius en raison de la façon dont le tweak recherche les chansons. J'ai fait en sorte que cela fonctionne dans la plupart des cas.";
+petitlyrics_description = "PetitLyrics : Propose de nombreuses paroles japonaises synchronisées et quelques paroles internationales.";
+
+musixmatch_user_token = "Jeton utilisateur Musixmatch";
+user_token_placeholder = "Entrez le jeton utilisateur ou collez l'info de débogage";
+
+enter_user_token = "Entrez le jeton utilisateur";
+enter_user_token_message = "Pour utiliser Musixmatch, vous devez récupérer votre jeton utilisateur depuis l'application officielle. Téléchargez Musixmatch depuis l'App Store, inscrivez-vous, puis allez dans Paramètres > Obtenir de l'aide > Copier l'info de débogage, et collez-la ici. Vous pouvez également extraire le jeton en utilisant MITM.";
+
+genius_fallback = "Se rabattre sur Genius";
+genius_fallback_description = "Charger les paroles depuis Genius en cas de problème avec %@.";
+
+show_fallback_reasons = "Afficher les raisons de secours";
+
+romanized_lyrics = "Paroles romanisées";
+romanized_lyrics_description = "Afficher les paroles romanisées pour le japonais, le coréen et le chinois.";
+
+musixmatch_language = "Langue des paroles Musixmatch";
+musixmatch_language_description = "Vous pouvez entrer un code de langue Musixmatch à 2 lettres pour voir les paroles traduites sur Musixmatch, si elles sont disponibles.";
+
+// UI
+
+lyrics_background_color_section = "Couleur de fond des paroles";
+lyrics_background_color_section_description = "Si vous activez l'option Afficher les couleurs originales, les paroles apparaîtront dans les couleurs originales de Spotify pour les pistes qui en ont.
+
+Vous pouvez définir une couleur statique ou un facteur de normalisation basé sur la couleur de la couverture de la piste extraite. Ce facteur détermine à quel point les couleurs sombres sont éclaircies et les couleurs claires sont assombries. En général, vous verrez des couleurs plus claires avec un facteur de normalisation plus élevé.";
+
+display_original_colors = "Afficher les couleurs originales";
+
+use_static_color = "Utiliser une couleur statique";
+static_color = "Couleur statique";
+
+color_normalization_factor = "Facteur de normalisation des couleurs";
+dark_popups = "Popups sombres";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "Il semble que vous avez un abonnement Premium actif, donc le tweak ne modifiera pas les données ni ne restreindra l'utilisation des fonctionnalités Premium côté serveur. Vous pouvez gérer cela dans les paramètres de EeveeSpotify.";
+
+high_audio_quality_popup = "La qualité audio très élevée est gérée côté serveur et n'est pas disponible avec ce tweak.";
+playlist_downloading_popup = "Le téléchargement natif de playlists est géré côté serveur et n'est pas disponible avec ce tweak. Vous pouvez cependant télécharger des épisodes de podcast.";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Secours";
+romanized_attribute = "Romanisé";
+
+musixmatch_unauthorized_popup = "Le tweak ne peut pas charger les paroles depuis Musixmatch en raison d'une erreur de non-autorisation. Veuillez vérifier ou mettre à jour votre jeton Musixmatch. Si vous utilisez un iPad, vous devez obtenir le jeton depuis l'application Musixmatch pour iPad.";
+musixmatch_restricted_popup = "Le tweak ne peut pas charger les paroles depuis Musixmatch car elles sont restreintes. Il s'agit probablement d'un problème de droits d'auteur dû à une adresse IP américaine, donc vous devriez la changer si vous êtes aux États-Unis ou utiliser un VPN.";
+
+// Errors Titles
+
+no_such_song = "Aucune chanson trouvée";
+musixmatch_restricted = "Restreint";
+invalid_musixmatch_token = "Non autorisé";
+decoding_error = "Erreur de décodage";
+no_current_track = "Aucune instance de piste";
+unknown_error = "Erreur inconnue";
+
+// Instrumental Titles
+
+song_is_instrumental = "Cette chanson est instrumentale.";
+let_the_music_play = "Laissez la musique jouer...";
