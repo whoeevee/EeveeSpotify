@@ -1,0 +1,104 @@
+/* MARK: Settings */
+
+patching = "Patching";
+lyrics = "Lyrics";
+customization = "Anpassungen";
+
+common_issues_tip_title = "Gibt es Probleme?";
+
+common_issues_tip_message = "Wenn du Probleme hast, wie z.B dass du keine Songs abspielen kannst, solltest du dir das anschauen:";
+common_issues_tip_button = "Häufige Probleme";
+
+reset_data = "Daten zurücksetzen";
+reset_data_description = "Zwischengespeicherte Daten (Cache) löschen und App neustarten.";
+
+checking_for_update = "Suche nach Updates...";
+update_available = "Update verfügbar";
+
+cancel = "Abbrechen";
+ok = "OK";
+
+// Patching
+
+do_not_patch_premium = "Premium nicht patchen";
+patching_description = "Der Tweak fängt Anfragen von Benutzerdaten ab, deserialisiert sie und ändert die Parameter in Echtzeit.
+
+Wenn du ein aktives Premium-Abonnement hast, dann kannst du \"Premium nicht patchen\" aktivieren. Der Tweak wird nicht die Daten patchen und die Nutzung von serverseitiger Premium-Funktionen wird nicht eingeschränkt. Nach der Änderung ist ein App-Neustart erforderlich.";
+
+overwrite_configuration = "Konfiguration überschreiben";
+overwrite_configuration_description = "Ersetze die Remote-Konfiguration mit der kopierten Premium-Konfiguration. Es könnte einige Fehler beheben, wie z.B auftauchende Werbung, ist aber nicht garantiert.";
+
+// Lyrics
+
+lyrics_source = "Lyrics Quelle";
+lyrics_source_description = "Du kannst deine gewünschte Liedtextquelle auswählen.
+
+Genius: Texte in bester Qualität, stellt die meisten Songs bereit und aktualisiert Texte am schnellsten. Ist nicht zeitsynchronisiert und wird dies nie tun.
+
+LRCLIB: Der offenste Dienst, der zeitsynchronisierte Lyrics anbietet. Jedoch fehlen bei vielen Songs Texte.
+
+Musixmatch: Der von Spotify genutzte Dienst. Bietet zeitsynchronisierte Lyrics für viele Lieder, benötigt jedoch einen Benutzer-Token. um diese Quelle zu verwenden.";
+
+lyrics_additional_info = "Wenn der Tweak keine Lyrics findet, wird die Meldung \"Es können keine Lyrics für diesen Song geladen werden.\" angezeigt. Wenn man Genius nutzt könnten einige Lyrics falsch sein, dies liegt an der Art wie der Tweak die Songs durchsucht. Es sollte jedoch in den meisten Fällen funktionieren.";
+petitlyrics_description = "PetitLyrics: Bietet zahlreiche zeitsynchronisierte japanische und einige internationale Lyrics an.";
+
+musixmatch_user_token = "Musixmatch Benutzer-Token";
+user_token_placeholder = "Gebe den Benutzer-Token ein oder füge die Debug-Infos";
+
+enter_user_token = "Benutzer-Token eingeben";
+enter_user_token_message = "Um Musixmatch nutzen zu können, musst du zuerst den Benutzertoken von der Musixmatch App abrufen. Lade die App aus dem AppStore runter, registriere dich und gehe in Einstellungen > Hilfe > Debug-Informationen kopieren und füge diese dann hier ein. Du könntest auch den Token mit MITM extrahieren.";
+
+genius_fallback = "Genius Fallback";
+genius_fallback_description = "Lade die Lyrics von Genius, wenn es mit %@ ein Problem gibt.";
+
+show_fallback_reasons = "Fallback Gründe anzeigen";
+
+romanized_lyrics = "Romanisierte Lyrics";
+romanized_lyrics_description = "Zeigt romanisierte Lyrics für japanisch, koreanisch und chinesisch an.";
+
+musixmatch_language = "Musixmatch Lyrics Sprache";
+musixmatch_language_description = "Du kannst einen aus 2 Buchstaben bestehenden Musixmatch-Sprachcode eingeben und übersetzte Lyrics auf Musixmatch sehen (sofern verfügbar).";
+
+// UI
+
+lyrics_background_color_section = "Lyrics Hintergrund Farbe";
+lyrics_background_color_section_description = "Wenn du \"Originalfarben anzeigen\" an machst, werden Lyrics für Songs in den original Spotify Farben für diese Songs angezeigt.
+
+Du kannst eine statische Farbe oder einen Normalisierungsfaktor basierend auf der Farbe aus dem Cover festlegen. Dieser Faktor bestimmt, wie dunkle Farben aufgehellt und helle Farben abgedunkelt werden. Im Allgemeinen wirst du hellere Farben mit einem höheren Faktor sehen.";
+
+display_original_colors = "Originalfarben anzeigen";
+
+use_static_color = "Statische Farben anzeigen";
+static_color = "Statische Farbe";
+
+color_normalization_factor = "Farbnormalisierungsfaktor";
+dark_popups = "Dunkle PopUps";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "Es scheint dass du ein aktives Premium-Abonnement hast, sodass der Tweak die Daten nicht patcht und die Nutzung von serverseitiger Premium-Funktionen zulässt. Du kannst das in den EeveeSpotify Einstellungen verwalten.";
+
+high_audio_quality_popup = "Eine sehr hohe Audioqualität ist serverseitig und mit diesem Tweak nicht verfügbar.";
+playlist_downloading_popup = "Das Herunterladen von nativen Playlists ist serverseitig und nicht möglich. Du kannst aber Podcast-Episoden herunterladen. ";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Fallback";
+romanized_attribute = "Romanisiert";
+
+musixmatch_unauthorized_popup = "Der Tweak konnte keine Lyrics von Musixmatch aufgrund des Fehler nicht autorisiert laden. Überprüfe deinen Musixmatch Token. Wenn du ein iPad verwendest, solltest du den Benutzer-Token aus der Musixmatch iPad-App herunterladen.";
+musixmatch_restricted_popup = "Der Tweak kann keine Lyrics von Musixmatch laden, da diese eingeschränkt sind. Vermutlich liegt ein Urheberrechtsproblem vor, welches durch die US IP-Adresse ausgelöst, daher solltest du diese ändern wenn du in der USA bist oder einen VPN verwenden. ";
+
+// Errors Titles
+
+no_such_song = "Kein Lied gefunden";
+musixmatch_restricted = "Eingeschränkt";
+invalid_musixmatch_token = "Nicht autorisiert";
+decoding_error = "Dekodierungsfehler";
+no_current_track = "Keine Track-Instanz";
+unknown_error = "Unbekannter Fehler";
+
+// Instrumental Titles
+
+song_is_instrumental = "Dieser Song ist Instrumental.";
+let_the_music_play = "Lass die Musik spielen...";

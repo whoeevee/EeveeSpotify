@@ -1,0 +1,103 @@
+/* MARK: Settings */
+
+patching = "Patches";
+lyrics = "Sangtekster";
+customization = "Tilpasning";
+
+common_issues_tip_title = "Problemer?";
+
+common_issues_tip_message = "Hvis du har problemer, såsom at sange ikke afspilles korrekt, tjek";
+common_issues_tip_button = "Common Issues (Engelsk)";
+
+reset_data = "Nulstil data";
+reset_data_description = "Ryd cachelagrede data og genstart appen.";
+
+checking_for_update = "Tjekker for opdateringer...";
+update_available = "Opdatering tilgængelig";
+
+cancel = "Annuller";
+ok = "OK";
+
+// Patching
+
+do_not_patch_premium = "Patch ikke Premium";
+patching_description = "Dette tweak opsnapper anmodninger om at indlæse brugerdata, deserialiserer disse, og modificerer parametrene samtidigt med at de indlæses.
+
+Hvis du har et aktivt Premium-abonnement, kan du bruge \"Patch ikke Premium\". Tweaket vil herefter ikke patche data eller begrænse brug af Premium-funktioner der er server-side. Genstart af appen er nødvendig efter ændring.";
+
+overwrite_configuration = "Overskriv konfiguration";
+overwrite_configuration_description = "Overskriv fjernkonfiguration med en Premium-konfiguration. Dette kan fikse problemer såsom reklamer, men er ikke garanteret.";
+
+// Lyrics
+
+lyrics_source = "Sangtekstkilde";
+lyrics_source_description = "Du kan vælge den kilde du foretrækker.
+
+Genius: Tilbyder den højeste kvalitet af sangtekster, har flest sange, og opdaterer sangtekster hurtigst. Er ikke- og bliver aldrig tidssynkroniseret.  
+
+LRCLIB: Den mest åbne service, der tilbyder tidssynkroniserede sangtekster. Men, den mangler tekster til mange sange.
+
+Musixmatch: Servicen Spotify bruger. Tilbyder tidssynkroniserede sangtekster for mange sange, men du skal have et User Token for at bruge denne service.";
+lyrics_additional_info = "Hvis tweaket ikke er i stand til at finde en sang eller indlæse sangtekster vil du se beskeden \"Kunne ikke indlæse sangteksten til denne sang\". Sangtekster kan, for visse sange, være forkerte ved brug af Genius grundet måden dette tweak søger efter sange. Det virker dog i de fleste tilfælde.";
+petitlyrics_description = "PetitLyrics: Tilbyder mange tidssynkroniserede tekster på Japansk og enkelte internationale tekster.";
+
+musixmatch_user_token = "Musixmatch User Token";
+user_token_placeholder = "Indtast User Token eller indsæt Debug Info";
+
+enter_user_token = "Indtast User Token";
+enter_user_token_message = "For at kunne bruge Musixmatch, skal du kopiere dit User Token fra den officielle app. Download Musixmatch-appen fra App Store, opret en konto, gå herefter til Settings > Get help > Copy debug info, og indsæt det her. Du kan også finde dit User Token ved brug af MITM.";
+
+genius_fallback = "Genius fallback";
+genius_fallback_description = "Indlæs tekster fra Genius hvis der er et problem med %@.";
+
+show_fallback_reasons = "Vis fallback-grunde";
+
+romanized_lyrics = "Translittererede sangtekster";
+romanized_lyrics_description = "Vis translittererede sangtekster for sange på Japansk, Koreansk og Kinesisk.";
+
+musixmatch_language = "Musixmatch sprog";
+musixmatch_language_description = "Du kan indtaste en tobogstavskode og se oversatte sangtekster via Musixmatch hvis de er tilgængelige.";
+
+// UI
+
+lyrics_background_color_section = "Baggrundsfarve til sangtekster";
+lyrics_background_color_section_description = "Hvis du aktiverer \"Vis originale farver\", vil de sangtekster, der har originale Spotify-farver, blive vist i disse.
+
+Du kan vælge en statisk farve, eller en normaliseringsfaktor der er baseret på farver fra sangens albumcover. Normaliseringsfaktoren afgør hvor mange mørke farver der gøres lysere og hvor mange lyse farver der gøres mørkere. Generelt giver en højere normaliseringsfaktor lysere farver.";
+
+display_original_colors = "Vis originale farver";
+
+use_static_color = "Brug statisk farve";
+static_color = "Statisk farve";
+
+color_normalization_factor = "Farvenormaliseringsfaktor";
+dark_popups = "Mørke pop op-beskeder";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "Det ser ud til at du har et aktivt Premium-abonnement, derfor patcher eller begrænser dette tweak ikke brugen af Premium-funktioner der er server-side. Dette kan ændres i EeveeSpotifys indstillinger.";
+
+high_audio_quality_popup = "Lydkvaliteten \"Meget høj\" er server-side og er derfor ikke tilgænglig med dette tweak.";
+playlist_downloading_popup = "Den indbyggede download af playlister er server-side og er ikke derfor tilgænglig med dette tweak. Download af podcastepisoder er dog muligt.";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Fallback";
+romanized_attribute = "Translittereret";
+
+musixmatch_unauthorized_popup = "Tweaket kan ikke indlæse sangtekster fra Musixmatch grundet fejlen \"Uautoriseret\". Tjek- eller opdater dit Musixmatch User Token. Hvis du bruger en iPad, skal du bruge Musixmatch-appen til iPad til at finde dit User Token.";
+musixmatch_restricted_popup = "Tweaket kan ikke indlæse sangtekster fra Musixmatch fordi de er begrænset. Dette er højst sandsynligt et copyright-problem grundet en IP-adresse fra USA, du bør ændre denne hvis du er i USA eller bruge en VPN-forbindelse.";
+
+// Errors Titles
+
+no_such_song = "Sang ikke fundet";
+musixmatch_restricted = "Begrænset";
+invalid_musixmatch_token = "Uautoriseret";
+decoding_error = "Afkodningsfejl";
+no_current_track = "Ingen sang afspilles";
+unknown_error = "Ukendt fejl";
+
+// Instrumental Titles
+
+song_is_instrumental = "Denne sang er instrumental.";
+let_the_music_play = "Lad musikken spille...";

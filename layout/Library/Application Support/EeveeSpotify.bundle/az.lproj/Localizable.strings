@@ -1,0 +1,103 @@
+/* MARK: Settings */
+
+patching = "Yamaq";
+lyrics = "Sözlər";
+customization = "Fərdiləşdirmə";
+
+common_issues_tip_title = "Problemlə qarşılaşırsınız?";
+
+common_issues_tip_message = "Əgər mahnıları çalmaqda problem yaşayır və ya digər məsələlərlə üzləşirsinizsə, baxın";
+common_issues_tip_button = "Ümumi Problemlər";
+
+reset_data = "Veriləri Sıfırla";
+reset_data_description = "Keş yaddaşını təmizləyin və tətbiqi yenidən başladın.";
+
+checking_for_update = "Yeniləmələr yoxlanılır...";
+update_available = "Yeniləmə Mövcuddur";
+
+cancel = "Ləğv et";
+ok = "OK";
+
+// Patching
+
+do_not_patch_premium = "Premium üçün yamaqlama";
+patching_description = "Tweak istifadəçi məlumatlarını yükləmək üçün sorğuları kəsir, onları deserializə edir və parametrləri real vaxtda dəyişir.
+
+Əgər aktiv Premium abunəliyiniz varsa, Premium'u yamaqlama seçimini aça bilərsiniz. Tweak məlumatları yamaqlamaz və ya Premium server əsaslı funksiyalardan istifadəyə məhdudiyyət qoymaz. Dəyişiklikdən sonra tətbiqi yenidən başlatmaq tələb olunur.";
+
+overwrite_configuration = "Konfiqurasiyanı Əvəz et";
+overwrite_configuration_description = "Konfiqurasiyanı Premium ilə dəyişdirilmiş konfiqurasiya ilə əvəz edin. Bu, bəzi problemləri, məsələn, reklamların görünməsi kimi, həll edə bilər, lakin zəmanət verilmir.";
+
+// Lyrics
+
+lyrics_source = "Sözlərin Mənbəyi";
+lyrics_source_description = "İstədiyiniz sözlər mənbəyini seçə bilərsiniz.
+
+Genius: Ən yüksək keyfiyyətli sözlər təklif edir, ən çox mahnını təmin edir və sözləri ən tez yeniləyir. Vaxtla sinxronlaşdırılmır və heç vaxt sinxronlaşdırılmayacaq.
+
+LRCLIB: Vaxtla sinxronlaşdırılmış sözlər təklif edən ən açıq xidmət. Ancaq bir çox mahnının sözləri yoxdur.
+
+Musixmatch: Spotify-ın istifadə etdiyi xidmət. Bir çox mahnı üçün vaxtla sinxronlaşdırılmış sözlər təmin edir, lakin bu mənbədən istifadə etmək üçün istifadəçi tokeniniz olmalıdır.";
+lyrics_additional_info = "Əgər tweak mahnını tapa bilmirsə və ya sözləri işləyə bilmirsə, \"Bu mahnının sözləri yüklənə bilmədi\" mesajını görəcəksiniz. Genius istifadə edərkən, tweak-in mahnıları axtarma qaydasına görə bəzi mahnılar üçün sözlər səhv ola bilər. Çox hallarda işləməsini təmin etmişəm.";
+petitlyrics_description = "PetitLyrics: Bir çox vaxtla sinxronlaşdırılmış Yapon və bəzi beynəlxalq mahnı sözləri təklif edir.";
+
+musixmatch_user_token = "Musixmatch İstifadəçi Tokeni";
+user_token_placeholder = "İstifadəçi Tokenini daxil edin və ya Debug məlumatlarını yapışdırın";
+
+enter_user_token = "İstifadəçi Tokenini daxil edin";
+enter_user_token_message = "Musixmatch-dan istifadə etmək üçün rəsmi tətbiqdən istifadəçi tokeninizi götürməlisiniz. Musixmatch-ı App Store-dan yükləyin, qeydiyyatdan keçin, sonra Parametrlər > Yardım Al > Debug məlumatlarını kopyala seçiminə gedin və bura yapışdırın. Tokeni həmçinin MITM vasitəsilə də çıxara bilərsiniz.";
+
+genius_fallback = "Genius Ehtiyat Mənbə";
+genius_fallback_description = "Bir problem olduqda %@ üzərindən sözləri Genius-dan yükləyin.";
+
+show_fallback_reasons = "Ehtiyat Mənbə Səbəblərini Göstər";
+
+romanized_lyrics = "Romanlaşdırılmış Sözlər";
+romanized_lyrics_description = "Yapon, Koreya və Çin mahnıları üçün romanlaşdırılmış (latın hərflərinə çevrilmiş) sözləri göstərin.";
+
+musixmatch_language = "Musixmatch Sözlər Dili";
+musixmatch_language_description = "Musixmatch-ın 2 hərfli dil kodunu daxil edərək, varsa tərcümə edilmiş sözləri görə bilərsiniz.";
+
+// UI
+
+lyrics_background_color_section = "Sözlər Fon Rəngi";
+lyrics_background_color_section_description = "Əgər Orijinal Rəngləri Göstər seçimini açsanız, sözlər Spotify mahnılarında orijinal rənglərdə görünəcək.
+
+Statik rəng seçə bilərsiniz və ya mahnının örtüyündən çıxarılan rəngin normalizasiya faktoru təyin edə bilərsiniz. Bu faktor tünd rənglərin nə qədər işıqlanacağını və açıq rənglərin nə qədər tündləşəcəyini müəyyən edir. Ümumiyyətlə, daha yüksək normalizasiya faktoru ilə daha açıq rənglər görəcəksiniz.";
+
+display_original_colors = "Orijinal Rəngləri Göstər";
+
+use_static_color = "Statik Rəng İstifadə Et";
+static_color = "Statik Rəng";
+
+color_normalization_factor = "Rəng Normalizasiya Faktoru";
+dark_popups = "Tünd Açılan Pəncərələr";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "Sanki aktiv Premium abunəliyiniz var, buna görə tweak məlumatları yamaqlamaz və ya Premium server əsaslı funksiyalardan istifadəyə məhdudiyyət qoymaz. Bunu EeveeSpotify parametrlərində idarə edə bilərsiniz.";
+
+high_audio_quality_popup = "Çox yüksək səs keyfiyyəti server əsaslıdır və bu tweak ilə mövcud deyil.";
+playlist_downloading_popup = "Playlist yükləmə server əsaslıdır və bu tweak ilə mövcud deyil. Ancaq podcast epizodlarını yükləyə bilərsiniz.";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Ehtiyat Mənbə";
+romanized_attribute = "Romanlaşdırılmış";
+
+musixmatch_unauthorized_popup = "Tweak Musixmatch-dan sözləri səlahiyyət xətası səbəbindən yükləyə bilmir. Zəhmət olmasa Musixmatch tokeninizi yoxlayın və ya yeniləyin. iPad istifadə edirsinizsə, tokeni iPad üçün Musixmatch tətbiqindən almalısınız.";
+musixmatch_restricted_popup = "Tweak Musixmatch-dan sözləri yükləyə bilmir, çünki bu sözlər məhdudlaşdırılıb. Çox güman ki, ABŞ IP ünvanı səbəbindən bir müəllif hüququ problemi var, buna görə ABŞ-da olsanız, IP ünvanınızı dəyişdirməli və ya VPN istifadə etməlisiniz.";
+
+// Errors Titles
+
+no_such_song = "Mahnı Tapılmadı";
+musixmatch_restricted = "Məhdudlaşdırılıb";
+invalid_musixmatch_token = "Yetsiz";
+decoding_error = "Dekodlaşdırma Xətası";
+no_current_track = "Hazırda Oynanan Mahnı Yoxdur";
+unknown_error = "Naməlum Xəta";
+
+// Instrumental Titles
+
+song_is_instrumental = "Bu mahnı instrumental mahnıdır.";
+let_the_music_play = "Qoy musiqi çalsın..."; 

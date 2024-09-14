@@ -1,0 +1,103 @@
+/* MARK: Settings */
+
+patching = "Łatki";
+lyrics = "Teksty";
+customization = "Personalizacja";
+
+common_issues_tip_title = "Masz Problemy?";
+
+common_issues_tip_message = "Jeżeli napotykasz jakieś problemy, na przykład piosenki nie chcą się odtwarzać, sprawdź";
+common_issues_tip_button = "Znane Problemy";
+
+reset_data = "Resetuj Dane";
+reset_data_description = "Wyczyść dane cache i zrestartuj aplikacje.";
+
+checking_for_update = "Sprawdzanie aktualizacji...";
+update_available = "Aktualizacja Dostępna";
+
+cancel = "Anuluj";
+ok = "OK";
+
+// Patching
+
+do_not_patch_premium = "Nie używaj łatki premium";
+patching_description = "Łatka przechwytuje żądania danych użytkownika, deserializuje je i modyfikuje parametry w czasie rzeczywistym.
+
+Jeśli masz aktywną subskrypcję premium, możesz włączyć łatkę premium. Łatka nie będzie modyfikowała żadnych danych ani ograniczać korzystania z funkcji po stronie serwera premium. Po zmianie wymagane jest ponowne uruchomienie aplikacji.";
+
+overwrite_configuration = "Nadpisz konfigurację";
+overwrite_configuration_description = "Zastąp zdalną konfigurację zrzuconą konfiguracją premium. Może to naprawić niektóre problemy, takie jak pojawiające się reklamy, ale nie jest to gwarantowane.";
+
+// Lyrics
+
+lyrics_source = "Źródło Tekstów";
+lyrics_source_description = "Możesz wybrać źródło które jest odpowiednie dla ciebie.
+
+Genius: Oferuje najlepsze teksty piosenek. Najbardziej zaktualizowane źródło. Nie jest i nidgy nie będzie zsynchronizowany z pionesenką.
+
+LRCLIB: Najbardziej otwarte źródło, oferuje zsynchronizowane teksty. Jednak brakuje w nim dużo piosenek.
+
+Musixmatch: Źródło używane przez Spotify. Oferuje zsynchronizowane teksty dla wielu piosenek. Wymaga tokenu użytkownika.";
+lyrics_additional_info = "Jeżeli nie uda się znaleść tekstu piosenki zobaczysz wiadomość \"Nie można załadować tekstu piosenki\". Czasami teksty pioseneki mogą być nie poprawne podczas używania Genius jako źródła.";
+petitlyrics_description = "PetitLyrics: Oferuje mnóstwo zsynchronizowanych japońskich i międzynarodowych tekstów.";
+
+musixmatch_user_token = "Token Użytkownika Musixmatch";
+user_token_placeholder = "Podaj token lub dane debugowania";
+
+enter_user_token = "Podaj token użytkownika";
+enter_user_token_message = "Aby korzystać z Musixmatch, musisz uzyskać swój token użytkownika z oficjalnej aplikacji. Pobierz Musixmatch z App Store, zarejestruj się, a następnie przejdź do Ustawienia > Uzyskaj pomoc > Kopiuj informacje debugowania i wklej je tutaj. Możesz również wyodrębnić token za pomocą MITM.";
+
+genius_fallback = "Fallback Genius";
+genius_fallback_description = "Wczytaj tekst z Genius, jeśli wystąpił problem z %@.";
+
+show_fallback_reasons = "Pokaż powody fallback'u";
+
+romanized_lyrics = "Zromanizowane teksty";
+romanized_lyrics_description = "Wyświetl zromanizowane teksty w językach japońskim, koreańskim i chińskim.";
+
+musixmatch_language = "Język tekstów Musixmatch";
+musixmatch_language_description = "Możesz wprowadzić 2-literowy kod języka Musixmatch i zobaczyć przetłumaczone teksty Musixmatch, jeśli są dostępne.";
+
+// UI
+
+lyrics_background_color_section = "Kolor tła tekstu piosenki";
+lyrics_background_color_section_description = "Po włączeniu opcji Wyświetlaj oryginalne kolory, teksty będą wyświetlane w oryginalnych kolorach Spotify dla utworów, które je posiadają.
+
+Możesz ustawić kolor statyczny lub współczynnik normalizacji w oparciu o wyodrębniony kolor okładki utworu. Współczynnik ten określa stopień rozjaśnienia ciemnych i przyciemnienia jasnych kolorów. Ogólnie rzecz biorąc, przy wyższym współczynniku normalizacji kolory będą jaśniejsze.";
+
+display_original_colors = "Wyświetl oryginalne kolory";
+
+use_static_color = "Używaj koloru statycznego";
+static_color = "Kolor statyczny";
+
+color_normalization_factor = "Współczynnik normalizacji kolorów";
+dark_popups = "Czarne PopUpy";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "Wygląda na to, że masz aktywną subskrypcję premium, więc łatka nie będzie modyfikować danych ani ograniczać korzystania z funkcji po stronie serwera premium. Możesz tym zarządzać w ustawieniach EeveeSpotify.";
+
+high_audio_quality_popup = "Bardzo wysoka jakość dźwięku jest dostępna po stronie serwera i nie jest dostępna w tej łatce.";
+playlist_downloading_popup = "Natywne pobieranie playlist odbywa się po stronie serwera i nie jest dostępne w tej łatce. Można jednak pobierać odcinki podcastów.";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Fallback";
+romanized_attribute = "Zromanizowane";
+
+musixmatch_unauthorized_popup = "Łatka nie może załadować tekstów z Musixmatch z powodu błędu Unauthorized. Sprawdź lub zaktualizuj swój token Musixmatch. Jeśli używasz iPada, uzyskaj token z aplikacji Musixmatch na iPada.";
+musixmatch_restricted_popup = "Patch nie jest w stanie załadować tekstów z Musixmatch, ponieważ są one ograniczone. Jest to prawdopodobnie kwestia praw autorskich ze względu na amerykański adres IP, więc spróbuj go zmienić, jeśli jesteś w USA lub korzystasz z VPN.";
+
+// Errors Titles
+
+no_such_song = "Nie znaleziono piosenki";
+musixmatch_restricted = "Ograniczone";
+invalid_musixmatch_token = "Nieautoryzowane";
+decoding_error = "Błąd dekodowania";
+no_current_track = "Brak instancji piosenki";
+unknown_error = "Nieznany błąd";
+
+// Instrumental Titles
+
+song_is_instrumental = "Ten utwór jest instrumentalny.";
+let_the_music_play = "Niech gra muzyka...";
