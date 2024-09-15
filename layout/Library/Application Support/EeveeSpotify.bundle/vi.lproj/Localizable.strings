@@ -33,7 +33,7 @@ overwrite_configuration_description = "Thay thế cấu hình gốc bằng cấu
 lyrics_source = "Nguồn lời bài hát";
 lyrics_source_description = "Bạn có thể chọn nguồn lấy lời bài hát mà bạn thích.
 
-Genius: Cung cấp lời bài hát chất lượng tốt nhất, có nhiều bài hát nhất và cập nhật lời bài hát nhanh nhất. Sẽ không bao giờ hỗ trợ lời bài hát được đồng bộ hóa thời gian.
+Genius: Cung cấp lời bài hát chất lượng tốt nhất, có nhiều bài hát nhất và cập nhật lời bài hát nhanh nhất. Sẽ không bao giờ hỗ trợ lời bài hát được đồng bộ hóa theo thời gian.
 
 LRCLIB: Dịch vụ cung cấp lời bài hát đồng bộ hóa theo thời gian. Nhưng thiếu lời cho nhiều bài hát.
 
@@ -61,12 +61,12 @@ musixmatch_language_description = "Bạn có thể nhập 2 chữ là mã ngôn 
 
 // UI
 
-lyrics_background_color_section = "Màu nền lời bài hát";
+lyrics_background_color_section = "Màu nền hộp lời bài hát";
 lyrics_background_color_section_description = "Nếu bạn bật hiển thị màu gốc, lời bài hát sẽ xuất hiện trong màu gốc mà Spotify có cho bài hát đó.
 
-Bạn có thể đặt màu tĩnh hoặc hệ số chuẩn hóa dựa trên màu của bìa bản nhạc được trích xuất. Yếu tố này quyết định mức độ sáng của màu tối và mức độ sáng của màu sáng. Nói chung, bạn sẽ thấy màu sáng hơn với hệ số chuẩn hóa cao hơn.";
+Bạn có thể đặt màu tĩnh hoặc yếu tố chuẩn hóa dựa trên màu được lấy từ bìa của bài hát. Yếu tố này quyết định mức độ sáng của màu tối và mức độ sáng của màu sáng. Nói chung, bạn sẽ thấy màu sáng hơn với yếu tố chuẩn hóa cao hơn.";
 
-display_original_colors = "Hiện thị màu gốc";
+display_original_colors = "Hiển thị màu gốc";
 
 use_static_color = "Sử dụng màu tĩnh";
 static_color = "Màu tĩnh";
