@@ -1,6 +1,6 @@
 /* MARK: Settings */
 
-patching = "Cài đặt bẻ khóa";
+patching = "Bản vá";
 lyrics = "Lời Bài Hát";
 customization = "Tùy chỉnh";
 
@@ -20,10 +20,10 @@ ok = "OK";
 
 // Patching
 
-do_not_patch_premium = "Không bẻ khóa Premium";
+do_not_patch_premium = "Không vá Premium";
 patching_description = "Tinh chỉnh chặn các yêu cầu tải dữ liệu người dùng, giải tuần tự hóa dữ liệu đó và chỉnh sửa các tham số theo thời gian thực.
 
-Nếu bạn đang sử dụng Premium, bạn có thể bật Không bẻ khóa Premium. Tinh chỉnh này sẽ không chỉnh sửa dữ liệu hoặc hạn chế việc sử dụng các tính năng Premium. Bạn cần phải khởi động lại ứng dụng sau khi thay đổi.";
+Nếu bạn đang sử dụng Premium, bạn có thể bật Không vá Premium. Tinh chỉnh này sẽ không chỉnh sửa dữ liệu hoặc hạn chế việc sử dụng các tính năng Premium. Bạn cần phải khởi động lại ứng dụng sau khi thay đổi.";
 
 overwrite_configuration = "Ghi đè cấu hình";
 overwrite_configuration_description = "Thay thế cấu hình gốc bằng cấu hình đã chỉnh sửa. Nó có thể khắc phục một số vấn đề như hiện quảng cáo, nhưng nó không đảm bảo 100%.";
