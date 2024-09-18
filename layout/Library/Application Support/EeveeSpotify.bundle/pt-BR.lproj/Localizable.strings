@@ -31,7 +31,7 @@ overwrite_configuration_description = "Substitui a configuração remota pela Pr
 // Lyrics
 
 lyrics_source = "Fonte de letras";
-lyrics_source_description = "Você pode selecionar a letra de sua preferência.";
+lyrics_source_description = "Você pode selecionar a letra de sua preferência.
 
 Genius: Oferece letras de melhor qualidade, maior número de músicas e atualizaçaõ das letras com mais rapidez. Não é e nunca será sincronizado com o tempo.
 
