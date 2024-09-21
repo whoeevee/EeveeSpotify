@@ -99,3 +99,7 @@ unknown_error = "Неизвестная ошибка";
 
 song_is_instrumental = "Это инструментальная композиция.";
 let_the_music_play = "Пусть заиграет музыка...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "Тебе понравилось";

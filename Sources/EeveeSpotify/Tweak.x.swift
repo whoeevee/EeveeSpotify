@@ -8,6 +8,8 @@ func exitApplication() {
     }
 }
 
+struct PremiumPatching: HookGroup { }
+
 struct EeveeSpotify: Tweak {
     
     static let version = "5.2"
@@ -19,7 +21,7 @@ struct EeveeSpotify: Tweak {
         }
         
         if UserDefaults.patchType.isPatching {
-            ServerSidedReminder().activate()
+            PremiumPatching().activate()
         }
     }
 }
