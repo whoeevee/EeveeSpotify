@@ -101,3 +101,6 @@ unknown_error = "未知錯誤";
 
 song_is_instrumental = "此歌曲為純音樂。";
 let_the_music_play = "讓音樂演奏吧...";
+
+// 已按讚的歌曲
+liked_songs = "已按讚的歌曲";
