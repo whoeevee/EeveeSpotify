@@ -56,7 +56,7 @@ show_fallback_reasons = "Hiển thị lí do sử dụng nguồn dự phòng";
 romanized_lyrics = "Lời bài hát được La Tinh hóa";
 romanized_lyrics_description = "Hiển thị lời bài hát được la tinh hóa cho Nhật Bản, Hàn Quốc, và Trung Quốc.";
 
-musixmatch_language = "Ngôn ngữ sử dụng để dịch lời bài hát từ Musixmatch";
+musixmatch_language = "Ngôn ngữ để dịch lời bài hát Musixmatch";
 musixmatch_language_description = "Bạn có thể nhập 2 chữ là mã ngôn ngữ của Musixmatch và xem lời bài hát được dịch nếu chúng tồn tại.";
 
 // UI
