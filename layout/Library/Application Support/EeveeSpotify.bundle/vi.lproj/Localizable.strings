@@ -21,9 +21,9 @@ ok = "OK";
 // Patching
 
 do_not_patch_premium = "Không vá Premium";
-patching_description = "Tinh chỉnh chặn các yêu cầu tải dữ liệu người dùng, giải tuần tự hóa dữ liệu đó và sửa đổi các tham số trong thời gian thực.
+patching_description = "Tinh chỉnh chặn các yêu cầu tải dữ liệu người dùng, giải tuần tự hóa dữ liệu đó và chỉnh sửa các tham số theo thời gian thực.
 
-Nếu bạn đang sử dụng Premium, bạn có thể bật Không vá Premium. Tinh chỉnh này sẽ không vá dữ liệu hoặc hạn chế việc sử dụng các tính năng Premium. Bạn cần phải khởi động lại ứng dụng sau khi thay đổi.";
+Nếu bạn đang sử dụng Premium, bạn có thể bật Không vá Premium. Tinh chỉnh này sẽ không chỉnh sửa dữ liệu hoặc hạn chế việc sử dụng các tính năng Premium. Bạn cần phải khởi động lại ứng dụng sau khi thay đổi.";
 
 overwrite_configuration = "Ghi đè cấu hình";
 overwrite_configuration_description = "Thay thế cấu hình gốc bằng cấu hình đã chỉnh sửa. Nó có thể khắc phục một số vấn đề như hiện quảng cáo, nhưng nó không đảm bảo 100%.";
@@ -33,7 +33,7 @@ overwrite_configuration_description = "Thay thế cấu hình gốc bằng cấu
 lyrics_source = "Nguồn lời bài hát";
 lyrics_source_description = "Bạn có thể chọn nguồn lấy lời bài hát mà bạn thích.
 
-Genius: Cung cấp lời bài hát chất lượng tốt nhất, có nhiều bài hát nhất và cập nhật lời bài hát nhanh nhất. Sẽ không bao giờ hỗ trợ đồng bộ hóa thời gian.
+Genius: Cung cấp lời bài hát chất lượng tốt nhất, có nhiều bài hát nhất và cập nhật lời bài hát nhanh nhất. Sẽ không bao giờ hỗ trợ lời bài hát được đồng bộ hóa theo thời gian.
 
 LRCLIB: Dịch vụ cung cấp lời bài hát đồng bộ hóa theo thời gian. Nhưng thiếu lời cho nhiều bài hát.
 
@@ -48,25 +48,25 @@ enter_user_token = "Dán User Token";
 enter_user_token_message = "Trong trường hợp bạn muốn sử dụng Musixmatch, bạn cần lấy mã thông báo người dùng của mình từ ứng dụng chính thức. Tải Musixmatch từ App Store, đăng ký, rồi vào Cài Đặt > Nhận trợ giúp > Sao chép thông tin gỡ lỗi, và dán nó vào đây. 
 Bạn cũng có thể lấy token bằng MITM.";
 
-genius_fallback = "Dự phòng Genius";
-genius_fallback_description = "Lấy lời bài hát từ genius nếu có vần đề với %@.";
+genius_fallback = "Dự phòng lời bài hát từ Genius";
+genius_fallback_description = "Lấy lời bài hát từ Genius nếu có vần đề với %@.";
 
-show_fallback_reasons = "Hiện lí do sử dụng nguồn dự phòng";
+show_fallback_reasons = "Hiển thị lí do sử dụng nguồn dự phòng";
 
 romanized_lyrics = "Lời bài hát được La Tinh hóa";
 romanized_lyrics_description = "Hiển thị lời bài hát được la tinh hóa cho Nhật Bản, Hàn Quốc, và Trung Quốc.";
 
-musixmatch_language = "Ngôn ngữ lời bài hát Musixmatch";
+musixmatch_language = "Ngôn ngữ để dịch lời bài hát Musixmatch";
 musixmatch_language_description = "Bạn có thể nhập 2 chữ là mã ngôn ngữ của Musixmatch và xem lời bài hát được dịch nếu chúng tồn tại.";
 
 // UI
 
-lyrics_background_color_section = "Màu nền lời bài hát";
+lyrics_background_color_section = "Màu nền hộp lời bài hát";
 lyrics_background_color_section_description = "Nếu bạn bật hiển thị màu gốc, lời bài hát sẽ xuất hiện trong màu gốc mà Spotify có cho bài hát đó.
 
-Bạn có thể đặt màu tĩnh hoặc hệ số chuẩn hóa dựa trên màu của bìa bản nhạc được trích xuất. Yếu tố này quyết định mức độ sáng của màu tối và mức độ sáng của màu sáng. Nói chung, bạn sẽ thấy màu sáng hơn với hệ số chuẩn hóa cao hơn.";
+Bạn có thể đặt màu tĩnh hoặc yếu tố chuẩn hóa dựa trên màu được lấy từ bìa của bài hát. Yếu tố này quyết định mức độ sáng của màu tối và mức độ sáng của màu sáng. Nói chung, bạn sẽ thấy màu sáng hơn với yếu tố chuẩn hóa cao hơn.";
 
-display_original_colors = "Hiện thị màu gốc";
+display_original_colors = "Hiển thị màu gốc";
 
 use_static_color = "Sử dụng màu tĩnh";
 static_color = "Màu tĩnh";
@@ -76,10 +76,10 @@ dark_popups = "Popups tối";
 
 /* MARK: Premium PopUps */
 
-have_premium_popup = "Có vẻ như bạn đang sử dụng Premium, nên tinh chỉnh sẽ không chỉnh sửa dữ liệu hay ngăn cản bạn sử dụng tính năng Premium. Bạn có thể quản lí nó trong cài đặt của EeveeSpotify.";
+have_premium_popup = "Có vẻ như bạn đang sử dụng Premium nên tinh chỉnh sẽ không chỉnh sửa dữ liệu hay ngăn cản bạn sử dụng tính năng Premium. Bạn có thể quản lí nó trong cài đặt của EeveeSpotify.";
 
-high_audio_quality_popup = "Chất lượng âm thanh cực cao là tính năng ở trên máy chủ và không khả dụng với tinh chỉnh này.";
-playlist_downloading_popup = "Tải xuống nhạc là tính năng ở trên máy chủ và không khả dụng với tinh chỉnh này. Tuy nhiên, bạn có thể tải về những tập podcast.";
+high_audio_quality_popup = "Chất lượng âm thanh cực cao là tính năng yêu cầu thông qua máy chủ và không khả dụng với tinh chỉnh này.";
+playlist_downloading_popup = "Tải nhạc là tính năng yêu cầu thông qua máy chủ và không khả dụng với tinh chỉnh này. Tuy nhiên, bạn có thể tải về những tập podcast.";
 
 /* MARK: Lyrics */
 
@@ -87,7 +87,7 @@ fallback_attribute = "Dự phòng";
 romanized_attribute = "La tinh hóa";
 
 musixmatch_unauthorized_popup = "Tinh chỉnh không thể lấy lời bài hát từ Musixmatch vì lỗi Không hợp lệ. Vui lòng kiểm tra hoặc cập nhật token Musixmatch của bạn. Nếu bạn sử dụng một chiếc iPad, bạn nên lấy token từ ứng dụng Musixmatch cho iPad.";
-musixmatch_restricted_popup = "Tinh chỉnh không thể lấy lời bài hát từ Musixmatch vì bị hạn chế. Nó có vẻ là do vấn đề bản quyền với địa chỉ IP US, Vì vậy bạn nên đổi nó nếu bạn đang ở US hoặc sử dụng VPN.";
+musixmatch_restricted_popup = "Tinh chỉnh không thể lấy lời bài hát từ Musixmatch vì bị hạn chế. Nó có thể là do vấn đề bản quyền với địa chỉ IP US, Vì vậy bạn nên đổi nó nếu bạn đang ở US hoặc sử dụng VPN.";
 
 // Errors Titles
 
@@ -102,3 +102,7 @@ unknown_error = "Lỗi không xác định";
 
 song_is_instrumental = "Bài hát này là nhạc không lời.";
 let_the_music_play = "Hãy để giai điệu vang lên...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "Bài hát đã thích";
