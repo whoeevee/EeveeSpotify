@@ -79,7 +79,7 @@ dark_popups = "Popups tối";
 have_premium_popup = "Có vẻ như bạn đang sử dụng Premium nên tinh chỉnh sẽ không chỉnh sửa dữ liệu hay ngăn cản bạn sử dụng tính năng Premium. Bạn có thể quản lí nó trong cài đặt của EeveeSpotify.";
 
 high_audio_quality_popup = "Chất lượng âm thanh cực cao là tính năng yêu cầu thông qua máy chủ và không khả dụng với tinh chỉnh này.";
-playlist_downloading_popup = "Tải xuống nhạc là tính năng yêu cầu thông qua máy chủ và không khả dụng với tinh chỉnh này. Tuy nhiên, bạn có thể tải về những tập podcast.";
+playlist_downloading_popup = "Tải nhạc là tính năng yêu cầu thông qua máy chủ và không khả dụng với tinh chỉnh này. Tuy nhiên, bạn có thể tải về những tập podcast.";
 
 /* MARK: Lyrics */
 
@@ -87,7 +87,7 @@ fallback_attribute = "Dự phòng";
 romanized_attribute = "La tinh hóa";
 
 musixmatch_unauthorized_popup = "Tinh chỉnh không thể lấy lời bài hát từ Musixmatch vì lỗi Không hợp lệ. Vui lòng kiểm tra hoặc cập nhật token Musixmatch của bạn. Nếu bạn sử dụng một chiếc iPad, bạn nên lấy token từ ứng dụng Musixmatch cho iPad.";
-musixmatch_restricted_popup = "Tinh chỉnh không thể lấy lời bài hát từ Musixmatch vì bị hạn chế. Nó có vẻ là do vấn đề bản quyền với địa chỉ IP US, Vì vậy bạn nên đổi nó nếu bạn đang ở US hoặc sử dụng VPN.";
+musixmatch_restricted_popup = "Tinh chỉnh không thể lấy lời bài hát từ Musixmatch vì bị hạn chế. Nó có thể là do vấn đề bản quyền với địa chỉ IP US, Vì vậy bạn nên đổi nó nếu bạn đang ở US hoặc sử dụng VPN.";
 
 // Errors Titles
 
