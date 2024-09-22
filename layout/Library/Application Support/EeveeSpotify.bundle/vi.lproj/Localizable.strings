@@ -102,3 +102,7 @@ unknown_error = "Lỗi không xác định";
 
 song_is_instrumental = "Bài hát này là nhạc không lời.";
 let_the_music_play = "Hãy để giai điệu vang lên...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "Bài hát đã thích";
