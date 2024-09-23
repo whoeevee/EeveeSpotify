@@ -1,0 +1,106 @@
+/* 標記: 設定 */
+
+patching = "修補方案";
+lyrics = "歌詞";
+customization = "客製化";
+
+common_issues_tip_title = "遇到問題？";
+
+common_issues_tip_message = "如果遇到了一些問題，例如無法播放音樂，請看";
+common_issues_tip_button = "常見問題";
+
+reset_data = "重設";
+reset_data_description = "清除快取並重新啟動Spotify.";
+
+checking_for_update = "正在檢查更新...";
+update_available = "有可用的更新";
+
+cancel = "取消";
+ok = "確定";
+
+// 修補方案
+
+do_not_patch_premium = "不修補Premium";
+patching_description = "EeveeSpotify會即時攔截使用者資料請求，反序列化並修改資料。
+
+若您擁有有效的Premium方案, 則可以啟用「不修補Premium」。啟用後EeveeSpotify將不會對任何Premium功能做出限制。修改後需要重新啟動。";
+
+overwrite_configuration = "覆寫配置";
+overwrite_configuration_description = "*不保證有效 使用轉存的Premium配置替換遠端配置，這可能可以解決一些問題，例如廣告。";
+
+// 歌詞
+
+lyrics_source = "歌詞提供者";
+lyrics_source_description = "你可以在此選擇喜歡的歌詞提供者。
+
+Genius：為絕大多數歌曲提供最高品質的歌詞且為更新最快的提供者，但永遠不會提供同步的歌詞。
+
+LRCLIB：最為開放的歌詞提供者，提供即時同步的歌詞。然而其缺少大量歌曲的歌詞。
+
+Musixmatch：Spotify使用的提供者。為許多歌曲提供同步歌詞以及翻譯，但是你需要一個使用者權杖才可以使用該歌詞提供者。";
+lyrics_additional_info = "若EeveeSpotify無法找到或無法處理歌詞, 您將會看到「無法載入歌詞」。由於EeveeSpotify搜尋歌詞的方式所以使用Genius時可能會出現錯誤的歌詞。在大多數情況下，它都能正常運作。";
+petitlyrics_description = "PetitLyrics：提供大量已同步的日語歌詞和一些國際（非日語）歌詞。";
+
+musixmatch_user_token = "Musixmatch使用者權杖";
+user_token_placeholder = "請在此輸入 Musixmatch 使用者權杖或貼上除錯資訊";
+
+enter_user_token = "輸入使用者權杖";
+enter_user_token_message = "若要使用 Musixmatch作為歌詞提供者，則需要從官方應用程式中找到你的使用者權杖。 從App Store下載Musixmatch，註冊或登錄，接著來到 設定（右上角的齒輪圖示） > Get help > 複製除錯資訊， 並在此處貼上。亦可使用中間人攻擊提取使用者權杖。";
+
+genius_fallback = "Genius替代歌詞";
+genius_fallback_description = "如果無法從 %@ 載入歌詞，將使用 Genius 載入歌詞。";
+
+show_fallback_reasons = "顯示替代原因";
+
+romanized_lyrics = "羅馬拼音歌詞";
+romanized_lyrics_description = "為中文，日文以及韓文顯示羅馬拼音歌詞";
+
+musixmatch_language = "Musixmatch 歌詞翻譯語言";
+musixmatch_language_description = "可以輸入兩個字母的 Musixmatch 語言碼，並在翻譯可用時查看翻譯。*繁體中文語言碼為z1";
+
+// 圖型化介面
+
+lyrics_background_color_section = "歌詞背景色";
+lyrics_background_color_section_description = "若您啟用「顯示原彩」則會顯示Spotify原本的歌詞背景顏色（根據歌曲專輯封面動態調整）。
+
+您亦可設定一個固定背景顏色或者設定顏色標準化程度。該選項決定了多少淺色被調深以及多少深色被調淺。通常來講，標準化程度越高則背景顏色越淺。";
+
+display_original_colors = "顯示原彩";
+
+use_static_color = "使用固定背景顏色";
+static_color = "固定背景顏色";
+
+color_normalization_factor = "顏色標準化程度";
+dark_popups = "深色提示";
+
+/* 標記: Premium 彈出視窗 */
+
+have_premium_popup = "您似乎沒有訂閱Premium，所以EeveeSpotify不會對使用者資料做出修補或限制Premium功能。您可以在EeveeSpotify設定中管理。";
+
+high_audio_quality_popup = "由於極高音質由伺服器處理因此EeveeSpotify無法啟用該功能。";
+playlist_downloading_popup = "由於原生的下載功能由伺服器處理因此EeveeSpotify無法啟用該功能。不過您仍可下載Podcast。";
+
+/* 標記: 歌詞 */
+
+fallback_attribute = "替代歌詞";
+romanized_attribute = "羅馬拼音";
+
+musixmatch_unauthorized_popup = "由於歌詞未授權因此EeveeSpotify無法從Musixmatch載入。請檢查或更新你的使用者權杖。若您正在使用iPad。則您需要從iPad版本的Musixmatch取得使用者權杖。";
+musixmatch_restricted_popup = "由於歌詞受到限制因此EeveeSpotify無法從Musixmatch載入。這可能是由於美國 IP 地址而導致的版權問題，因此如果在美國，則應更換 IP 位址或使用 VPN。";
+
+// 錯誤標題
+
+no_such_song = "找不到歌曲";
+musixmatch_restricted = "受限制";
+invalid_musixmatch_token = "未授權";
+decoding_error = "解碼錯誤";
+no_current_track = "目前未播放音樂";
+unknown_error = "未知錯誤";
+
+// 純音樂標題
+
+song_is_instrumental = "此歌曲為純音樂。";
+let_the_music_play = "讓音樂演奏吧...";
+
+// 已按讚的歌曲
+liked_songs = "已按讚的歌曲";

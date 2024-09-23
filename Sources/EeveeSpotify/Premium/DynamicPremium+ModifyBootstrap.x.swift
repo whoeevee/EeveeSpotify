@@ -69,7 +69,7 @@ class SpotifySessionDelegateBootstrapHook: ClassHook<NSObject>, SpotifySessionDe
                     }
                     else {
                         UserDefaults.patchType = .requests
-                        ServerSidedReminder().activate()
+                        PremiumPatching().activate()
                     }
                     
                     NSLog("[EeveeSpotify] Fetched bootstrap, \(UserDefaults.patchType) was set")

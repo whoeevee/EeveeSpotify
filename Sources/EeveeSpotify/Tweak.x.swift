@@ -8,9 +8,11 @@ func exitApplication() {
     }
 }
 
+struct PremiumPatching: HookGroup { }
+
 struct EeveeSpotify: Tweak {
     
-    static let version = "4.7"
+    static let version = "5.2"
     static let isOldSpotifyVersion = NSClassFromString("Lyrics_NPVCommunicatorImpl.LyricsOnlyViewController") == nil
     
     init() {
@@ -19,7 +21,7 @@ struct EeveeSpotify: Tweak {
         }
         
         if UserDefaults.patchType.isPatching {
-            ServerSidedReminder().activate()
+            PremiumPatching().activate()
         }
     }
 }

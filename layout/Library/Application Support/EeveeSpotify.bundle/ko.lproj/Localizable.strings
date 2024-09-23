@@ -1,0 +1,103 @@
+/* MARK: Settings */
+
+patching = "패치 중";
+lyrics = "가사";
+customization = "커스텀화";
+
+common_issues_tip_title = "문제가 있습니까?";
+
+common_issues_tip_message = "노래를 재생할 수 없는 문제가 있다면, 확인해 보세요.";
+common_issues_tip_button = "일반적인 문제";
+
+reset_data = "데이터 초기화";
+reset_data_description = "캐시된 데이터를 지우고 앱을 다시 시작하세요.";
+
+checking_for_update = "업데이트 확인 중...";
+update_available = "업데이트 가능";
+
+cancel = "취소";
+ok = "확인";
+
+// Patching
+
+do_not_patch_premium = "프리미엄으로 패치 안 함";
+patching_description = "트윅은 사용자 데이터를 로드하기 위한 요청을 가로채고, 역직렬화하고, 실시간으로 매개 변수를 수정합니다.
+
+활성화된 프리미엄 구독이 있다면, 프리미엄으로 패치 안 함을 켤 수 있습니다. 조정은 데이터를 패치하거나 프리미엄 서버 측 기능의 사용을 제한하지 않습니다. 변경 후 앱을 다시 시작해야 합니다.";
+
+overwrite_configuration = "구성 덮어쓰기";
+overwrite_configuration_description = "원격 구성을 덤프된 프리미엄으로 교체하세요. 광고 표시와 같은 몇 가지 문제를 해결할 수 있지만, 보장되지는 않습니다.";
+
+// Lyrics
+
+lyrics_source = "가사 출처";
+lyrics_source_description = "선호하는 가사 소스를 선택할 수 있습니다.
+
+Genius: 최고 품질의 가사를 제공하고, 가장 많은 노래를 제공하며, 가사를 가장 빠르게 업데이트합니다. 시간과 동기화되지 않으며 절대 동기화되지 않을 것입니다.
+
+LRCLIB: 시간 동기화된 가사를 제공하는 가장 개방적인 서비스입니다. 하지만, 많은 노래의 가사가 부족합니다.
+
+Musixmatch: 스포티파이가 사용하는 서비스입니다. 많은 노래에 시간-동기화된 가사를 제공하지만, 이 소스를 사용하려면 사용자 토큰이 필요합니다.";
+lyrics_additional_info = "조정이 노래를 찾거나 가사를 처리할 수 없다면, \”이 노래의 가사를 로드할 수 없습니다\“ 메시지가 표시됩니다. 트윅이 노래를 검색하는 방식 때문에 Genius를 사용할 때 일부 노래의 가사가 틀릴 수 있습니다. 저는 대부분의 경우 작동하게 만들었습니다.";
+petitlyrics_description = "PetitLyrics: 많은 시간 동기화된 일본어와 국제적인 가사를 제공합니다.";
+
+musixmatch_user_token = "Musixmatch 사용자 토큰";
+user_token_placeholder = "사용자 토큰을 입력하거나 디버그 정보를 붙여넣으세요";
+
+enter_user_token = "사용자 토큰을 입력하세요";
+enter_user_token_message = "Musixmatch를 사용하려면 공식 앱에서 사용자 토큰을 검색해야 합니다. App Store에서 Musixmatch를 다운로드하고 가입한 다음 설정 > 도움말 > 디버그 정보 복사로 이동하여 여기에 붙여넣으세요. MITM을 사용하여 토큰을 추출할 수도 있습니다.";
+
+genius_fallback = "genius 폴백";
+genius_fallback_description = "%@에 문제가 있다면 Genius의 가사를 불러오세요.";
+
+show_fallback_reasons = "폴백 이유를 보여주기";
+
+romanized_lyrics = "로마자화된 가사";
+romanized_lyrics_description = "일본어, 한국어, 중국어의 로마자 가사를 표시하세요.";
+
+musixmatch_language = "Musixmatch 가사 언어";
+musixmatch_language_description = "2글자 Musixmatch 언어 코드를 입력하고 Musixmatch에서 번역된 가사를 볼 수 있습니다.";
+
+// UI
+
+lyrics_background_color_section = "가사 배경색";
+lyrics_background_color_section_description = "Display Original Colors를 켜면, 가사가 있는 트랙의 원래 Spotify 색상으로 표시됩니다.
+
+추출된 트랙 커버의 색상을 기반으로 정적 색상 또는 정규화 요소를 설정할 수 있습니다. 이 요소는 얼마나 많은 어두운 색이 밝아지고 밝은 색이 어두워지는지를 결정합니다. 일반적으로, 더 높은 정규화 계수를 가진 더 밝은 색을 보게 될 것입니다.";
+
+display_original_colors = "원래 색상 표시";
+
+use_static_color = "정적 색상 사용";
+static_color = "정적 색상";
+
+color_normalization_factor = "색상 정규화 요소";
+dark_popups = "다크 팝업";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "활성 프리미엄 구독이 있는 것처럼 보이므로, 조정은 데이터를 패치하거나 프리미엄 서버 측 기능의 사용을 제한하지 않습니다. EeveeSpotify 설정에서 이것을 관리할 수 있습니다.";
+
+high_audio_quality_popup = "매우 높은 오디오 품질은 서버 측이며 이 트윅으로 사용할 수 없습니다.";
+playlist_downloading_popup = "네이티브 재생 목록 다운로드는 서버 측이며 이 트윅에서는 사용할 수 없습니다. 하지만 팟캐스트 에피소드를 다운로드할 수 있습니다.";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "폴백";
+romanized_attribute = "로마자화된";
+
+musixmatch_unauthorized_popup = "무단 오류로 인해 Musixmatch의 가사를 로드할 수 없습니다. Musixmatch 토큰을 확인하거나 업데이트하세요. iPad를 사용하는 경우, iPad용 Musixmatch 앱에서 토큰을 받아야 합니다.";
+musixmatch_restricted_popup = "트윅은 제한되어 있기 때문에 Musixmatch의 가사를 로드할 수 없습니다. 미국 IP 주소로 인해 저작권 문제일 가능성이 높으므로, 미국에 있거나 VPN을 사용하는 경우 변경해야 합니다.";
+
+// Errors Titles
+
+no_such_song = "노래를 찾을 수 없습니다.";
+musixmatch_restricted = "제한된";
+invalid_musixmatch_token = "허가받지 않은";
+decoding_error = "디코딩 오류";
+no_current_track = "트랙 인스턴스 없음";
+unknown_error = "알 수 없는 오류";
+
+// Instrumental Titles
+
+song_is_instrumental = "이 노래는 악기전용 노래입니다.";
+let_the_music_play = "음악이 재생되게 놔두세요...";

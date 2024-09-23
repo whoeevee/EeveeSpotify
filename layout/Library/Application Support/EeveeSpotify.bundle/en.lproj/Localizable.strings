@@ -101,3 +101,7 @@ unknown_error = "Unknown Error";
 
 song_is_instrumental = "This song is instrumental.";
 let_the_music_play = "Let the music play...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "Liked songs";
