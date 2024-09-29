@@ -5,7 +5,9 @@ struct EeveeSettingsView: View {
     let navigationController: UINavigationController
     
     @State var latestVersion = ""
-    @State var hasShownCommonIssuesTip = UserDefaults.hasShownCommonIssuesTip
+    
+    @State private var hasShownCommonIssuesTip = UserDefaults.hasShownCommonIssuesTip
+    @State private var isClearingData = false
     
     private func pushSettingsController(with view: any View, title: String) {
         let viewController = EeveeSettingsViewController(
@@ -74,16 +76,29 @@ struct EeveeSettingsView: View {
             
             Section(footer: Text("reset_data_description".localized)) {
                 Button {
-                    OfflineHelper.resetData()
-                    exitApplication()
+                    isClearingData = true
+                    
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        OfflineHelper.resetData(clearCaches: true)
+                        
+                        DispatchQueue.main.async {
+                            exitApplication()
+                        }
+                    }
                 } label: {
-                    Text("reset_data".localized)
+                    if isClearingData {
+                        ProgressView()
+                    }
+                    else {
+                        Text("reset_data".localized)
+                    }
                 }
             }
         }
         
         .listStyle(GroupedListStyle())
         
+        .animation(.default, value: isClearingData)
         .animation(.default, value: latestVersion)
         .animation(.default, value: hasShownCommonIssuesTip)
         

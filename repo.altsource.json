@@ -11,6 +11,13 @@
       "iconURL": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/0c/1f/61/0c1f6144-af80-f395-3204-1d14fd8b2be7/AppIcon-0-0-1x_U007emarketing-0-6-0-0-85-220.png/512x512bb.jpg",
       "versions": [
         {
+          "version": "8.9.76",
+          "date": "2024-09-18",
+          "localizedDescription": "Spotify v8.9.76 injected with EeveeSpotify",
+          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.2/EeveeSpotify-5.2-8.9.76.ipa",
+          "size": 79401385
+        },
+        {
           "version": "8.9.74",
           "date": "2024-09-11",
           "localizedDescription": "Spotify v8.9.74 injected with EeveeSpotify",
@@ -60,13 +67,6 @@
           "size": 76880363
         },
         {
-          "version": "8.9.60",
-          "date": "2024-07-29",
-          "localizedDescription": "Spotify v8.9.60 injected with EeveeSpotify",
-          "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift4.6/EeveeSpotify-4.6-8.9.60.ipa",
-          "size": 76880363
-        },
-        {
           "version": "8.9.58",
           "date": "2024-07-20",
           "localizedDescription": "Spotify v8.9.58 injected with EeveeSpotify",
@@ -99,7 +99,7 @@
         "entitlements": [],
         "privacy": []
       },
-      "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.1/EeveeSpotify-5.1-8.9.74.ipa"
+      "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.2/EeveeSpotify-5.2-8.9.76.ipa"
     }
   ]
 }

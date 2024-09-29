@@ -280,5 +280,5 @@ func getLyricsForCurrentTrack(originalLyrics: Lyrics? = nil) throws -> Data {
     }
     
     preloadedLyrics = nil
-    return try lyrics.serializedData()
+    return try lyrics.serializedBytes()
 }
