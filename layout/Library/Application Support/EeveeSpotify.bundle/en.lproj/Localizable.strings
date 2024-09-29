@@ -21,12 +21,12 @@ ok = "OK";
 // Patching
 
 do_not_patch_premium = "Do Not Patch Premium";
-patching_description = "The tweak intercepts requests to load user data, deserializes it, and modifies the parameters in real-time.
+patching_description = "EeveeSpotify intercepts requests to load user data, deserializes it, and modifies the parameters in real-time.
 
 If you have an active Premium subscription, you can turn on Do Not Patch Premium. The tweak won't patch the data or restrict the use of Premium server-sided features. App restart is required after changing.";
 
 overwrite_configuration = "Overwrite Configuration";
-overwrite_configuration_description = "Replace remote configuration with the dumped Premium one. It might fix some issues, such as appearing ads, but it's not guaranteed.";
+overwrite_configuration_description = "Replace remote configuration with the dumped Premium one. This configuration defines most UI/UX parameters and may be helpful, although it could cause issues.";
 
 // Lyrics
 
@@ -38,7 +38,7 @@ Genius: Offers the best quality lyrics, provides the most songs, and updates lyr
 LRCLIB: The most open service, offering time-synced lyrics. However, it lacks lyrics for many songs.
 
 Musixmatch: The service Spotify uses. Provides time-synced lyrics for many songs, but you'll need a user token to use this source.";
-lyrics_additional_info = "If the tweak is unable to find a song or process the lyrics, you'll see a \"Couldn't load the lyrics for this song\" message. The lyrics might be wrong for some songs when using Genius due to how the tweak searches songs. I've made it work in most cases.";
+lyrics_additional_info = "If EeveeSpotify is unable to find a song or process the lyrics, you'll see a \"Couldn't load the lyrics for this song\" message. The lyrics might be wrong for some songs when using Genius due to how the tweak searches songs. I've made it work in most cases.";
 petitlyrics_description = "PetitLyrics: Offers plenty of time-synced Japanese and some international lyrics.";
 
 musixmatch_user_token = "Musixmatch User Token";

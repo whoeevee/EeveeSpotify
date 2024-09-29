@@ -1,12 +1,12 @@
 import Foundation
 
-enum LyricsSource : Int, CustomStringConvertible {
+enum LyricsSource: Int, CaseIterable, CustomStringConvertible {
     case genius
     case lrclib
     case musixmatch
     case petit
 
-    var description : String { 
+    var description: String {
         switch self {
         case .genius: "Genius"
         case .lrclib: "LRCLIB"

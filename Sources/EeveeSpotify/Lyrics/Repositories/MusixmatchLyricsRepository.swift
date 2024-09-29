@@ -78,13 +78,6 @@ class MusixmatchLyricsRepository: LyricsRepository {
     }
     
     private func getFirstSubtitle(_ subtitlesMessage: [String: Any]) throws -> [String: Any] {
-        guard
-            let subtitlesHeader = subtitlesMessage["header"] as? [String: Any],
-            let subtitlesStatusCode = subtitlesHeader["status_code"] as? Int
-        else {
-            throw LyricsError.DecodingError
-        }
-        
         guard 
             let subtitlesBody = subtitlesMessage["body"] as? [String: Any],
             let subtitleList = subtitlesBody["subtitle_list"] as? [[String: Any]],
