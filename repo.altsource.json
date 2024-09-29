@@ -113,19 +113,19 @@
           "com.apple.developer.networking.wifi-info"
         ],
         "privacy": {
-          "NSAppleMusicUsageDescription": "Apple music aaaaaa",
-          "NSBluetoothAlwaysUsageDescription": "BT usage aaaaaa",
-          "NSBluetoothPeripheralUsageDescription": "BT peripheral aaaaaa",
-          "NSCameraUsageDescription": "camera aaaa",
-          "NSFaceIDUsageDescription": "face id aaaaa",
-          "NSHealthUpdateUsageDescription": "health aaaa",
-          "NSHealthShareUsageDescription": "health 2 aaaa",
-          "NSLocalNetworkUsageDescription": "network aaaaa",
-          "NSMicrophoneUsageDescription": "microphone aaaa",
-          "NSMotionUsageDescription": "motion aaaaaa",
-          "NSPhotoLibraryAddUsageDescription": "photos add aaaa",
-          "NSPhotoLibraryUsageDescription": "photos use aaaaa",
-          "NSUserTrackingUsageDescription": "tracking aaaa"
+          "NSAppleMusicUsageDescription": "This will let you play your imported music on Spotify.",
+          "NSBluetoothAlwaysUsageDescription": "This lets you unlock new ways of interacting with other devices compatible with Spotify via Bluetooth.",
+          "NSBluetoothPeripheralUsageDescription": "This lets you unlock new ways of interacting with other devices compatible with Spotify via Bluetooth.",
+          "NSCameraUsageDescription": "This lets you scan Spotify Codes.",
+          "NSFaceIDUsageDescription": "This lets you set access restrictions using Face ID.",
+          "NSHealthUpdateUsageDescription": "Spotify will use HealthKit data to provide personalised audio recommendations for your workouts.",
+          "NSHealthShareUsageDescription": "Spotify will use HealthKit data to provide personalised audio recommendations for your workouts.",
+          "NSLocalNetworkUsageDescription": "This lets you listen on different devices. Spotify will also get access to local audio files.",
+          "NSMicrophoneUsageDescription": "This lets you control Spotify using your voice.",
+          "NSMotionUsageDescription": "We will use this to understand which audio motivates you most.",
+          "NSPhotoLibraryAddUsageDescription": "This lets you save images to your Photo Library.",
+          "NSPhotoLibraryUsageDescription": "This lets you select images from your Photo Library.",
+          "NSUserTrackingUsageDescription": "Your data will be used to deliver personalized ads or content to you."
         }
       },
       "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.2/EeveeSpotify-5.2-8.9.76.ipa"
