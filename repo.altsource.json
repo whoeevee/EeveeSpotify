@@ -96,8 +96,37 @@
         }
       ],
       "appPermissions": {
-        "entitlements": [],
-        "privacy": []
+        "entitlements": [
+          "com.apple.security.application-groups",
+          "com.apple.developer.associated-domains",
+          "com.apple.developer.carplay-audio",
+          "get-task-allow",
+          "com.apple.developer.game-center",
+          "com.apple.developer.group-session",
+          "com.apple.developer.healthkit",
+          "keychain-access-groups",
+          "com.apple.developer.networking.multicast",
+          "aps.environment",
+          "com.apple.developer.healthkit.access",
+          "com.apple.developer.applesignin",
+          "com.apple.developer.siri",
+          "com.apple.developer.networking.wifi-info"
+        ],
+        "privacy": [
+          "NSAppleMusicUsageDescription",
+          "NSBluetoothAlwaysUsageDescription",
+          "NSBluetoothPeripheralUsageDescription",
+          "NSCameraUsageDescription",
+          "NSFaceIDUsageDescription",
+          "NSHealthUpdateUsageDescription",
+          "NSHealthShareUsageDescription",
+          "NSLocalNetworkUsageDescription",
+          "NSMicrophoneUsageDescription",
+          "NSMotionUsageDescription",
+          "NSPhotoLibraryAddUsageDescription",
+          "NSPhotoLibraryUsageDescription",
+          "NSUserTrackingUsageDescription"
+        ]
       },
       "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.2/EeveeSpotify-5.2-8.9.76.ipa"
     }
