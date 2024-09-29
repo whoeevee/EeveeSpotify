@@ -106,7 +106,7 @@
           "com.apple.developer.healthkit",
           "keychain-access-groups",
           "com.apple.developer.networking.multicast",
-          "aps.environment",
+          "aps-environment",
           "com.apple.developer.healthkit.access",
           "com.apple.developer.applesignin",
           "com.apple.developer.siri",
