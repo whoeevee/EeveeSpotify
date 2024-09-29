@@ -112,21 +112,21 @@
           "com.apple.developer.siri",
           "com.apple.developer.networking.wifi-info"
         ],
-        "privacy": [
-          "NSAppleMusicUsageDescription",
-          "NSBluetoothAlwaysUsageDescription",
-          "NSBluetoothPeripheralUsageDescription",
-          "NSCameraUsageDescription",
-          "NSFaceIDUsageDescription",
-          "NSHealthUpdateUsageDescription",
-          "NSHealthShareUsageDescription",
-          "NSLocalNetworkUsageDescription",
-          "NSMicrophoneUsageDescription",
-          "NSMotionUsageDescription",
-          "NSPhotoLibraryAddUsageDescription",
-          "NSPhotoLibraryUsageDescription",
-          "NSUserTrackingUsageDescription"
-        ]
+        "privacy": {
+          "NSAppleMusicUsageDescription": "Apple music aaaaaa",
+          "NSBluetoothAlwaysUsageDescription": "BT usage aaaaaa",
+          "NSBluetoothPeripheralUsageDescription": "BT peripheral aaaaaa",
+          "NSCameraUsageDescription": "camera aaaa",
+          "NSFaceIDUsageDescription": "face id aaaaa",
+          "NSHealthUpdateUsageDescription": "health aaaa",
+          "NSHealthShareUsageDescription": "health 2 aaaa",
+          "NSLocalNetworkUsageDescription": "network aaaaa",
+          "NSMicrophoneUsageDescription": "microphone aaaa",
+          "NSMotionUsageDescription": "motion aaaaaa",
+          "NSPhotoLibraryAddUsageDescription": "photos add aaaa",
+          "NSPhotoLibraryUsageDescription": "photos use aaaaa",
+          "NSUserTrackingUsageDescription": "tracking aaaa"
+        }
       },
       "downloadURL": "https://github.com/whoeevee/EeveeSpotify/releases/download/swift5.2/EeveeSpotify-5.2-8.9.76.ipa"
     }
