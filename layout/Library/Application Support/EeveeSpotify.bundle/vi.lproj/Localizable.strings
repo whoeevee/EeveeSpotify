@@ -21,12 +21,12 @@ ok = "OK";
 // Patching
 
 do_not_patch_premium = "Không vá Premium";
-patching_description = "Tinh chỉnh chặn các yêu cầu tải dữ liệu người dùng, giải tuần tự hóa dữ liệu đó và chỉnh sửa các tham số theo thời gian thực.
+patching_description = "EeveeSpotify chặn các yêu cầu tải dữ liệu người dùng, giải tuần tự hóa dữ liệu đó và chỉnh sửa các tham số theo thời gian thực.
 
 Nếu bạn đang sử dụng Premium, bạn có thể bật Không vá Premium. Tinh chỉnh này sẽ không chỉnh sửa dữ liệu hoặc hạn chế việc sử dụng các tính năng Premium. Bạn cần phải khởi động lại ứng dụng sau khi thay đổi.";
 
 overwrite_configuration = "Ghi đè cấu hình";
-overwrite_configuration_description = "Thay thế cấu hình gốc bằng cấu hình đã chỉnh sửa. Nó có thể khắc phục một số vấn đề như hiện quảng cáo, nhưng nó không đảm bảo 100%.";
+overwrite_configuration_description = "Thay thế cấu hình gốc bằng cấu hình đã chỉnh sửa. Cấu hình này liên quan đến hầu hết các giao diện UI/UX của ứng dụng và có thể sẽ hữu ích, tuy nhiên nó có thể gây ra một số vấn đề.";
 
 // Lyrics
 
@@ -38,7 +38,7 @@ Genius: Cung cấp lời bài hát chất lượng tốt nhất, có nhiều bà
 LRCLIB: Dịch vụ cung cấp lời bài hát đồng bộ hóa theo thời gian. Nhưng thiếu lời cho nhiều bài hát.
 
 Musixmatch: Dịch vụ mà Spotify sử dụng. Cung cấp nhiều lời bài hát được đồng bộ hóa, nhưng bạn sẽ cần token để sử dụng dịch vụ này.";
-lyrics_additional_info = "Nếu tinh chỉnh không tìm thấy bài hát hoặc xử lý lời bài hát, bạn sẽ thấy thông báo \"Không thể tải lời cho bài hát này\". Lời bài hát có thể sai đối với một số bài hát khi sử dụng Genius do cách tinh chỉnh tìm kiếm bài hát. Tôi đã làm cho nó hoạt động trong hầu hết các trường hợp.";
+lyrics_additional_info = "Nếu EeveeSpotify không tìm thấy lời bài hát hoặc xử lý lời bài hát, bạn sẽ thấy thông báo \"Không thể tải lời cho bài hát này\". Lời bài hát có thể sai đối với một số bài hát khi sử dụng Genius do cách tinh chỉnh tìm kiếm bài hát. Tôi đã làm cho nó hoạt động trong hầu hết các trường hợp.";
 petitlyrics_description = "PetitLyrics: Offers plenty of time-synced Japanese and some international lyrics.";
 
 musixmatch_user_token = "Musixmatch User Token";
