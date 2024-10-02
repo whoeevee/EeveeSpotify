@@ -26,7 +26,7 @@ patching_description = "EeveeSpotify會即時攔截使用者資料請求，反�
 若您擁有有效的Premium方案, 則可以啟用「不修補Premium」。啟用後EeveeSpotify將不會對任何Premium功能做出限制。修改後需要重新啟動。";
 
 overwrite_configuration = "覆寫配置";
-overwrite_configuration_description = "*不保證有效 使用轉存的Premium配置替換遠端配置，這可能可以解決一些問題，例如廣告。";
+overwrite_configuration_description = "使用轉存的Premium配置替換遠端配置。該檔案定義了大部分的UI/UX參數，雖然可能會導致一些問題，但仍然很有幫助。";
 
 // 歌詞
 

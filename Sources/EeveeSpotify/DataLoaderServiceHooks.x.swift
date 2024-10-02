@@ -32,7 +32,7 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject>, SpotifySessionDelegate {
                         session,
                         dataTask: task,
                         didReceiveData: try getLyricsForCurrentTrack(
-                            originalLyrics: try? Lyrics(serializedData: buffer)
+                            originalLyrics: try? Lyrics(serializedBytes: buffer)
                         )
                     )
                     
@@ -46,13 +46,13 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject>, SpotifySessionDelegate {
             }
             
             do {
-                var customizeMessage = try CustomizeMessage(serializedData: buffer)
+                var customizeMessage = try CustomizeMessage(serializedBytes: buffer)
                 modifyRemoteConfiguration(&customizeMessage.response)
                 
                 orig.URLSession(
                     session,
                     dataTask: task,
-                    didReceiveData: try customizeMessage.serializedData()
+                    didReceiveData: try customizeMessage.serializedBytes()
                 )
                 
                 orig.URLSession(session, task: task, didCompleteWithError: nil)

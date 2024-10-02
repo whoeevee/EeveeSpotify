@@ -24,35 +24,18 @@ private func showOfflineModePopUp() {
     )
 }
 
-class FTPDownloadActionHook: ClassHook<NSObject> {
+class ContentOffliningUIHelperImplementationHook: ClassHook<NSObject> {
     typealias Group = PremiumPatching
-    static let targetName = "ListUXPlatform_FreeTierPlaylistImpl.FTPDownloadAction"
-
-    func execute(_ idk: Any) {
-        showOfflineModePopUp()
-    }
-}
-
-class UIButtonHook: ClassHook<UIButton> {
-    typealias Group = PremiumPatching
+    static let targetName = "Offline_ContentOffliningUIImpl.ContentOffliningUIHelperImplementation"
     
-    func setHighlighted(_ highlighted: Bool) {
-
-        if highlighted {
-
-            if let identifier = target.accessibilityIdentifier, identifier.contains("DownloadButton"),
-            let viewController = WindowHelper.shared.viewController(for: target) {
-
-                if !(NSStringFromClass(type(of: viewController)) ~= "Podcast|CreativeWorkPlatform") {
-
-                    target.removeTarget(nil, action: nil, for: .allEvents)
-                    showOfflineModePopUp()
-
-                    return
-                }
-            }
-        }
-
-        orig.setHighlighted(highlighted)
+    func downloadToggledWithCurrentAvailability(
+        _ availability: Int,
+        addAction: NSObject,
+        removeAction: NSObject,
+        pageIdentifier: String,
+        pageURI: URL
+    ) -> String {
+        showOfflineModePopUp()
+        return pageIdentifier
     }
 }
