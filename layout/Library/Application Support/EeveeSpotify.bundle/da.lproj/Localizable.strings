@@ -21,12 +21,12 @@ ok = "OK";
 // Patching
 
 do_not_patch_premium = "Patch ikke Premium";
-patching_description = "Dette tweak opsnapper anmodninger om at indlæse brugerdata, deserialiserer disse, og modificerer parametrene samtidigt med at de indlæses.
+patching_description = "EveeSpotify opsnapper anmodninger om at indlæse brugerdata, deserialiserer disse, og modificerer parametrene samtidigt med at de indlæses.
 
 Hvis du har et aktivt Premium-abonnement, kan du bruge \"Patch ikke Premium\". Tweaket vil herefter ikke patche data eller begrænse brug af Premium-funktioner der er server-side. Genstart af appen er nødvendig efter ændring.";
 
 overwrite_configuration = "Overskriv konfiguration";
-overwrite_configuration_description = "Overskriv fjernkonfiguration med en Premium-konfiguration. Dette kan fikse problemer såsom reklamer, men er ikke garanteret.";
+overwrite_configuration_description = "Overskriv fjernkonfiguration med en Premium-konfiguration. Denne konfiguration definerer flere UI/UX parametre og kan være nyttig, selvom at den kan forårsage problemer.";
 
 // Lyrics
 
@@ -38,7 +38,7 @@ Genius: Tilbyder den højeste kvalitet af sangtekster, har flest sange, og opdat
 LRCLIB: Den mest åbne service, der tilbyder tidssynkroniserede sangtekster. Men, den mangler tekster til mange sange.
 
 Musixmatch: Servicen Spotify bruger. Tilbyder tidssynkroniserede sangtekster for mange sange, men du skal have et User Token for at bruge denne service.";
-lyrics_additional_info = "Hvis tweaket ikke er i stand til at finde en sang eller indlæse sangtekster vil du se beskeden \"Kunne ikke indlæse sangteksten til denne sang\". Sangtekster kan, for visse sange, være forkerte ved brug af Genius grundet måden dette tweak søger efter sange. Det virker dog i de fleste tilfælde.";
+lyrics_additional_info = "Hvis EeveeSpotify ikke er i stand til at finde en sang eller indlæse sangtekster vil du se beskeden \"Kunne ikke indlæse sangteksten til denne sang\". Sangtekster kan, for visse sange, være forkerte ved brug af Genius grundet måden dette tweak søger efter sange. Det virker dog i de fleste tilfælde.";
 petitlyrics_description = "PetitLyrics: Tilbyder mange tidssynkroniserede tekster på Japansk og enkelte internationale tekster.";
 
 musixmatch_user_token = "Musixmatch User Token";
@@ -101,3 +101,7 @@ unknown_error = "Ukendt fejl";
 
 song_is_instrumental = "Denne sang er instrumental.";
 let_the_music_play = "Lad musikken spille...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "Sange, du synes godt om";
