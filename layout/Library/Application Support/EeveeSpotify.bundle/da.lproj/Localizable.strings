@@ -21,7 +21,7 @@ ok = "OK";
 // Patching
 
 do_not_patch_premium = "Patch ikke Premium";
-patching_description = "EveeSpotify opsnapper anmodninger om at indlæse brugerdata, deserialiserer disse, og modificerer parametrene samtidigt med at de indlæses.
+patching_description = "EeveeSpotify opsnapper anmodninger om at indlæse brugerdata, deserialiserer disse, og modificerer parametrene samtidigt med at de indlæses.
 
 Hvis du har et aktivt Premium-abonnement, kan du bruge \"Patch ikke Premium\". Tweaket vil herefter ikke patche data eller begrænse brug af Premium-funktioner der er server-side. Genstart af appen er nødvendig efter ændring.";
 
