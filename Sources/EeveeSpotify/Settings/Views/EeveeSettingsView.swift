@@ -71,6 +71,19 @@ struct EeveeSettingsView: View {
                     imageSystemName: "paintpalette.fill"
                 )
             }
+			
+			Button {
+				pushSettingsController(
+					with: EeveeAboutSettingsView(),
+					title: "about".localized
+				)
+			} label: {
+				NavigationSectionView(
+					color: Color(hex: "#3498eb"),
+					title: "about".localized,
+					imageSystemName: "info.circle.fill"
+				)
+			}
             
             //
             
