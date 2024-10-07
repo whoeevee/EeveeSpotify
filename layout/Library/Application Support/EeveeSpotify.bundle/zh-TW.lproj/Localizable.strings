@@ -107,4 +107,6 @@ liked_songs = "已按讚的歌曲";
 
 // 待加入
 about_main_title = "主要貢獻者";
-about_main_des = "whoeevee 與 asdfzxcvbn";
+about = "關於";
+about_sec_title = "其他貢獻者";
+sort_source = "根據GitHub Contributor頁面排序";

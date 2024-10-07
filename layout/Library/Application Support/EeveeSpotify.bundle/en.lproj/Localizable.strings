@@ -105,3 +105,9 @@ let_the_music_play = "Let the music play...";
 // liked songs title, should match official spotify loc
 
 liked_songs = "Liked songs";
+
+// 待加入
+about_main_title = "Main Contributors";
+about = "View Contributors";
+about_sec_title = "Other Contributors";
+sort_source = "Sort by GitHub Contributor page";
