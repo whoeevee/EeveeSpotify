@@ -34,7 +34,7 @@ struct EeveeAboutSettingsView: View {
             
             Section {
                 VStack(alignment: .leading) {
-                    Link("sort_source".localized)
+                    Text("sort_source".localized)
                 }
             }
         }
