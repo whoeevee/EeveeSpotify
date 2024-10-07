@@ -33,9 +33,13 @@ struct EeveeAboutSettingsView: View {
 					Link("schweppes-0x", destination: URL(string: "https://github.com/schweppes-0x")!)
 					Link("LivioZ", destination: URL(string: "https://github.com/LivioZ")!)
 					Link("lockieluke", destination: URL(string: "https://github.com/lockieluke")!)
-					Text("sort_source".localized)
                 }
             }
+			Section{
+				VStack(alignment: .leading) {
+				Link("sort_source".localized, destination: URL(string: "https://github.com/whoeevee/EeveeSpotify/graphs/contributors")!)
+				}
+			}
         }
     }
 }
