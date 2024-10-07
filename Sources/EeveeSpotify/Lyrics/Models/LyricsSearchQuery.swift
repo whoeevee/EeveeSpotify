@@ -5,3 +5,4 @@ struct LyricsSearchQuery {
     var primaryArtist: String
     var spotifyTrackId: String
 }
+
