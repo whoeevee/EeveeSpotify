@@ -1,15 +1,10 @@
 import SwiftUI
-import UIKit
 
 struct EeveeAboutSettingsView: View {
-
-	@State var latestVersion = ""
-
+    
     var body: some View {
         List {
-		
-			VersionSection()
-			
+    
             Section(header: Text("about_main_title".localized)) {
                 VStack(alignment: .leading) {
                     HStack {
@@ -24,7 +19,7 @@ struct EeveeAboutSettingsView: View {
                     }
                 }
             }
-
+            
             Section(header: Text("about_sec_title".localized), footer: Text("sort_source".localized)) {
                 VStack(alignment: .leading) {
                     HStack {
@@ -135,23 +130,5 @@ struct EeveeAboutSettingsView: View {
                 }
             }
         }
-		
-		.animation(.default, value: latestVersion)
-        .onAppear {
-            WindowHelper.shared.overrideUserInterfaceStyle(.dark)
-            
-            Task {
-                try await loadVersion()
-            }
-        }
-    }
-
-    func loadVersion() async throws {
-        let (data, _) = try await URLSession.shared.data(
-            from: URL(string: "https://api.github.com/repos/whoeevee/EeveeSpotify/releases/latest")!
-        )
-        
-        let tag = try JSONDecoder().decode(GitHubReleaseInfo.self, from: data).tag_name
-        latestVersion = String(tag.dropFirst(5))
     }
 }
