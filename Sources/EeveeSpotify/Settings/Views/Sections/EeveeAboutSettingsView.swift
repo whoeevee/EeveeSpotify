@@ -32,13 +32,13 @@ struct EeveeAboutSettingsView: View {
     
     var body: some View {
         List {
-            Section(header: Text("about_main_title".localized), alignment: .leading) {
+            Section(header: Text("about_main_title".localized)) {
                 ForEach(firstSectionLinks, id: \.0) { link in
                     createLink(title: link.0, url: link.1)
                 }
             }
             
-            Section(header: Text("about_sec_title".localized), footer: Text("sort_source".localized), alignment: .leading) {
+            Section(header: Text("about_sec_title".localized), footer: Text("sort_source".localized)) {
                 ForEach(secondSectionLinks, id: \.0) { link in
                     createLink(title: link.0, url: link.1)
                 }
