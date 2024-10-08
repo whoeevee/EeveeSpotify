@@ -1,33 +1,51 @@
 import SwiftUI
 
+struct Contributor: Codable, Identifiable {
+    let id: Int
+    let login: String
+    let contributions: Int
+    let html_url: String
+}
+
+class GitHubViewModel: ObservableObject {
+    @Published var contributors: [Contributor] = []
+    
+    func fetchContributors() {
+        guard let url = URL(string: "https://api.github.com/repos/whoeevee/EeveeSpotify/contributors") else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    var fetchedContributors = try JSONDecoder().decode([Contributor].self, from: data)
+                    
+                    fetchedContributors.removeAll { $0.login == "whoeevee" || $0.login == "asdfzxcvbn" }
+                    
+                    fetchedContributors.sort { $0.contributions > $1.contributions }
+                    
+                    DispatchQueue.main.async {
+                        self.contributors = fetchedContributors
+                    }
+                } catch {
+                    print("Error decoding data: \(error)")
+                }
+            } else if let error = error {
+                print("Error fetching contributors: \(error.localizedDescription)")
+            }
+        }.resume()
+    }
+}
+
 struct EeveeAboutSettingsView: View {
+    @ObservedObject var viewModel = GitHubViewModel()
+    
     let firstSectionLinks = [
         ("whoeevee", "https://github.com/whoeevee"),
         ("asdfzxcvbn", "https://github.com/asdfzxcvbn")
-    ]
-    
-    let secondSectionLinks = [
-        ("ElliotCHEN37", "https://github.com/ElliotCHEN37"),
-        ("Richard-NDC", "https://github.com/Richard-NDC"),
-        ("5jd", "https://github.com/5jd"),
-        ("UnexcitingDean", "https://github.com/UnexcitingDean"),
-        ("gototheskinny", "https://github.com/gototheskinny"),
-        ("LIKVIDATOR1337", "https://github.com/LIKVIDATOR1337"),
-        ("xiangfeidexiaohuo", "https://github.com/xiangfeidexiaohuo"),
-        ("wlxxd", "https://github.com/wlxxd"),
-        ("longopy", "https://github.com/longopy"),
-        ("yodaluca23", "https://github.com/yodaluca23"),
-        ("3xynos7", "https://github.com/3xynos7"),
-        ("An0n-00", "https://github.com/An0n-00"),
-        ("by3lish", "https://github.com/by3lish"),
-        ("emal0n", "https://github.com/emal0n"),
-        ("CukierDev", "https://github.com/CukierDev"),
-        ("Incognito-Coder", "https://github.com/Incognito-Coder"),
-        ("speedyfriend433", "https://github.com/speedyfriend433"),
-        ("Neo1102", "https://github.com/Neo1102"),
-        ("schweppes-0x", "https://github.com/schweppes-0x"),
-        ("LivioZ", "https://github.com/LivioZ"),
-        ("lockieluke", "https://github.com/lockieluke")
     ]
     
     var body: some View {
@@ -39,10 +57,13 @@ struct EeveeAboutSettingsView: View {
             }
             
             Section(header: Text("about_sec_title".localized), footer: Text("sort_source".localized)) {
-                ForEach(secondSectionLinks, id: \.0) { link in
-                    createLink(title: link.0, url: link.1)
+                ForEach(viewModel.contributors) { contributor in
+                    createLink(title: contributor.login, url: contributor.html_url)
                 }
             }
+        }
+        .onAppear {
+            viewModel.fetchContributors()
         }
     }
     
