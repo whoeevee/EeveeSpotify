@@ -15,9 +15,6 @@ reset_data_description = "क्यास डाटा खाली गर्न
 checking_for_update = "अपडेटको लागि जाँच गर्दै...";
 update_available = "अपडेट उपलब्ध छ";
 
-cancel = "रद्द गर्नुहोस्";
-ok = "ठीक छ";
-
 // Patching
 
 do_not_patch_premium = "प्रिमियम प्याच नगर्नुहोस्";

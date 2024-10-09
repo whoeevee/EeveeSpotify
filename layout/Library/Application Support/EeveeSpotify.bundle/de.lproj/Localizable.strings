@@ -15,9 +15,6 @@ reset_data_description = "Zwischengespeicherte Daten (Cache) löschen und App ne
 checking_for_update = "Suche nach Updates...";
 update_available = "Update verfügbar";
 
-cancel = "Abbrechen";
-ok = "OK";
-
 // Patching
 
 do_not_patch_premium = "Premium nicht patchen";

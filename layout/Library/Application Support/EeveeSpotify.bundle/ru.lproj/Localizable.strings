@@ -15,9 +15,6 @@ reset_data_description = "Очистить кэшированные данные
 checking_for_update = "Проверка наличия обновления...";
 update_available = "Доступно обновление";
 
-cancel = "Отменить";
-ok = "OK";
-
 // Patching
 
 do_not_patch_premium = "Не патчить Premium";
@@ -103,3 +100,5 @@ let_the_music_play = "Пусть заиграет музыка...";
 // liked songs title, should match official spotify loc
 
 liked_songs = "Тебе понравилось";
+
+contributors = "Участники";

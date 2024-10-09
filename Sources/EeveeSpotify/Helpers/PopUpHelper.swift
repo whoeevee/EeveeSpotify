@@ -1,8 +1,7 @@
 import UIKit
 import Orion
 
-class PopUpHelper {
-
+struct PopUpHelper {
     private static var isPopUpShowing = false
     
     static let sharedPresenter = type(
@@ -19,9 +18,7 @@ class PopUpHelper {
         onPrimaryClick: (() -> Void)? = nil,
         onSecondaryClick: (() -> Void)? = nil
     ) {
-
         DispatchQueue.main.asyncAfter(deadline: delayed ? .now() + 3.0 : .now()) {
-            
             if isPopUpShowing {
                 return
             }

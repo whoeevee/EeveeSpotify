@@ -4,7 +4,7 @@ private func showHavePremiumPopUp() {
     PopUpHelper.showPopUp(
         delayed: true,
         message: "have_premium_popup".localized,
-        buttonText: "ok".localized
+        buttonText: "OK".uiKitLocalized
     )
 }
 

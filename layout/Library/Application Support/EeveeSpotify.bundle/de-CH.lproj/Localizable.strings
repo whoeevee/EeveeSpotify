@@ -15,9 +15,6 @@ reset_data_description = "Lösch zwischegspeicherti Date und starte d'App neu.";
 checking_for_update = "lueg nachemene Update...";
 update_available = "Es het es Update verfüegbar!";
 
-cancel = "Abbräche";
-ok = "OK";
-
 // Patching
 
 do_not_patch_premium = "Duen Premium nid pätche";

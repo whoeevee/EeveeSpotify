@@ -8,7 +8,7 @@ class StreamQualitySettingsSectionHook: ClassHook<NSObject> {
     func shouldResetSelection() -> Bool {
         PopUpHelper.showPopUp(
             message: "high_audio_quality_popup".localized,
-            buttonText: "ok".localized
+            buttonText: "OK".uiKitLocalized
         )
 
         return true
@@ -20,7 +20,7 @@ class StreamQualitySettingsSectionHook: ClassHook<NSObject> {
 private func showOfflineModePopUp() {
     PopUpHelper.showPopUp(
         message: "playlist_downloading_popup".localized,
-        buttonText: "ok".localized
+        buttonText: "OK".uiKitLocalized
     )
 }
 
@@ -35,6 +35,16 @@ class ContentOffliningUIHelperImplementationHook: ClassHook<NSObject> {
         pageIdentifier: String,
         pageURI: URL
     ) -> String {
+        if pageIdentifier == "spotify:local-files" {
+            return orig.downloadToggledWithCurrentAvailability(
+                availability,
+                addAction: addAction,
+                removeAction: removeAction,
+                pageIdentifier: pageIdentifier,
+                pageURI: pageURI
+            )
+        }
+        
         showOfflineModePopUp()
         return pageIdentifier
     }

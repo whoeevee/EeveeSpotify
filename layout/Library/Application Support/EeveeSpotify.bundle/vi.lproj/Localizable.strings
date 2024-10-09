@@ -15,9 +15,6 @@ reset_data_description = "Xóa cache và khởi động lại app.";
 checking_for_update = "Đang kiểm tra bản cập nhật...";
 update_available = "Đã có bản cập nhật mới";
 
-cancel = "Hủy";
-ok = "OK";
-
 // Patching
 
 do_not_patch_premium = "Không vá Premium";

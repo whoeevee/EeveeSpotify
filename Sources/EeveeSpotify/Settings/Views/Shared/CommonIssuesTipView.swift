@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct CommonIssuesTipView: View {
-
     var onDismiss: () -> Void
     
     var body: some View {
@@ -18,7 +17,9 @@ struct CommonIssuesTipView: View {
                     }
                     
                     Link(
-                        destination: URL(string: "https://github.com/whoeevee/EeveeSpotify/blob/swift/common_issues.md")!,
+                        destination: URL(
+                            string: "https://github.com/whoeevee/EeveeSpotify/blob/swift/common_issues.md"
+                        )!,
                         label: {
                             VStack {
                                 Text("\("common_issues_tip_message".localized) ")

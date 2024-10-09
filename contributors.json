@@ -1,0 +1,136 @@
+[
+    {
+        "title": "Developement",
+        "shuffled": false,
+        "contributors": [
+            {
+                "username": "whoeevee",
+                "roles": [
+                    "Owner",
+                    "Main Developer"
+                ]
+            },
+            {
+                "username": "asdfzxcvbn",
+                "roles": [
+                    "Collaborator",
+                    "EeveeRepoUpdater"
+                ]
+            }
+        ]
+    },
+    {
+        "title": "Localization",
+        "shuffled": true,
+        "contributors": [
+            {
+                "username": "longopy",
+                "roles": [
+                    "Spanish"
+                ]
+            },
+            {
+                "username": "xiangfeidexiaohuo",
+                "roles": [
+                    "Simplified Chinese"
+                ]
+            },
+            {
+                "username": "LivioZ",
+                "roles": [
+                    "Italian"
+                ]
+            },
+            {
+                "username": "LIKVIDATOR1337",
+                "roles": [
+                    "Ukrainian"
+                ]
+            },
+            {
+                "username": "gototheskinny",
+                "roles": [
+                    "Turkish"
+                ]
+            },
+            {
+                "username": "ElliotCHEN37",
+                "roles": [
+                    "Traditional Chinese"
+                ]
+            },
+            {
+                "username": "schweppes-0x",
+                "roles": [
+                    "Bulgarian"
+                ]
+            },
+            {
+                "username": "speedyfriend433",
+                "roles": [
+                    "Korean"
+                ]
+            },
+            {
+                "username": "Richard-NDC",
+                "roles": [
+                    "Vietnamese"
+                ]
+            },
+            {
+                "username": "wlxxd",
+                "roles": [
+                    "German"
+                ]
+            },
+            {
+                "username": "Incognito-Coder",
+                "roles": [
+                    "Persian"
+                ]
+            },
+            {
+                "username": "UnexcitingDean",
+                "roles": [
+                    "Danish"
+                ]
+            },
+            {
+                "username": "An0n-00",
+                "roles": [
+                    "Swiss German"
+                ]
+            },
+            {
+                "username": "CukierDev",
+                "roles": [
+                    "Polish"
+                ]
+            },
+            {
+                "username": "3xynos7",
+                "roles": [
+                    "Nepalese"
+                ]
+            },
+            {
+                "username": "by3lish",
+                "roles": [
+                    "Azerbaijani"
+                ]
+            },
+            {
+                "username": "5jd",
+                "roles": [
+                    "French"
+                ]
+            },
+            {
+                "username": "emal0n",
+                "roles": [
+                    "Brazil"
+                ]
+            }
+        ]
+    }
+]

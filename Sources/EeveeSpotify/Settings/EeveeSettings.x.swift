@@ -3,7 +3,6 @@ import SwiftUI
 import UIKit
 
 class ProfileSettingsSectionHook: ClassHook<NSObject> {
-
     static let targetName = "ProfileSettingsSection"
 
     func numberOfRows() -> Int {
@@ -11,9 +10,7 @@ class ProfileSettingsSectionHook: ClassHook<NSObject> {
     }
 
     func didSelectRow(_ row: Int) {
-
         if row == 1 {
-
             let rootSettingsController = WindowHelper.shared.findFirstViewController(
                 "RootSettingsViewController"
             )!
@@ -62,9 +59,7 @@ class ProfileSettingsSectionHook: ClassHook<NSObject> {
     }
 
     func cellForRow(_ row: Int) -> UITableViewCell {
-        
         if row == 1 {
-
             let settingsTableCell = Dynamic.SPTSettingsTableViewCell
                 .alloc(interface: SPTSettingsTableViewCell.self)
                 .initWithStyle(3, reuseIdentifier: "EeveeSpotify")

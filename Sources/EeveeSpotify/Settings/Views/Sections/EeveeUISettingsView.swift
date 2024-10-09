@@ -63,8 +63,8 @@ struct EeveeUISettingsView: View {
                     .modifier(ListRowSeparatorHidden())
             }
         }
-        .listStyle(GroupedListStyle())
         
+        .listStyle(GroupedListStyle())
         .animation(.default, value: lyricsColors)
     }
 }

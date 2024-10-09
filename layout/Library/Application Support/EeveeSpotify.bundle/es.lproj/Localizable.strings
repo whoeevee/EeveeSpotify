@@ -15,9 +15,6 @@ reset_data_description = "Borra los datos almacenados en caché y reinicia la ap
 checking_for_update = "Comprobando Actualizaciones...";
 update_available = "Actualización Disponible";
 
-cancel = "Cancelar";
-ok = "Confirmar";
-
 // Patching
 
 do_not_patch_premium = "No Parchear Premium";

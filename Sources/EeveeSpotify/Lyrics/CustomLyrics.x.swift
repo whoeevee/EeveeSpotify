@@ -185,7 +185,7 @@ private func loadLyricsForCurrentTrack() throws {
                     PopUpHelper.showPopUp(
                         delayed: false,
                         message: "musixmatch_unauthorized_popup".localized,
-                        buttonText: "OK"
+                        buttonText: "OK".uiKitLocalized
                     )
                     
                     hasShownUnauthorizedPopUp.toggle()
@@ -197,7 +197,7 @@ private func loadLyricsForCurrentTrack() throws {
                     PopUpHelper.showPopUp(
                         delayed: false,
                         message: "musixmatch_restricted_popup".localized,
-                        buttonText: "OK"
+                        buttonText: "OK".uiKitLocalized
                     )
                     
                     hasShownRestrictedPopUp.toggle()

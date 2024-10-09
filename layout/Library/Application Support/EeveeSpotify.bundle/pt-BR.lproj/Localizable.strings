@@ -15,9 +15,6 @@ reset_data_description = "Esta função limpará os Dados em cache e reiniciará
 checking_for_update = "Procurando atualizações...";
 update_available = "Atualização disponivel";
 
-cancel = "Cancelar";
-ok = "Confirmar";
-
 // Patching
 
 do_not_patch_premium = "Não aplicar correção ao premium";
