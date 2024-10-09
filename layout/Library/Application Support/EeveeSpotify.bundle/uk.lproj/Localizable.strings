@@ -15,9 +15,6 @@ reset_data_description = "Очистити кешовані дані та пер
 checking_for_update = "Перевірка наявності оновлень...";
 update_available = "Доступне оновлення";
 
-cancel = "Скасувати";
-ok = "ОК";
-
 // Patching
 
 do_not_patch_premium = "Не патчити Premium";

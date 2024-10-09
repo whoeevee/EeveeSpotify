@@ -15,9 +15,6 @@ reset_data_description = "Ryd cachelagrede data og genstart appen.";
 checking_for_update = "Tjekker for opdateringer...";
 update_available = "Opdatering tilgængelig";
 
-cancel = "Annuller";
-ok = "OK";
-
 // Patching
 
 do_not_patch_premium = "Patch ikke Premium";

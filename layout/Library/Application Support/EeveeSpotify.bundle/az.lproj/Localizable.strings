@@ -15,9 +15,6 @@ reset_data_description = "Keş yaddaşını təmizləyin və tətbiqi yenidən b
 checking_for_update = "Yeniləmələr yoxlanılır...";
 update_available = "Yeniləmə Mövcuddur";
 
-cancel = "Ləğv et";
-ok = "OK";
-
 // Patching
 
 do_not_patch_premium = "Premium üçün yamaqlama";

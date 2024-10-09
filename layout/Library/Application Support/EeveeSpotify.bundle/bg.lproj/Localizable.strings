@@ -15,9 +15,6 @@ reset_data_description = "Изчистете кешираните данни и 
 checking_for_update = "Проверка за актуализация...";
 update_available = "Налична е актуализация";
 
-cancel = "Отказ";
-ok = "ОК";
-
 // Patching
 
 do_not_patch_premium = "Не пачвай Premium";

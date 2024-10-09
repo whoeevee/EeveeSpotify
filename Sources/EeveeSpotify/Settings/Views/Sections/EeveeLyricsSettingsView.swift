@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct EeveeLyricsSettingsView: View {
-    
     @State var musixmatchToken = UserDefaults.musixmatchToken
     @State var lyricsSource = UserDefaults.lyricsSource
     @State var geniusFallback = UserDefaults.geniusFallback

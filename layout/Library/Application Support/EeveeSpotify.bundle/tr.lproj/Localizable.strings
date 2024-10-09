@@ -15,9 +15,6 @@ reset_data_description = "Önbelleğe alınan verileri temizleyin ve uygulamayı
 checking_for_update = "Güncelleme Kontrol Ediliyor...";
 update_available = "Güncelleme Mevcut";
 
-cancel = "İptal";
-ok = "Tamam";
-
 // Patching
 
 do_not_patch_premium = "Premium için olan Yamayı Yapma";

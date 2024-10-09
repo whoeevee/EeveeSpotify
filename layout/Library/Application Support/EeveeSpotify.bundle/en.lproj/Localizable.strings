@@ -15,9 +15,6 @@ reset_data_description = "Clear cached data and restart the app.";
 checking_for_update = "Checking for Update...";
 update_available = "Update Available";
 
-cancel = "Cancel";
-ok = "OK";
-
 // Patching
 
 do_not_patch_premium = "Do Not Patch Premium";
@@ -105,3 +102,5 @@ let_the_music_play = "Let the music play...";
 // liked songs title, should match official spotify loc
 
 liked_songs = "Liked songs";
+
+contributors = "Contributors";

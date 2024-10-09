@@ -15,9 +15,6 @@ reset_data_description = "清除快取並重新啟動Spotify.";
 checking_for_update = "正在檢查更新...";
 update_available = "有可用的更新";
 
-cancel = "取消";
-ok = "確定";
-
 // 修補方案
 
 do_not_patch_premium = "不修補Premium";
