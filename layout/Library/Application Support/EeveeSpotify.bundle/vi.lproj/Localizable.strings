@@ -26,7 +26,7 @@ overwrite_configuration = "Ghi đè cấu hình";
 overwrite_configuration_description = "Thay thế cấu hình gốc bằng cấu hình đã chỉnh sửa. Cấu hình này liên quan đến hầu hết các giao diện UI/UX của ứng dụng và có thể sẽ hữu ích, tuy nhiên nó có thể gây ra một số vấn đề.";
 
 // Lyrics
-
+do_not_replace_lyrics = "Không ghi đè lời bài hát.";
 lyrics_source = "Nguồn lời bài hát";
 lyrics_source_description = "Bạn có thể chọn nguồn lấy lời bài hát mà bạn thích.
 
