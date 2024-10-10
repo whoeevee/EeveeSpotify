@@ -103,3 +103,9 @@ let_the_music_play = "讓音樂演奏吧...";
 liked_songs = "已按讚的歌曲";
 
 contributors = "貢獻者";
+
+Developement = "開發者";
+Localization = "本土化";
+Owner = "擁有者";
+Collaborator = "合作者";
+"Traditional Chinese" = "繁體中文";
