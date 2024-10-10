@@ -1,4 +1,5 @@
 import Foundation 
+import UIKit
 import NaturalLanguage
 
 extension String {
@@ -8,6 +9,11 @@ extension String {
     
     var localized: String {
         BundleHelper.shared.localizedString(self)
+    }
+    
+    var uiKitLocalized: String {
+        let bundle = Bundle(for: UIApplication.self)
+        return bundle.localizedString(forKey: self, value: nil, table: nil)
     }
     
     func localizeWithFormat(_ arguments: CVarArg...) -> String{

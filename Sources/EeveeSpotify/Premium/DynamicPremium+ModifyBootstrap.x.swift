@@ -4,7 +4,7 @@ private func showHavePremiumPopUp() {
     PopUpHelper.showPopUp(
         delayed: true,
         message: "have_premium_popup".localized,
-        buttonText: "ok".localized
+        buttonText: "OK".uiKitLocalized
     )
 }
 
@@ -69,7 +69,7 @@ class SpotifySessionDelegateBootstrapHook: ClassHook<NSObject>, SpotifySessionDe
                     }
                     else {
                         UserDefaults.patchType = .requests
-                        PremiumPatching().activate()
+                        PremiumPatchingGroup().activate()
                     }
                     
                     NSLog("[EeveeSpotify] Fetched bootstrap, \(UserDefaults.patchType) was set")

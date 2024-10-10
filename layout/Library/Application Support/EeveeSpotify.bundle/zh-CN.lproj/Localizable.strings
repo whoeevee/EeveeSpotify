@@ -15,9 +15,6 @@ reset_data_description = "清除缓存数据并重新启动应用程序。";
 checking_for_update = "正在检查更新...";
 update_available = "发现可用更新";
 
-cancel = "取消";
-ok = "好的";
-
 // Patching
 
 do_not_patch_premium = "不启用 Premium 补丁";
@@ -94,3 +91,8 @@ let_the_music_play = "让音乐播放...";
 
 // liked songs title, should match official spotify loc
 liked_songs = "喜欢的歌曲";
+
+
+contributors = "参与者";
+Developement = "开发";
+Localization = "本地化翻译";

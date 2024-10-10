@@ -7,6 +7,7 @@ enum LyricsError: Error, CustomStringConvertible {
     case DecodingError
     case NoSuchSong
     case UnknownError
+    case InvalidSource
     
     var description: String {
         switch self {
@@ -16,6 +17,7 @@ enum LyricsError: Error, CustomStringConvertible {
         case .DecodingError: "decoding_error".localized
         case .NoCurrentTrack: "no_current_track".localized
         case .UnknownError: "unknown_error".localized
+        case .InvalidSource: ""
         }
     }
 }

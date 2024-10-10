@@ -3,8 +3,7 @@ import UIKit
 
 struct EeveeSettingsView: View {
     let navigationController: UINavigationController
-    
-    @State var latestVersion = ""
+    static let spotifyAccentColor = Color(hex: "#1ed760")
     
     @State private var hasShownCommonIssuesTip = UserDefaults.hasShownCommonIssuesTip
     @State private var isClearingData = false
@@ -17,10 +16,15 @@ struct EeveeSettingsView: View {
         )
         navigationController.pushViewController(viewController, animated: true)
     }
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+        UIView.appearance().tintColor = UIColor(EeveeSettingsView.spotifyAccentColor)
+    }
 
     var body: some View {
         List {
-            VersionSection()
+            EeveeSettingsVersionView()
             
             if !hasShownCommonIssuesTip {
                 CommonIssuesTipView(
@@ -95,19 +99,13 @@ struct EeveeSettingsView: View {
                 }
             }
         }
-        
         .listStyle(GroupedListStyle())
         
         .animation(.default, value: isClearingData)
-        .animation(.default, value: latestVersion)
         .animation(.default, value: hasShownCommonIssuesTip)
         
         .onAppear {
             WindowHelper.shared.overrideUserInterfaceStyle(.dark)
-            
-            Task {
-                try await loadVersion()
-            }
         }
     }
 }

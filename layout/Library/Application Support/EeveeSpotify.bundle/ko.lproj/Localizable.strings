@@ -15,9 +15,6 @@ reset_data_description = "캐시된 데이터를 지우고 앱을 다시 시작�
 checking_for_update = "업데이트 확인 중...";
 update_available = "업데이트 가능";
 
-cancel = "취소";
-ok = "확인";
-
 // Patching
 
 do_not_patch_premium = "프리미엄으로 패치 안 함";

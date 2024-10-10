@@ -1,7 +1,6 @@
 import Foundation
 
 struct GeniusLyricsRepository: LyricsRepository {
-    
     private let jsonDecoder: JSONDecoder
     private let apiUrl = "https://api.genius.com"
     private let session: URLSession

@@ -15,9 +15,6 @@ reset_data_description = "پاک کردن کش و راه اندازی مجدد";
 checking_for_update = "درحال بررسی بروزرسانی...";
 update_available = "آپدیت موجود است";
 
-cancel = "لغو";
-ok = "باشه";
-
 // Patching
 
 do_not_patch_premium = "پچ نکردن حالت ویژه";

@@ -15,9 +15,6 @@ reset_data_description = "Effacez les données en cache et redémarrez l'applica
 checking_for_update = "Vérification des mises à jour...";
 update_available = "Mise à jour disponible";
 
-cancel = "Annuler";
-ok = "OK";
-
 // Patching
 
 do_not_patch_premium = "Ne pas patcher Premium";
