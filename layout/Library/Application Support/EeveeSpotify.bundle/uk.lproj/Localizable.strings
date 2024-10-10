@@ -102,3 +102,5 @@ let_the_music_play = "Нехай зазвучить музика...";
 // liked songs title, should match official spotify loc
 
 liked_songs = "Вам сподобалось";
+
+contributors = "Учасники";
