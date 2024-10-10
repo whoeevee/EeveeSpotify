@@ -108,3 +108,5 @@ let_the_music_play = "Lad musikken spille...";
 // liked songs title, should match official spotify loc
 
 liked_songs = "Sange, du synes godt om";
+
+contributors = "Bidragydere";
