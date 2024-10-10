@@ -26,7 +26,8 @@ overwrite_configuration = "Ghi đè cấu hình";
 overwrite_configuration_description = "Thay thế cấu hình gốc bằng cấu hình đã chỉnh sửa. Cấu hình này liên quan đến hầu hết các giao diện UI/UX của ứng dụng và có thể sẽ hữu ích, tuy nhiên nó có thể gây ra một số vấn đề.";
 
 // Lyrics
-
+do_not_replace_lyrics = "Không ghi đè lời bài hát.";
+restart_is_required_description = "Cần khởi động lại app để có hiệu lực";
 lyrics_source = "Nguồn lời bài hát";
 lyrics_source_description = "Bạn có thể chọn nguồn lấy lời bài hát mà bạn thích.
 
@@ -36,13 +37,13 @@ LRCLIB: Dịch vụ cung cấp lời bài hát đồng bộ hóa theo thời gia
 
 Musixmatch: Dịch vụ mà Spotify sử dụng. Cung cấp nhiều lời bài hát được đồng bộ hóa, nhưng bạn sẽ cần token để sử dụng dịch vụ này.";
 lyrics_additional_info = "Nếu EeveeSpotify không tìm thấy lời bài hát hoặc xử lý lời bài hát, bạn sẽ thấy thông báo \"Không thể tải lời cho bài hát này\". Lời bài hát có thể sai đối với một số bài hát khi sử dụng Genius do cách tinh chỉnh tìm kiếm bài hát. Tôi đã làm cho nó hoạt động trong hầu hết các trường hợp.";
-petitlyrics_description = "PetitLyrics: Offers plenty of time-synced Japanese and some international lyrics.";
+petitlyrics_description = "PetitLyrics: Cung cấp nhiều lời bài hát tiếng Nhật được đồng bộ hóa theo thời gian và một số lời bài hát cho bài hát quốc tế.";
 
 musixmatch_user_token = "Musixmatch User Token";
 user_token_placeholder = "Dán User Token hoặc Dán Thông Tin Gỡ Lỗi";
 
 enter_user_token = "Dán User Token";
-enter_user_token_message = "Trong trường hợp bạn muốn sử dụng Musixmatch, bạn cần lấy mã thông báo người dùng của mình từ ứng dụng chính thức. Tải Musixmatch từ App Store, đăng ký, rồi vào Cài Đặt > Nhận trợ giúp > Sao chép thông tin gỡ lỗi, và dán nó vào đây. 
+enter_user_token_message = "Trong trường hợp bạn muốn sử dụng Musixmatch, bạn cần lấy User Token của mình từ ứng dụng chính thức. Tải Musixmatch từ App Store, đăng ký, rồi vào Cài Đặt > Nhận trợ giúp > Sao chép thông tin gỡ lỗi, và dán nó vào đây. 
 Bạn cũng có thể lấy token bằng MITM.";
 
 genius_fallback = "Dự phòng lời bài hát từ Genius";
@@ -103,3 +104,5 @@ let_the_music_play = "Hãy để giai điệu vang lên...";
 // liked songs title, should match official spotify loc
 
 liked_songs = "Bài hát đã thích";
+
+contributors = "Những người đóng góp";
