@@ -1,7 +1,6 @@
 import Foundation
 
 extension UserDefaults {
-    
     private static let defaults = UserDefaults.standard
     
     private static let lyricsSourceKey = "lyricsSource"
@@ -21,11 +20,7 @@ extension UserDefaults {
                 return LyricsSource(rawValue: rawValue)!
             }
 
-            if Locale.isInRegion("JP", orHasLanguage: "ja") {
-                return .petit
-            }
-            
-            return .lrclib
+            return LyricsSource.defaultSource
         }
         set (newSource) {
             defaults.set(newSource.rawValue, forKey: lyricsSourceKey)

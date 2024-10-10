@@ -39,7 +39,6 @@ struct PopUpHelper {
             
             dialog.update(model)
             dialog.setEventHandler({ state in
-            
                 switch (state) {
                 
                 case .primary: onPrimaryClick?()

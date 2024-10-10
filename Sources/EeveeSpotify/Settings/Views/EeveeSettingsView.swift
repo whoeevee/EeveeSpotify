@@ -3,6 +3,7 @@ import UIKit
 
 struct EeveeSettingsView: View {
     let navigationController: UINavigationController
+    static let spotifyAccentColor = Color(hex: "#1ed760")
     
     @State private var hasShownCommonIssuesTip = UserDefaults.hasShownCommonIssuesTip
     @State private var isClearingData = false
@@ -18,9 +19,7 @@ struct EeveeSettingsView: View {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        
-        let spotifyAccentColor = UIColor(Color(hex: "#1ed760"))
-        UIView.appearance().tintColor = spotifyAccentColor
+        UIView.appearance().tintColor = UIColor(EeveeSettingsView.spotifyAccentColor)
     }
 
     var body: some View {
