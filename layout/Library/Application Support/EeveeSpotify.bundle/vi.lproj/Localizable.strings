@@ -104,5 +104,5 @@ let_the_music_play = "Hãy để giai điệu vang lên...";
 // liked songs title, should match official spotify loc
 
 liked_songs = "Bài hát đã thích";
-
+download_local_playlist = "Tải xuống danh sách phát cục bộ";
 contributors = "Những người đóng góp";
