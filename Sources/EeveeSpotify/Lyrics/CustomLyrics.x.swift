@@ -1,32 +1,15 @@
 import Orion
 import SwiftUI
 
-class SPTPlayerTrackHook: ClassHook<NSObject> {
-    static let targetName = "SPTPlayerTrack"
+//
 
-    func metadata() -> [String:String] {
-        var meta = orig.metadata()
+struct LyricsGroup: HookGroup { }
 
-        meta["has_lyrics"] = "true"
-        return meta
-    }
-}
-
-class LyricsScrollProviderHook: ClassHook<NSObject> {
-    
-    static var targetName: String {
-        return EeveeSpotify.isOldSpotifyVersion
-            ? "Lyrics_CoreImpl.ScrollProvider"
-            : "Lyrics_NPVCommunicatorImpl.ScrollProvider"
-    }
-    
-    func isEnabledForTrack(_ track: SPTPlayerTrack) -> Bool {
-        return true
-    }
-}
+//
 
 class LyricsFullscreenViewControllerHook: ClassHook<UIViewController> {
-
+    typealias Group = LyricsGroup
+    
     static var targetName: String {
         return EeveeSpotify.isOldSpotifyVersion
             ? "Lyrics_CoreImpl.FullscreenViewController"
@@ -62,6 +45,7 @@ private var hasShownUnauthorizedPopUp = false
 //
 
 class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
+    typealias Group = LyricsGroup
     
     static var targetName: String {
         return EeveeSpotify.isOldSpotifyVersion
@@ -70,7 +54,6 @@ class LyricsOnlyViewControllerHook: ClassHook<UIViewController> {
     }
 
     func viewDidLoad() {
-        
         orig.viewDidLoad()
         
         guard
@@ -162,6 +145,7 @@ private func loadLyricsForCurrentTrack() throws {
         case .lrclib: LrcLibLyricsRepository()
         case .musixmatch: MusixmatchLyricsRepository.shared
         case .petit: PetitLyricsRepository()
+        case .notReplaced: throw LyricsError.InvalidSource
     }
     
     let lyricsDto: LyricsDto
@@ -180,24 +164,22 @@ private func loadLyricsForCurrentTrack() throws {
             switch error {
                 
             case .InvalidMusixmatchToken:
-                
                 if !hasShownUnauthorizedPopUp {
                     PopUpHelper.showPopUp(
                         delayed: false,
                         message: "musixmatch_unauthorized_popup".localized,
-                        buttonText: "OK"
+                        buttonText: "OK".uiKitLocalized
                     )
                     
                     hasShownUnauthorizedPopUp.toggle()
                 }
             
             case .MusixmatchRestricted:
-                
                 if !hasShownRestrictedPopUp {
                     PopUpHelper.showPopUp(
                         delayed: false,
                         message: "musixmatch_restricted_popup".localized,
-                        buttonText: "OK"
+                        buttonText: "OK".uiKitLocalized
                     )
                     
                     hasShownRestrictedPopUp.toggle()
@@ -226,7 +208,7 @@ private func loadLyricsForCurrentTrack() throws {
     lastLyricsState.areEmpty = lyricsDto.lines.isEmpty
     
     lastLyricsState.wasRomanized = lyricsDto.romanization == .romanized
-    || (lyricsDto.romanization == .canBeRomanized && UserDefaults.lyricsOptions.romanization)
+        || (lyricsDto.romanization == .canBeRomanized && UserDefaults.lyricsOptions.romanization)
     
     lastLyricsState.loadedSuccessfully = true
 
@@ -280,5 +262,5 @@ func getLyricsForCurrentTrack(originalLyrics: Lyrics? = nil) throws -> Data {
     }
     
     preloadedLyrics = nil
-    return try lyrics.serializedData()
+    return try lyrics.serializedBytes()
 }

@@ -15,9 +15,6 @@ reset_data_description = "Cancella i dati memorizzati nella cache e riavvia l'ap
 checking_for_update = "Verifica aggiornamenti...";
 update_available = "Aggiornamento disponibile";
 
-cancel = "Annulla";
-ok = "OK";
-
 // Patching
 
 do_not_patch_premium = "Non patchare Premium";

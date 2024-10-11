@@ -4,7 +4,7 @@ private func showHavePremiumPopUp() {
     PopUpHelper.showPopUp(
         delayed: true,
         message: "have_premium_popup".localized,
-        buttonText: "ok".localized
+        buttonText: "OK".uiKitLocalized
     )
 }
 
@@ -60,7 +60,7 @@ class SpotifySessionDelegateBootstrapHook: ClassHook<NSObject>, SpotifySessionDe
             let buffer = URLSessionHelper.shared.obtainData(for: url)!
             
             do {
-                var bootstrapMessage = try BootstrapMessage(serializedData: buffer)
+                var bootstrapMessage = try BootstrapMessage(serializedBytes: buffer)
                 
                 if UserDefaults.patchType == .notSet {
                     if bootstrapMessage.attributes["type"]?.stringValue == "premium" {
@@ -69,7 +69,7 @@ class SpotifySessionDelegateBootstrapHook: ClassHook<NSObject>, SpotifySessionDe
                     }
                     else {
                         UserDefaults.patchType = .requests
-                        ServerSidedReminder().activate()
+                        PremiumPatchingGroup().activate()
                     }
                     
                     NSLog("[EeveeSpotify] Fetched bootstrap, \(UserDefaults.patchType) was set")
@@ -81,7 +81,7 @@ class SpotifySessionDelegateBootstrapHook: ClassHook<NSObject>, SpotifySessionDe
                     orig.URLSession(
                         session,
                         dataTask: task,
-                        didReceiveData: try bootstrapMessage.serializedData()
+                        didReceiveData: try bootstrapMessage.serializedBytes()
                     )
                     
                     NSLog("[EeveeSpotify] Modified bootstrap data")

@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct NavigationSectionView: View {
-    
     var color: Color
     var title: String
     var imageSystemName: String
@@ -23,9 +22,7 @@ struct NavigationSectionView: View {
             
             Spacer()
             
-            Image(systemName: "chevron.right")
-                .foregroundColor(Color(UIColor.systemGray2))
-                .font(.subheadline.bold())
+            ChevronRightView()
         }
     }
 }

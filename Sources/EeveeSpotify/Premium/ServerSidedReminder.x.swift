@@ -1,60 +1,55 @@
 import Orion
 import UIKit
 
-struct ServerSidedReminder: HookGroup { }
-
 class StreamQualitySettingsSectionHook: ClassHook<NSObject> {
-    typealias Group = ServerSidedReminder
+    typealias Group = PremiumPatchingGroup
     static let targetName = "StreamQualitySettingsSection"
 
     func shouldResetSelection() -> Bool {
         PopUpHelper.showPopUp(
             message: "high_audio_quality_popup".localized,
-            buttonText: "ok".localized
+            buttonText: "OK".uiKitLocalized
         )
 
         return true
     }
 }
 
-//
-
-private func showOfflineModePopUp() {
-    PopUpHelper.showPopUp(
-        message: "playlist_downloading_popup".localized,
-        buttonText: "ok".localized
-    )
-}
-
-class FTPDownloadActionHook: ClassHook<NSObject> {
-    typealias Group = ServerSidedReminder
-    static let targetName = "ListUXPlatform_FreeTierPlaylistImpl.FTPDownloadAction"
-
-    func execute(_ idk: Any) {
-        showOfflineModePopUp()
-    }
-}
-
-class UIButtonHook: ClassHook<UIButton> {
-    typealias Group = ServerSidedReminder
+class ContentOffliningUIHelperImplementationHook: ClassHook<NSObject> {
+    typealias Group = PremiumPatchingGroup
+    static let targetName = "Offline_ContentOffliningUIImpl.ContentOffliningUIHelperImplementation"
     
-    func setHighlighted(_ highlighted: Bool) {
-
-        if highlighted {
-
-            if let identifier = target.accessibilityIdentifier, identifier.contains("DownloadButton"),
-            let viewController = WindowHelper.shared.viewController(for: target) {
-
-                if !(NSStringFromClass(type(of: viewController)) ~= "Podcast|CreativeWorkPlatform") {
-
-                    target.removeTarget(nil, action: nil, for: .allEvents)
-                    showOfflineModePopUp()
-
-                    return
+    func downloadToggledWithCurrentAvailability(
+        _ availability: Int,
+        addAction: NSObject,
+        removeAction: NSObject,
+        pageIdentifier: String,
+        pageURI: URL
+    ) -> String? {
+        let isPlaylist = [
+            "free-tier-playlist",
+            "playlist/ondemand"
+        ].contains(pageIdentifier)
+        
+        PopUpHelper.showPopUp(
+            message: "playlist_downloading_popup".localized,
+            buttonText: "OK".uiKitLocalized,
+            secondButtonText: isPlaylist
+                ? "download_local_playlist".localized
+                : nil,
+            onSecondaryClick: isPlaylist
+                ? {
+                    _ = self.orig.downloadToggledWithCurrentAvailability(
+                        availability,
+                        addAction: addAction,
+                        removeAction: removeAction,
+                        pageIdentifier: pageIdentifier,
+                        pageURI: pageURI
+                    )
                 }
-            }
-        }
-
-        orig.setHighlighted(highlighted)
+                : nil
+        )
+        
+        return nil
     }
 }

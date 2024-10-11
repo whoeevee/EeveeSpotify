@@ -3,9 +3,10 @@ import UIKit
 
 struct EeveeSettingsView: View {
     let navigationController: UINavigationController
+    static let spotifyAccentColor = Color(hex: "#1ed760")
     
-    @State var latestVersion = ""
-    @State var hasShownCommonIssuesTip = UserDefaults.hasShownCommonIssuesTip
+    @State private var hasShownCommonIssuesTip = UserDefaults.hasShownCommonIssuesTip
+    @State private var isClearingData = false
     
     private func pushSettingsController(with view: any View, title: String) {
         let viewController = EeveeSettingsViewController(
@@ -15,10 +16,15 @@ struct EeveeSettingsView: View {
         )
         navigationController.pushViewController(viewController, animated: true)
     }
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+        UIView.appearance().tintColor = UIColor(EeveeSettingsView.spotifyAccentColor)
+    }
 
     var body: some View {
         List {
-            VersionSection()
+            EeveeSettingsVersionView()
             
             if !hasShownCommonIssuesTip {
                 CommonIssuesTipView(
@@ -74,25 +80,32 @@ struct EeveeSettingsView: View {
             
             Section(footer: Text("reset_data_description".localized)) {
                 Button {
-                    OfflineHelper.resetData()
-                    exitApplication()
+                    isClearingData = true
+                    
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        OfflineHelper.resetData(clearCaches: true)
+                        
+                        DispatchQueue.main.async {
+                            exitApplication()
+                        }
+                    }
                 } label: {
-                    Text("reset_data".localized)
+                    if isClearingData {
+                        ProgressView()
+                    }
+                    else {
+                        Text("reset_data".localized)
+                    }
                 }
             }
         }
-        
         .listStyle(GroupedListStyle())
         
-        .animation(.default, value: latestVersion)
+        .animation(.default, value: isClearingData)
         .animation(.default, value: hasShownCommonIssuesTip)
         
         .onAppear {
             WindowHelper.shared.overrideUserInterfaceStyle(.dark)
-            
-            Task {
-                try await loadVersion()
-            }
         }
     }
 }

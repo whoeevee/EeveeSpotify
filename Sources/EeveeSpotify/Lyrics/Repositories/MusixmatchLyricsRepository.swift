@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class MusixmatchLyricsRepository: LyricsRepository {
-    
     private let apiUrl = "https://apic.musixmatch.com"
     
     var selectedLanguage: String
@@ -19,9 +18,7 @@ class MusixmatchLyricsRepository: LyricsRepository {
         _ path: String,
         query: [String: Any] = [:]
     ) throws -> Data {
-
         var stringUrl = "\(apiUrl)\(path)"
-
         var finalQuery = query
 
         finalQuery["usertoken"] = UserDefaults.musixmatchToken
@@ -78,13 +75,6 @@ class MusixmatchLyricsRepository: LyricsRepository {
     }
     
     private func getFirstSubtitle(_ subtitlesMessage: [String: Any]) throws -> [String: Any] {
-        guard
-            let subtitlesHeader = subtitlesMessage["header"] as? [String: Any],
-            let subtitlesStatusCode = subtitlesHeader["status_code"] as? Int
-        else {
-            throw LyricsError.DecodingError
-        }
-        
         guard 
             let subtitlesBody = subtitlesMessage["body"] as? [String: Any],
             let subtitleList = subtitlesBody["subtitle_list"] as? [[String: Any]],

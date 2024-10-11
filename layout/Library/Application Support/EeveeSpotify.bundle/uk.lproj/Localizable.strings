@@ -15,9 +15,6 @@ reset_data_description = "Очистити кешовані дані та пер
 checking_for_update = "Перевірка наявності оновлень...";
 update_available = "Доступне оновлення";
 
-cancel = "Скасувати";
-ok = "ОК";
-
 // Patching
 
 do_not_patch_premium = "Не патчити Premium";
@@ -101,3 +98,9 @@ unknown_error = "Невідома помилка";
 
 song_is_instrumental = "Це інструментальна композиція.";
 let_the_music_play = "Нехай зазвучить музика...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "Вам сподобалось";
+
+contributors = "Учасники";

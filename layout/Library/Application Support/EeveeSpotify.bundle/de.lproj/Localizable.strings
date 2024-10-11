@@ -6,7 +6,7 @@ customization = "Anpassungen";
 
 common_issues_tip_title = "Gibt es Probleme?";
 
-common_issues_tip_message = "Wenn du Probleme hast, wie z.B dass du keine Songs abpsielen kannst, solltest du dir das anschauen:";
+common_issues_tip_message = "Wenn du Probleme hast, wie z.B dass du keine Songs abspielen kannst, solltest du dir das anschauen:";
 common_issues_tip_button = "Häufige Probleme";
 
 reset_data = "Daten zurücksetzen";
@@ -14,9 +14,6 @@ reset_data_description = "Zwischengespeicherte Daten (Cache) löschen und App ne
 
 checking_for_update = "Suche nach Updates...";
 update_available = "Update verfügbar";
-
-cancel = "Abbrechen";
-ok = "OK";
 
 // Patching
 
@@ -26,7 +23,7 @@ patching_description = "Der Tweak fängt Anfragen von Benutzerdaten ab, deserial
 Wenn du ein aktives Premium-Abonnement hast, dann kannst du \"Premium nicht patchen\" aktivieren. Der Tweak wird nicht die Daten patchen und die Nutzung von serverseitiger Premium-Funktionen wird nicht eingeschränkt. Nach der Änderung ist ein App-Neustart erforderlich.";
 
 overwrite_configuration = "Konfiguration überschreiben";
-overwrite_configuration_description = "Ersetze die Remote-Konfiguration mit der kopierten Premium-Konfiguration. Es könnte einige Fehler beheben, wie z.B auftauchende Werbung, aber dies ist nicht garantiert.";
+overwrite_configuration_description = "Ersetze die Remote-Konfiguration mit der kopierten Premium-Konfiguration. Es könnte einige Fehler beheben, wie z.B auftauchende Werbung, ist aber nicht garantiert.";
 
 // Lyrics
 

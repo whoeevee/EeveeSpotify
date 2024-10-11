@@ -1,7 +1,7 @@
 import Orion
 
 class SPTFreeTierArtistHubRemoteURLResolverHook: ClassHook<NSObject> {
-    
+    typealias Group = PremiumPatchingGroup
     static let targetName = "SPTFreeTierArtistHubRemoteURLResolver"
     
     func initWithViewURI(
@@ -11,14 +11,11 @@ class SPTFreeTierArtistHubRemoteURLResolverHook: ClassHook<NSObject> {
         trackRowsEnabled: Bool,
         productState: SPTCoreProductState
     ) -> Target {
-        
         return orig.initWithViewURI(
             uri,
             onDemandSet: onDemandSet,
             onDemandTrialService: onDemandTrialService,
-            trackRowsEnabled: UserDefaults.patchType.isPatching
-                ? true
-                : trackRowsEnabled,
+            trackRowsEnabled: true,
             productState: productState
         )
     }

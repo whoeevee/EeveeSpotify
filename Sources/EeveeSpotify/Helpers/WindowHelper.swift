@@ -1,7 +1,6 @@
 import UIKit
 
-class WindowHelper {
-    
+struct WindowHelper {
     static let shared = WindowHelper()
     
     let window: UIWindow
@@ -17,7 +16,6 @@ class WindowHelper {
     }
 
     func findFirstViewController(_ regex: String) -> UIViewController? {
-    
         let rootView = self.rootViewController.view!
         var result: UIViewController?
         
@@ -36,6 +34,10 @@ class WindowHelper {
         
         searchViews(rootView)
         return result
+    }
+    
+    func dismissCurrentViewController() {
+        rootViewController.dismiss(animated: true)
     }
 
     func overrideUserInterfaceStyle(_ style: UIUserInterfaceStyle) {

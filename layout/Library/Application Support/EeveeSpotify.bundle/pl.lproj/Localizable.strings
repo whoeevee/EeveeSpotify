@@ -15,9 +15,6 @@ reset_data_description = "Wyczyść dane cache i zrestartuj aplikacje.";
 checking_for_update = "Sprawdzanie aktualizacji...";
 update_available = "Aktualizacja Dostępna";
 
-cancel = "Anuluj";
-ok = "OK";
-
 // Patching
 
 do_not_patch_premium = "Nie używaj łatki premium";

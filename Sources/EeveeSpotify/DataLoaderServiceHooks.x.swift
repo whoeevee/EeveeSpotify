@@ -6,8 +6,11 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject>, SpotifySessionDelegate {
     
     // orion:new
     func shouldModify(_ url: URL) -> Bool {
-        let isModifyingCustomizeResponse = UserDefaults.patchType == .requests
-        return url.isLyrics || (url.isCustomize && isModifyingCustomizeResponse)
+        let isModifyingCustomizeResponse = PremiumPatchingGroup.isActive
+        let isModifyingLyrics = LyricsGroup.isActive
+        
+        return (url.isLyrics && isModifyingLyrics)
+            || (url.isCustomize && isModifyingCustomizeResponse)
     }
     
     func URLSession(
@@ -32,7 +35,7 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject>, SpotifySessionDelegate {
                         session,
                         dataTask: task,
                         didReceiveData: try getLyricsForCurrentTrack(
-                            originalLyrics: try? Lyrics(serializedData: buffer)
+                            originalLyrics: try? Lyrics(serializedBytes: buffer)
                         )
                     )
                     
@@ -46,13 +49,13 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject>, SpotifySessionDelegate {
             }
             
             do {
-                var customizeMessage = try CustomizeMessage(serializedData: buffer)
+                var customizeMessage = try CustomizeMessage(serializedBytes: buffer)
                 modifyRemoteConfiguration(&customizeMessage.response)
                 
                 orig.URLSession(
                     session,
                     dataTask: task,
-                    didReceiveData: try customizeMessage.serializedData()
+                    didReceiveData: try customizeMessage.serializedBytes()
                 )
                 
                 orig.URLSession(session, task: task, didCompleteWithError: nil)
@@ -82,7 +85,7 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject>, SpotifySessionDelegate {
             return
         }
         
-        if url.isLyrics, response.statusCode != 200 {
+        if shouldModify(url), url.isLyrics, response.statusCode != 200 {
             let okResponse = HTTPURLResponse(
                 url: url,
                 statusCode: 200,

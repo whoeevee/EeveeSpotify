@@ -15,9 +15,6 @@ reset_data_description = "Önbelleğe alınan verileri temizleyin ve uygulamayı
 checking_for_update = "Güncelleme Kontrol Ediliyor...";
 update_available = "Güncelleme Mevcut";
 
-cancel = "İptal";
-ok = "Tamam";
-
 // Patching
 
 do_not_patch_premium = "Premium için olan Yamayı Yapma";
@@ -26,7 +23,7 @@ patching_description = "Yama, kullanıcı verilerini yüklemek için yapılan is
 Aktif bir Premium aboneliğiniz varsa, Premium'u Yama Yapma seçeneğini açabilirsiniz. Yama, verileri yamalamaz veya Premium sunucu tarafı özelliklerinin kullanımını kısıtlamaz. Değişiklikten sonra uygulamanın yeniden başlatılması gerekir.";
 
 overwrite_configuration = "Yapılandırmayı Üzerine Yaz";
-overwrite_configuration_description = "Uzaktan yapılandırmayı Premium ile değiştirilmiş yapılandırma ile değiştirin. Bu, reklam gibi bazı sorunları düzeltebilir, ancak garanti edilmez.";
+overwrite_configuration_description = "Uzaktan yapılandırmayı Premium ile değiştirilmiş yapılandırma ile değiştirin. Bu yapılandırma çoğu UI/UX parametresini tanımlar ve yararlı olabilir, ancak sorunlara yol açabilir.";
 
 // Lyrics
 
@@ -101,3 +98,7 @@ unknown_error = "Bilinmeyen Hata";
 
 song_is_instrumental = "Bu şarkı enstrümantaldir.";
 let_the_music_play = "Müzik çalmaya devam etsin...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "Beğenilen Şarkılar";

@@ -1,9 +1,9 @@
 Package: com.eevee.spotify
 Name: EeveeSpotify
-Version: 4.9
+Version: 5.5
 Architecture: iphoneos-arm
 Description: A tweak to get Spotify Premium for free, just like Spotilife
 Maintainer: Eevee
 Author: Eevee
 Section: Tweaks
-Depends: ${ORION}, firmware (>= 14.0), org.swift.protobuf.swiftprotobuf
+Depends: ${ORION}, firmware (>= 14.0), org.swift.protobuf.swiftprotobuf (>= 1.28.1)

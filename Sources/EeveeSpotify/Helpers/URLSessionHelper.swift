@@ -1,7 +1,6 @@
 import UIKit
 
 class URLSessionHelper {
-    
     static let shared = URLSessionHelper()
     
     private var requestsMap: [URL:Data]
