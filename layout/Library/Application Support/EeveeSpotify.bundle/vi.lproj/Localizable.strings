@@ -27,7 +27,7 @@ overwrite_configuration_description = "Thay thế cấu hình gốc bằng cấu
 
 // Lyrics
 do_not_replace_lyrics = "Không ghi đè lời bài hát.";
-restart_is_required_description = "Cần khởi động lại app để có hiệu lực";
+restart_is_required_description = "Cần khởi động lại ứng dụng để có hiệu lực.";
 lyrics_source = "Nguồn lời bài hát";
 lyrics_source_description = "Bạn có thể chọn nguồn lấy lời bài hát mà bạn thích.
 
