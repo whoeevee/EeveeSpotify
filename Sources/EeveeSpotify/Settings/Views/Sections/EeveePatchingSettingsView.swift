@@ -7,7 +7,14 @@ struct EeveePatchingSettingsView: View {
 
     var body: some View {
         List {
-            Section(footer: patchType == .disabled ? nil : Text("patching_description".localized)) {
+            Section(
+                footer: patchType == .disabled
+                    ? nil
+                    : Text(
+                        "patching_description"
+                            .localizeWithFormat("restart_is_required_description".localized)
+                    )
+            ) {
                 Toggle(
                     "do_not_patch_premium".localized,
                     isOn: Binding<Bool>(

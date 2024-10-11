@@ -15,18 +15,23 @@ reset_data_description = "Ryd cachelagrede data og genstart appen.";
 checking_for_update = "Tjekker for opdateringer...";
 update_available = "Opdatering tilgængelig";
 
+restart_is_required_description = "Genstart af appen er nødvendig efter ændring.";
+
 // Patching
 
 do_not_patch_premium = "Patch ikke Premium";
 patching_description = "EeveeSpotify opsnapper anmodninger om at indlæse brugerdata, deserialiserer disse, og modificerer parametrene samtidigt med at de indlæses.
 
-Hvis du har et aktivt Premium-abonnement, kan du bruge \"Patch ikke Premium\". Tweaket vil herefter ikke patche data eller begrænse brug af Premium-funktioner der er server-side. Genstart af appen er nødvendig efter ændring.";
+Hvis du har et aktivt Premium-abonnement, kan du bruge \"Patch ikke Premium\". Tweaket vil herefter ikke patche data eller begrænse brug af Premium-funktioner der er server-side.
+
+%@";
 
 overwrite_configuration = "Overskriv konfiguration";
 overwrite_configuration_description = "Overskriv fjernkonfiguration med en Premium-konfiguration. Denne konfiguration definerer flere UI/UX parametre og kan være nyttig, selvom at den kan forårsage problemer.";
 
 // Lyrics
 
+do_not_replace_lyrics = "Erstat ikke sangtekster";
 lyrics_source = "Sangtekstkilde";
 lyrics_source_description = "Du kan vælge den kilde du foretrækker.
 
@@ -75,7 +80,8 @@ dark_popups = "Mørke pop op-beskeder";
 have_premium_popup = "Det ser ud til at du har et aktivt Premium-abonnement, derfor patcher eller begrænser dette tweak ikke brugen af Premium-funktioner der er server-side. Dette kan ændres i EeveeSpotifys indstillinger.";
 
 high_audio_quality_popup = "Lydkvaliteten \"Meget høj\" er server-side og er derfor ikke tilgænglig med dette tweak.";
-playlist_downloading_popup = "Den indbyggede download af playlister er server-side og er ikke derfor tilgænglig med dette tweak. Download af podcastepisoder er dog muligt.";
+playlist_downloading_popup = "Den indbyggede download af playlister er server-side og er ikke derfor tilgænglig med dette tweak. Download af podcastepisoder og lokale spillelister er dog muligt.";
+download_local_playlist = "Download lokal spilleliste";
 
 /* MARK: Lyrics */
 
@@ -102,3 +108,5 @@ let_the_music_play = "Lad musikken spille...";
 // liked songs title, should match official spotify loc
 
 liked_songs = "Sange, du synes godt om";
+
+contributors = "Bidragydere";

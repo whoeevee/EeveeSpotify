@@ -1,7 +1,7 @@
 import Orion
 
 class SPTFreeTierArtistHubRemoteURLResolverHook: ClassHook<NSObject> {
-    typealias Group = PremiumPatching
+    typealias Group = PremiumPatchingGroup
     static let targetName = "SPTFreeTierArtistHubRemoteURLResolver"
     
     func initWithViewURI(
