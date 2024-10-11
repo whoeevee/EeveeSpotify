@@ -32,6 +32,7 @@ overwrite_configuration_description = "Thay thế cấu hình gốc bằng cấu
 // Lyrics
 
 do_not_replace_lyrics = "Không ghi đè lời bài hát.";
+
 lyrics_source = "Nguồn lời bài hát";
 lyrics_source_description = "Bạn có thể chọn nguồn lấy lời bài hát mà bạn thích.
 
@@ -109,5 +110,5 @@ let_the_music_play = "Hãy để giai điệu vang lên...";
 // liked songs title, should match official spotify loc
 
 liked_songs = "Bài hát đã thích";
-
+download_local_playlist = "Tải xuống danh sách phát cục bộ";
 contributors = "Những người đóng góp";
