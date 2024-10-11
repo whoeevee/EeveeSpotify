@@ -6,8 +6,11 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject>, SpotifySessionDelegate {
     
     // orion:new
     func shouldModify(_ url: URL) -> Bool {
-        let isModifyingCustomizeResponse = UserDefaults.patchType == .requests
-        return url.isLyrics || (url.isCustomize && isModifyingCustomizeResponse)
+        let isModifyingCustomizeResponse = PremiumPatchingGroup.isActive
+        let isModifyingLyrics = LyricsGroup.isActive
+        
+        return (url.isLyrics && isModifyingLyrics)
+            || (url.isCustomize && isModifyingCustomizeResponse)
     }
     
     func URLSession(
@@ -82,7 +85,7 @@ class SPTDataLoaderServiceHook: ClassHook<NSObject>, SpotifySessionDelegate {
             return
         }
         
-        if url.isLyrics, response.statusCode != 200 {
+        if shouldModify(url), url.isLyrics, response.statusCode != 200 {
             let okResponse = HTTPURLResponse(
                 url: url,
                 statusCode: 200,

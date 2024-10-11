@@ -91,3 +91,8 @@ let_the_music_play = "让音乐播放...";
 
 // liked songs title, should match official spotify loc
 liked_songs = "喜欢的歌曲";
+
+
+contributors = "参与者";
+Developement = "开发";
+Localization = "本地化翻译";

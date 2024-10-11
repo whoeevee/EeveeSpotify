@@ -8,7 +8,7 @@ func exitApplication() {
     }
 }
 
-struct PremiumPatching: HookGroup { }
+struct PremiumPatchingGroup: HookGroup { }
 
 struct EeveeSpotify: Tweak {
     static let version = "5.5"
@@ -20,7 +20,11 @@ struct EeveeSpotify: Tweak {
         }
         
         if UserDefaults.patchType.isPatching {
-            PremiumPatching().activate()
+            PremiumPatchingGroup().activate()
+        }
+        
+        if UserDefaults.lyricsSource.isReplacing {
+            LyricsGroup().activate()
         }
     }
 }

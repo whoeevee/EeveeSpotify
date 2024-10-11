@@ -15,18 +15,23 @@ reset_data_description = "Clear cached data and restart the app.";
 checking_for_update = "Checking for Update...";
 update_available = "Update Available";
 
+restart_is_required_description = "App restart is required after changing.";
+
 // Patching
 
 do_not_patch_premium = "Do Not Patch Premium";
 patching_description = "EeveeSpotify intercepts requests to load user data, deserializes it, and modifies the parameters in real-time.
 
-If you have an active Premium subscription, you can turn on Do Not Patch Premium. The tweak won't patch the data or restrict the use of Premium server-sided features. App restart is required after changing.";
+If you have an active Premium subscription, you can turn on Do Not Patch Premium. The tweak won't patch the data or restrict the use of Premium server-sided features.
+
+%@";
 
 overwrite_configuration = "Overwrite Configuration";
 overwrite_configuration_description = "Replace remote configuration with the dumped Premium one. This configuration defines most UI/UX parameters and may be helpful, although it could cause issues.";
 
 // Lyrics
 
+do_not_replace_lyrics = "Do Not Replace Lyrics";
 lyrics_source = "Lyrics Source";
 lyrics_source_description = "You can select the lyrics source you prefer.
 
@@ -75,7 +80,8 @@ dark_popups = "Dark PopUps";
 have_premium_popup = "It looks like you have an active Premium subscription, so the tweak won't patch the data or restrict the use of Premium server-sided features. You can manage this in the EeveeSpotify settings.";
 
 high_audio_quality_popup = "Very high audio quality is server-sided and is not available with this tweak.";
-playlist_downloading_popup = "Native playlist downloading is server-sided and is not available with this tweak. You can download podcast episodes though.";
+playlist_downloading_popup = "Native playlist downloading is server-sided and is not available with this tweak. You can download podcast episodes and local playlists though.";
+download_local_playlist = "Download local playlist";
 
 /* MARK: Lyrics */
 
