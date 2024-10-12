@@ -15,6 +15,8 @@ reset_data_description = "پاک کردن کش و راه اندازی مجدد";
 checking_for_update = "درحال بررسی بروزرسانی...";
 update_available = "آپدیت موجود است";
 
+restart_is_required_description = "راه اندازی مجدد بعد از اعمال تغییرات";
+
 // Patching
 
 do_not_patch_premium = "پچ نکردن حالت ویژه";
@@ -27,6 +29,7 @@ overwrite_configuration_description = "پیکربندی از راه دور را 
 
 // Lyrics
 
+do_not_replace_lyrics = "متن ترانه را جایگزین نکن";
 lyrics_source = "منبع متن ترانه";
 lyrics_source_description = "می توانید منبع متن ترانه دلخواه خود را انتخاب کنید.
 
@@ -76,6 +79,7 @@ have_premium_popup = "به نظر می‌رسد شما یک اشتراک Premium
 
 high_audio_quality_popup = "کیفیت صدای بسیار بالا سمت سرور است و با این توییک در دسترس نیست.";
 playlist_downloading_popup = "دانلود لیست پخش بومی به صورت سرور است و با این توییک در دسترس نیست. هر چند می توانید قسمت های پادکست را دانلود کنید.";
+download_local_playlist = "بارگیری لیست پخش محلی";
 
 /* MARK: Lyrics */
 
@@ -98,3 +102,9 @@ unknown_error = "خطای نامشخص";
 
 song_is_instrumental = "این ترانه بی کلام است";
 let_the_music_play = "بگذار موسیقی پخش شود...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "آهنگ های لایک شده";
+
+contributors = "مشارکت کنندگان";
