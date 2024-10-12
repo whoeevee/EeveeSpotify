@@ -15,6 +15,8 @@ reset_data_description = "Cancella i dati memorizzati nella cache e riavvia l'ap
 checking_for_update = "Verifica aggiornamenti...";
 update_available = "Aggiornamento disponibile";
 
+restart_is_required_description = "Dopo la modifica è necessario riavviare l'app.";
+
 // Patching
 
 do_not_patch_premium = "Non patchare Premium";
@@ -27,6 +29,7 @@ overwrite_configuration_description = "Sostituisci la configurazione remota con 
 
 // Lyrics
 
+do_not_replace_lyrics = "Non sostituire i testi";
 lyrics_source = "Fonte dei testi";
 lyrics_source_description = "Puoi selezionare la fonte dei testi che preferisci.
 
@@ -76,6 +79,7 @@ have_premium_popup = "Sembra che tu abbia un abbonamento Premium attivo, quindi 
 
 high_audio_quality_popup = "La qualità audio molto alta è gestita lato server e non è disponibile con questo tweak.";
 playlist_downloading_popup = "Il download nativo delle playlist è gestito lato server e non è disponibile con questo tweak. Puoi comunque scaricare episodi di podcast.";
+download_local_playlist = "Scarica playlist locale";
 
 /* MARK: Lyrics */
 
@@ -98,3 +102,9 @@ unknown_error = "Errore sconosciuto";
 
 song_is_instrumental = "Questa canzone è strumentale.";
 let_the_music_play = "Lascia che la musica suoni...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "Brani che ti piacciono";
+
+contributors = "Contributori";
