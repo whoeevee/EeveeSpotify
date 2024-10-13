@@ -111,13 +111,13 @@ class MusixmatchLyricsRepository: LyricsRepository {
             throw LyricsError.DecodingError
         }
 
-        let translations = translationsList.map {
-            $0["translation"] as! [String: Any]
+        let translations = translationsList.compactMap {
+            $0["translation"] as? [String: Any]
         }
         
-        return Dictionary(uniqueKeysWithValues: translations.map {
-            ($0["subtitle_matched_line"] as! String, $0["description"] as! String)
-        })
+        return translations.reduce(into: [:]) { dictionary, translation in
+            dictionary[translation["subtitle_matched_line"] as! String] = translation["description"] as? String
+        }
     }
     
     //
