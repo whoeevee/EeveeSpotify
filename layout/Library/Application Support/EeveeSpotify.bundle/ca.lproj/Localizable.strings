@@ -1,0 +1,112 @@
+/* MARK: Settings */
+
+patching = "Parxejant";
+lyrics = "Lletres";
+customization = "Personalització";
+
+common_issues_tip_title = "Tens cap problema?";
+
+common_issues_tip_message = "Si et trobes amb cap problema, com no poder reproduir cap cançó, fes un cop d'ull a";
+common_issues_tip_button = "Problemes Comuns";
+
+reset_data = "Reinicialitza les dades";
+reset_data_description = "Neteja la memòria cau i reinicia l'aplicació.";
+
+checking_for_update = "Cercant actualitzacions...";
+update_available = "Actualització disponible";
+
+restart_is_required_description = "S'ha de reiniciar l'aplicació per aplicar els canvis";
+
+// Patching
+
+do_not_patch_premium = "No parxegis el Premium";
+patching_description = "L'EeveeSpotify intercepta peticions de càrrega de dades de l'usuari, les deserialitza i en modifica els paràmetres en temps real.
+
+Si tens una subscripció Premium activa, pots activar l'opció «No parxegis el Premium». L'EeveeSpotify ja no parxejarà les dades ni restringirà l'ús de les funcions Premium que depenen del servidor.
+
+%@";
+
+overwrite_configuration = "Sobreescriu la configuració";
+overwrite_configuration_description = "Substitueix la configuració remota amb la configuració Premium bolcada. Aquesta configuració determina la majoria de paràmetres d'experiència d'usuari i interfície i podria ser útil, tot i que pot causar problemes.";
+
+// Lyrics
+
+do_not_replace_lyrics = "No substitueixis les lletres";
+lyrics_source = "Font de les lletres";
+lyrics_source_description = "Pots seleccionar la font de lletres que prefereixis.
+
+Genius: Ofereix les lletres de més qualitat, té disponibles la major part de cançons i és el que actualitza més ràpidament les lletres, però no està ni mai estarà sincronitzat amb els temps de la cançó.
+
+LRCLIB: És el servei més obert, ofereix lletres sincronitzades amb els temps de les cançons. No obstant, manca les lletres per moltes cançons.
+
+Musixmatch: És el servei que utilitza Spotify. Forneix lletres sincronitzades amb el temps de moltes cançons, però necessitaràs un token d'usuari per utilitzar-lo.";
+lyrics_additional_info = "Si l'EeveeSpotify no pot trobar una cançó o processar-ne la lletra, es mostrarà el missatge «No s'ha pogut carregar la lletra d'aquesta cançó». La lletra podria ser incorrecta per algunes de les cançons quan s'utilitza Genius degut al mètode que s'utilitza per trobar les cançons. He aconseguit fer-ho funcionar per la majoria de casos.";
+petitlyrics_description = "PetitLyrics: Ofereix una abundància de lletres sincronitzades amb els temps de les cançons en japonès i per algunes lletres de cançons internacionals.";
+
+musixmatch_user_token = "Token d'usuari de Musixmatch";
+user_token_placeholder = "Introdueix el token d'usuari o enganxa la informació de depuració des del portaretalls";
+
+enter_user_token = "Introdueix el token d'usuari";
+enter_user_token_message = "Per tal d'utilitzar Musixmatch, hauràs d'obtenir el teu token d'usuari des de l'aplicaió oficial. Descarrega Musixmatch de l'App Store, registra't, i ves a Configuració > Ajuda > Copiar informació de depuració, i enganxa-ho aquí. També pots extreure el token utilitzant MITM.";
+
+genius_fallback = "Servei supletori de Genius";
+genius_fallback_description = "Carrega lletres de Genius si hi ha cap problema amb %@.";
+
+show_fallback_reasons = "Mostra les raons de l'ús supletori";
+
+romanized_lyrics = "Lletres romanitzades";
+romanized_lyrics_description = "Mostra lletres romanitzades pel japonès, coreà i xinès.";
+
+musixmatch_language = "Idioma per les lletres de Musixmatch";
+musixmatch_language_description = "Pots introduir un codi d'idioma de Musixmatch de 2 lletres i veure lletres traduïdes si es troben disponibles.";
+
+// UI
+
+lyrics_background_color_section = "Color de fons de les lletres";
+lyrics_background_color_section_description = "Si actives «Mostra colors originals», les lletres es mostraran amb es colors originals de Spotify per les cançons que en tinguin.
+
+Pots establir un color estàtic o un factor de normalització basat en el color extret de la caràtula de l'àlbum de la pista. Aquest factor determina la mesura en que els colors foscos seran il·luminats i en la que els colors clars seran enfosquits. Generalment, es veuran els colors clars amb un factor de normalització més elevat.";
+
+display_original_colors = "Mostra colors originals";
+
+use_static_color = "Utilitza color estàtic";
+static_color = "Color estàtic";
+
+color_normalization_factor = "Factor de normalització del color";
+dark_popups = "Missatges emergents foscos";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "Sembla que tens una subscripció Premium activa, l'EeveeSpotify no parxejarà les dades ni restringirà l'ús de les funcions Premium que depenen del servidor. Això es pot modificar des de la configuració de l'EeveeSpotify.";
+
+high_audio_quality_popup = "La qualitat d'àudio molt alta depèn del servidor i no està disponible amb aquest paquet de modificacions.";
+playlist_downloading_popup = "La descàrrega nativa de llistes de reproducció depèn del servidor i no està disponible amb aquest paquet de modificacions. No obstant, pots descarregar episodis de podcasts i llistes de reproducció locals.";
+download_local_playlist = "Descarrega llista de reproducció local";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Supletori";
+romanized_attribute = "Romanitzat";
+
+musixmatch_unauthorized_popup = "L'EeveeSpotify no pot carregar lletres de Musixmatch a causa d'un error d'autorització. Si us plau comprova el teu token d'usuari de Musixmatch. Si utilitzes un iPad, has d'obtenir el token de l'aplicació de Musixmatch per iPad.";
+musixmatch_restricted_popup = "L'EeveeSpotify no pot carregar lletres de Musixmatch perquè estan restringides. Això es deu probablement a un problema relacionat amb el copyright degut a l'adreça IP dels Estats Units, hauries de canviar de servei de lletres si ets als Estats Units o utilitzar una VPN.";
+
+// Errors Titles
+
+no_such_song = "No s'ha trobat la cançó";
+musixmatch_restricted = "Restringit";
+invalid_musixmatch_token = "No autoritzat";
+decoding_error = "Error de descodificació";
+no_current_track = "No hi ha instància de pista";
+unknown_error = "Error desconegut";
+
+// Instrumental Titles
+
+song_is_instrumental = "Aquesta cançó és instrumental.";
+let_the_music_play = "Deixa que soni la música...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "Cançons que m'agraden";
+
+contributors = "Contribucions";
