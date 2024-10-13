@@ -85,7 +85,7 @@ download_local_playlist = "Descarregar Playlist Local";
 
 /* MARK: Lyrics */
 
-fallback_attribute = "Recurso de Contingência";
+fallback_attribute = "Contingência";
 romanized_attribute = "Romanizado";
 
 musixmatch_unauthorized_popup = "A modificação não consegue carregar as letras do Musixmatch devido a um erro de autorização. Verifica ou atualiza o teu token do Musixmatch. Se estiveres a usar um iPad, deves obter o token na aplicação Musixmatch para iPad.";
