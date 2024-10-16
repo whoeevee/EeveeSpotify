@@ -1,0 +1,112 @@
+/* MARK: Settings */
+
+patching = "Aplicação de correções";
+lyrics = "Letras";
+customization = "Personalização";
+
+common_issues_tip_title = "Está com problemas?";
+
+common_issues_tip_message = "Se estiver a enfrentar problemas, como não conseguir reproduzir nenhuma música, confira";
+common_issues_tip_button = "Problemas comuns";
+
+reset_data = "Predifinir Dados";
+reset_data_description = "Limpa os dados em cache e reinicia a aplicação.";
+
+checking_for_update = "A procurar atualizações...";
+update_available = "Atualização disponível";
+
+restart_is_required_description = "É necessário reiniciar a aplicação após a alteração.";
+
+// Patching
+
+do_not_patch_premium = "Não aplicar modificações ao Premium";
+patching_description = "O EeveeSpotify intercepta pedidos para carregar dados do utilizador, descodifica-os e modifica os parâmetros em tempo real.
+
+Se tiveres uma subscrição Premium ativa, podes ativar a opção Não aplicar modificações ao Premium. A modificação não irá alterar os dados nem restringir o uso de funcionalidades Premium geridas pelo servidor.
+
+%@";
+
+overwrite_configuration = "Substituir Configuração";
+overwrite_configuration_description = "Substitui a configuração remota pela versão Premium descartada. Esta configuração define a maioria dos parâmetros de interface e pode ser útil, embora possa causar alguns problemas.";
+
+// Lyrics
+
+do_not_replace_lyrics = "Não substituir letras da música";
+lyrics_source = "Fonte de Letras da música";
+lyrics_source_description = "Podes selecionar a fonte de letras fr música que preferir.
+
+Genius: Oferece letras de melhor qualidade, um maior número de músicas e atualiza as letras mais rapidamente. Não está, nem estará, sincronizado.
+
+LRCLIB: O serviço mais aberto, que oferece letras sincronizadas. No entanto, faltam letras para muitas músicas.
+
+Musixmatch: O serviço utilizado pelo Spotify. Fornece letras sincronizadas para muitas músicas, mas precisa de um token de utilizador para usar esta fonte.";
+lyrics_additional_info = "Se o EeveeSpotify não conseguir encontrar uma música ou processar as letras, verás a mensagem \"Não foi possível carregar as letras desta música\". As letras podem estar erradas para algumas músicas ao utilizar o Genius devido à forma como a modificação pesquisa as músicas. Fiz com que funcione na maioria dos casos.";
+petitlyrics_description = "PetitLyrics: Oferece muitas letras japonesas sincronizadas e algumas internacionais.";
+
+musixmatch_user_token = "Token de Utilizador Musixmatch";
+user_token_placeholder = "Insere o token de utilizador ou cola as informações de depuração";
+
+enter_user_token = "Inserir Token de Utilizador";
+enter_user_token_message = "Para utilizar o Musixmatch, precisa de obter o token de utilizador da aplicação oficial. Descarrega o Musixmatch da App Store, registe-se, depois va a Definições > Ajuda > Copiar informações de depuração, e cole-as aqui. Também pode extrair o token usando MITM.";
+
+genius_fallback = "Genius opção de contingência";
+genius_fallback_description = "Carrega as letras do Genius se houver um problema com %@.";
+
+show_fallback_reasons = "Mostrar Motivos de Contingência";
+
+romanized_lyrics = "Letras Romanizadas";
+romanized_lyrics_description = "Exibe letras romanizadas para japonês, coreano e chinês.";
+
+musixmatch_language = "Idioma das Letras do Musixmatch";
+musixmatch_language_description = "Pode inserir um código de idioma de 2 letras no Musixmatch e ver as letras traduzidas, se disponíveis.";
+
+// UI
+
+lyrics_background_color_section = "Cor de Fundo das Letras";
+lyrics_background_color_section_description = "Se ativar a opção Mostrar Cores Originais, as letras aparecerão nas cores originais do Spotify para as faixas que as possuírem.
+
+Pode definir uma cor estática ou um fator de normalização com base na cor da capa da faixa. Este fator determina o quanto as cores escuras são aclaradas e as cores claras são escurecidas. Geralmente, verá cores mais claras com um fator de normalização mais alto.";
+
+display_original_colors = "Mostrar Cores Originais";
+
+use_static_color = "Utilizar Cor Estática";
+static_color = "Cor Estática";
+
+color_normalization_factor = "Fator de Normalização de Cores";
+dark_popups = "Pop-ups Escuros";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "Parece que tem uma subscrição Premium ativa, por isso a modificação não irá alterar os dados nem restringir o uso de funcionalidades Premium geridas pelo servidor. Podes gerir isto nas definições do EeveeSpotify.";
+
+high_audio_quality_popup = "A qualidade de áudio muito alta é gerida pelo servidor e não está disponível com esta modificação.";
+playlist_downloading_popup = "O download nativo de listas de reprodução é gerido pelo servidor e não está disponível com esta modificação. Pode, no entanto, descarregar episódios de podcast e playlists locais.";
+download_local_playlist = "Descarregar Playlist Local";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "Contingência";
+romanized_attribute = "Romanizado";
+
+musixmatch_unauthorized_popup = "A modificação não consegue carregar as letras do Musixmatch devido a um erro de autorização. Verifica ou atualiza o teu token do Musixmatch. Se estiveres a usar um iPad, deves obter o token na aplicação Musixmatch para iPad.";
+musixmatch_restricted_popup = "A modificação não consegue carregar as letras do Musixmatch porque estão restritas. Provavelmente, é um problema de direitos de autor devido ao endereço IP dos EUA, por isso deve alterá-lo se estiver nos EUA ou usar uma VPN.";
+
+// Errors Titles
+
+no_such_song = "Nenhuma Música Encontrada";
+musixmatch_restricted = "Restrito";
+invalid_musixmatch_token = "Não Autorizado";
+decoding_error = "Erro de Decodificação";
+no_current_track = "Sem Faixa Ativa";
+unknown_error = "Erro Desconhecido";
+
+// Instrumental Titles
+
+song_is_instrumental = "Esta faixa é instrumental.";
+let_the_music_play = "Deixa a música tocar...";
+
+// Título de músicas gostadas, deve corresponder à localização oficial do Spotify
+
+liked_songs = "Músicas de que Gostaste";
+
+contributors = "Contribuidores";
