@@ -81,7 +81,7 @@ have_premium_popup = "Parece que tienes una suscripción Premium activa, por lo 
 
 high_audio_quality_popup = "La calidad de audio muy alta depende del servidor y no está disponible con este paquete de modificaciones.";
 playlist_downloading_popup = "La descarga nativa de listas de reproducción se realiza desde el servidor y no está disponible con este paquete de modificaciones. Sin embargo, puede descargar episodios de podcasts y listas de reproducción locales.";
-download_local_playlist = 'Descargar lista de reproducción local'
+download_local_playlist = 'Descargar lista de reproducción local';
 
 /* MARK: Lyrics */
 
