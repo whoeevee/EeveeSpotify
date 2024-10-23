@@ -16,13 +16,13 @@
 "fallback_attribute"="フォールバック";
 "genius_fallback"="Geniusでフォールバック";
 "genius_fallback_description"="%@ に問題がある場合は、Geniusから歌詞を読み込みます。";
-"have_premium_popup"="有効なプレミアム サブスクリプションをお持ちの場合、EeveeSpotifyによってデータがパッチされたり、プレミアムのサーバー側機能の使用が制限されたりすることはありません。これはEeveeSpotify設定で管理できます。";
-"high_audio_quality_popup"="非常に高いオーディオ品質はサーバー側で実現されるため、EeveeSpotifyでは利用できません。";
+"have_premium_popup"="有効なプレミアムサブスクリプションをお持ちの場合、EeveeSpotifyによってデータがパッチされたり、プレミアムのサーバー側機能の使用が制限されたりすることはありません。これはEeveeSpotify設定で管理できます。";
+"high_audio_quality_popup"="最高音質はサーバー側で実現されるため、EeveeSpotifyでは利用できません。";
 "invalid_musixmatch_token"="許可されていません";
 "let_the_music_play"="音楽を再生しましょう...";
 "liked_songs"="気に入った曲";
 "lyrics"="歌詞";
-"lyrics_additional_info"="EeveeSpotifyが曲を見つけられなかったり、歌詞を処理できなかったりする場合は、「この曲の歌詞を読み込めませんでした」というメッセージが表示されます。Geniusを使用すると、調整による曲の検索方法により、一部の曲の歌詞が間違っている可能性があります。ほとんどの場合、うまく機能します。";
+"lyrics_additional_info"="EeveeSpotifyが曲を見つけられなかったり、歌詞を処理できなかったりする場合は、「この曲の歌詞を読み込めませんでした」というメッセージが表示されます。Geniusを使用すると、EeveeSpotifyによる曲の検索方法により、一部の曲の歌詞が間違っている可能性があります。ほとんどの場合、うまく機能します。";
 "lyrics_background_color_section"="歌詞の背景色";
 "lyrics_background_color_section_description"="[元の色を表示]をオンにすると、歌詞があるトラックでは、歌詞が元のSpotifyの色で表示されます。\n\n抽出されたトラックカバーの色に基づいて、静的な色または正規化係数を設定できます。この係数によって、暗い色がどれだけ明るくなり、明るい色がどれだけ暗くなるかが決まります。通常、正規化係数が高いほど、明るい色が表示されます。";
 "lyrics_source"="歌詞のソース";
