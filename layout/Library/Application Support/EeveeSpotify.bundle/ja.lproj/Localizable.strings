@@ -49,7 +49,7 @@
 "romanized_lyrics"="歌詞をローマ字表記にする";
 "romanized_lyrics_description"="日本語、韓国語、中国語のローマ字の歌詞を表示します。";
 "show_fallback_reasons"="フォールバックの理由を表示";
-"song_is_instrumental"="この曲には歌詞がありません。";
+"song_is_instrumental"="この曲は演奏だけです。";
 "static_color"="静的な色";
 "unknown_error"="不明なエラー";
 "update_available"="更新が利用可能です";
