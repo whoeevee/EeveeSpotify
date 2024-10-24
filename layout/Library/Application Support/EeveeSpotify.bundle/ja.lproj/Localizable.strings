@@ -4,25 +4,25 @@ patching = "パッチ";
 lyrics = "歌詞";
 customization = "カスタマイズ";
 
-common_issues_tip_title = "お困りですか？";
+common_issues_tip_title = "問題が発生していますか？";
 
-common_issues_tip_message = "どの曲も再生できないなどの問題が発生している場合は以下をチェックしてください";
-common_issues_tip_button = "よくある問題";
+common_issues_tip_message = "曲を再生できないなどのバグが発生している場合は、問題をチェックしてください";
+common_issues_tip_button = "一般的な問題";
 
 reset_data = "データをリセット";
-reset_data_description = "キャッシュを削除し、アプリを再起動します。";
+reset_data_description = "キャッシュデータを消去してSpotifyを再起動します。";
 
 checking_for_update = "アップデートを確認中...";
 update_available = "アップデート可能";
 
-restart_is_required_description = "変更後はアプリの再起動が必要です。";
+restart_is_required_description = "変更後はSpotifyの再起動が必要です。";
 
 // Patching
 
 do_not_patch_premium = "パッチを適用しない";
-patching_description = "EeveeSpotify は、ユーザーデータをロードするリクエストをインターセプトし、デシリアライズしてリアルタイムでパラメータを変更します。
-
-Premium に登録している場合、この設定を有効にすることでデータにパッチを適用したり、Premium のサーバー側機能の使用が制限されたりすることはありません。
+patching_description = "EeveeSpotifyは、ユーザーデータを読み込むリクエストをインターセプトし、それをデシリアライズして、リアルタイムでパラメータを変更します。
+ 
+有効なプレミアムサブスクリプションをお持ちの場合は、「プレミアムにパッチを適用しない」をオンにすることができます。この調整によって、データがパッチされたり、プレミアムのサーバー側で実現される機能の使用が制限されたりすることはありません。
 
 %@";
 
@@ -45,10 +45,10 @@ musixmatch_user_token = "Musixmatch ユーザートークン";
 user_token_placeholder = "ユーザートークンを入力、またはデバッグ情報を貼り付け";
 
 enter_user_token = "ユーザートークンを入力";
-enter_user_token_message = "Musixmatch を使用するには、Musixmatch のアプリからユーザートークンを取得する必要があります。App Store から を使用するには、Musixmatch をダウンロードし、アカウントを作成した後、Settings > Get help > Copy debug info と進み、ここに貼り付けてください。MITM を使用してトークンを取り出すこともできます。";
+enter_user_token_message = "Musixmatchを使用するには、公式アプリからユーザートークンを取得する必要があります。App StoreからMusixmatchをダウンロードし、サインアップしてから、[設定] > [ヘルプを表示] > [デバッグ情報をコピー] に移動して、ここに貼り付けます。MITMを使用してトークンを抽出することもできます。";
 
-genius_fallback = "Genius フォールバック";
-genius_fallback_description = "%@ に問題がある場合は、Genius から歌詞を取得します。";
+genius_fallback = "Geniusでフォールバック";
+genius_fallback_description = "%@ に問題がある場合は、Geniusから歌詞を読み込みます。";
 
 show_fallback_reasons = "フォールバックの理由を表示する";
 
@@ -61,9 +61,9 @@ musixmatch_language_description = "2文字の Musixmatch 言語コードを入�
 // UI
 
 lyrics_background_color_section = "歌詞の背景色";
-lyrics_background_color_section_description = "「オリジナルの背景色で表示」をオンにすると、Spotify のオリジナルの背景色になります。
+lyrics_background_color_section_description = "[元の色を表示]をオンにすると、歌詞があるトラックでは、歌詞が元のSpotifyの色で表示されます。
 
-静的な色、または抽出されたトラックカバーに色に基づく正規化係数を設定できます。この係数は、暗い色をどの程度明るくし、明るい色をどの程度暗くするかを決定します。通常の場合、正規化係数が大きいほど明るい色が表示されます。";
+抽出されたアルバムアートの色に基づいて、静的な色または正規化係数を設定できます。この係数によって、暗い色がどれだけ明るくなり、明るい色がどれだけ暗くなるかが決まります。通常、正規化係数が高いほど、明るい色が表示されます。";
 
 display_original_colors = "オリジナルの背景色で表示";
 
@@ -107,4 +107,4 @@ let_the_music_play = "音楽を再生しよう...";
 
 liked_songs = "好きな曲";
 
-contributors = "貢献者";
+contributors = "コントリビューター";
