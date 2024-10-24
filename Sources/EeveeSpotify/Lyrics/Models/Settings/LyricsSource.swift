@@ -16,7 +16,7 @@ enum LyricsSource: Int, CaseIterable, CustomStringConvertible {
         case .genius: "Genius"
         case .lrclib: "LRCLIB"
         case .musixmatch: "Musixmatch"
-        case .petit: "PetitLyrics"
+        case .petit: "プチリリ"
         case .notReplaced: "Spotify"
         }
     }
