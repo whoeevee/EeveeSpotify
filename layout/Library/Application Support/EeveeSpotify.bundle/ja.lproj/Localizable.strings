@@ -1,0 +1,110 @@
+/* MARK: Settings */
+
+patching = "パッチ";
+lyrics = "歌詞";
+customization = "カスタマイズ";
+
+common_issues_tip_title = "お困りですか？";
+
+common_issues_tip_message = "どの曲も再生できないなどの問題が発生している場合は以下をチェックしてください";
+common_issues_tip_button = "よくある問題";
+
+reset_data = "データをリセット";
+reset_data_description = "キャッシュを削除し、アプリを再起動します。";
+
+checking_for_update = "アップデートを確認中...";
+update_available = "アップデート可能";
+
+restart_is_required_description = "変更後はアプリの再起動が必要です。";
+
+// Patching
+
+do_not_patch_premium = "パッチを適用しない";
+patching_description = "EeveeSpotify は、ユーザーデータをロードするリクエストをインターセプトし、デシリアライズしてリアルタイムでパラメータを変更します。
+
+Premium に登録している場合、この設定を有効にすることでデータにパッチを適用したり、Premium のサーバー側機能の使用が制限されたりすることはありません。
+
+%@";
+
+overwrite_configuration = "設定を上書き";
+overwrite_configuration_description = "リモート構成をダンプされた Premium の設定に置き換えます。この設定はほどんどの UI/UX パラメーターを定義しており、役立つかもしれませんが、問題が発生する可能性があります。";
+
+// Lyrics
+
+do_not_replace_lyrics = "歌詞を置き換えない";
+lyrics_source = "歌詞ソース";
+lyrics_source_description = "歌詞ソースを選択できます。
+
+Genius: 最高品質の歌詞で、最も多くの曲があり、歌詞を最も早く更新します。歌詞同期はされません。
+
+LRCLIB: 最もオープンはサービスで、歌詞同期されます。曲は多くありません。
+
+Musixmatch: Spotify が使用しているサービスです。多くの曲がありますが、このソースを使用するにはユーザートークンが必要です。";
+
+musixmatch_user_token = "Musixmatch ユーザートークン";
+user_token_placeholder = "ユーザートークンを入力、またはデバッグ情報を貼り付け";
+
+enter_user_token = "ユーザートークンを入力";
+enter_user_token_message = "Musixmatch を使用するには、Musixmatch のアプリからユーザートークンを取得する必要があります。App Store から を使用するには、Musixmatch をダウンロードし、アカウントを作成した後、Settings > Get help > Copy debug info と進み、ここに貼り付けてください。MITM を使用してトークンを取り出すこともできます。";
+
+genius_fallback = "Genius フォールバック";
+genius_fallback_description = "%@ に問題がある場合は、Genius から歌詞を取得します。";
+
+show_fallback_reasons = "フォールバックの理由を表示する";
+
+romanized_lyrics = "ローマ字の歌詞";
+romanized_lyrics_description = "日本語、韓国語、中国語のローマ字の歌詞を表示します。";
+
+musixmatch_language = "Musixmatch 歌詞の言語";
+musixmatch_language_description = "2文字の Musixmatch 言語コードを入力すると、Musixmatch で翻訳された歌詞が表示されます (利用可能な場合)。";
+
+// UI
+
+lyrics_background_color_section = "歌詞の背景色";
+lyrics_background_color_section_description = "「オリジナルの背景色で表示」をオンにすると、Spotify のオリジナルの背景色になります。
+
+静的な色、または抽出されたトラックカバーに色に基づく正規化係数を設定できます。この係数は、暗い色をどの程度明るくし、明るい色をどの程度暗くするかを決定します。通常の場合、正規化係数が大きいほど明るい色が表示されます。";
+
+display_original_colors = "オリジナルの背景色で表示";
+
+use_static_color = "静的な色を使用";
+static_color = "色";
+
+color_normalization_factor = "色の正規化係数";
+dark_popups = "暗いポップアップ";
+
+/* MARK: Premium PopUps */
+
+have_premium_popup = "Premium が有効なので、データにパッチを適用したり、Premium のサーバー側機能の使用が制限されたりすることはありません。EeveeSpotify の設定で管理できます。";
+
+high_audio_quality_popup = "最高音質はサーバー側で行われるため、利用できません。";
+playlist_downloading_popup = "ネイティブプレイリストのダウンロードはサーバー側で行われるため、利用できません。なお、ポッドキャストのエピソードとローカルプレイリストはダウンロードできます。";
+download_local_playlist = "ローカルプレイリストをダウンロード";
+
+/* MARK: Lyrics */
+
+fallback_attribute = "フォールバック";
+romanized_attribute = "ローマ字";
+
+musixmatch_unauthorized_popup = "Unauthorized エラーのため、Musixmatch から歌詞を取得することができません。Musixmatch トークンを確認、または変更してください。iPad を使用している場合は、iPad 用の Musixmatch アプリからトークンを取得してください。";
+musixmatch_restricted_popup = "歌詞が制限されているため取得できません。米国の IP アドレスによる著作権の問題である可能性が高いため、米国にいる場合は IP アドレスを変更するか、VPN を使用する必要があります。";
+
+// Errors Titles
+
+no_such_song = "曲が見つかりません";
+musixmatch_restricted = "制限";
+invalid_musixmatch_token = "無許可";
+decoding_error = "解読エラー";
+no_current_track = "トラックインスタンスなし";
+unknown_error = "不明なエラー";
+
+// Instrumental Titles
+
+song_is_instrumental = "この曲はインストゥルメンタルです。";
+let_the_music_play = "音楽を再生しよう...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "好きな曲";
+
+contributors = "貢献者";
