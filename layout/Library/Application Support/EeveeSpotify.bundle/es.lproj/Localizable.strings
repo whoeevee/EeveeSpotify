@@ -4,29 +4,34 @@ patching = "Parcheando";
 lyrics = "Letra";
 customization = "Personalización";
 
-common_issues_tip_title = "¿Tienes Problemas?";
+common_issues_tip_title = "¿Tienes problemas?";
 
 common_issues_tip_message = "Si te encuentras con un problema, como no poder reproducir ninguna canción, echa un vistazo a";
 common_issues_tip_button = "Problemas Comunes";
 
-reset_data = "Restablecer Datos";
+reset_data = "Restablecer datos";
 reset_data_description = "Borra los datos almacenados en caché y reinicia la aplicación.";
 
-checking_for_update = "Comprobando Actualizaciones...";
-update_available = "Actualización Disponible";
+checking_for_update = "Comprobando actualizaciones...";
+update_available = "Actualización disponible";
+
+restart_is_required_description = "Es necesario reiniciar la aplicación para aplicar los cambios";
 
 // Patching
 
-do_not_patch_premium = "No Parchear Premium";
-patching_description = "El programa intercepta las peticiones de carga de datos de usuario, las deserializa y modifica los parámetros en tiempo real.
+do_not_patch_premium = "No parchear las funciones Premium";
+patching_description = "EeveeSpotify intercepta las solicitudes de carga de datos de usuario, las deserializa y modifica los parámetros en tiempo real.
 
-Si tienes una suscripción Premium activa, puedes activar No parchear Premium. El tweak no parcheará los datos ni restringirá el uso de las funciones Premium del servidor. Es necesario reiniciar la aplicación después del cambio.";
+Si tienes una suscripción Premium activa, puedes activar No parchear Premium. EeveeSpotify no parcheará los datos ni restringirá el uso de las funciones Premium del servidor.
 
-overwrite_configuration = "Sobreescribir Configuración";
-overwrite_configuration_description = "Sustituye la configuración remota por la Premium volcada. Podría solucionar algunos problemas, como la aparición de anuncios, pero no está garantizado.";
+%@";
+
+overwrite_configuration = "Sobreescribir la configuración";
+overwrite_configuration_description = "Sustituye la configuración remota por la configuración Premium volcada. Esta configuración define la mayoría de los parámetros UI/UX y puede ser útil, aunque podría causar problemas.";
 
 // Lyrics
 
+do_not_replace_lyrics = "No reemplazar las Letras";
 lyrics_source = "Fuente de Letras";
 lyrics_source_description = "Puedes seleccionar la fuente de letra que prefieras.
 
@@ -35,11 +40,11 @@ Genius: Ofrece la mejor calidad de letras, proporciona el mayor número de canci
 LRCLIB: Es el servicio más abierto y ofrece letras sincronizadas con el tiempo. Sin embargo, carece de letras para muchas canciones.
 
 Musixmatch: El servicio que utiliza Spotify. Ofrece letras sincronizadas con el tiempo para muchas canciones, pero necesitarás un token de usuario para utilizar esta fuente.";
-lyrics_additional_info = "Si el programa no puede encontrar una canción o procesar la letra, verás un mensaje: \"No se ha podido cargar la letra de esta canción\". La letra puede ser incorrecta para algunas canciones cuando se utiliza Genius debido a la forma en que el programa busca las canciones. He conseguido que funcione en la mayoría de los casos.";
+lyrics_additional_info = "Si EeveeSpotify no puede encontrar una canción o procesar la letra, verás un mensaje: \"No se ha podido cargar la letra de esta canción\". La letra puede ser incorrecta para algunas canciones cuando se utiliza Genius debido a la forma en que el programa busca las canciones. He conseguido que funcione en la mayoría de los casos.";
 petitlyrics_description = "PetitLyrics: Ofrece un montón de letras en japonés sincronizadas con el tiempo y algunas internacionales.";
 
 musixmatch_user_token = "Token de Usuario de Musixmatch";
-user_token_placeholder = "Introducir Token de Usuario o Pegar Información de Depuración";
+user_token_placeholder = "Introducir Token de Usuario o Pegar Información de Depuración del portapapeles";
 
 enter_user_token = "Introduce el Token de Usuario";
 enter_user_token_message = "Para usar Musixmatch, necesitas recuperar tu token de usuario de la app oficial. Descarga Musixmatch de la App Store, regístrate y ve a Configuración > Obtener ayuda > Copiar información de depuración y pégala aquí. También puedes extraer el token usando MITM.";
@@ -47,53 +52,61 @@ enter_user_token_message = "Para usar Musixmatch, necesitas recuperar tu token d
 genius_fallback = "Genius como alternativa";
 genius_fallback_description = "Cargar letras desde Genius si hay un problema con %@.";
 
-show_fallback_reasons = "Mostrar problemas encontrados";
+show_fallback_reasons = "Mostrar razones de la alternativa";
 
-romanized_lyrics = "Letras Romanizadas";
-romanized_lyrics_description = "Muestra las letras romanizadas en Japonés, Coreano y Chino.";
+romanized_lyrics = "Letras romanizadas";
+romanized_lyrics_description = "Muestra las letras romanizadas en japonés, coreano y chino.";
 
-musixmatch_language = "Musixmatch Idioma de las Letras";
+musixmatch_language = "Idioma de las Letras de Musixmatch";
 musixmatch_language_description = "Puedes introducir un código de idioma de Musixmatch de 2 letras y ver las letras traducidas en Musixmatch si están disponibles.";
 
 // UI
 
 lyrics_background_color_section = "Color de Fondo de las Letras";
-lyrics_background_color_section_description = "Si activas Mostrar colores originales, las letras aparecerán con los colores originales de Spotify para las canciones que los tengan.
+lyrics_background_color_section_description = "Si activas \'Mostrar colores originales\', las letras aparecerán con los colores originales de Spotify para las canciones que los tengan.
 
 Puede establecer un color estático o un factor de normalización basado en el color de la pista extraída. Este factor determina cuánto se aclaran los colores oscuros y cuánto se oscurecen los claros. Generalmente, verás colores más claros con un factor de normalización más alto";
-display_original_colors = "Mostrar Colores Originales";
 
-use_static_color = "Usar Color Estático";
-static_color = "Color Estático";
+display_original_colors = "Mostrar colores originales";
 
-color_normalization_factor = "Factor de Normalización del Color";
-dark_popups = "Ventanas Emergentes Oscuras";
+use_static_color = "Usar color estático";
+static_color = "Color estático";
+
+color_normalization_factor = "Factor de normalización del color";
+dark_popups = "Ventanas emergentes oscuras";
 
 /* MARK: Premium PopUps */
 
-have_premium_popup = "Parece que tienes una suscripción Premium activa, así que el tweak no parcheará los datos ni restringirá el uso de las funciones Premium del servidor. Puedes gestionar esto en los ajustes de EeveeSpotify.";
+have_premium_popup = "Parece que tienes una suscripción Premium activa, por lo que EeveeSpotify no parcheará los datos ni restringirá el uso de las funciones Premium del servidor. Puedes gestionar esto en los ajustes de EeveeSpotify.";
 
-high_audio_quality_popup = "La calidad de audio muy alta depende del servidor y no está disponible con este tweak.";
-playlist_downloading_popup = "La descarga nativa de listas de reproducción se realiza desde el servidor y no está disponible con este tweak. Sin embargo, puedes descargar episodios de podcasts.";
+high_audio_quality_popup = "La calidad de audio muy alta depende del servidor y no está disponible con este paquete de modificaciones.";
+playlist_downloading_popup = "La descarga nativa de listas de reproducción se realiza desde el servidor y no está disponible con este paquete de modificaciones. Sin embargo, puede descargar episodios de podcasts y listas de reproducción locales.";
+download_local_playlist = 'Descargar lista de reproducción local';
 
 /* MARK: Lyrics */
 
 fallback_attribute = "Alternativa";
 romanized_attribute = "Romanizada";
 
-musixmatch_unauthorized_popup = "El tweak no puede cargar letras de Musixmatch debido a un error no autorizado. Por favor, comprueba o actualiza tu token de Musixmatch. Si utilizas un iPad, debes obtener el token de la aplicación Musixmatch para iPad.";
-musixmatch_restricted_popup = "El tweak no puede cargar letras de Musixmatch porque están restringidas. Es probable que sea un problema de copyright debido a la dirección IP de EE.UU., por lo que deberías cambiarla si estás en EE.UU. o usar una VPN.";
+musixmatch_unauthorized_popup = "EeveeSpotify no puede cargar letras de Musixmatch debido a un error no autorizado. Por favor, comprueba o actualiza tu token de Musixmatch. Si utilizas un iPad, debes obtener el token de la aplicación Musixmatch para iPad.";
+musixmatch_restricted_popup = "EeveeSpotify no puede cargar letras de Musixmatch porque están restringidas. Es probable que sea un problema de copyright debido a la dirección IP de EE.UU., por lo que deberías cambiarla si estás en EE.UU. o usar una VPN.";
 
 // Errors Titles
 
-no_such_song = "Canción No Encontrada";
+no_such_song = "Canción no encontrada";
 musixmatch_restricted = "Restringido";
-invalid_musixmatch_token = "No Autorizado";
-decoding_error = "Error de Decodificación";
-no_current_track = "No Hay Instancia de Pista";
-unknown_error = "Error Desconocido";
+invalid_musixmatch_token = "No autorizado";
+decoding_error = "Error de decodificación";
+no_current_track = "No hay instancia de pista";
+unknown_error = "Error desconocido";
 
 // Instrumental Titles
 
 song_is_instrumental = "Esta canción es instrumental.";
 let_the_music_play = "Deja la música sonar...";
+
+// liked songs title, should match official spotify loc
+
+liked_songs = "Canciones que te gustan";
+
+contributors = "Colaboradores";
