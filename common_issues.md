@@ -7,7 +7,11 @@ If you're facing an issue, read this document before opening it on GitHub.
 ## Unable to Play Songs
 _References: Too many_
 ### If all tracks are skipped, a song stops as soon as you play it, songs play in a random order, you see the "You discovered a Premium feature" popup when trying to play a song, or encounter other restrictions,
-You can only use Spotify abroad for 14 days. Connect to a VPN server in any country, change your region at [accounts.spotify.com](https://accounts.spotify.com), then sign out and log back into Spotify with the VPN enabled.
+You can only use Spotify abroad for 14 days if you're using a free account. <br>
+How to fix it with a free account?<br>
+1. Connect to a VPN server in any country, change your region at [accounts.spotify.com](https://accounts.spotify.com), then sign out and log back into Spotify with the VPN enabled.
+> You can change your region back later.<Br>
+2. Go to Settings -> EeveeSpotify -> Patching and check if `Do Not Patch Premium` is disabled. 
 
 ***
 
