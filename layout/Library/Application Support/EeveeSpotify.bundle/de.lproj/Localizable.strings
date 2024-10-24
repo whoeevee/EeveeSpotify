@@ -4,16 +4,18 @@ patching = "Patching";
 lyrics = "Lyrics";
 customization = "Anpassungen";
 
-common_issues_tip_title = "Gibt es Probleme?";
+common_issues_tip_title = "Hast du Probleme?";
 
-common_issues_tip_message = "Wenn du Probleme hast, wie z.B dass du keine Songs abspielen kannst, solltest du dir das anschauen:";
+common_issues_tip_message = "Wenn du Probleme hast, wie z.B. dass du keine Songs abspielen kannst, solltest du dir das anschauen:";
 common_issues_tip_button = "Häufige Probleme";
 
 reset_data = "Daten zurücksetzen";
-reset_data_description = "Zwischengespeicherte Daten (Cache) löschen und App neustarten.";
+reset_data_description = "Zwischengespeicherte Daten (Cache) löschen und App neu starten.";
 
 checking_for_update = "Suche nach Updates...";
 update_available = "Update verfügbar";
+
+restart_is_required_description = "App neu starten, um die Änderung zu übernehmen.";
 
 // Patching
 
@@ -23,10 +25,11 @@ patching_description = "Der Tweak fängt Anfragen von Benutzerdaten ab, deserial
 Wenn du ein aktives Premium-Abonnement hast, dann kannst du \"Premium nicht patchen\" aktivieren. Der Tweak wird nicht die Daten patchen und die Nutzung von serverseitiger Premium-Funktionen wird nicht eingeschränkt. Nach der Änderung ist ein App-Neustart erforderlich.";
 
 overwrite_configuration = "Konfiguration überschreiben";
-overwrite_configuration_description = "Ersetze die Remote-Konfiguration mit der kopierten Premium-Konfiguration. Es könnte einige Fehler beheben, wie z.B auftauchende Werbung, ist aber nicht garantiert.";
+overwrite_configuration_description = "Ersetze die Remote-Konfiguration mit der kopierten Premium-Konfiguration. Es könnte einige Fehler beheben, wie z.B. auftauchende Werbung, dies ist jedoch nicht garantiert.";
 
 // Lyrics
 
+do_not_replace_lyrics = "Lyrics nicht ersetzen.";
 lyrics_source = "Lyrics Quelle";
 lyrics_source_description = "Du kannst deine gewünschte Liedtextquelle auswählen.
 
@@ -36,14 +39,14 @@ LRCLIB: Der offenste Dienst, der zeitsynchronisierte Lyrics anbietet. Jedoch feh
 
 Musixmatch: Der von Spotify genutzte Dienst. Bietet zeitsynchronisierte Lyrics für viele Lieder, benötigt jedoch einen Benutzer-Token. um diese Quelle zu verwenden.";
 
-lyrics_additional_info = "Wenn der Tweak keine Lyrics findet, wird die Meldung \"Es können keine Lyrics für diesen Song geladen werden.\" angezeigt. Wenn man Genius nutzt könnten einige Lyrics falsch sein, dies liegt an der Art wie der Tweak die Songs durchsucht. Es sollte jedoch in den meisten Fällen funktionieren.";
+lyrics_additional_info = "Wenn der Tweak keine Lyrics findet, wird die Meldung \"Es konnten keine Lyrics für diesen Song geladen werden.\" angezeigt. Wenn du Genius nutzt, könnten einige Lyrics falsch sein., dies liegt an der Art wie der Tweak die Songs durchsucht. Es sollte jedoch in den meisten Fällen funktionieren.";
 petitlyrics_description = "PetitLyrics: Bietet zahlreiche zeitsynchronisierte japanische und einige internationale Lyrics an.";
 
 musixmatch_user_token = "Musixmatch Benutzer-Token";
 user_token_placeholder = "Gebe den Benutzer-Token ein oder füge die Debug-Infos";
 
 enter_user_token = "Benutzer-Token eingeben";
-enter_user_token_message = "Um Musixmatch nutzen zu können, musst du zuerst den Benutzertoken von der Musixmatch App abrufen. Lade die App aus dem AppStore runter, registriere dich und gehe in Einstellungen > Hilfe > Debug-Informationen kopieren und füge diese dann hier ein. Du könntest auch den Token mit MITM extrahieren.";
+enter_user_token_message = "Um Musixmatch nutzen zu können, musst du zuerst den Benutzertoken von der Musixmatch App abrufen. Lade die App aus dem AppStore runter, registriere dich und gehe in Einstellungen > Hilfe > Debug-Informationen kopieren und sie hier einfügen. Du kannst auch den Token mit MITM extrahieren.";
 
 genius_fallback = "Genius Fallback";
 genius_fallback_description = "Lade die Lyrics von Genius, wenn es mit %@ ein Problem gibt.";
@@ -84,7 +87,7 @@ fallback_attribute = "Fallback";
 romanized_attribute = "Romanisiert";
 
 musixmatch_unauthorized_popup = "Der Tweak konnte keine Lyrics von Musixmatch aufgrund des Fehler nicht autorisiert laden. Überprüfe deinen Musixmatch Token. Wenn du ein iPad verwendest, solltest du den Benutzer-Token aus der Musixmatch iPad-App herunterladen.";
-musixmatch_restricted_popup = "Der Tweak kann keine Lyrics von Musixmatch laden, da diese eingeschränkt sind. Vermutlich liegt ein Urheberrechtsproblem vor, welches durch die US IP-Adresse ausgelöst, daher solltest du diese ändern wenn du in der USA bist oder einen VPN verwenden. ";
+musixmatch_restricted_popup = "Der Tweak kann keine Lyrics von Musixmatch laden, da diese eingeschränkt sind. Vermutlich liegt ein Urheberrechtsproblem vor, welches durch die US IP-Adresse ausgelöst, daher solltest du diese ändern wenn du in den USA bist oder einen VPN verwenden. ";
 
 // Errors Titles
 
