@@ -11,7 +11,7 @@ You can only use Spotify abroad for 14 days if you're using a free account. <br>
 How to fix it with a free account?<br>
 1. Connect to a VPN server in any country, change your region at [accounts.spotify.com](https://accounts.spotify.com), then sign out and log back into Spotify with the VPN enabled.
 > You can change your region back later.<Br>
-2. Go to Settings -> EeveeSpotify -> Patching and check if `Do Not Patch Premium` is disabled. 
+2. Go to Settings -> EeveeSpotify -> Patching and make sure `Do Not Patch Premium` is disabled. 
 
 ***
 
